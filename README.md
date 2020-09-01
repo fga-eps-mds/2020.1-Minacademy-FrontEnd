@@ -9,14 +9,13 @@ Repositório do Front End do projeto [DjangoGirls _Tutorial_](https://github.com
 - Baixe este repositório e entre na pasta baixada
 
 - Se essa é a primeira vez que está rodando o projeto, execute ```docker-compose build --up```
-- Se já rodou o projeto antes, execute ```docker-compose up```
+- Se já rodou o projeto antes, execute ```docker-compose start```
 
 - Se você fez os passos acima e não houve nenhum erro, o projeto já está rodando em [localhost:3000](localhost:3000) =D
 
 ## Documentação
 
 A documentação desse projeto pode ser acessadas [aqui](https://fga-eps-mds.github.io/2020.1-Grupo4/).
-
 
 ## Time
 

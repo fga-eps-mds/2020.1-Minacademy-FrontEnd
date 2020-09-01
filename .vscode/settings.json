@@ -1,0 +1,13 @@
+{
+  "git.ignoreLimitWarning": true,
+  "editor.rulers": [
+      100
+  ],
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true,
+    "source.fixAll.eslint": true
+  }
+}
