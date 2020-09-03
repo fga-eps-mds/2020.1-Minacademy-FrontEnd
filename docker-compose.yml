@@ -1,15 +1,20 @@
 version: '3.7'
 services:
   app:
-    stdin_open: true
-    container_name: django-girls-app
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: ./
     volumes:
       - '.:/app'
       - '/app/node_modules'
     ports:
       - '3000:3000'
     environment:
-      - NODE_ENV=development
+      NODE_ENV: development
+      SERVER_HOST: server
+      PORT: 9000
+    networks:
+      - client-server-network
+
+networks:
+  client-server-network:
+    external:
+      name: client-server-network
