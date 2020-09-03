@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   app:
+    stdin_open: true
     build: ./
     volumes:
       - '.:/app'
@@ -10,7 +11,7 @@ services:
     environment:
       NODE_ENV: development
       SERVER_HOST: server
-      PORT: 9000
+      SERVER_PORT: 9000
     networks:
       - client-server-network
 
