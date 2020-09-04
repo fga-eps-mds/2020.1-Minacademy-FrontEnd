@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { listUsersRedux } from '../services/usersService';
 
 const initialState = {
-  usersList: [{ id: '1', name: 'Gabriela'}]
+  usersList: [],
+  status: 'idle',
+  error: null
 };
 
 const usersSlice = createSlice({
@@ -10,6 +13,11 @@ const usersSlice = createSlice({
   reducers: {
     addUser(state, action) {
       state.usersList.push(action.payload.user)
+    }
+  },
+  extraReducers: {
+    [listUsersRedux.fulfilled]: (state, action) => {
+      state.usersList.push(...action.payload);
     }
   }
 });

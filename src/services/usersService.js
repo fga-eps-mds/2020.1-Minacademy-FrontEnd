@@ -1,19 +1,23 @@
-import axios from './axios';
+import api from './api';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { GET_USERS } from './endpoints';
 
-// const listUsers = async() => {
-const listUsers = () => {
-  // try {
-  //   return axios.get('/users');
-  // } catch(error) {
-  //   return error;
-  // }
-  return [
-    {name: 'Jaime'},
-    {name: 'Geovana'},
-    {name: 'Lucas'},
-  ];
+const listUsersRedux = createAsyncThunk( 'users/listUsersRedux', async () => {
+    const response = await api.get(GET_USERS);
+    return response.data;
+});
+
+const listUsers = async() => {
+  try {
+    const response = await api.get(GET_USERS);
+    return response.data;
+  } catch(error) {
+    console.log(error);
+    return error;
+  }
 }
 
 export {
-  listUsers
+  listUsers,
+  listUsersRedux
 }

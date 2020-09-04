@@ -1,3 +1,2 @@
-// const SERVER = (process.env.NODE_ENV === 'development') ? 'http://client-server-network': '';
-const SERVER = `${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`;
+const SERVER = (process.env.NODE_ENV === 'development') ? process.env.REACT_APP_DESENV_SERVER : '';
 export default SERVER;

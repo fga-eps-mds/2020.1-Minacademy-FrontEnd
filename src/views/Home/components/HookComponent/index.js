@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { listUsers } from '../../../../services/usersService';
 import { Header } from '../../../../components'
 
 const HookComponent = () => {
   const [users, setUsers] = useState(['teste']);
 
-  // const loadUsers = async() => {
-  const loadUsers = () => {
-    // const usersReponse = await listUsers();
-    const usersReponse = listUsers();
-    console.log(usersReponse);
+  const loadUsers = async () => {
+    const usersReponse = await listUsers();
     setUsers(usersReponse);
   }
 
@@ -24,9 +22,8 @@ const HookComponent = () => {
   return (
     <>
       <Header/>
-      <div className="App">
-        <UsersList/>
-      </div>
+      <UsersList/>
+      <Button onClick={() => setUsers([...users, {name: 'Novo usuário'}])} variant="dark">Add user</Button>
     </>
   );
 };
