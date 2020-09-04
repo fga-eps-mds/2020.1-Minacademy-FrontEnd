@@ -1,13 +1,17 @@
 import React from 'react';
-import { Header } from '../../components';
+import PropTypes from 'prop-types';
+import HookComponent from './components/HookComponent';
+import ReduxComponent from './components/ReduxComponent';
 import './style.css';
 
-const Home = () => {
-  return (
-    <div className="App">
-      <Header/>
-    </div>
-  );
+const Home = ({ hooks }) => hooks ? <HookComponent/> : <ReduxComponent/>;
+
+Home.propTypes = {
+  hooks: PropTypes.bool
+};
+
+Home.defaultProps = {
+  hooks: false
 }
 
 export default Home;
