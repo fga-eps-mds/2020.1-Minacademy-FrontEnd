@@ -1,0 +1,41 @@
+.footer {
+    background: var(--footer-color);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: var(--black);
+    text-align: center;
+}
+
+
+.col-4 ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.col-4 .button {
+    margin-top: 40px;
+}
+.col-4 {
+    font-family: Overpass;
+    text-decoration: none;  
+}
+.col-4 p {
+    font-family: Overpass;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.col-4 a {
+    color: white;
+}
+
+.col-4 a:hover {
+    text-decoration: none;
+    color: var(--hover-button)
+}
+
+@media(max-width: 800px) {
+    
+}
