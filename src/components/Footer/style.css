@@ -6,6 +6,8 @@
     padding-bottom: 40px;
     color: var(--black);
     text-align: center;
+    position: static;
+    bottom: 0;
 }
 
 
@@ -19,7 +21,7 @@
 }
 .col-4 {
     font-family: Overpass;
-    text-decoration: none;  
+    text-decoration: none;
 }
 .col-4 p {
     font-family: Overpass;
@@ -37,5 +39,9 @@
 }
 
 @media(max-width: 800px) {
-    
+    .col-4 .button {
+        font-size: 12px;
+        width: 100px;
+        margin-left: 3vw;
+    }
 }

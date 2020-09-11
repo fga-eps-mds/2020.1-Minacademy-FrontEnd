@@ -15,12 +15,67 @@
   bottom: 55vw;
 }
 
-.infoBar img {
+.vector {
+  max-height: 66vw;
+}
+
+.infobarShape {
   width: 100%;
 }
 
-.infobar h1 {
-  font-size: 4vw;
+.infoBar h1 {
+  box-sizing: border-box;
+  font-size: 3vw;
   font-family: Overpass;
-  left: 50vw;
+  padding-left: 50vw;
+  position: relative;
+  bottom: 45vw;
+  color: var(--login-button);
+}
+
+.infoBar h2 {
+  box-sizing: border-box;
+  font-size: 3vw;
+  font-family: Overpass;
+  padding-left: 50vw;
+  position: relative;
+  bottom: 45vw;
+}
+
+.infoBar h3 {
+  box-sizing: border-box;
+  font-size: 3.5vw;
+  max-width: 50%;
+  font-family: Overpass;
+  padding-left: 4.5vw;
+  position: relative;
+  bottom: 25vw;
+}
+
+.infobarImage {
+  width: 45%;
+  position: relative;
+  bottom: 68vw;
+  margin-left: 4.5vw;
+  padding-left: 5.5vw;
+  z-index: 1;
+}
+
+.infobarImage2 {
+  display: block;
+  margin-left: auto;
+  width: 45%;
+  position: relative;
+  bottom: 55vw;
+  margin-right: 4.5vw;
+  padding-right: 5.5vw;
+  z-index: 1;
+}
+
+.infoBar {
+  max-height: 160vw;
+}
+
+span {
+  color: var(--login-button)
 }
