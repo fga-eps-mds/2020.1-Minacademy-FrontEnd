@@ -1,0 +1,40 @@
+.button {
+    margin-right: 1rem;
+    border-radius: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 2px 2px;
+  
+    transition-duration: 0.5s;
+    
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+  
+    width: 144px;
+    height: 28px;
+    background: var(--primary-button);
+  
+  
+    font:  700 18px Overpass;
+    color: var(--white);
+    border: 0;
+  }
+  
+  .button:hover {
+    color: white;
+    background: var(--primary-button);
+  }
+  
+  .button:hover {
+    background: #3C0966;
+  }
+  
+  @media (max-width: 800px) {
+    .button {
+      text-align: center;
+      margin-left: 3px;
+    }
+   
+  }

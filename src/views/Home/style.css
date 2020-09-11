@@ -1,38 +1,140 @@
-.App {
-  text-align: center;
+.vector img {
+  width: 100%;
+  clip-path: view-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.vector h1 {
+  font-weight: 600;
+  font-family: Overpass;
+  font-size: 4.5vw;
+  box-sizing: border-box;
+  width: 50vw;
+  padding-left: 10vw;
+  color: var(--white);
+  position: relative;
+  bottom: 55vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.vector {
+  max-height: 66vw;
+}
+
+.infobarShape {
+  width: 100%;
+}
+
+.infoBar {
+  max-height: 160vw;
+}
+
+
+.infoBar h1 {
+  box-sizing: border-box;
+  font-size: 3vw;
+  font-family: Overpass;
+  margin-left: 4.5vw;
+  position: relative;
+  bottom: 40vw;
+  color: var(--title-color);
+}
+.infoBar h2 {
+  color: var(--secondary-color);
+  box-sizing: border-box;
+  width: 40vw;
+  max-width:  650px;
+  font-size: 2vw;
+  font-family: Overpass;
+  padding-left: 4.5vw;
+  position: relative;
+  bottom: 40vw;
+}
+
+.infoBar p {
+  box-sizing: border-box;
+  width: 40vw;
+  max-width:  650px;
+  font-weight: 300;
+  font-size: 2vw;
+  max-width: 50%;
+  font-family: Overpass;
+  padding-left: 4.5vw;
+  position: relative;
+  bottom: 40vw;
+}
+.infoBar button {
+  box-sizing: border-box;
+  position: relative;
+  bottom: 40vw;
+  margin-left: 12vw;
+}
+
+
+.infobarImage {
+  display: inline-block;
+  width: 45%;
+  position: relative;
+  bottom: 70vw;
+  margin-left: 40vw;
+  padding-left: 5.5vw;
+  z-index: 1;
+}
+
+.infobarImage2 {
+  display: block;
+  margin-left: auto;
+  width: 45%;
+  position: relative;
+  bottom: 55vw;
+  margin-right: 4.5vw;
+  padding-right: 5.5vw;
+  z-index: 1;
+}
+
+.infoBar2{
+  max-height: 200px;
+}
+
+.infoBar2 h1 {
+  box-sizing: border-box;
+  font-size: 3vw;
+  font-family: Overpass;
+  margin-left: 4.5vw;
+  position: relative;
+  bottom: 25vw;
+  color: var(--title-color);
+}
+
+.infoBar2 p {
+  box-sizing: border-box;
+  width: 40vw;
+  max-width:  650px;
+  font-weight: 300;
+  font-size: 2vw;
+  max-width: 50%;
+  font-family: Overpass;
+  padding-left: 4.5vw;
+  position: relative;
+  bottom: 25vw;
+}
+
+.infoBar2 button {
+  box-sizing: border-box;
+  position: relative;
+  bottom: 25vw;
+  margin-left: 12vw;
+}
+span {
+  color: var(--secondary-color)
+}
+
+@media(max-width: 800px) {
+  .infoBar button {
+    width: 80px;
+    font-size: 10px;
+  }
+  .infoBar2 button {
+    width: 80px;
+    font-size: 10px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

@@ -1,3 +1,78 @@
-.header{
-  background-color: grey;
+.navbar {
+  display: flex;
+  text-align: center;
+  box-shadow: 0px 1px 3px grey;
+  position: sticky;
+}
+.navbar-collapse {
+  text-align: center;
+}
+
+.logo {
+  width: 240px;
+}
+.nav-link {
+  text-align: center;
+  color: black;
+  display: flex;
+  margin-left: 7vw;
+  font:  700 20px Overpass;
+}
+.nav-link:last-child {
+  margin-right: 5px;
+}
+
+.login-button {
+  margin-right: 1rem;
+  border-radius: 30px;
+  padding: 2px 2px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  transition-duration: 0.5s;
+  
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+
+  width: 144px;
+  height: 28px;
+  background: white;
+
+
+  font:  700 18px Overpass;
+  color: var(--login-button);
+  border: 2px solid var(--login-button);
+}
+
+.login-button:hover {
+  color: white;
+  background: var(--login-button);
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 160px;
+  }
+  .login-button {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    background:var(--primary-button);
+    border-radius: 0;
+    border: 0;
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    z-index: 4;
+  }
+  .login-button:hover {
+    background: #3C0966;
+  }
+  .nav-link {
+    margin-left: 2px;
+  }
 }
