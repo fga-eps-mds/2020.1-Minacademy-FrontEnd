@@ -90,6 +90,10 @@
   z-index: 1;
 }
 
+.infoBar2{
+  max-height: 200px;
+}
+
 .infoBar2 h1 {
   box-sizing: border-box;
   font-size: 3vw;
