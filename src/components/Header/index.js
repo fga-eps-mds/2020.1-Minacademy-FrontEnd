@@ -2,7 +2,9 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
 import './style.css';
 import '../../index.css';
-import  minaLogo  from '../../assets/images/minaLogo.png';
+import  minaLogo  from '../../assets/images/minacademyLogo.svg';
+import Button from '../Button';
+
 
 function Header() {
   return (

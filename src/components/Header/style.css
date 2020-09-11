@@ -1,6 +1,8 @@
 .navbar {
   display: flex;
   text-align: center;
+  box-shadow: 0px 1px 3px grey;
+  position: sticky;
 }
 .navbar-collapse {
   text-align: center;
@@ -48,6 +50,8 @@
   background: var(--primary-button);
 }
 
+
+
 @media (max-width: 800px) {
   .login-button {
     position: fixed;
@@ -61,6 +65,10 @@
     text-align: center;
     height: 40px;
     width: 100%;
+    z-index: 4;
+  }
+  .login-button:hover {
+    background: #3C0966;
   }
   .nav-link {
     margin-left: 2px;
