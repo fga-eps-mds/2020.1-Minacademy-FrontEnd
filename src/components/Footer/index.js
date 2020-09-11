@@ -29,9 +29,6 @@ function Footer() {
                             <li><a href="">login</a></li>
                         </ul>
                     </div>
-                    <div className="col-4 offset-1 col-sm-2">
-                        <Button>Explorar</Button>
-                    </div>
                 </div>
             </footer>
         </div>

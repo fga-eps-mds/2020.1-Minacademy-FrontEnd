@@ -25,6 +25,7 @@
 .login-button {
   margin-right: 1rem;
   border-radius: 30px;
+  padding: 2px 2px;
   text-align: center;
   box-sizing: border-box;
   cursor: pointer;
@@ -41,18 +42,19 @@
 
 
   font:  700 18px Overpass;
-  color: var(--primary-button);
-  border: 2px solid var(--primary-button);
+  color: var(--login-button);
+  border: 2px solid var(--login-button);
 }
 
 .login-button:hover {
   color: white;
-  background: var(--primary-button);
+  background: var(--login-button);
 }
 
-
-
 @media (max-width: 800px) {
+  .logo {
+    width: 160px;
+  }
   .login-button {
     position: fixed;
     left: 0;

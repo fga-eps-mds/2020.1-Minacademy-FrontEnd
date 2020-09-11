@@ -1,10 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
-  --primary-button: #8600F5;
+  --title-color: #3E2753;
+  --secondary-color: #9241C0;
+  --primary-button:#8838FF;
   --hover-button: #3C0966;
-  --login-button: #390099;
-  --footer-color: #505050;
+  --login-button: #E942FF;
+  --footer-color: #38353B;
 }
 
 html, body {

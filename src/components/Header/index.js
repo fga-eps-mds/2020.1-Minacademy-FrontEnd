@@ -14,9 +14,9 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Cursos</Nav.Link>
-            <Nav.Link href="#link">Como funciona</Nav.Link>
-            <Nav.Link href="#link">A Iniciativa Minacademy</Nav.Link>
+            <Nav.Link href="/curso">Cursos</Nav.Link>
+            <Nav.Link href="/">Como funciona</Nav.Link>
+            <Nav.Link href="/">A Iniciativa Minacademy</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <button className="login-button">
