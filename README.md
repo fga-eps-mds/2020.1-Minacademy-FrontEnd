@@ -1,6 +1,6 @@
-# Django Girls _**Tutorial**_
+# Minacademy Frontend
 
-Repositório do Front End do projeto [DjangoGirls _Tutorial_](https://github.com/fga-eps-mds/2020.1-Grupo4).
+Repositório do Front End do projeto [Minacademy](https://github.com/fga-eps-mds/2020.1-Grupo4).
 
 ## Executando o projeto
 
