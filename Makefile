@@ -14,13 +14,13 @@ list:
 	docker-compose ps
 
 npm:
-	docker exec -it 20201-grupo4-frontend_app_1 npm install $(pacote)
+	docker-compose exec app npm install $(pacote)
 
 npm-dev:
-	docker exec -it 20201-grupo4-frontend_app_1 npm install -D $(pacote)
+	docker-compose exec app npm install -D $(pacote)
 
 yarn:
-	docker exec -it 20201-grupo4-frontend_app_1 yarn add $(pacote)
+	docker-compose exec app yarn add $(pacote)
 
 yarn-dev:
-	docker exec -it 20201-grupo4-frontend_app_1 yarn add --dev $(pacote)
+	docker-compose exec app yarn add --dev $(pacote)
