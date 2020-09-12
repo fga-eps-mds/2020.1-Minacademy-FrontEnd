@@ -1,6 +1,6 @@
-# Django Girls _**Tutorial**_
+# Minacademy Frontend
 
-Repositório do Front End do projeto [DjangoGirls _Tutorial_](https://github.com/fga-eps-mds/2020.1-Grupo4).
+Repositório do Front End do projeto [Minacademy](https://github.com/fga-eps-mds/2020.1-Grupo4).
 
 ## Executando o projeto
 
@@ -26,12 +26,12 @@ Se você deseja instalar um pacote utilizando npm ou yarn leia as instruções a
 
 ## Comandos Úteis
 
-| Comando                                                 | Descrição                                   |
-| ------------------------------------------------------- | ------------------------------------------- |
-| `make start`                                            | Inicia o container quando este está pausado |
-| `make stop`                                             | Pausa a execução do container               |
-| `make list`                                             | Lista os containers em execução             |
-| `docker exec -it 20201-grupo4-frontend_app_1 <comando>` | Executa um comando dentro do container      |
+| Comando                             | Descrição                                   |
+| ----------------------------------- | ------------------------------------------- |
+| `make start`                        | Inicia o container quando este está pausado |
+| `make stop`                         | Pausa a execução do container               |
+| `make list`                         | Lista os containers em execução             |
+| `docker-compose exec app <comando>` | Executa um comando dentro do container      |
 
 ## Documentação
 
