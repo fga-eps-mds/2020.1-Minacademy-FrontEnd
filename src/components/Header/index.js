@@ -32,17 +32,9 @@ function Header() {
               )}
           </Nav>
         </Navbar.Collapse>
-        {user ? (
-          <>
-            <div href="/"><img className="notification" src={notification} alt="logo" /></div>
-            <Nav.Link >NameUser</Nav.Link>
-          </>
-        )
-          : (
-            <Button inverted color small>
-              Entrar
-            </Button>
-          )}
+        <Link to="/login/" className="login-button">
+          Entrar
+        </Link>
       </Navbar>
     </>
 
