@@ -47,6 +47,8 @@
 }
 
 .login-form label form .button{
+    margin-left: 0;
+    margin-right: 0;
     width: 235px;
 }
 

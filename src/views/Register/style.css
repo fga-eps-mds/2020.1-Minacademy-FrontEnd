@@ -76,13 +76,14 @@
     .register-inputs {
        display: flex;
        flex-direction: column;
+       align-items: center;
        margin: 0;
     }
     .register-inputs .register-grid1{
-        margin-left: 12vw;
+        margin-left: 4vw;
     }
     .register-inputs .register-grid2{
-        margin-left: 12vw;
+        margin-left: 4vw;
     }
     .register-form h1 {
         margin: 0;
