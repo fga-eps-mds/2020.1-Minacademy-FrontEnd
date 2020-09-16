@@ -21,8 +21,10 @@ function Login() {
                         <form onSubmit={function handleSubmit(e) {
                             e.preventDefault();
                         }}>
-                            e-mail<input value={values.name} type="text" name="email" placeholder="email@email.com" onChange={handleOnChange}/>
-                            senha <input value={values.password} type="password" name="password" onChange={handleOnChange}/>
+                            e-mail
+                            <input value={values.name} type="text" name="email" placeholder="email@email.com" onChange={handleOnChange}/>
+                            senha 
+                            <input value={values.password} type="password" name="password" onChange={handleOnChange}/>
                             <Button>LOGIN</Button>
                         </form>
                     </label>

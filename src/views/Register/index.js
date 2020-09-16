@@ -31,8 +31,10 @@ function Register() {
                                     senha <input value={values.password} type="password" name="password" onChange={handleOnChange} />
                                 </div>
                                 <div className="register-grid2">
-                                    email<input value={values.email} type="text" name="email" placeholder="email@email.com" onChange={handleOnChange}/>
-                                    confirmar senha <input value={values.confirmPassword} type="password" name="confirmPassword" onChange={handleOnChange}/>
+                                    email
+                                    <input value={values.email} type="text" name="email" placeholder="email@email.com" onChange={handleOnChange} required/>
+                                    confirmar senha 
+                                    <input value={values.confirmPassword} type="password" name="confirmPassword" onChange={handleOnChange} required/>
                                 </div>
                             </div>
                             <div className="register-options">
