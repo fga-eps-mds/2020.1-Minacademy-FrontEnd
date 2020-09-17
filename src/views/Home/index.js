@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './style.scss';
 import vector from '../../assets/images/vector.svg';
 import infoBar from '../../assets/images/infoBar.svg';
 import Button from '../../components/Button';
@@ -14,7 +14,7 @@ function Home() {
       </div>
 
       <div className="infoBar">
-        <img className='infobarShape' src={infoBar} alt="descricao" />
+        <img className='infobar--shape' src={infoBar} alt="descricao" />
         <h1 className="title">A iniciativa Minacademy</h1>
         <h2>Minacademy é uma plataforma para incentivar mulheres a programarem. </h2>
         <p>Na plataforma é oferecido um curso sobre Django, um framework para desenvolvimento web.</p>

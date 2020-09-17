@@ -7,7 +7,6 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "install": "^0.13.0",
-    "list-react-files": "^0.2.0",
     "node-sass": "^4.14.1",
     "npm": "^6.14.8",
     "prop-types": "^15.7.2",

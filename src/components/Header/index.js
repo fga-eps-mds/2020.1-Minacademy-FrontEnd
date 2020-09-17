@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
 import './style.scss';
+<<<<<<< HEAD
 import minaLogo from '../../assets/images/minacademyLogo.svg';
 import notification from '../../assets/images/notification.svg'
 import Button from '../Button';
+=======
+>>>>>>> Organizando o css e utilizando a api
 import '../../index.css';
 import { Link } from 'react-router-dom';
 

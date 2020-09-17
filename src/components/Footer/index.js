@@ -6,7 +6,7 @@ function Footer() {
         <div className="footer">
             <footer>
                 <div className="row">
-                <div className="col-4 offset-1 col-sm-2">
+                    <div className="col-4 offset-1 col-sm-2">
                         <p>MINACADEMY</p>
                         <ul>
                             <li><a href="/">FAQ</a></li>

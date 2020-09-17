@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import '../../index.css'
-import './style.css';
+import './style.scss';
 import useForm from '../../hooks/useForm';
 
 function Login() {
@@ -14,8 +14,8 @@ function Login() {
     
     return (
         <>
-            <div id="container">
-                <div className="login-form">
+            <div id="login">
+                <div className="login__form">
                     <h1>Entrar</h1>
                     <label>
                         <form onSubmit={function handleSubmit(e) {
@@ -28,7 +28,7 @@ function Login() {
                             <Button>LOGIN</Button>
                         </form>
                     </label>
-                    <div className="login-resources">
+                    <div className="login__resources">
                         <p>Recuperar senha</p>
                         <p>Não possui conta? <Link to="/cadastro">Cadastre-se</Link></p>
                     </div>

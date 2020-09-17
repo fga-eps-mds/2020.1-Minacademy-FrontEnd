@@ -38,7 +38,7 @@
   text-align: center;
   box-sizing: border-box;
   cursor: pointer;
-
+  text-decoration: none;
   transition-duration: 0.5s;
   
   display: inline-block;
@@ -58,6 +58,7 @@
 .login-button:hover {
   color: white;
   background: var(--login-button);
+  text-decoration: none;
 }
 
 @media (max-width: 800px) {
