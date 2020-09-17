@@ -1,8 +1,7 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
-import './style.css';
-import '../../index.css';
-import  minaLogo  from '../../assets/images/minacademyLogo.svg';
+import './style.scss';
+import minaLogo  from '../../assets/images/minacademyLogo.svg';
 import Button from '../Button';
 
 
@@ -19,9 +18,9 @@ function Header() {
             <Nav.Link href="/">A Iniciativa Minacademy</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <button className="login-button">
+        <Button inverted color small>
           Entrar
-        </button>
+        </Button>
       </Navbar>
     </>
 

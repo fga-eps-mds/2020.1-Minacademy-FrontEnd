@@ -2,9 +2,16 @@ import React, { Children } from 'react';
 import './style.scss';
 
 
-function Button({ children, ...otherProps }) {
+function Button({ children, inverted, shadow, small, color, ...otherProps }) {
     return (
-        <button className="button" {...otherProps}>
+        <button className={`
+        ${inverted ? 'inverted' : ''}
+        ${shadow ? 'shadow' : ''}
+        ${small ? 'small' : ''}
+        ${color ? 'color' : ''}
+         button`}
+         {...otherProps}
+        >
             {children}
         </button>
     );
