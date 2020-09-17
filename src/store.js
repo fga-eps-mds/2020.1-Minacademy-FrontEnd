@@ -1,10 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
-import usersReducer from './slices/usersSlice';
-import tutorialSlice from './slices/tutorialSlice'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { persistStore } from 'redux-persist'
+import rootReducer from './slices/rootReducer'
 
-export default configureStore({
-  reducer: {
-    users: usersReducer,
-    tutorial: tutorialSlice
-  }
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  })
 });
+
+const persistor = persistStore(store)
+
+export { store, persistor }

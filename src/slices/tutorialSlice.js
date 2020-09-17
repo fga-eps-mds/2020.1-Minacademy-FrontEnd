@@ -4,7 +4,7 @@ const initialState = {
   currentModule: 1
 };
 
-const tutorialSlice = createSlice({
+const tutorial = createSlice({
   name: 'tutorial',
   initialState,
   reducers: {
@@ -23,5 +23,5 @@ export const selectCurrentModule = createSelector(
   tutorial => tutorial.currentModule
 )
 
-export default tutorialSlice.reducer;
-export const { nextModule, previousModule } = tutorialSlice.actions;
+export default tutorial.reducer;
+export const { nextModule, previousModule } = tutorial.actions;
