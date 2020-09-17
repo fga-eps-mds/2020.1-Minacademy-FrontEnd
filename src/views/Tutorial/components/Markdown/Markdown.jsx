@@ -15,6 +15,7 @@ function Markdown({ currentModule, nextModule, previousModule }) {
       const text = await response.text();
       setMarkdown(text)
     })()
+    window.scrollTo(0, 0)
   });
 
   function next() {
@@ -32,8 +33,8 @@ function Markdown({ currentModule, nextModule, previousModule }) {
   <div className="markdown">
     <ReactMarkdown source={markdown} />
     <div className="markdown__navigation">
-      <Button onClick={previous}>anterior</Button>
-      <Button onClick={next}>próximo</Button>
+      <Button onClick={previous} shadow>anterior</Button>
+      <Button onClick={next} shadow>próximo</Button>
     </div>
   </div>
   );
