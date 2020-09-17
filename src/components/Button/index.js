@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import './style.css';
+import './style.scss';
 
 
 function Button({ children, ...otherProps }) {
