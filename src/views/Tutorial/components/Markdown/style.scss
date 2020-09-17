@@ -1,6 +1,12 @@
 .markdown {
   // overflow-y: scroll;
 
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0 1rem;
+  }
+
   h1 {
     color: var(--title-color);
     font-size: 1.75rem;

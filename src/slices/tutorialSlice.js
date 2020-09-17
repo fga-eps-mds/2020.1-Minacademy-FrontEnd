@@ -9,10 +9,10 @@ const tutorial = createSlice({
   initialState,
   reducers: {
     nextModule(state, action) {
-      state.currentModule = state.currentModule + 1
+      state.currentModule += 1
     },
     previousModule(state, action) {
-      state.currentModule = state.currentModule - 1
+      state.currentModule -=1
     }
   }
 });
