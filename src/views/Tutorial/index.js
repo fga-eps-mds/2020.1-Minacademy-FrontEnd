@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss'
-import Markdown from './components/Markdown/Markdown';
+import Markdown from './components/Markdown';
+import Activities from './components/Activities';
 
 function Tutorial() {
   return (
@@ -16,6 +17,7 @@ function Tutorial() {
         </div>
       </div>
       <div className="tutorial__content--body">
+        <Activities />
         <Markdown />
       </div>
     </div>

@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 
 import Header from './components/Header';
 import Home from './views/Home';
-import Tutorial from './views/Tutorial/Tutorial';
+import Tutorial from './views/Tutorial';
 
 const Routes = () => {
   return (
