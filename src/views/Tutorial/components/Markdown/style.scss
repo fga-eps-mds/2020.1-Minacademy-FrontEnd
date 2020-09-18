@@ -1,11 +1,26 @@
 .markdown {
   // overflow-y: scroll;
 
-  &__navigation {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 0 1rem;
+  &__content {
+
+      &--header {
+        margin: 0 auto;
+        width: 60%;
+        padding-bottom: 3rem;
+      }
+
+      &--body {
+        padding-left: 2rem;
+        border-left: 1px solid var(--border-color);
+      }
+
+      &--navigation {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 0 1rem;
+      }
   }
+
 
   h1 {
     color: var(--title-color);

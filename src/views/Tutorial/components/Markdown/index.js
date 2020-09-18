@@ -2,8 +2,24 @@ import  React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { selectCurrentModule, nextModule, previousModule } from '../../../../slices/tutorialSlice'
 import ReactMarkdown from 'react-markdown'
-import Button from '../../../../components/Button/index'
+import Dropdown from '../../../../components/Dropdown';
+import Button from '../../../../components/Button'
 import './style.scss'
+
+const items = [
+  {
+    id: 1,
+    value: 'Pulp Fiction',
+  },
+  {
+    id: 2,
+    value: 'The Prestige',
+  },
+  {
+    id: 3,
+    value: 'Blade Runner 2049',
+  },
+];
 
 function Markdown({ currentModule, nextModule, previousModule }) {
   const [markdown, setMarkdown] = useState('');
@@ -31,8 +47,13 @@ function Markdown({ currentModule, nextModule, previousModule }) {
 
   return (
   <div className="markdown">
-    <ReactMarkdown source={markdown} />
-    <div className="markdown__navigation">
+    <div className="markdown__content--header">
+      <Dropdown title="Teste" items={items}/>
+    </div>
+    <div className="markdown__content--body">
+      <ReactMarkdown source={markdown} />
+    </div>
+    <div className="markdown__content--navigation">
       <Button onClick={previous} shadow>anterior</Button>
       <Button onClick={next} shadow>próximo</Button>
     </div>
