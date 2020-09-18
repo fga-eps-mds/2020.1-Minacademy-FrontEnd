@@ -1,9 +1,6 @@
 .button {
   min-width: 135px;
-  height: auto;
-  line-height: 1rem;
-  padding: 1rem;
-  font-size: 16px;
+  padding: 0.4rem;
   background-color: var(--primary-button);
   color: white;
   text-transform: capitalize;
@@ -41,7 +38,7 @@
   }
 
   &.small {
-    padding: 0.4rem;
+    padding: 0.2rem;
     font-size: 16px;
     font-weight: bolder;
   }
