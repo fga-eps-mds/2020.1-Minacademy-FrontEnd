@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
 import './style.scss';
 import minaLogo  from '../../assets/images/minacademyLogo.svg';
+import notification from '../../assets/images/notification.svg'
 import Button from '../Button';
 
 
+
 function Header() {
+  const [user, setUser] = useState(true)
   return (
     <>
       <Navbar bg="white" expand="md">
@@ -13,14 +16,32 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+          {user ? (<>
+            <Nav.Link href="/curso">Tutorial</Nav.Link>
+            <Nav.Link href="/">Ranking</Nav.Link>
+            <Nav.Link href="/">Fórum</Nav.Link>
+            <Nav.Link href="/">Dashboard</Nav.Link>
+            </>
+            ) :
+          (<>
             <Nav.Link href="/curso">Cursos</Nav.Link>
             <Nav.Link href="/">Como funciona</Nav.Link>
             <Nav.Link href="/">A Iniciativa Minacademy</Nav.Link>
+          </>
+          )}
           </Nav>
         </Navbar.Collapse>
-        <Button inverted color small>
+        {user ?(
+          <>
+          <div href="/"><img className="notification" src={notification} alt="logo" /></div>
+          <Nav.Link >NameUser</Nav.Link>
+          </>
+          )
+        :(
+          <Button inverted color small>
           Entrar
         </Button>
+        )}
       </Navbar>
     </>
 
