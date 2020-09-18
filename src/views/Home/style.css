@@ -123,9 +123,9 @@
   bottom: 25vw;
   margin-left: 12vw;
 }
-span {
+/* span {
   color: var(--secondary-color)
-}
+} */
 
 @media(max-width: 800px) {
   .infoBar button {
@@ -137,4 +137,3 @@ span {
     font-size: 10px;
   }
 }
-
