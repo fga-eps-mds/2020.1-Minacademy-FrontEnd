@@ -35,7 +35,7 @@ function Markdown({ currentModule, nextModule, previousModule }) {
   });
 
   function next() {
-    if (currentModule > 25) return
+    if (currentModule >= 25) return
     console.log("NEXT");
     nextModule()
   }
