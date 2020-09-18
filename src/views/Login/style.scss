@@ -1,10 +1,12 @@
-#login{
+$danger--color: red;
+
+.login{
     padding: 5%;
     background: linear-gradient(309.23deg, rgba(136, 56, 255, 0.95) 3.17%, rgba(233, 66, 255, 0.5) 114.71%);
 }
 
 .login__form {
-    max-height: 600px;
+    max-height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +14,7 @@
     background-color: white;
     border-radius: 10px;
     width: 428px;
-    height: 500px;
+    height: 600px;
     margin: auto;
     margin-top: 10vw;
     margin-bottom: 10vw;
@@ -24,6 +26,10 @@
         margin-left: 92.5px;
         padding-top: 44px;
         color: var(--title-color);
+    }
+    p {
+        margin-top: 20px;
+        margin-bottom: 0;
     }
 }
 
@@ -40,7 +46,6 @@
         outline: none;
         width: 235px;
         display: block;
-        margin-bottom: 20px;
         border-width: 0.2px;
     
         box-sizing: border-box;
@@ -51,6 +56,7 @@
     .button{
         margin-left: 0;
         margin-right: 0;
+        margin-top: 20px;
         width: 235px;
     }
     
@@ -82,9 +88,9 @@
 
 @media(max-width: 800px) {
     .login__form {
-        max-height: 400px;
+        max-height: 600px;
         width: 80vw;
-        height: 140vw;
+        height: 140vh;
         label form {
             margin-left: 15vw;
             input{
@@ -107,4 +113,8 @@
     .login-resources p{
         margin: 0;
     }
+}
+
+.danger {
+    color: $danger--color;
 }

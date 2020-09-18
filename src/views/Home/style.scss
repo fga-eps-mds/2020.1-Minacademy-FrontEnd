@@ -61,7 +61,7 @@
   position: relative;
   bottom: 40vw;
 }
-.infoBar button {
+.infoBar .button {
   box-sizing: border-box;
   position: relative;
   bottom: 40vw;
@@ -128,11 +128,15 @@
 } */
 
 @media(max-width: 800px) {
-  .infoBar button {
+  .infoBar .button.small {
+    line-height: 1px;
+    min-width: 80px;
     width: 80px;
     font-size: 10px;
   }
-  .infoBar2 button {
+  .infoBar2 .button.small {
+    line-height: 1px;
+    min-width: 80px;
     width: 80px;
     font-size: 10px;
   }

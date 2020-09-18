@@ -1,5 +1,5 @@
-const GET_USERS = '/users';
+const USER_ENDPOINT = '/users';
 
 export {
-  GET_USERS
+  USER_ENDPOINT
 }

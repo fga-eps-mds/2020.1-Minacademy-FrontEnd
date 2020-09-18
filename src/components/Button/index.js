@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './style.scss';
 
 
 function Button({ children, inverted, shadow, small, color, ...otherProps }) {
@@ -10,7 +10,11 @@ function Button({ children, inverted, shadow, small, color, ...otherProps }) {
         ${small ? 'small' : ''}
         ${color ? 'color' : ''}
          button`}
+<<<<<<< HEAD
          {...otherProps}
+=======
+            {...otherProps}
+>>>>>>> implementacao dos campos do formulario
         >
             {children}
         </button>
