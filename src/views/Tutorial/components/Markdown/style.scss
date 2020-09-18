@@ -17,6 +17,8 @@
       &--body {
         padding-left: 2rem;
         border-left: 1px solid var(--border-color);
+        max-width: 55vw;
+        word-wrap: break-word;
 
         @media(max-width: 600px) {
           border: none;
