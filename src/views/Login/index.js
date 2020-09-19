@@ -6,14 +6,12 @@ import { login } from '../../services/usersService';
 import '../../index.css';
 import './style.scss';
 
-
-
 function Login() {
 
     const { handleSubmit, register, errors } = useForm();
     
     const onSubmit = login
-
+   
     return (
         <>
             <div className="login">

@@ -6,11 +6,11 @@ import { useForm } from 'react-hook-form';
 import { registerRequest } from '../../services/usersService';
 
 
-
 function Register() {
-    
+
     const { handleSubmit, register, errors } = useForm();
     const onSubmit = registerRequest
+    
     return (
         <>
             <div id="register">
@@ -27,7 +27,7 @@ function Register() {
                                             message: "Nome inválido"
                                         }
                                     })} />
-                                    {(errors.name && <span className="danger">{errors.name.message}</span>) || <br/>}
+                                    {(errors.name && <span className="danger">{errors.name.message}</span>) || <br />}
                                     <p>email</p> <input
                                         type="text"
                                         name="email"
@@ -40,7 +40,7 @@ function Register() {
                                             }
                                         })}
                                     />
-                                    {errors.email && <span className="danger">{errors.email.message}</span>}
+                                    {(errors.email && <span className="danger">{errors.email.message}</span>) || <br/>}
                                 </div>
                                 <div className="register__grid2">
                                     <p>senha</p> <input
@@ -67,7 +67,7 @@ function Register() {
                                             }
                                         })}
                                     />
-                                    {errors.confirmPassword && <span className="danger">{errors.confirmPassword.message}</span>}
+                                    {(errors.confirmPassword && <span className="danger">{errors.confirmPassword.message} </span>) || <br/>}
                                 </div>
                             </div>
                             <div className="register__options">
@@ -94,6 +94,5 @@ function Register() {
         </>
     );
 }
-
 
 export default Register;

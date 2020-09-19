@@ -23,7 +23,8 @@ const login = async (values) => {
   try {
     const response = await api.post(LOGIN_ENDPOINT, values);
     alert(`Você está logado ${response.data.user.name}`)
-    console.log(response.data)
+    console.log(response.data);
+
 
   } catch (err) {
     console.log(err)
@@ -33,7 +34,8 @@ const login = async (values) => {
 }
 
 
-export const registerRequest = async (values) => {
+
+const registerRequest = async (values) => {
   try {
     const headers = {
       headers: {
@@ -43,6 +45,7 @@ export const registerRequest = async (values) => {
     const response = await api.post(USER_ENDPOINT, values, headers);
     console.log(response.data)
     alert('Cadastro realizado com sucesso')
+    window.location.href = '/login'
   } catch (err) {
     alert('Erro no cadastro, tente novamente.')
   }
@@ -54,4 +57,5 @@ export {
   listUsers,
   listUsersRedux,
   login,
+  registerRequest
 }
