@@ -1,14 +1,18 @@
 import React from 'react';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
-import '../../index.css'
-import './style.scss';
 import { useForm } from 'react-hook-form';
+import { login } from '../../services/usersService';
+import '../../index.css';
+import './style.scss';
+
+
 
 function Login() {
 
     const { handleSubmit, register, errors } = useForm();
-    const onSubmit = values => console.log(values);
+    
+    const onSubmit = login
 
     return (
         <>
@@ -23,7 +27,7 @@ function Login() {
                                 name="email"
                                 placeholder="email@email.com"
                                 ref={register({
-                                    required: "required",
+                                    required: "campo obrigatório",
                                     pattern: {
                                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                         message: "email inválido"
@@ -33,7 +37,7 @@ function Login() {
                             {errors.email && <span className="danger">{errors.email.message}</span>}
                             <p>senha</p>
                             <input type="password" name="password" ref={register({
-                                required: "required",
+                                required: "campo obrigatório",
                                 minLength: {
                                     value: 6,
                                     message: "tamanho mínimo é 6"
@@ -41,7 +45,7 @@ function Login() {
                             })}
                             />
                             {errors.password && <span className="danger">{errors.password.message}</span>}
-                            <Button>LOGIN</Button>
+                            <Button small>LOGIN</Button>
                         </form>
                     </label>
                     <div className="login__resources">

@@ -1,19 +1,49 @@
 import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { USER_ENDPOINT } from './endpoints';
+import { LOGIN_ENDPOINT } from './endpoints';
 
-const listUsersRedux = createAsyncThunk( 'users/listUsersRedux', async () => {
-    const response = await api.get(USER_ENDPOINT);
-    return response.data;
+
+const listUsersRedux = createAsyncThunk('users/listUsersRedux', async () => {
+  const response = await api.get(USER_ENDPOINT);
+  return response.data;
 });
 
-const listUsers = async() => {
+const listUsers = async () => {
   try {
     const response = await api.get(USER_ENDPOINT);
     return response.data;
-  } catch(error) {
+  } catch (error) {
     console.log(error);
     return error;
+  }
+}
+
+const login = async (values) => {
+  try {
+    const response = await api.post(LOGIN_ENDPOINT, values);
+    console.log(response.data)
+
+  } catch (err) {
+    console.log(err)
+    alert('Erro ao logar, tente novamente.')
+  }
+
+}
+
+
+export const registerRequest = async (values) => {
+  try {
+    const headers = {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    };
+    const response = await api.post(USER_ENDPOINT, values, headers);
+    console.log(response.data)
+    alert('Cadastro realizado com sucesso')
+  } catch (err) {
+    alert('Erro no cadastro, tente novamente.')
   }
 }
 
@@ -21,5 +51,6 @@ const listUsers = async() => {
 
 export {
   listUsers,
-  listUsersRedux
+  listUsersRedux,
+  login,
 }

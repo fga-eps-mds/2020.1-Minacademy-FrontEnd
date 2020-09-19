@@ -2,29 +2,15 @@ import React from 'react';
 import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
-import api from '../../services/api';
-import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { registerRequest } from '../../services/usersService';
 
 
 
 function Register() {
-    const history = useHistory()
+    
     const { handleSubmit, register, errors } = useForm();
-    const onSubmit = async (values) => {
-        try {
-            const headers = {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            };
-            await api.post('users', values, headers);
-            history.push('/');
-        } catch (err) {
-            alert('Erro no cadastro, tente novamente.')
-        }
-        console.log(values)
-    }
+    const onSubmit = registerRequest
     return (
         <>
             <div id="register">
@@ -37,7 +23,7 @@ function Register() {
                                     <p>nome</p><input type="text" name="name" ref={register({
                                         required: "campo obrigatório",
                                         pattern: {
-                                            value: /^[a-z][a-z\s]*$/,
+                                            value: /^[A-Za-z][A-Za-z\s]*$/,
                                             message: "Nome inválido"
                                         }
                                     })} />
@@ -74,7 +60,7 @@ function Register() {
                                         type="password"
                                         name="confirmPassword"
                                         ref={register({
-                                            required: "required",
+                                            required: "campo obrigatório",
                                             minLength: {
                                                 value: 6,
                                                 message: "tamanho mínimo é 6"
@@ -87,8 +73,8 @@ function Register() {
                             <div className="register__options">
                                 <div className="register__options--user">
                                     <p>tipo de cadastro</p>
-                                    <label htmlFor="mentor"><input name="personType" value="mentor" type="radio" ref={register} /> mentora</label>
-                                    <label htmlFor="learner"><input name="personType" value="learner" type="radio" ref={register} /> aprendiz</label>
+                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} /> mentora</label>
+                                    <label htmlFor="learner"><input name="userType" value="learner" type="radio" ref={register} /> aprendiz</label>
                                 </div>
                                 <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
                                     required: "concorde com os termos de uso",

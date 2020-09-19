@@ -10,11 +10,7 @@ function Button({ children, inverted, shadow, small, color, ...otherProps }) {
         ${small ? 'small' : ''}
         ${color ? 'color' : ''}
          button`}
-<<<<<<< HEAD
-         {...otherProps}
-=======
             {...otherProps}
->>>>>>> implementacao dos campos do formulario
         >
             {children}
         </button>
