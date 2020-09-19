@@ -18,7 +18,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {user ? (<>
-              <Nav.Link href="/curso">Tutorial</Nav.Link>
+              <Nav.Link href="/tutorial">Tutorial</Nav.Link>
               <Nav.Link href="/">Ranking</Nav.Link>
               <Nav.Link href="/">Fórum</Nav.Link>
               <Nav.Link href="/">Dashboard</Nav.Link>
