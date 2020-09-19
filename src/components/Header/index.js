@@ -24,7 +24,7 @@ function Header() {
             </>
             ) :
           (<>
-            <Nav.Link href="/curso">Cursos</Nav.Link>
+            <Nav.Link href="/tutorial">Cursos</Nav.Link>
             <Nav.Link href="/">Como funciona</Nav.Link>
             <Nav.Link href="/">A Iniciativa Minacademy</Nav.Link>
           </>
