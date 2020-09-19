@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-
-=======
 @import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
->>>>>>> desenvolvimento da tela de registro e ajustes na tela de login
 :root {
   --title-color: #3E2753;
   --paragraph-color: #675775;
@@ -181,23 +177,16 @@ noscript {
   height: auto;
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
   border: 0;
   clip: rect(0 0 0 0);
   overflow: hidden;
   white-space: nowrap;
-=======
   font-family: 'Overpass', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-<<<<<<< HEAD
 
->>>>>>> desenvolvimento da tela de registro e ajustes na tela de login
-=======
-  
->>>>>>> Fazendo com que os formularios sejam editaveis
 }
 
 
