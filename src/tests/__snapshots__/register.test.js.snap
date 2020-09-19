@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expect to render Login Component 1`] = `
+<Fragment>
+  <div
+    id="register"
+  >
+    <div
+      className="register__form"
+    >
+      <h1>
+        Cadastro
+      </h1>
+      <label>
+        <form
+          onSubmit={[Function]}
+        >
+          <div
+            className="register__inputs"
+          >
+            <div
+              className="register__grid1"
+            >
+              <p>
+                nome
+              </p>
+              <input
+                name="name"
+                type="text"
+              />
+              <br />
+              <p>
+                email
+              </p>
+               
+              <input
+                name="email"
+                placeholder="email@email.com"
+                type="text"
+              />
+            </div>
+            <div
+              className="register__grid2"
+            >
+              <p>
+                senha
+              </p>
+               
+              <input
+                name="password"
+                type="password"
+              />
+              <br />
+              <p>
+                confirmar senha
+              </p>
+               
+              <input
+                name="confirmPassword"
+                type="password"
+              />
+            </div>
+          </div>
+          <div
+            className="register__options"
+          >
+            <div
+              className="register__options--user"
+            >
+              <p>
+                tipo de cadastro
+              </p>
+              <label
+                htmlFor="mentor"
+              >
+                <input
+                  name="userType"
+                  type="radio"
+                  value="mentor"
+                />
+                 mentora
+              </label>
+              <label
+                htmlFor="learner"
+              >
+                <input
+                  name="userType"
+                  type="radio"
+                  value="learner"
+                />
+                 aprendiz
+              </label>
+            </div>
+            <label
+              htmlFor="agree"
+            >
+              <input
+                name="agree"
+                type="checkbox"
+              />
+               Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.
+            </label>
+            <label
+              htmlFor="terms"
+            >
+              <input
+                name="terms"
+                type="checkbox"
+              />
+               Concordo com os termos de uso.
+            </label>
+          </div>
+          <Button>
+            REGISTRAR
+          </Button>
+        </form>
+      </label>
+    </div>
+  </div>
+</Fragment>
+`;

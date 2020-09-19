@@ -1,0 +1,144 @@
+#register {
+    padding: 5%;
+    background: linear-gradient(309.23deg, rgba(136, 56, 255, 0.95) 3.17%, rgba(233, 66, 255, 0.5) 114.71%);
+}
+
+.register__form {
+    padding: 5%;
+    max-height: 900px;
+    font-family: Overpass;
+    background-color: white;
+    border-radius: 10px;
+    width: 698px;
+    height: 717px;
+    margin: auto;
+    margin-top: 10vw;
+    margin-bottom: 10vw;
+
+    h1 {
+        font-family: Overpass;
+        margin-left: 80px;
+        font-size: 48px;
+    }
+
+    label form input[type="text"], input[type="password"] {
+        outline: none;
+        width: 200px;
+        display: block;
+        border-width: 0.2px;
+        box-sizing: border-box;
+        padding: 5px;
+        border-radius: 10px;
+    }
+}
+
+
+
+.register__inputs {
+    max-width: 600px;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.register__grid1{
+    margin-left: 80px;
+}
+
+.register__grid2{
+    margin-left: 20px;
+}
+
+.register__options {
+    display: flex;
+    flex-direction: column;
+    margin-left: 80px;
+
+    p {
+        font-size: 16px;
+        color: var(--title-color);
+        font-family: Overpass;
+        margin-top: 20px;
+    }
+
+    label {
+        margin-right: 10px;
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+
+    label input[type="radio"], input[type="checkbox"]{
+        margin: 0;
+    }
+
+}
+
+.register__form .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    width: 200px;
+    margin-left: 204px;
+}
+
+.register__options--user{
+    
+}
+@media(max-width: 800px) {
+    .register__form {
+        width: 90vw;
+        height: 46rem;
+    }
+    .register__inputs {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       margin: 0;
+
+    }
+    .register__grid1{
+        margin-left: 4vw;
+        margin-bottom: 0;
+
+    }
+
+    .register__grid2 {
+        margin-left: 4vw;
+    }
+
+  
+    .register__form h1 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .register__options {
+        display: inline;
+        margin-left: 0px;
+
+        p {
+            margin: 0;
+        }
+
+        label{
+            margin-left: 0;
+            display: inline-block;
+            margin-bottom: 0.2rem;
+        }
+    }
+
+    .register__options--user{
+        text-align: center;
+    }
+   
+    .register__form .button {
+        margin: 0 auto;
+        margin-top: 4vh;
+        height: 30px;
+    }
+}

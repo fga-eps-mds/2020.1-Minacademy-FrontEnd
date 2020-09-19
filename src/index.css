@@ -1,14 +1,15 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 :root {
   --title-color: #3E2753;
   --paragraph-color: #675775;
   --secondary-color: #9241C0;
   --primary-button:#8838FF;
-  --hover-button: #3C0966;
+  --hover-button: #3E2753;
   --login-button: #E942FF;
   --secondary-green: #239875;
   --border-color: #C6CACD;
   --footer-color: #38353B;
+  --text-color: #675775;
 }
 
 h/*******************
@@ -180,10 +181,61 @@ noscript {
   clip: rect(0 0 0 0);
   overflow: hidden;
   white-space: nowrap;
+  font-family: 'Overpass', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
 }
 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* css dos checkbox */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 1px;
+  background-color: var(--white);
+}
+
+input[type="checkbox"]:checked{
+  background: center url(assets/images/checkbox.svg);
+  background-size: 18px;
+}
+input[type="checkbox"]:focus{
+  outline: none;
+}
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* css dos checkbox */
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  background-color: var(--white);
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+input[type="radio"]:checked{
+  border: 6px solid var(--login-button);
+}
+input[type="radio"]:focus{
+  outline: none;
+}
+
+p, label {
+  color: var(--text-color); 
 }

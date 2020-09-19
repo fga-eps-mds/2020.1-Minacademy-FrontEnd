@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import './style.scss';
 
 
@@ -10,7 +10,7 @@ function Button({ children, inverted, shadow, small, color, ...otherProps }) {
         ${small ? 'small' : ''}
         ${color ? 'color' : ''}
          button`}
-         {...otherProps}
+            {...otherProps}
         >
             {children}
         </button>

@@ -23,13 +23,42 @@
 }
 .nav-link {
   text-align: center;
-  display: flex;
   margin-left: 7vw;
   font:  600 1.25rem Overpass;
 }
 
 .nav-link:last-child {
   margin-right: 5px;
+}
+
+.login-button {
+  margin-right: 1rem;
+  border-radius: 30px;
+  padding: 2px 2px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+
+  width: 144px;
+  height: 28px;
+  background: white;
+
+
+  font: 700 18px Overpass;
+  color: var(--login-button);
+  border: 2px solid var(--login-button);
+}
+
+.login-button:hover {
+  color: white;
+  background: var(--login-button);
+  text-decoration: none;
 }
 
 @media (max-width: 800px) {
