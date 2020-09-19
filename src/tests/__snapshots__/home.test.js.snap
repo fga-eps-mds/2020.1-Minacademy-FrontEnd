@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expect to render Home component 1`] = `
+<Fragment>
+  <div
+    className="vector"
+  >
+    <img
+      alt="imagemFundo"
+      src="vector.svg"
+    />
+    <h1>
+      Nós encorajamos mulheres a se apaixonarem por programação
+    </h1>
+  </div>
+  <div
+    className="infoBar"
+  >
+    <img
+      alt="descricao"
+      class="infobarShape"
+      src="infoBar.svg"
+    />
+    <h1
+      className="title"
+    >
+      A iniciativa Minacademy
+    </h1>
+    <h2>
+      Minacademy é uma plataforma para incentivar mulheres a programarem. 
+    </h2>
+    <p>
+      Na plataforma é oferecido um curso sobre Django, um framework para desenvolvimento web.
+    </p>
+    <Button>
+      Explorar
+    </Button>
+    <img
+      alt="curso"
+      class="infobarImage"
+      src="infobarImage.png"
+    />
+  </div>
+  <div
+    className="infoBar2"
+  >
+    <h1>
+      Como funciona
+    </h1>
+    <p>
+      Para auxiliar o curso é possível interagir com um 
+      <span>
+        mentor
+      </span>
+      , além do 
+      <span>
+        fórum
+      </span>
+       para tirar dúvidas ou fazer uma observação. 
+    </p>
+    <Button>
+      Explorar
+    </Button>
+    <img
+      alt="funcionamento"
+      class="infobarImage2"
+      src="infobarImage2.png"
+    />
+  </div>
+</Fragment>
+`;
