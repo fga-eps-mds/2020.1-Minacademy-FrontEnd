@@ -22,11 +22,12 @@ const listUsers = async () => {
 const login = async (values) => {
   try {
     const response = await api.post(LOGIN_ENDPOINT, values);
+    alert(`Você está logado ${response.data.user.name}`)
     console.log(response.data)
 
   } catch (err) {
     console.log(err)
-    alert('Erro ao logar, tente novamente.')
+    alert('Email ou senha incorretos')
   }
 
 }
