@@ -37,6 +37,8 @@ Se você deseja instalar um pacote utilizando npm ou yarn leia as instruções a
 
 A documentação desse projeto pode ser acessada [aqui](https://fga-eps-mds.github.io/2020.1-Grupo4/).
 
+Testando
+
 <!-- ## Time
 
 Membro     | Nome             | GitHub
