@@ -11,15 +11,6 @@ on:
 
 jobs:
 
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install Modules
-      run: npm install && npm i -g eslint
-    - name: Run ESLint
-      run: eslint . --ext .js,.jsx,.ts,.tsx
-
   test:
     runs-on: ubuntu-latest
     steps:
