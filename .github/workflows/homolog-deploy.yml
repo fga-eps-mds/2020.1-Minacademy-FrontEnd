@@ -37,6 +37,6 @@ jobs:
         registry: docker.pkg.github.com
         name: fga-eps-mds/2020.1-Minacademy-FrontEnd
         tags: homolog
-        context: app/
+        context: ./
         default_branch: 50-ci-cd
         dockerfile: Dockerfile-prod
