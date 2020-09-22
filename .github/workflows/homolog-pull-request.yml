@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - develop
+      - 50-ci-cd
 
 jobs:
 
