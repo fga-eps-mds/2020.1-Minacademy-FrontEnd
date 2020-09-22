@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { selectCurrentUser } from '../../slices/usersSlice'
 import { Nav, Navbar } from 'react-bootstrap'
 import './style.scss';
 import minaLogo from '../../assets/images/minacademyLogo.svg';
@@ -8,8 +10,7 @@ import '../../index.css';
 import { Link } from 'react-router-dom';
 
 
-function Header() {
-  const [user, setUser] = useState(true)
+function Header({ currentUser }) {
   return (
     <>
       <Navbar bg="white" expand="md">
@@ -17,8 +18,8 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {user ? (<>
-              <Nav.Link href="/tutorial">Tutorial</Nav.Link>
+            {currentUser ? (<>
+              <Nav.Link href="/curso">Tutorial</Nav.Link>
               <Nav.Link href="/">Ranking</Nav.Link>
               <Nav.Link href="/">Fórum</Nav.Link>
               <Nav.Link href="/">Dashboard</Nav.Link>
@@ -32,13 +33,25 @@ function Header() {
               )}
           </Nav>
         </Navbar.Collapse>
-        <Link to="/login/" className="login-button">
-          Entrar
-        </Link>
+        {currentUser ? (
+          <>
+            <div href="/"><img className="notification" src={notification} alt="logo" /></div>
+            <Nav.Link >NameUser</Nav.Link>
+          </>
+        )
+          : (
+            <Button inverted color small>
+              Entrar
+            </Button>
+          )}
       </Navbar>
     </>
 
   );
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: selectCurrentUser(state)
+})
+
+export default connect(mapStateToProps)(Header);
