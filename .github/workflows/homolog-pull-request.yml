@@ -2,7 +2,8 @@ name: Continuous Integration - PR's Tests
 
 on:
   pull-request:
-    - develop
+    branches:
+      - develop
 
 jobs:
 
