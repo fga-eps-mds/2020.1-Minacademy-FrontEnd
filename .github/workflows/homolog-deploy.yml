@@ -39,4 +39,4 @@ jobs:
         tags: homolog
         context: ./
         default_branch: 50-ci-cd
-        dockerfile: Dockerfile-prod
+        dockerfile: prod.Dockerfile
