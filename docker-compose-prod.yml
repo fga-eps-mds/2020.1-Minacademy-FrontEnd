@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  app:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - client-server-network
+
+networks:
+  client-server-network:
+    external:
+      name: client-server-network

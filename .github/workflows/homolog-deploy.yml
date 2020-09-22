@@ -1,0 +1,48 @@
+name: Continuous Integration and Delivery
+
+on:
+  push:
+    branches:
+      - develop
+      - 50-ci-cd
+    pull-request:
+      - develop
+      - 50-ci-cd
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Modules
+      run: npm install
+    - name: Run Tests
+      run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+      env:
+        CI: true
+
+    - name: Push to GitHub Packages
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: fga-eps-mds/2020.1-Minacademy-FrontEnd/app
+        registry: docker.pkg.github.com
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        dockerfile: Dockerfile-prod
+        tags: latest
