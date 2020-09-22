@@ -1,0 +1,45 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+      - 50-ci-cd
+    pull-request:
+      - master
+      - 50-ci-cd
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Modules
+      run: npm install
+    - name: Run Tests
+      run: npm test
+
+  # build:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [10.x, 12.x, 14.x]
+  #   steps:
+  #   - uses: actions/checkout@v1
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #     env:
+  #       CI: true
+
+  #   - name: Publish to Github Packages Registry
+  #     uses: elgohr/Publish-Docker-Github-Action@master
+  #     with:
+  #       name: my_github_username/my_repository_name/my_image_name
+  #       registry: docker.pkg.github.com
+  #       username: ${{ secrets.GITHUB_USERNAME }}
+  #       password: ${{ secrets.GITHUB_TOKEN }}
+  #       dockerfile: Dockerfile-prod
+  #       tags: latest
