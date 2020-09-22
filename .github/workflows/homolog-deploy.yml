@@ -21,28 +21,22 @@ jobs:
     - name: Run Tests
       run: npm test
 
-  build:
+  push_to_registry:
     # needs: test
+    name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-      env:
-        CI: true
+    - name: Check out the repo
+      uses: actions/checkout@v2
 
     - name: Push to GitHub Packages
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: fga-eps-mds/2020.1-Minacademy-FrontEnd/app
-        registry: docker.pkg.github.com
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        name: fga-eps-mds/2020.1-Minacademy-FrontEnd/app
+        tags: homolog
+        workdir: app
+        default_branch: 50-ci-cd
         dockerfile: Dockerfile-prod
-        tags: latest
