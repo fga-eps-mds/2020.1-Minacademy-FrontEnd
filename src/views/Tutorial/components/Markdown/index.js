@@ -30,8 +30,8 @@ function Markdown({ currentModule, nextModule, previousModule }) {
       const response = await fetch(file.default);
       const text = await response.text();
       setMarkdown(text)
+      window.scrollTo(0, 0)
     })()
-    window.scrollTo(0, 0)
   });
 
   function next() {
