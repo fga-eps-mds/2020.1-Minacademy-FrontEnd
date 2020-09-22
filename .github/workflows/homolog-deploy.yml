@@ -1,48 +1,39 @@
-name: Continuous Integration and Delivery
+name: Continuous Integration - Homolog Deploy
 
 on:
   push:
     branches:
       - develop
       - 50-ci-cd
-    pull-request:
-      - develop
-      - 50-ci-cd
 
 jobs:
 
-  test:
+  Testes:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out the repo
+      uses: actions/checkout@v2
 
-    - name: Install Modules
+    - name: Install modules
       run: npm install
-    - name: Run Tests
+
+    - name: Run tests
       run: npm test
 
-  build:
-    # needs: test
+  Deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-      env:
-        CI: true
+    - name: Check out the repo
+      uses: actions/checkout@v2
 
     - name: Push to GitHub Packages
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: fga-eps-mds/2020.1-Minacademy-FrontEnd/app
-        registry: docker.pkg.github.com
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        dockerfile: Dockerfile-prod
-        tags: latest
+        registry: docker.pkg.github.com
+        name: fga-eps-mds/2020.1-minacademy-frontend/app
+        tags: homolog
+        context: ./
+        default_branch: 50-ci-cd
+        dockerfile: prod.Dockerfile

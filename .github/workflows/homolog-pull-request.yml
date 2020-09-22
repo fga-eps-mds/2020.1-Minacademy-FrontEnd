@@ -1,0 +1,19 @@
+name: Continuous Integration - PR's Tests
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - 50-ci-cd
+
+jobs:
+
+  Testes:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Modules
+      run: npm install
+    - name: Run Tests
+      run: npm test

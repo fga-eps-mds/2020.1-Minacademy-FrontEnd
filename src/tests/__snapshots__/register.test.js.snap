@@ -3,20 +3,20 @@
 exports[`Expect to render Register Component 1`] = `
 <Fragment>
   <div
-    id="register"
+    className="register__form"
   >
-    <div
-      className="register__form"
-    >
-      <h1>
-        Cadastro
-      </h1>
-      <label>
-        <form
-          onSubmit={[Function]}
+    <h1>
+      Cadastro
+    </h1>
+    <label>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="register__inputs"
         >
           <div
-            className="register__inputs"
+            className="register__grid1"
           >
             <div
               className="register__grid1"
@@ -64,7 +64,7 @@ exports[`Expect to render Register Component 1`] = `
             </div>
           </div>
           <div
-            className="register__options"
+            className="register__grid2"
           >
             <div
               className="register__options--user"
@@ -95,30 +95,50 @@ exports[`Expect to render Register Component 1`] = `
               </label>
             </div>
             <label
-              htmlFor="agree"
+              htmlFor="mentor"
             >
               <input
-                name="agree"
-                type="checkbox"
+                name="userType"
+                type="radio"
+                value="mentor"
               />
-               Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.
+               mentora
             </label>
             <label
-              htmlFor="terms"
+              htmlFor="learner"
             >
               <input
-                name="terms"
-                type="checkbox"
+                name="userType"
+                type="radio"
+                value="learner"
               />
-               Concordo com os termos de uso.
+               aprendiz
             </label>
           </div>
-          <Button>
-            REGISTRAR
-          </Button>
-        </form>
-      </label>
-    </div>
+          <label
+            htmlFor="agree"
+          >
+            <input
+              name="agree"
+              type="checkbox"
+            />
+             Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.
+          </label>
+          <label
+            htmlFor="terms"
+          >
+            <input
+              name="terms"
+              type="checkbox"
+            />
+             Concordo com os termos de uso.
+          </label>
+        </div>
+        <Button>
+          REGISTRAR
+        </Button>
+      </form>
+    </label>
   </div>
-</Fragment>
+</div>
 `;
