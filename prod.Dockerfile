@@ -7,4 +7,4 @@ RUN npm ci --silent
 COPY . ./
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

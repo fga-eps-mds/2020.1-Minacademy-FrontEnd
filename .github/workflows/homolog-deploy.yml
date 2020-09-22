@@ -35,7 +35,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        name: fga-eps-mds/2020.1-Minacademy-FrontEnd/app
+        name: fga-eps-mds/2020.1-Minacademy-FrontEnd
         tags: homolog
         workdir: app
         default_branch: 50-ci-cd
