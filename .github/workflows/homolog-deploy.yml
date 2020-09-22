@@ -1,29 +1,12 @@
-name: Continuous Integration and Delivery
+name: Continuous Integration - Homolog Deploy
 
 on:
   push:
     branches:
       - develop
-      - 50-ci-cd
-    pull-request:
-      - develop
-      - 50-ci-cd
 
 jobs:
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install Modules
-      run: npm install
-    - name: Run Tests
-      run: npm test
-
-  push_to_registry:
-    # needs: test
-    name: Push Docker image to GitHub Packages
+  Deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Check out the repo
