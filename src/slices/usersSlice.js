@@ -1,18 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { listUsersRedux } from '../services/usersService';
 
 const initialState = {
-  usersList: [],
-  status: 'idle',
-  error: null
+  currentUser: null
 };
 
-const usersSlice = createSlice({
-  name: 'users',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    addUser(state, action) {
-      state.usersList.push(action.payload.user)
+    setCurrentUser(state, action) {
+      state.currentUser = action.payload
     }
   },
   extraReducers: {
@@ -22,8 +20,11 @@ const usersSlice = createSlice({
   }
 });
 
-const selectUsers = state => state.users.usersList;
+const selectUser = state => state.user;
+export const selectCurrentUser = createSelector(
+  [selectUser],
+  user => user.currentUser
+)
 
-export const { addUser } = usersSlice.actions;
-export { selectUsers };
-export default usersSlice.reducer;
+export const { setCurrentUser } = userSlice.actions;
+export default userSlice.reducer;
