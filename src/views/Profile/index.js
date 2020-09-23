@@ -3,15 +3,20 @@ import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
 import { useForm } from 'react-hook-form';
-import { registerRequest } from '../../services/usersService';
-import { selectCurrentUser } from '../../slices/usersSlice';
-import { connect } from 'react-redux'
+import { editUser } from '../../services/usersService';
+import { selectCurrentUser, setCurrentUser } from '../../slices/usersSlice';
+import { connect, useDispatch} from 'react-redux'
 
 
 function Profile({ currentUser }) {
 
     const { handleSubmit, register, errors } = useForm();
-    const onSubmit = registerRequest
+
+    const dispatch = useDispatch();
+    const onSubmit = async (data) => {
+        await editUser(data)
+        dispatch(setCurrentUser(data));
+    }
 
     return (
         <>
@@ -26,21 +31,26 @@ function Profile({ currentUser }) {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="profile__inputs">
                                 <label>
-                                    <p>nome</p><input type="text" name="name" ref={register({
-                                        required: "campo obrigatório",
-                                        pattern: {
-                                            value: /^[A-Za-z][A-Za-z\s]*$/,
-                                            message: "Nome inválido"
-                                        }
-                                    })} />
-                                
-                                {(errors.name && <span className="danger">{errors.name.message}</span>) || <br />}
+                                    <p>nome</p><input
+                                        type="text"
+                                        name="name"
+                                        defaultValue={currentUser.name}
+                                        ref={register({
+                                            required: "campo obrigatório",
+                                            pattern: {
+                                                value: /^[A-Za-z][A-Za-z\s]*$/,
+                                                message: "Nome inválido"
+                                            }
+                                        })} />
+
+                                    {(errors.name && <span className="danger">{errors.name.message}</span>) || <br />}
                                 </label>
                                 <label>
                                     <p>email</p> <input
                                         type="text"
                                         name="email"
                                         placeholder="email@email.com"
+                                        defaultValue={currentUser.email}
                                         ref={register({
                                             required: "campo obrigatório",
                                             pattern: {
@@ -56,6 +66,7 @@ function Profile({ currentUser }) {
                                     <p>sobre você</p> <textarea
                                         type="textarea"
                                         name="about"
+                                        placeholder="Digite aqui uma mensagem sobre vocẽ"
                                         ref={register({
                                             maxLength: {
                                                 value: 300,
@@ -68,8 +79,8 @@ function Profile({ currentUser }) {
                             </div>
                             <div className="profile__options">
                                 <div className="profile__options--user">
-                                    <p>tipo de cadastro</p>
-                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} /> mentora</label>
+                                    <p>tipo de perfil</p>
+                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} defaultChecked /> mentor</label>
                                     <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} /> aprendiz</label>
                                 </div>
                             </div>
@@ -87,4 +98,6 @@ const mapStateToProps = state => ({
     currentUser: selectCurrentUser(state)
 })
 
-export default connect(mapStateToProps)(Profile)
+const mapDispatchToProps = { setCurrentUser }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

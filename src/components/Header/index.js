@@ -7,10 +7,16 @@ import minaLogo from '../../assets/images/minacademyLogo.svg';
 import notification from '../../assets/images/notification.svg'
 import Button from '../Button';
 import '../../index.css';
-import api from '../../services/api'
 import { logout } from '../../services/usersService';
+import { useDispatch } from 'react-redux';
 
 function Header({ currentUser }) {
+
+  const dispatch = useDispatch()
+  function endSession() {
+    logout()
+    dispatch(setCurrentUser(null))
+  }
   return (
     <>
       <Navbar bg="white" expand="md">
@@ -40,7 +46,7 @@ function Header({ currentUser }) {
             <NavDropdown title={currentUser.name}>
               <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
               <NavDropdown.Item href="/">Certificados</NavDropdown.Item>
-              <NavDropdown.Item onClick={logout}>Sair</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => endSession()}>Sair</NavDropdown.Item>
             </NavDropdown>
           </>
         )
@@ -59,5 +65,6 @@ function Header({ currentUser }) {
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state)
 })
+
 
 export default connect(mapStateToProps)(Header);

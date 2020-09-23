@@ -1,7 +1,8 @@
 import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT } from './endpoints';
-import { setCurrentUser } from '../slices/usersSlice';
+import { selectCurrentUser } from '../slices/usersSlice';
+
 
 const listUsersRedux = createAsyncThunk('users/listUsersRedux', async () => {
   const response = await api.get(USER_ENDPOINT);
@@ -20,7 +21,7 @@ const listUsers = async () => {
 
 const login = async (values) => {
   try {
-    const response = await api.post(LOGIN_ENDPOINT, values, {withCredentials: true});
+    const response = await api.post(LOGIN_ENDPOINT, values, { withCredentials: true });
     alert(`Você está logado ${response.data.user.name}`)
     return response.data.user
   } catch (err) {
@@ -33,7 +34,6 @@ const login = async (values) => {
 const logout = async () => {
   try {
     const response = await api.post(LOGOUT_ENDPOINT);
-    setCurrentUser(null)
     console.log(response.data);
   } catch (error) {
     console.log(error.message)
@@ -62,9 +62,9 @@ const editUser = async (values) => {
   try {
     const response = await api.post(PROFILE_ENDPOINT, values);
     console.log(response.data)
-    alert('Cadastro realizado com sucesso')
+    alert('perfil editado com sucesso')
   } catch (err) {
-    alert('Erro no cadastro, tente novamente.')
+    alert('Erro ao editar perfil.')
   }
 }
 
@@ -76,5 +76,6 @@ export {
   listUsersRedux,
   login,
   logout,
-  registerRequest
+  registerRequest,
+  editUser
 }

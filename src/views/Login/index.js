@@ -15,7 +15,7 @@ function Login({ setCurrentUser }) {
         const user = await login(credentials)
         setCurrentUser(user);
     }
-
+    
     return (
         <>
             <div className="login">

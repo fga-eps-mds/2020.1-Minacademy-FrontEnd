@@ -8,6 +8,7 @@ import Login from '../views/Login';
 import Register from '../views/Register';
 import Profile from '../views/Profile';
 import PrivateRoute from './privateRoute'
+import DashBoard from '../views/Dashboard'
 
 
 const Routes = () => {
@@ -21,6 +22,7 @@ const Routes = () => {
           <Route exact path="/cadastro" component={Register} />
           <PrivateRoute exact path="/tutorial" component={Tutorial} />
           <PrivateRoute exact path="/perfil" component={Profile} />
+          
         </Switch>
         <Footer />
       </BrowserRouter>
