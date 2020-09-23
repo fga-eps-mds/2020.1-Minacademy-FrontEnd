@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectCurrentUser } from '../../slices/usersSlice'
-import { Nav, Navbar } from 'react-bootstrap'
+import { selectCurrentUser, setCurrentUser } from '../../slices/usersSlice'
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import './style.scss';
 import minaLogo from '../../assets/images/minacademyLogo.svg';
 import notification from '../../assets/images/notification.svg'
 import Button from '../Button';
 import '../../index.css';
-import { Link } from 'react-router-dom';
-
+import api from '../../services/api'
+import { logout } from '../../services/usersService';
 
 function Header({ currentUser }) {
   return (
@@ -19,10 +19,11 @@ function Header({ currentUser }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {currentUser ? (<>
-              <Nav.Link href="/curso">Tutorial</Nav.Link>
+              <Nav.Link href="/tutorial">Tutorial</Nav.Link>
               <Nav.Link href="/">Ranking</Nav.Link>
               <Nav.Link href="/">Fórum</Nav.Link>
               <Nav.Link href="/">Dashboard</Nav.Link>
+
             </>
             ) :
               (<>
@@ -36,7 +37,11 @@ function Header({ currentUser }) {
         {currentUser ? (
           <>
             <div href="/"><img className="notification" src={notification} alt="logo" /></div>
-            <Nav.Link >NameUser</Nav.Link>
+            <NavDropdown title={currentUser.name}>
+              <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
+              <NavDropdown.Item href="/">Certificados</NavDropdown.Item>
+              <NavDropdown.Item onClick={logout}>Sair</NavDropdown.Item>
+            </NavDropdown>
           </>
         )
           : (
@@ -48,6 +53,7 @@ function Header({ currentUser }) {
     </>
 
   );
+
 }
 
 const mapStateToProps = state => ({

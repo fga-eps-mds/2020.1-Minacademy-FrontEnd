@@ -1,0 +1,178 @@
+#profile {
+  padding: 5%;
+  background: #e5e5e5;
+}
+
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+  max-height: 900px;
+  font-family: Overpass;
+  background-color: white;
+  border-radius: 10px;
+  width: 800px;
+  height: 694px;
+  margin: auto;
+  margin-top: 10vw;
+  margin-bottom: 10vw;
+
+  label form input[type="text"]{
+      outline: none;
+      width: 300px;
+      display: block;
+      border-width: 0.2px;
+      box-sizing: border-box;
+      padding: 5px;
+      border-radius: 10px;
+  }
+}
+
+.profile__form .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  width: 200px;
+  margin-left: 205px;
+}
+
+.profile__form--infos {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  
+  width: 100%;
+  align-items: left;
+  flex-direction: column;
+  margin-left: 80px;
+   p {
+     grid-row-start: 2;
+   }
+  .button {
+    border-radius: 10px;
+    border: 2px solid var(--login-button);
+    background: var(--white);
+    color: var(--login-button);
+    margin-left: 0;
+    display: flex;
+  }
+}
+
+.profile__inputs {
+  max-width: 600px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-column-gap: 30px;
+  p {
+      margin-bottom: 0;
+  }
+
+}
+
+.profile__options {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: 50px;
+  p {
+      font-size: 16px;
+      color: var(--title-color);
+      font-family: Overpass;
+      margin-top: 20px;
+  }
+
+  label {
+      margin-right: 10px;
+      display: inline-block;
+      margin-bottom: 30px;
+  }
+
+  label input[type="radio"], input[type="checkbox"]{
+      margin: 0;
+  }
+
+}
+
+textarea {
+  min-height: 95px;
+  height: 95px;
+  max-height: 130px;
+  border-radius: 10px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+@media(max-width: 800px) {
+    .profile__form {
+        & {
+        width: 90vw;
+        height: 46rem;
+        display: flex;
+      }
+
+      h1 {
+        margin: 0;
+        text-align: center;
+      }
+
+      
+    .button {
+        margin: 0 auto;
+        margin-top: 4vh;
+        height: 30px;
+    }
+
+    label form input[type="text"], textarea{
+      width: 60vw;
+    }
+
+
+  }
+  .profile__inputs {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin: 0;
+
+  }
+
+  
+  .profile__options {
+      display: inline;
+      margin-left: 0px;
+
+      p {
+          margin: 0;
+      }
+
+      label{
+          margin-left: 0;
+          display: inline-block;
+          margin-bottom: 0.2rem;
+      }
+  }
+
+  .profile__options--user{
+      text-align: center;
+  }
+
+
+
+
+  .profile__form--infos {
+    & {
+      margin: 0;
+      display: block;
+      text-align: center;
+    }
+    .button {
+      width: 10px;
+    }
+  }
+
+
+
+}
+

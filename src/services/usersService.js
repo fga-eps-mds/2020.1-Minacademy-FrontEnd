@@ -1,6 +1,7 @@
 import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT } from './endpoints';
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT } from './endpoints';
+import { setCurrentUser } from '../slices/usersSlice';
 
 const listUsersRedux = createAsyncThunk('users/listUsersRedux', async () => {
   const response = await api.get(USER_ENDPOINT);
@@ -32,6 +33,7 @@ const login = async (values) => {
 const logout = async () => {
   try {
     const response = await api.post(LOGOUT_ENDPOINT);
+    setCurrentUser(null)
     console.log(response.data);
   } catch (error) {
     console.log(error.message)
@@ -55,6 +57,17 @@ const registerRequest = async (values) => {
     alert('Erro no cadastro, tente novamente.')
   }
 }
+
+const editUser = async (values) => {
+  try {
+    const response = await api.post(PROFILE_ENDPOINT, values);
+    console.log(response.data)
+    alert('Cadastro realizado com sucesso')
+  } catch (err) {
+    alert('Erro no cadastro, tente novamente.')
+  }
+}
+
 
 
 

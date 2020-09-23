@@ -5,7 +5,6 @@ import './style.scss';
 import { useForm } from 'react-hook-form';
 import { registerRequest } from '../../services/usersService';
 
-
 function Register() {
 
     const { handleSubmit, register, errors } = useForm();
@@ -74,7 +73,7 @@ function Register() {
                                 <div className="register__options--user">
                                     <p>tipo de cadastro</p>
                                     <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} /> mentora</label>
-                                    <label htmlFor="learner"><input name="userType" value="learner" type="radio" ref={register} /> aprendiz</label>
+                                    <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} /> aprendiz</label>
                                 </div>
                                 <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
                                     required: "concorde com os termos de uso",
@@ -86,7 +85,6 @@ function Register() {
                                 {errors.terms && <span className="danger">{errors.terms.message}</span>}
                             </div>
                             <Button>REGISTRAR</Button>
-
                         </form>
                     </label>
                 </div>
