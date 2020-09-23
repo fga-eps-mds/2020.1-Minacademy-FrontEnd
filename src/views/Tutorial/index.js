@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import './style.scss'
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
@@ -23,9 +23,9 @@ function Tutorial() {
       <div className="tutorial__content--body">
         <ActivitiesList />
         <Switch>
-          <Route path={`${match.path}/atividades/:atividadeId`} render={() => <Activity />}>
+          <Route path={`${match.path}/atividades/:activityNumber`} component={Activity}>
           </Route>
-          <Route path={match.path} render={() => <Markdown />}>
+          <Route path={match.path} component={Markdown}>
           </Route>
         </Switch>
       </div>

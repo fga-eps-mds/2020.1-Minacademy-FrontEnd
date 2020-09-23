@@ -14,9 +14,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  transition: all 0.2s;
 
   &:hover {
-    transition: 0.1s;
     background-color: white;
     color: var(--hover-button);
     border: 1px solid var(--hover-button);
@@ -24,7 +24,6 @@
 
   &:active {
     transform: scale(0.95);
-    transition: 0.1s;
   }
 
   &.inverted {
@@ -35,7 +34,7 @@
     &:hover {
       background-color: var(--primary-button);
       color: white;
-      border: none;
+      border: 1px solid transparent;
     }
   }
 

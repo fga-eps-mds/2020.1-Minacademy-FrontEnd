@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
 import { Link, useRouteMatch } from 'react-router-dom';
+import { selectActivitiesList } from '../../../../slices/tutorialSlice'
 import './style.scss';
 
-function Activities() {
+function ActivitiesList({ activitiesList }) {
   const match = useRouteMatch();
 
   return (
-  <div className="activities">
-    <div className="activities__content">
-      <div className="activities__content--header">
-        <div>
-          <h3>Forum</h3>
-        </div>
+  <div className="activities-list">
+    <div className="activities-list__header">
+      <div>
+        <h3>Forum</h3>
       </div>
-      <div className="activities__content--body">
-        <p>
-          <Link to={`${match.path}/atividades/1`}>Atividade</Link>
-        </p>
-        <p>
-        <Link to={`${match.path}/atividades/2`}>Atividade</Link>
-        </p>
-      </div>
+    </div>
+    <div className="activities-list__list">
+    {activitiesList.map((activity) => (
+      <p key={activity.number}>
+        <Link to={`${match.path}/atividades/${activity.number}`}>Atividade</Link>
+      </p>
+      ))}
     </div>
   </div>
   );
 }
 
-export default Activities;
+const mapStateToProps = state => ({
+  activitiesList: selectActivitiesList(state)
+})
+
+export default connect(mapStateToProps)(ActivitiesList);

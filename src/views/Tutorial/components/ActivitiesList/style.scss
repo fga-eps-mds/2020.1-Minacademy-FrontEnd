@@ -1,15 +1,16 @@
-.activities {
+.activities-list {
   min-width: 200px;
   width: 20%;
+  border-right: 1px solid var(--border-color);
 
-  &__content {
+  @media(max-width: 600px) {
+    width: 100%;
+    margin: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-    &--header {
-      padding-bottom: 3rem;
-    }
-
-    &--body {
-
-    }
+  &__header {
+    padding-bottom: 3rem;
   }
 }
