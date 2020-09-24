@@ -23,6 +23,7 @@ function Profile({ currentUser }) {
             <div id="profile">
                 <div className="profile__form">
                     <div className="profile__form--infos">
+                        <img src="" alt="avatar"> </img>
                         <h1>Perfil</h1>
                         <p>Adicione ou edite suas informações</p>
                         <Button>{currentUser.userType.toUpperCase()}</Button>

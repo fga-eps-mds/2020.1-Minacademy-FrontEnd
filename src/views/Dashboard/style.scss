@@ -39,7 +39,7 @@
       width: 350px;
       height: 200px;
       background: var(--white);
-      filter: drop-shadow(1px 1px 1px 1px rgba(0, 0, 0, 0.08));
+      box-shadow: 3px 3px rgba(0, 0, 0, 0.08);
     }
 
     p:nth-child(2) {
