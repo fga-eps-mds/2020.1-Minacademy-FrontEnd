@@ -7,8 +7,9 @@ import Tutorial from '../views/Tutorial';
 import Login from '../views/Login';
 import Register from '../views/Register';
 import Profile from '../views/Profile';
-import PrivateRoute from './privateRoute'
-import DashBoard from '../views/Dashboard'
+import PrivateRoute from './components/privateRoute';
+import PublicRoute from './components/publicRoute';
+import Dashboard from '../views/Dashboard';
 
 
 const Routes = () => {
@@ -18,11 +19,11 @@ const Routes = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/cadastro" component={Register} />
+          <PublicRoute exact path="/login" component={Login} />
+          <PublicRoute exact path="/cadastro" component={Register} />
           <PrivateRoute exact path="/tutorial" component={Tutorial} />
           <PrivateRoute exact path="/perfil" component={Profile} />
-          
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
         <Footer />
       </BrowserRouter>

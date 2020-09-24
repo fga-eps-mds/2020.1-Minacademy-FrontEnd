@@ -28,7 +28,7 @@ function Header({ currentUser }) {
               <Nav.Link href="/tutorial">Tutorial</Nav.Link>
               <Nav.Link href="/">Ranking</Nav.Link>
               <Nav.Link href="/">Fórum</Nav.Link>
-              <Nav.Link href="/">Dashboard</Nav.Link>
+              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
 
             </>
             ) :
