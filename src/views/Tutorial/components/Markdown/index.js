@@ -1,6 +1,7 @@
-import  React, { useState, useEffect } from 'react';
+import  React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import { selectCurrentModule, nextModule, previousModule } from '../../../../slices/tutorialSlice'
+import { selectCurrentModule, selectMarkdown, nextModule, previousModule } from '../../../../slices/tutorialSlice'
+import { updateMarkdown } from '../../../../services/modulesServices'
 import ReactMarkdown from 'react-markdown'
 import Dropdown from '../../../../components/Dropdown';
 import Button from '../../../../components/Button'
@@ -21,18 +22,12 @@ const items = [
   },
 ];
 
-function Markdown({ currentModule, nextModule, previousModule }) {
-  const [markdown, setMarkdown] = useState('');
+function Markdown({ markdown, currentModule, nextModule, previousModule, updateMarkdown }) {
 
   useEffect(() => {
-    (async function updateMarkdown() {
-      const file = await import(`../../../../assets/tutorial/${currentModule}.md`);
-      const response = await fetch(file.default);
-      const text = await response.text();
-      setMarkdown(text)
-      window.scrollTo(0, 0)
-    })()
-  });
+    updateMarkdown(currentModule)
+    window.scrollTo(0, 0)
+  }, [currentModule]);
 
   function next() {
     if (currentModule >= 25) return
@@ -62,9 +57,15 @@ function Markdown({ currentModule, nextModule, previousModule }) {
 }
 
 const mapStateToProps = state => ({
-  currentModule: selectCurrentModule(state)
+  currentModule: selectCurrentModule(state),
+  markdown: selectMarkdown(state)
 });
 
-const mapDispatchToProps = { nextModule, previousModule }
+const mapDispatchToProps = dispatch => ({
+  nextModule: () => dispatch(nextModule()),
+  previousModule: () => dispatch(previousModule()),
+  updateMarkdown: (moduleNumber) => dispatch(updateMarkdown(moduleNumber))
+
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Markdown);
