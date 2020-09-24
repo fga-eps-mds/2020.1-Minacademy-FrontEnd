@@ -3,20 +3,20 @@
 exports[`Expect to render Register Component 1`] = `
 <Fragment>
   <div
-    className="register__form"
+    id="register"
   >
-    <h1>
-      Cadastro
-    </h1>
-    <label>
-      <form
-        onSubmit={[Function]}
-      >
-        <div
-          className="register__inputs"
+    <div
+      className="register__form"
+    >
+      <h1>
+        Cadastro
+      </h1>
+      <label>
+        <form
+          onSubmit={[Function]}
         >
           <div
-            className="register__grid1"
+            className="register__inputs"
           >
             <div
               className="register__grid1"
@@ -95,50 +95,30 @@ exports[`Expect to render Register Component 1`] = `
               </label>
             </div>
             <label
-              htmlFor="mentor"
+              htmlFor="agree"
             >
               <input
-                name="userType"
-                type="radio"
-                value="mentor"
+                name="agree"
+                type="checkbox"
               />
-               mentora
+               Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.
             </label>
             <label
-              htmlFor="learner"
+              htmlFor="terms"
             >
               <input
-                name="userType"
-                type="radio"
-                value="learner"
+                name="terms"
+                type="checkbox"
               />
-               aprendiz
+               Concordo com os termos de uso.
             </label>
           </div>
-          <label
-            htmlFor="agree"
-          >
-            <input
-              name="agree"
-              type="checkbox"
-            />
-             Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.
-          </label>
-          <label
-            htmlFor="terms"
-          >
-            <input
-              name="terms"
-              type="checkbox"
-            />
-             Concordo com os termos de uso.
-          </label>
-        </div>
-        <Button>
-          REGISTRAR
-        </Button>
-      </form>
-    </label>
+          <Button>
+            REGISTRAR
+          </Button>
+        </form>
+      </label>
+    </div>
   </div>
-</div>
+</Fragment>
 `;
