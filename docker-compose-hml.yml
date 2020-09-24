@@ -2,11 +2,14 @@ version: '3.7'
 services:
   app:
     stdin_open: true
+    # image: docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:homolog
     build:
       context: .
-      dockerfile: prod.Dockerfile
+      dockerfile: hml.Dockerfile
     ports:
       - '3000:3000'
+    env_file: 
+    - .env-hom
     networks:
       - client-server-network
 
