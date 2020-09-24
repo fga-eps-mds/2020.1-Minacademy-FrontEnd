@@ -23,7 +23,7 @@ function ActivitiesList({ activitiesList, currentModule, getQuestions }) {
     <div className="activities-list__list">
     {activitiesList.map((activity) => (
       <p key={activity._id}>
-        <Link to={`${match.path}/atividades/${activity.number}`}>Atividade</Link>
+        <Link to={`${match.path}/atividades/${activity.number}`}>Atividade {activity.number}</Link>
       </p>
       ))}
     </div>

@@ -1,32 +1,37 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux'
 import { selectActivity } from '../../../../slices/tutorialSlice'
-import { Link } from 'react-router-dom';
 import './style.scss';
 import Button from '../../../../components/Button';
 
 function Activity ({ activity }) {
-  useEffect(() => {
-    (async function teste() {
-      console.log(activity)
-    })()
-  });
+  const { handleSubmit, register, errors } = useForm();
+
+  const onSubmit = (val) => {
+    console.log("ANSWER: ", val);
+  }
 
   return (
     <div className="activity">
       <div className="activity__description">
-        <h4> { activity.description } </h4>
+        <p> { activity.description } </p>
       </div>
-      <div className="activity__body">
-        {Object.keys(activity.alternatives)
-          .map(item => (
-            <p key={item}><b>{item}</b>. {activity.alternatives[item]}</p>
-        ))}
-      </div>
-      <div className="activity__action-bar">
-        <Button inverted shadow>
-          Responder
-        </Button>
+      <div className="activity__alternatives">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {Object.keys(activity.alternatives).map(item => (
+            <div className="activity__alternatives--item" key={item}>
+              <label htmlFor={item}>
+                <input name="alternative" value={item} id={item} type="radio" ref={register({ required: true })} />
+                {activity.alternatives[item]}
+              </label>
+            </div>
+          ))}
+          <Button inverted shadow>
+            Responder
+          </Button>
+          {errors.alternative && <div className="activity__alternatives--error">Escolha uma alternativa</div>}
+        </form>
       </div>
     </div>
   );
