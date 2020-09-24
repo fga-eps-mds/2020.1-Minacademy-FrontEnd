@@ -1,14 +1,7 @@
 import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT } from './endpoints/users';
-
-
-
-const listUsersRedux = createAsyncThunk('users/listUsersRedux', async () => {
-  const response = await api.get(USER_ENDPOINT);
-  return response.data;
-});
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT } from './endpoints/users';
 
 const listUsers = async () => {
   try {
@@ -30,7 +23,6 @@ const login = createAsyncThunk('users/login', async (values) => {
     toast.error('Email ou senha incorretos')
   }
 });
-
 
 const logout = createAsyncThunk('users/logout', async () => {
   try {
@@ -75,7 +67,6 @@ const editUser = async (values) => {
 
 export {
   listUsers,
-  listUsersRedux,
   login,
   logout,
   registerRequest,
