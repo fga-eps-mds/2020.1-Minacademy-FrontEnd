@@ -4,21 +4,23 @@
 }
 
 .profile__form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5%;
-  max-height: 900px;
-  font-family: Overpass;
-  background-color: white;
-  border-radius: 10px;
-  width: 800px;
-  height: 694px;
-  margin: auto;
-  margin-top: 10vw;
-  margin-bottom: 10vw;
-
-  label form input[type="text"]{
+  & {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+    max-height: 900px;
+    font-family: Overpass;
+    background-color: white;
+    border-radius: 10px;
+    width: 800px;
+    height: 694px;
+    margin: auto;
+    margin-top: 10vw;
+    margin-bottom: 10vw;
+  }
+  
+  label form input[type="text"], input[type="url"]{
       outline: none;
       width: 300px;
       display: block;
@@ -27,6 +29,7 @@
       padding: 5px;
       border-radius: 10px;
   }
+
 }
 
 .profile__form .button {
@@ -158,9 +161,6 @@ textarea {
       text-align: center;
   }
 
-
-
-
   .profile__form--infos {
     & {
       margin: 0;
@@ -171,8 +171,6 @@ textarea {
       width: 10px;
     }
   }
-
-
 
 }
 

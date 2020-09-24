@@ -65,6 +65,11 @@
   text-decoration: none;
 }
 
+.profileImg {
+  width: 50px;
+  display: flex;
+}
+
 @media (max-width: 800px) {
   .logo {
     width: 160px;

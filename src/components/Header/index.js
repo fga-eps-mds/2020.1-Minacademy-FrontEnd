@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectCurrentUser, setCurrentUser } from '../../slices/usersSlice'
+import { selectCurrentUser} from '../../slices/usersSlice'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import './style.scss';
 import minaLogo from '../../assets/images/minacademyLogo.svg';
 import notification from '../../assets/images/notification.svg'
 import Button from '../Button';
+import { useHistory } from 'react-router-dom';
 import '../../index.css';
 import { logout } from '../../services/usersService';
-import { useDispatch } from 'react-redux';
 
 function Header({ currentUser, logout }) {
-
+  const history = useHistory();
   return (
     <>
       <Navbar bg="white" expand="md">
@@ -24,7 +24,6 @@ function Header({ currentUser, logout }) {
               <Nav.Link href="/">Ranking</Nav.Link>
               <Nav.Link href="/">Fórum</Nav.Link>
               <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-
             </>
             ) :
               (<>
@@ -46,9 +45,11 @@ function Header({ currentUser, logout }) {
           </>
         )
           : (
-            <Button inverted color small>
-              Entrar
+            
+              <Button onClick={() => {history.push('/login')}} inverted color small>
+                Entrar
             </Button>
+          
           )}
       </Navbar>
     </>

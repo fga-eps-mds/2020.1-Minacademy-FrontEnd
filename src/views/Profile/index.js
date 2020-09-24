@@ -5,7 +5,7 @@ import './style.scss';
 import { useForm } from 'react-hook-form';
 import { editUser } from '../../services/usersService';
 import { selectCurrentUser, setCurrentUser } from '../../slices/usersSlice';
-import { connect, useDispatch} from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 
 
 function Profile({ currentUser }) {
@@ -76,6 +76,12 @@ function Profile({ currentUser }) {
                                     />
                                     {(errors.about && <span className="danger">{errors.about.message}</span>) || <br />}
                                 </label>
+
+                                <label for="profileImg">
+                                     Link da sua foto <small>(comece com https://)</small>
+                                    <input name="profileImg" id="profileImg" type="url"></input>
+                                </label>
+                                
                             </div>
                             <div className="profile__options">
                                 <div className="profile__options--user">
