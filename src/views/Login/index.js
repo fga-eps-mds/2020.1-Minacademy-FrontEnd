@@ -8,12 +8,11 @@ import { login } from '../../services/usersService';
 import '../../index.css';
 import './style.scss';
 
-function Login({ setCurrentUser }) {
+function Login({ login }) {
     const { handleSubmit, register, errors } = useForm();
 
     const onSubmit = async (credentials) => {
-        const user = await login(credentials)
-        setCurrentUser(user);
+        login(credentials)
     }
     
     return (
@@ -60,6 +59,8 @@ function Login({ setCurrentUser }) {
     );
 }
 
-const mapDispatchToProps = { setCurrentUser }
+const mapDispatchToProps = dispatch => ({
+    login: credentials => dispatch(login(credentials))
+})
 
 export default connect(null, mapDispatchToProps)(Login);

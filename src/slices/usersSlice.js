@@ -1,5 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { listUsersRedux } from '../services/usersService';
+import { login } from '../services/usersService'
+import { logout } from '../services/usersService'
 
 const initialState = {
   currentUser: null
@@ -14,8 +15,12 @@ const userSlice = createSlice({
     }
   },
   extraReducers: {
-    [listUsersRedux.fulfilled]: (state, action) => {
-      state.usersList.push(...action.payload);
+    [login.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    },
+
+    [logout.fulfilled]: (state, action) => {
+      state.currentUser = null
     }
   }
 });

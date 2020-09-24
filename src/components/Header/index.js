@@ -10,13 +10,8 @@ import '../../index.css';
 import { logout } from '../../services/usersService';
 import { useDispatch } from 'react-redux';
 
-function Header({ currentUser }) {
+function Header({ currentUser, logout }) {
 
-  const dispatch = useDispatch()
-  function endSession() {
-    logout()
-    dispatch(setCurrentUser(null))
-  }
   return (
     <>
       <Navbar bg="white" expand="md">
@@ -46,7 +41,7 @@ function Header({ currentUser }) {
             <NavDropdown title={currentUser.name}>
               <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
               <NavDropdown.Item href="/">Certificados</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => endSession()}>Sair</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => logout()}>Sair</NavDropdown.Item>
             </NavDropdown>
           </>
         )
@@ -66,5 +61,9 @@ const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state)
 })
 
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout())
+})
 
-export default connect(mapStateToProps)(Header);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
