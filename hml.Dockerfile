@@ -1,5 +1,7 @@
 FROM node:13.12.0-alpine as build
-WORKDIR /app
+WORKDIR /
+
+RUN npm install react-scripts@3.4.1 -g --silent
 
 COPY package*.json ./
 RUN npm ci --silent
