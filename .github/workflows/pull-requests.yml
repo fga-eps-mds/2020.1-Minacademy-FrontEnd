@@ -3,8 +3,6 @@ name: Continuous Integration - PR's Tests
 on:
   pull_request:
     branches:
-      - develop
-      - 50-ci-cd
 
 jobs:
   tests:

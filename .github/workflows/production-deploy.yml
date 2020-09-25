@@ -3,7 +3,8 @@ name: Continuous Integration and Delivery
 on:
   push:
     branches:
-      - develop
+      - master
+      - 50-ci-cd
 
 jobs:
   tests:
@@ -32,7 +33,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         name: fga-eps-mds/2020.1-minacademy-frontend/app
-        tags: homolog
+        tags: production
         context: ./
         default_branch: 50-ci-cd
         dockerfile: prod.Dockerfile
@@ -47,12 +48,12 @@ jobs:
             GITHUB_USERNAME: ${{ github.actor }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          host: ${{ secrets.HOMOLOG_IP }}
-          username: ${{ secrets.HOMOLOG_USERNAME }}
-          password: ${{ secrets.HOMOLOG_PASSWORD }}
+          host: ${{ secrets.PRODUCTION_IP }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          password: ${{ secrets.PRODUCTION_PASSWORD }}
           envs: GITHUB_USERNAME, GITHUB_TOKEN
           script: |
             cd minacademy-frontend
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
-            docker pull docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:homolog
+            docker pull docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:production
             docker-compose -f docker-compose-hml.yml up -d
