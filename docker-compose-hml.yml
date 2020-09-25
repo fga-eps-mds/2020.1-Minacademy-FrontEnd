@@ -9,7 +9,9 @@ services:
     ports:
       - '3000:3000'
     environment:
-      NODE_ENV: homolog
+      NODE_ENV: production
+    env_file: 
+      - .env.homolog
     networks:
       - client-server-network
 
