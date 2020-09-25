@@ -56,4 +56,4 @@ jobs:
             cd minacademy-frontend
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:production
-            docker-compose -f docker-compose-hml.yml up -d
+            docker-compose -f docker-compose-prod.yml up -d
