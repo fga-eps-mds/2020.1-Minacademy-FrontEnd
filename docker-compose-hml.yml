@@ -8,8 +8,8 @@ services:
       dockerfile: hml.Dockerfile
     ports:
       - '3000:3000'
-    env_file: 
-      - .env-hml
+    environment:
+      NODE_ENV: homolog
     networks:
       - client-server-network
 
