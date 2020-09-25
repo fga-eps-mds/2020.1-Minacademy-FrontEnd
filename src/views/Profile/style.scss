@@ -51,11 +51,13 @@
 .profile__form--infos {
   display: grid;
   grid-template-columns: 100px 2fr 1fr;
+  padding-left: 60px;
+  padding-right: 60px;
   
   width: 100%;
   align-items: left;
   flex-direction: column;
-  margin-left: 80px;
+  
    p {
      grid-column-start: 2;
    }
