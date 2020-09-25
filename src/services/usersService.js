@@ -58,7 +58,7 @@ const registerRequest = async (values) => {
   }
 }
 
-const editUser = async (values) => {
+const editUser = createAsyncThunk('editUser', async (values) => {
   try {
     const response = await api.post(PROFILE_ENDPOINT, values);
     console.log(response.data)
@@ -66,7 +66,7 @@ const editUser = async (values) => {
   } catch (err) {
     alert('Erro ao editar perfil.')
   }
-}
+});
 
 
 

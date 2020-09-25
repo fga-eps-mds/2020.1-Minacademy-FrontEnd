@@ -44,6 +44,7 @@
   height: 38px;
   width: 200px;
   margin-left: 205px;
+  margin-top: 10vh;
 }
 
 .profile__form--infos {
@@ -64,6 +65,8 @@
     color: var(--login-button);
     margin-left: 0;
     display: flex;
+    margin-top: 0;
+
   }
 }
 
@@ -79,29 +82,6 @@
 
 }
 
-.profile__options {
-  display: flex;
-  flex-direction: column;
-  margin-left: 0;
-  margin-top: 50px;
-  p {
-      font-size: 16px;
-      color: var(--title-color);
-      font-family: Overpass;
-      margin-top: 20px;
-  }
-
-  label {
-      margin-right: 10px;
-      display: inline-block;
-      margin-bottom: 30px;
-  }
-
-  label input[type="radio"], input[type="checkbox"]{
-      margin: 0;
-  }
-
-}
 
 textarea {
   min-height: 95px;
@@ -113,61 +93,43 @@ textarea {
 }
 
 
-
-
 @media(max-width: 800px) {
-    .profile__form {
-        & {
-        width: 90vw;
-        height: 46rem;
-        display: flex;
-      }
+.profile__form {
+    & {
+      width: 90vw;
+      height: 46rem;
+      display: flex;
+    }
 
-      h1 {
-        margin: 0;
-        text-align: center;
-      }
+    h1 {
+      margin: 0;
+      text-align: center;
+    }
 
-      
+    
     .button {
         margin: 0 auto;
         margin-top: 4vh;
         height: 30px;
+        
     }
-
-    label form input[type="text"], textarea{
+    label {
+      
+    }
+    label form input[type="text"], input[type="url"], textarea{
       width: 60vw;
+      margin-left: auto;
+      margin-right: auto;
     }
+   
+}
+.profile__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
 
-
-  }
-  .profile__inputs {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     margin: 0;
-
-  }
-
-  
-  .profile__options {
-      display: inline;
-      margin-left: 0px;
-
-      p {
-          margin: 0;
-      }
-
-      label{
-          margin-left: 0;
-          display: inline-block;
-          margin-bottom: 0.2rem;
-      }
-  }
-
-  .profile__options--user{
-      text-align: center;
-  }
+}
 
   .profile__form--infos {
     & {
@@ -181,4 +143,3 @@ textarea {
   }
 
 }
-

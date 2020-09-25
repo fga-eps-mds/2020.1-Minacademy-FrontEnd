@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Expect to render Login Component 1`] = `
+exports[`Expect to render Profile Component 1`] = `
 <ContextProvider
   value={null}
 >
   <Profile
     currentUser={null}
-    setCurrentUser={[Function]}
+    editUser={[Function]}
     store={
       Object {
         "dispatch": [Function],

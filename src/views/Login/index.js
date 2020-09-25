@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurrentUser } from '../../slices/usersSlice'
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';

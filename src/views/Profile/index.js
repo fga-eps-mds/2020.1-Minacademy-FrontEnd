@@ -16,7 +16,7 @@ function Profile({ currentUser }) {
     const dispatch = useDispatch();
     const onSubmit = async (data) => {
         await editUser(data)
-        dispatch(setCurrentUser(data));
+        dispatch(setCurrentUser(data))
     }
 
     return (
@@ -83,7 +83,7 @@ function Profile({ currentUser }) {
                                 </label>
 
                                 <label htmlFor="profileImg">
-                                    Link da sua foto <small>(comece com https://)</small>
+                                    <span>Link da sua foto</span> <small>(comece com https://)</small>
                                     <input
                                         name="profileImg"
                                         type="url"
@@ -92,13 +92,7 @@ function Profile({ currentUser }) {
                                 </label>
 
                             </div>
-                            <div className="profile__options">
-                                <div className="profile__options--user">
-                                    <p>tipo de perfil</p>
-                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} defaultChecked /> mentor</label>
-                                    <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} /> aprendiz</label>
-                                </div>
-                            </div>
+                            
                             <Button>ATUALIZAR</Button>
 
                         </form>

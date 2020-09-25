@@ -7,9 +7,9 @@ import { registerRequest } from '../../services/usersService';
 
 function Register() {
 
-    const { handleSubmit, register, errors } = useForm();
+    const { handleSubmit, register, watch, errors } = useForm();
     const onSubmit = registerRequest
-    
+
     return (
         <>
             <div id="register">
@@ -39,7 +39,7 @@ function Register() {
                                             }
                                         })}
                                     />
-                                    {(errors.email && <span className="danger">{errors.email.message}</span>) || <br/>}
+                                    {(errors.email && <span className="danger">{errors.email.message}</span>) || <br />}
                                 </div>
                                 <div className="register__grid2">
                                     <p>senha</p> <input
@@ -62,11 +62,16 @@ function Register() {
                                             required: "campo obrigatório",
                                             minLength: {
                                                 value: 6,
-                                                message: "tamanho mínimo é 6"
+                                                message: "tamanho mínimo é 6",
+                                            },
+                                            validate: (value) => {
+                                                const passwordMatches = value === watch('password');
+                                                return passwordMatches ? passwordMatches : "As senhas nao coincidem"  
                                             }
                                         })}
+
                                     />
-                                    {(errors.confirmPassword && <span className="danger">{errors.confirmPassword.message} </span>) || <br/>}
+                                    {(errors.confirmPassword && <span className="danger">{errors.confirmPassword.message} </span>) || <br />}
                                 </div>
                             </div>
                             <div className="register__options">
