@@ -1,10 +1,10 @@
 import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { QUESTIONS_ENDPOINTS } from './endpoints/modules';
+import { QUESTIONS_ENDPOINT, MODULES_ENDPOINT } from './endpoints/tutorials';
 
 const getQuestions = createAsyncThunk('tutorial/getQuestions' , async (module) => {
   try {
-    const response = await api.get(`${QUESTIONS_ENDPOINTS}?moduleNumber=${module}`);
+    const response = await api.get(`${QUESTIONS_ENDPOINT}?moduleNumber=${module}`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -19,7 +19,18 @@ const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async (curren
   return text
 })
 
+const getModules = createAsyncThunk('tutorial/getModules', async () => {
+  try {
+    const response = await api.get(MODULES_ENDPOINT);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+})
+
 export {
   getQuestions,
-  updateMarkdown
+  updateMarkdown,
+  getModules
 }

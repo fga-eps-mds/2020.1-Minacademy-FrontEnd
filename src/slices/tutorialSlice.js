@@ -1,21 +1,19 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { getQuestions, updateMarkdown } from '../services/modulesServices';
+import { getQuestions, updateMarkdown, getModules } from '../services/tutorialServices';
 
 const initialState = {
   currentModule: 1,
   markdown: '',
   activities: [{}],
+  modules: []
 };
 
 const tutorial = createSlice({
   name: 'tutorial',
   initialState,
   reducers: {
-    nextModule(state, action) {
-      state.currentModule += 1
-    },
-    previousModule(state, action) {
-      state.currentModule -=1
+    setCurrentModule(state, action) {
+      state.currentModule = action.payload;
     }
   },
   extraReducers: {
@@ -24,6 +22,9 @@ const tutorial = createSlice({
     },
     [updateMarkdown.fulfilled]: (state, action) => {
       state.markdown = action.payload
+    },
+    [getModules.fulfilled]: (state, action) => {
+      state.modules = action.payload
     }
   }
 });
@@ -54,5 +55,10 @@ export const selectActivitiesList = createSelector(
   tutorial => tutorial.activities
 )
 
+export const selectModuleList = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.modules
+)
+
 export default tutorial.reducer;
-export const { nextModule, previousModule } = tutorial.actions;
+export const { setCurrentModule } = tutorial.actions;
