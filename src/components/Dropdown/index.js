@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
 import './style.scss'
 
-function Dropdown({ title, items = [], multiSelect = false }) {
+function Dropdown({ items = [], multiSelect = false, toggleItem }) {
   const [open, setOpen] = useState(false);
-  const [selection, setSelection] = useState([]);
+  const [selection, setSelection] = useState([items[0]]);
   const toggle = () => setOpen(!open);
 
   function handleOnClick(item) {
-    if (!selection.some(current => current.id === item.id)) {
+    if (!selection.some(current => current._id === item._id)) {
       if (!multiSelect) {
         setSelection([item]);
       } else if (multiSelect) {
         setSelection([...selection, item]);
       }
-    } else {
-      let selectionAfterRemoval = selection;
-      selectionAfterRemoval = selectionAfterRemoval.filter(
-        current => current.id !== item.id
-      );
-      setSelection([...selectionAfterRemoval]);
     }
   }
 
   function isItemInSelection(item) {
-    if (selection.some(current => current.id === item.id)) {
+    if (selection.some(current => current._id === item._id)) {
       return true;
     }
     return false;
@@ -38,20 +32,21 @@ function Dropdown({ title, items = [], multiSelect = false }) {
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className="dd-header__title">
-          <p className="dd-header__title--bold">{title}</p>
-        </div>
-        <div className="dd-header__action">
-          <p>{open ? 'Close' : 'Open'}</p>
-        </div>
+
+          <span className="dd-header__title--bold">{selection[0].title}</span>
+
+          <span>{open ? 'Close' : 'Open'}</span>
       </div>
       {open && (
         <ul className="dd-list">
           {items.map(item => (
-            <li className="dd-list-item" key={item.id}>
-              <button type="button" onClick={() => handleOnClick(item)}>
-                <span>{item.value}</span>
-                <span>{isItemInSelection(item) && 'Selected'}</span>
+            <li className='dd-list-item' key={item._id}>
+              <button type="button" className={`${isItemInSelection(item) ? 'selected' : '' }`} onClick={() => {
+                handleOnClick(item)
+                toggle(!open)
+                return toggleItem(item)
+              }}>
+                <span>{isItemInSelection(item) ? '-':''} {item.title || item.value}</span>
               </button>
             </li>
           ))}
