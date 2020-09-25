@@ -8,7 +8,7 @@ services:
     networks:
       - client-server-network
     environment: 
-      SERVER_URL: http://159.89.158.50:9000
+      REACT_APP_SERVER_URL: http://159.89.158.50:9000
 
 networks:
   client-server-network:

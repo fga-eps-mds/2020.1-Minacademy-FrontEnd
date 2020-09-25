@@ -11,7 +11,7 @@ services:
     networks:
       - client-server-network
     environment: 
-      SERVER_URL: http://localhost:9000
+      REACT_APP_SERVER_URL: http://localhost:9000
 
 networks:
   client-server-network:
