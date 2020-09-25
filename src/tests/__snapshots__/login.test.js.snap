@@ -1,58 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Expect to render Login Component 1`] = `
-<Fragment>
-  <div
-    className="login"
-  >
-    <div
-      className="login__form"
-    >
-      <h1>
-        Entrar
-      </h1>
-      <label>
-        <form
-          onSubmit={[Function]}
-        >
-          <p>
-            e-mail
-          </p>
-          <input
-            name="email"
-            placeholder="email@email.com"
-            type="text"
-          />
-          <p>
-            senha
-          </p>
-          <input
-            name="password"
-            type="password"
-          />
-          <Button
-            small={true}
-          >
-            LOGIN
-          </Button>
-        </form>
-      </label>
-      <div
-        className="login__resources"
-      >
-        <p>
-          Recuperar senha
-        </p>
-        <p>
-          Não possui conta? 
-          <Link
-            to="/cadastro"
-          >
-            Cadastre-se
-          </Link>
-        </p>
-      </div>
-    </div>
-  </div>
-</Fragment>
+<Login
+  login={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+/>
 `;
