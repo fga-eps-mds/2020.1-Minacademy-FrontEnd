@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
@@ -10,13 +10,14 @@ import { connect, useDispatch } from 'react-redux'
 
 
 function Profile({ currentUser }) {
-
     const { handleSubmit, register, errors } = useForm();
 
     const dispatch = useDispatch();
     const onSubmit = async (data) => {
         await editUser(data)
-        dispatch(setCurrentUser(data))
+        data.userType = currentUser.userType
+        console.log(data)
+        setCurrentUser(data)
     }
 
     return (
@@ -90,7 +91,6 @@ function Profile({ currentUser }) {
                                         ref={register}>
                                     </input>
                                 </label>
-
                             </div>
                             
                             <Button>ATUALIZAR</Button>
