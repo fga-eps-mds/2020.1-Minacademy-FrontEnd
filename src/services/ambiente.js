@@ -17,4 +17,4 @@ const ambiente = () => {
 
 };
 
-export default baseURL();
+export default ambiente();
