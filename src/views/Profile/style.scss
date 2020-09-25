@@ -33,6 +33,7 @@
       box-sizing: border-box;
       padding: 5px;
       border-radius: 10px;
+      padding: 8px 8px;
   }
 
 }
@@ -113,9 +114,7 @@ textarea {
         height: 30px;
         
     }
-    label {
-      
-    }
+    
     label form input[type="text"], input[type="url"], textarea{
       width: 60vw;
       margin-left: auto;
