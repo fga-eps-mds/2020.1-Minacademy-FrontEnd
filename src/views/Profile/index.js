@@ -16,8 +16,7 @@ function Profile({ currentUser }) {
     const onSubmit = async (data) => {
         await editUser(data)
         data.userType = currentUser.userType
-        console.log(data)
-        setCurrentUser(data)
+        dispatch(setCurrentUser(data))
     }
 
     return (
