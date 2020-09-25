@@ -80,12 +80,13 @@ exports[`Expect to render Register Component 1`] = `
                   type="radio"
                   value="mentor"
                 />
-                 mentora
+                 mentor
               </label>
               <label
                 htmlFor="learner"
               >
                 <input
+                  defaultChecked={true}
                   name="userType"
                   type="radio"
                   value="aprendiz"

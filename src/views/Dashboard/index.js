@@ -14,7 +14,7 @@ function Dashboard({ currentUser, currentModule}) {
                 <div className="dashboard__container">
                     <div className="dashboard__container--head">
                         <h1>Olá {currentUser.name}</h1>
-                        <p>Aqui você pode acompanhar seu progresso, contatar um mentor ou mentora e acessar seus certificados</p>
+                        <p>Aqui você pode acompanhar seu progresso, contatar um mentor ou mentora e acessar seus certificados.</p>
                     </div>
                     <div className="dashboard__container--body" >
                         <div className="dashboard__container--info">

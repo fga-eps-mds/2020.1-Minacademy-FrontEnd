@@ -6,7 +6,7 @@ exports[`Expect to render Profile Component 1`] = `
 >
   <Profile
     currentUser={null}
-    editUser={[Function]}
+    setCurrentUser={[Function]}
     store={
       Object {
         "dispatch": [Function],
