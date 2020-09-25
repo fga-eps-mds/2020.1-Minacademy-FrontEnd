@@ -39,7 +39,6 @@ jobs:
         dockerfile: hml.Dockerfile
 
   deploy:
-    name: Deploy package to DigitalOcean 
     needs: build
     runs-on: ubuntu-latest
     steps:
