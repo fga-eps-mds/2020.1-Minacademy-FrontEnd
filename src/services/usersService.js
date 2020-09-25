@@ -1,7 +1,7 @@
 import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT } from './endpoints';
-import { LOGIN_ENDPOINT } from './endpoints';
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT } from './endpoints/users';
+
 
 
 const listUsersRedux = createAsyncThunk('users/listUsersRedux', async () => {
@@ -19,19 +19,26 @@ const listUsers = async () => {
   }
 }
 
-const login = async (values) => {
+const login = createAsyncThunk('users/login', async (values) => {
   try {
-    const response = await api.post(LOGIN_ENDPOINT, values);
+    const response = await api.post(LOGIN_ENDPOINT, values, { withCredentials: true });
     alert(`Você está logado ${response.data.user.name}`)
-    console.log(response.data);
-
-
+    return response.data.user
   } catch (err) {
     console.log(err)
     alert('Email ou senha incorretos')
   }
+});
 
-}
+
+const logout = createAsyncThunk('users/logout', async () => {
+  try {
+    const response = await api.post(LOGOUT_ENDPOINT);
+    console.log(response.data);
+  } catch (error) {
+    console.log(error.message)
+  }
+});
 
 
 
@@ -51,11 +58,24 @@ const registerRequest = async (values) => {
   }
 }
 
+const editUser = async (values) => {
+  try {
+    const response = await api.post(PROFILE_ENDPOINT, values);
+    console.log(response.data)
+    alert('perfil editado com sucesso')
+  } catch (err) {
+    alert('Erro ao editar perfil.')
+  }
+};
+
+
 
 
 export {
   listUsers,
   listUsersRedux,
   login,
-  registerRequest
+  logout,
+  registerRequest,
+  editUser
 }

@@ -15,6 +15,10 @@
   text-align: center;
 }
 
+.dropdown-menu.show {
+  margin-left: 3.4rem  !important;
+}
+
 .logo {
   width: 240px;
 }
@@ -61,6 +65,11 @@
   text-decoration: none;
 }
 
+.profileImg {
+  width: 50px;
+  display: flex;
+}
+
 @media (max-width: 800px) {
   .logo {
     width: 160px;
@@ -84,5 +93,9 @@
   }
   .nav-link {
     margin-left: 2px;
+  }
+
+  .dropdown-menu.show {
+    margin-left: 0;
   }
 }

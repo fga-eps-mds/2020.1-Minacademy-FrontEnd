@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Expect to render Login Component 1`] = `
+exports[`Expect to render Register Component 1`] = `
 <Fragment>
   <div
     id="register"
@@ -38,6 +38,7 @@ exports[`Expect to render Login Component 1`] = `
                 placeholder="email@email.com"
                 type="text"
               />
+              <br />
             </div>
             <div
               className="register__grid2"
@@ -59,6 +60,7 @@ exports[`Expect to render Login Component 1`] = `
                 name="confirmPassword"
                 type="password"
               />
+              <br />
             </div>
           </div>
           <div
@@ -78,15 +80,16 @@ exports[`Expect to render Login Component 1`] = `
                   type="radio"
                   value="mentor"
                 />
-                 mentora
+                 mentor
               </label>
               <label
                 htmlFor="learner"
               >
                 <input
+                  defaultChecked={true}
                   name="userType"
                   type="radio"
-                  value="learner"
+                  value="aprendiz"
                 />
                  aprendiz
               </label>

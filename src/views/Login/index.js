@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -6,12 +7,13 @@ import { login } from '../../services/usersService';
 import '../../index.css';
 import './style.scss';
 
-function Login() {
-
+function Login({ login }) {
     const { handleSubmit, register, errors } = useForm();
+
+    const onSubmit = async (credentials) => {
+        login(credentials)
+    }
     
-    const onSubmit = login
-   
     return (
         <>
             <div className="login">
@@ -56,5 +58,8 @@ function Login() {
     );
 }
 
+const mapDispatchToProps = dispatch => ({
+    login: credentials => dispatch(login(credentials))
+})
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);

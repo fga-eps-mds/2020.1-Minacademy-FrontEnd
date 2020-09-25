@@ -1,29 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { listUsersRedux } from '../services/usersService';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { login } from '../services/usersService'
+import { logout } from '../services/usersService'
 
 const initialState = {
-  usersList: [],
-  status: 'idle',
-  error: null
+  currentUser: null
 };
 
-const usersSlice = createSlice({
-  name: 'users',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    addUser(state, action) {
-      state.usersList.push(action.payload.user)
+    setCurrentUser(state, action) {
+      state.currentUser = action.payload
     }
   },
   extraReducers: {
-    [listUsersRedux.fulfilled]: (state, action) => {
-      state.usersList.push(...action.payload);
-    }
+    [login.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    },
+
+    [logout.fulfilled]: (state, action) => {
+      state.currentUser = null
+    },
+
   }
 });
 
-const selectUsers = state => state.users.usersList;
+const selectUser = state => state.user;
+export const selectCurrentUser = createSelector(
+  [selectUser],
+  user => user.currentUser
+)
 
-export const { addUser } = usersSlice.actions;
-export { selectUsers };
-export default usersSlice.reducer;
+export const { setCurrentUser } = userSlice.actions;
+export default userSlice.reducer;

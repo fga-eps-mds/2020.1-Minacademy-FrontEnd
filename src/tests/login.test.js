@@ -2,15 +2,16 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import Login from '../views/Login';
 import 'mutationobserver-shim';
+import { store } from '../store'
 
 global.MutationObserver = window.MutationObserver;
 
 it('Expect to render Login Component', () => {
-  expect(shallow(<Login></Login>).length).toEqual(1)
-  expect(shallow(<Login></Login>)).toMatchSnapshot()
+  expect(shallow(<Login store={store}></Login>).length).toEqual(1)
+  expect(shallow(<Login store={store} ></Login>)).toMatchSnapshot()
 })
 
 it('Expect to click button', () => {
-  const wrapper = shallow(<Login />);
-  wrapper.find('Button').simulate('click')
+  const wrapper = shallow(<Login store={store} />);
+  wrapper.dive('Button').simulate('click')
 })

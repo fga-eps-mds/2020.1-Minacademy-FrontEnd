@@ -1,0 +1,146 @@
+#profile {
+  padding: 5%;
+  background: var(--background);
+}
+
+.profile__form {
+  & {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+    max-height: 900px;
+    font-family: Overpass;
+    background-color: white;
+    border-radius: 10px;
+    width: 800px;
+    height: 694px;
+    margin: auto;
+    margin-top: 10vw;
+    margin-bottom: 10vw;
+  }
+  img {
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  label form input[type="text"], input[type="url"]{
+      outline: none;
+      width: 300px;
+      display: block;
+      border-width: 0.2px;
+      box-sizing: border-box;
+      padding: 5px;
+      border-radius: 10px;
+      padding: 8px 8px;
+  }
+
+}
+
+.profile__form .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  width: 200px;
+  margin-left: 205px;
+  margin-top: 10vh;
+}
+
+.profile__form--infos {
+  display: grid;
+  grid-template-columns: 100px 2fr 1fr;
+  padding-left: 40px;
+  padding-right: 20px;
+  
+  width: 100%;
+  align-items: left;
+  flex-direction: column;
+  
+   p {
+     grid-column-start: 2;
+   }
+  .button {
+    border-radius: 10px;
+    border: 2px solid var(--login-button);
+    background: var(--white);
+    color: var(--login-button);
+    margin-left: 0;
+    display: flex;
+    margin-top: 0;
+
+  }
+}
+
+.profile__inputs {
+  max-width: 600px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-column-gap: 30px;
+  p {
+      margin-bottom: 0;
+  }
+
+}
+
+
+textarea {
+  min-height: 95px;
+  height: 95px;
+  max-height: 130px;
+  border-radius: 10px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+
+@media(max-width: 800px) {
+.profile__form {
+    & {
+      width: 90vw;
+      height: 46rem;
+      display: flex;
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+    }
+
+    
+    .button {
+        margin: 0 auto;
+        margin-top: 4vh;
+        height: 30px;
+        
+    }
+    
+    label form input[type="text"], input[type="url"], textarea{
+      width: 60vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+   
+}
+.profile__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+
+}
+
+  .profile__form--infos {
+    & {
+      margin: 0;
+      display: block;
+      text-align: center;
+    }
+    .button {
+      width: 10px;
+    }
+  }
+
+}
