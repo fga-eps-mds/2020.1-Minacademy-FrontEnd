@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Link, useRouteMatch } from 'react-router-dom';
 import { selectActivitiesList, selectCurrentModule } from '../../../../slices/tutorialSlice';
-import { getQuestions } from '../../../../services/modulesServices';
+import { getQuestions } from '../../../../services/tutorialServices';
 import './style.scss';
 
 function ActivitiesList({ activitiesList, currentModule, getQuestions }) {
@@ -18,6 +18,7 @@ function ActivitiesList({ activitiesList, currentModule, getQuestions }) {
     <div className="activities-list__header">
       <div>
         <h3>Forum</h3>
+        <p>Modulo <b>{currentModule}</b></p>
       </div>
     </div>
     <div className="activities-list__list">
