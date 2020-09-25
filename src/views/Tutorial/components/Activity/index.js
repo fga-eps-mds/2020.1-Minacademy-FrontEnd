@@ -13,10 +13,14 @@ function Activity ({ activity }) {
     console.log("ANSWER: ", val);
   }
 
+  let descriptionText = activity.description.split('\n').map(i => {
+    return <p>{i}</p>
+  });
+
   return (
     <div className="activity">
       <div className="activity__description">
-        <p> { activity.description } </p>
+        {descriptionText}
       </div>
       <div className="activity__alternatives">
         <form onSubmit={handleSubmit(onSubmit)}>
