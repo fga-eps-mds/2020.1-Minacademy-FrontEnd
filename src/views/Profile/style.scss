@@ -19,7 +19,12 @@
     margin-top: 10vw;
     margin-bottom: 10vw;
   }
-  
+  img {
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
   label form input[type="text"], input[type="url"]{
       outline: none;
       width: 300px;
@@ -43,14 +48,14 @@
 
 .profile__form--infos {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 100px 2fr 1fr;
   
   width: 100%;
   align-items: left;
   flex-direction: column;
   margin-left: 80px;
    p {
-     grid-row-start: 2;
+     grid-column-start: 2;
    }
   .button {
     border-radius: 10px;
@@ -106,6 +111,9 @@ textarea {
   width: 300px;
   box-sizing: border-box;
 }
+
+
+
 
 @media(max-width: 800px) {
     .profile__form {

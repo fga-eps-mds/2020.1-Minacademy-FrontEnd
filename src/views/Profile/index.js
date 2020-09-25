@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
+import avatar  from '../../assets/images/avatar.svg'
 import { useForm } from 'react-hook-form';
 import { editUser } from '../../services/usersService';
 import { selectCurrentUser, setCurrentUser } from '../../slices/usersSlice';
@@ -23,9 +24,11 @@ function Profile({ currentUser }) {
             <div id="profile">
                 <div className="profile__form">
                     <div className="profile__form--infos">
-                        <img src="" alt="avatar"> </img>
-                        <h1>Perfil</h1>
-                        <p>Adicione ou edite suas informações</p>
+                        <img src={currentUser.profileImg || avatar} alt="" />
+                        <div>
+                            <h1>Perfil</h1>
+                            <p>Adicione ou edite suas informações</p>
+                        </div>
                         <Button>{currentUser.userType.toUpperCase()}</Button>
                     </div>
                     <label>
@@ -68,6 +71,7 @@ function Profile({ currentUser }) {
                                         type="textarea"
                                         name="about"
                                         placeholder="Digite aqui uma mensagem sobre vocẽ"
+                                        defaultValue={currentUser.about}
                                         ref={register({
                                             maxLength: {
                                                 value: 300,
@@ -78,11 +82,15 @@ function Profile({ currentUser }) {
                                     {(errors.about && <span className="danger">{errors.about.message}</span>) || <br />}
                                 </label>
 
-                                <label for="profileImg">
-                                     Link da sua foto <small>(comece com https://)</small>
-                                    <input name="profileImg" id="profileImg" type="url"></input>
+                                <label htmlFor="profileImg">
+                                    Link da sua foto <small>(comece com https://)</small>
+                                    <input
+                                        name="profileImg"
+                                        type="url"
+                                        ref={register}>
+                                    </input>
                                 </label>
-                                
+
                             </div>
                             <div className="profile__options">
                                 <div className="profile__options--user">
