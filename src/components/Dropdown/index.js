@@ -33,7 +33,7 @@ function Dropdown({ items = [], multiSelect = false, toggleItem }) {
         onClick={() => toggle(!open)}
       >
 
-          <span className="dd-header__title--bold">{selection[0].title}</span>
+          <span className="dd-header__title--bold">{selection[0] ? selection[0].title : ''}</span>
 
           <span>{open ? 'Close' : 'Open'}</span>
       </div>

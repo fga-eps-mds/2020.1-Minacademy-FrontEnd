@@ -1,7 +1,9 @@
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import React from 'react';
 import Tutorial from '../views/Tutorial';
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom';
+import { Provider } from "react-redux";
+import { store } from "../store";
 
 it('Expect to render Tutorial component', () => {
   expect(
@@ -11,12 +13,13 @@ it('Expect to render Tutorial component', () => {
       </MemoryRouter>
     ).length).toEqual(1)
 
-    expect(
-      shallow(
+  expect(
+    render(
+      <Provider store={store}>
         <MemoryRouter>
           <Tutorial />
         </MemoryRouter>
-      )
-    ).toMatchSnapshot()
-
+      </Provider>
+    )
+  ).toMatchSnapshot()
 })

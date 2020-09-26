@@ -1,40 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Expect to render Tutorial component 1`] = `
-<Router
-  history={
-    Object {
-      "action": "POP",
-      "block": [Function],
-      "canGo": [Function],
-      "createHref": [Function],
-      "entries": Array [
-        Object {
-          "hash": "",
-          "key": "p0k2kj",
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-      ],
-      "go": [Function],
-      "goBack": [Function],
-      "goForward": [Function],
-      "index": 0,
-      "length": 1,
-      "listen": [Function],
-      "location": Object {
-        "hash": "",
-        "key": "p0k2kj",
-        "pathname": "/",
-        "search": "",
-        "state": undefined,
-      },
-      "push": [Function],
-      "replace": [Function],
-    }
-  }
+<div
+  class="tutorial"
 >
-  <Tutorial />
-</Router>
+  <div
+    class="tutorial__content"
+  >
+    <div
+      class="tutorial__content--header"
+    >
+      <div>
+        <h1>
+          Tutorial
+        </h1>
+        <p>
+          0% total concluído
+        </p>
+      </div>
+      <div
+        class="tutorial__content--header--progress"
+      >
+        0 atividades completas
+      </div>
+    </div>
+    <div
+      class="tutorial__content--body"
+    >
+      <div
+        class="activities-list"
+      >
+        <div
+          class="activities-list__header"
+        >
+          <div>
+            <h3>
+              Forum
+            </h3>
+            <p>
+              Modulo 
+              <b>
+                1
+              </b>
+            </p>
+          </div>
+        </div>
+        <div
+          class="activities-list__list"
+        >
+          <p>
+            <a
+              href="//atividades/undefined"
+            >
+              Atividade 
+            </a>
+          </p>
+        </div>
+      </div>
+      <div
+        class="markdown"
+      >
+        <div
+          class="markdown__content--header"
+        >
+          <div
+            class="dd-wrapper"
+          >
+            <div
+              class="dd-header"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                class="dd-header__title--bold"
+              />
+              <span>
+                Open
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="markdown__content--body"
+        />
+        <div
+          class="markdown__content--navigation"
+        >
+          <button
+            class="
+        
+        thin-shadow
+        
+        
+         button"
+          >
+            anterior
+          </button>
+          <button
+            class="
+        
+        thin-shadow
+        
+        
+         button"
+          >
+            próximo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;
