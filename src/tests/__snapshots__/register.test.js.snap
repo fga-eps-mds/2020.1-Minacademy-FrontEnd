@@ -64,7 +64,7 @@ exports[`Expect to render Register Component 1`] = `
             </div>
           </div>
           <div
-            className="register__grid2"
+            className="register__options"
           >
             <div
               className="register__options--user"
