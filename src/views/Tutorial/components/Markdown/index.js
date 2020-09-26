@@ -41,7 +41,7 @@ function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, g
   return (
     <div className="markdown">
       <div className="markdown__content--header">
-        <Dropdown items={modulesList} toggleItem={changeModule}/>
+        <Dropdown items={modulesList} initialSelection={currentModule} toggleItem={changeModule}/>
       </div>
       <div className="markdown__content--body">
         <ReactMarkdown source={markdown} />

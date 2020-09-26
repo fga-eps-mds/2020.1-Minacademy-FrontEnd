@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './style.scss'
 
-function Dropdown({ items = [], multiSelect = false, toggleItem }) {
+function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([items[0]]);
   const toggle = () => setOpen(!open);
+
+  useEffect(() => {
+    if (initialSelection){
+      setSelection([items[initialSelection-1]])
+    } else {
+      setSelection([items[0]])
+    }
+  }, [items])
 
   function handleOnClick(item) {
     if (!selection.some(current => current._id === item._id)) {
