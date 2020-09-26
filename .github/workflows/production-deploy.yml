@@ -1,0 +1,60 @@
+name: Continuous Integration and Delivery
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Install modules
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+  build:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Push to GitHub Packages
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        name: fga-eps-mds/2020.1-minacademy-frontend/app
+        tags: production
+        context: ./
+        default_branch: 50-ci-cd
+        dockerfile: prod.Dockerfile
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy package to DigitalOcean
+        uses: appleboy/ssh-action@master
+        env:
+            GITHUB_USERNAME: ${{ github.actor }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          host: ${{ secrets.PRODUCTION_IP }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          password: ${{ secrets.PRODUCTION_PASSWORD }}
+          envs: GITHUB_USERNAME, GITHUB_TOKEN
+          script: |
+            cd minacademy-frontend
+            docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+            docker pull docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:production
+            docker-compose -f docker-compose-prod.yml up -d
