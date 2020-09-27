@@ -1,10 +1,16 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { getQuestions, updateMarkdown, getModules } from '../services/tutorialServices';
+import {
+  getQuestions,
+  updateMarkdown,
+  getModules,
+  getQuestionsResults
+} from '../services/tutorialServices';
 
 const initialState = {
   currentModule: 1,
   markdown: '',
   activities: [{}],
+  activitiesResults: [],
   modules: []
 };
 
@@ -14,6 +20,11 @@ const tutorial = createSlice({
   reducers: {
     setCurrentModule(state, action) {
       state.currentModule = action.payload;
+    },
+    setActivityResult(state, action) {
+      const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
+      state.activitiesResults = [...activitiesResults, action.payload]
+      console.log(state.activitiesResults);
     }
   },
   extraReducers: {
@@ -25,6 +36,10 @@ const tutorial = createSlice({
     },
     [getModules.fulfilled]: (state, action) => {
       state.modules = action.payload
+    },
+    [getQuestionsResults.fulfilled]: (state, action) => {
+      state.activitiesResults = action.payload
+      console.log(state.activitiesResults);
     }
   }
 });
@@ -50,6 +65,12 @@ export const selectActivity = createSelector(
   [getActivity],
   activity => activity
 )
+
+export const selectActivitiesResults = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.activitiesResults
+)
+
 export const selectActivitiesList = createSelector(
   [selectTutorial],
   tutorial => tutorial.activities
@@ -61,4 +82,4 @@ export const selectModuleList = createSelector(
 )
 
 export default tutorial.reducer;
-export const { setCurrentModule } = tutorial.actions;
+export const { setCurrentModule, setActivityResult } = tutorial.actions;
