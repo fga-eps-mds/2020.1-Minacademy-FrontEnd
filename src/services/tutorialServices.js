@@ -26,9 +26,10 @@ const answerQuestion = async data => {
   }
 };
 
-const getQuestionsResults = createAsyncThunk('tutorial/getQuestionsResults', async () => {
+const getQuestionsResults = createAsyncThunk('tutorial/getQuestionsResults', async questions => {
+  questions = questions.map(item => `questions=${item}`).join('&');
   try {
-    const response = await api.get(RESULT_ENDPOINT);
+    const response = await api.get(`${RESULT_ENDPOINT}?${questions}`);
     return response.data;
   } catch (error) {
     console.log(error);

@@ -13,4 +13,30 @@
   &__header {
     padding-bottom: 3rem;
   }
+
+  &__list {
+    text-transform: uppercase;
+    font-weight: 600;
+
+    &-item{
+      a {
+        color: var(--placeholder-color);
+        text-decoration: none;
+        &:hover {
+          color: var(--text-color);
+          font-weight: 700;
+          text-decoration: none;
+        }
+      }
+
+      &.correct {
+        a { color: var(--secondary-green); }
+      }
+
+      &.wrong{
+        a { color: var(--error-color); }
+      }
+    }
+
+  }
 }

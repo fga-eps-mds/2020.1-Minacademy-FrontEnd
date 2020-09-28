@@ -9,7 +9,7 @@ import {
 const initialState = {
   currentModule: 1,
   markdown: '',
-  activities: [{}],
+  activities: [],
   activitiesResults: [],
   modules: []
 };
@@ -24,7 +24,6 @@ const tutorial = createSlice({
     setActivityResult(state, action) {
       const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
       state.activitiesResults = [...activitiesResults, action.payload]
-      console.log(state.activitiesResults);
     }
   },
   extraReducers: {
@@ -39,7 +38,6 @@ const tutorial = createSlice({
     },
     [getQuestionsResults.fulfilled]: (state, action) => {
       state.activitiesResults = action.payload
-      console.log(state.activitiesResults);
     }
   }
 });

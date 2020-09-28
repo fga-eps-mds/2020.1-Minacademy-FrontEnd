@@ -9,12 +9,14 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
   const match = useRouteMatch();
 
   useEffect(() => {
-    getQuestionsResults()
-  }, [])
-
-  useEffect(() => {
     getQuestions(currentModule);
   }, [currentModule]);
+
+  useEffect(() => {
+    getQuestionsResults(activitiesList.map(activity => activity._id));
+  }, [activitiesList]);
+
+  const result = activity => activitiesResults.find(result => result.question === activity._id)?.isCorrect
 
   return (
     <div className="activities-list">
@@ -27,8 +29,14 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
         </div>
       </div>
       <div className="activities-list__list">
-        {activitiesList.map((activity) => (
-          <p key={activity._id}>
+        {activitiesList.map(activity => (
+          <p key={activity._id}
+            className={`
+            activities-list__list-item
+            ${result(activity) === false ? 'wrong':''}
+            ${result(activity) ? 'correct':''}
+            `}
+          >
             <Link to={`${match.path}/atividades/${activity.number}`}>Atividade {activity.number}</Link>
           </p>
         ))}
@@ -40,12 +48,12 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
 const mapStateToProps = state => ({
   activitiesList: selectActivitiesList(state),
   currentModule: selectCurrentModule(state),
-  activitiesResults: selectActivitiesResults(state)
+  activitiesResults: selectActivitiesResults(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
-  getQuestionsResults: () => dispatch(getQuestionsResults())
+  getQuestionsResults: questions => dispatch(getQuestionsResults(questions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivitiesList);

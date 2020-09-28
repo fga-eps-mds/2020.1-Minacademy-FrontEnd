@@ -9,7 +9,7 @@ import Button from '../../../../components/Button';
 
 function Activity({ activity, activitiesResults, setActivityResult }) {
   const { handleSubmit, register, errors } = useForm();
-  const result = useMemo(() => activitiesResults.find(result => result.question === activity._id), [activitiesResults])
+  const result = useMemo(() => activitiesResults.find(result => result.question === activity._id), [activitiesResults]);
 
   const onSubmit = alternative => {
     answerQuestion({ ...alternative, question: activity._id }).then(async (response) => {
@@ -32,35 +32,35 @@ function Activity({ activity, activitiesResults, setActivityResult }) {
           </div>
         ) : (
           <>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {Object.keys(activity.alternatives).map(item => (
-              <div className="activity__alternatives--item" key={item}>
-                <label htmlFor="alternative">
-                  <input name="alternative" value={item} type="radio" ref={register({ required: true })} />
-                  {activity.alternatives[item]}
-                </label>
-              </div>
-            ))}
-            <Button inverted shadow>
-              Responder
-            </Button>
-            {result?.isCorrect === false && <div className="activity__alternatives--error">Resposta errada, tente novamente!</div>}
-            {errors.alternative && <div className="activity__alternatives--error">Escolha uma alternativa</div>}
-          </form>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {Object.keys(activity.alternatives).map((item) => (
+                <div className="activity__alternatives--item" key={item}>
+                  <label htmlFor="alternative">
+                    <input name="alternative" value={item} type="radio" ref={register({ required: true })} />
+                    {activity.alternatives[item]}
+                  </label>
+                </div>
+              ))}
+              <Button inverted shadow>
+                Responder
+              </Button>
+              {result?.isCorrect === false && <div className="activity__alternatives--error">Resposta errada, tente novamente!</div>}
+              {errors.alternative && <div className="activity__alternatives--error">Escolha uma alternativa</div>}
+            </form>
           </>
         )}
       </div>
     </div>
   );
-};
+}
 
 const mapStateToProps = (state, props) => ({
   activity: selectActivity(state, props),
-  activitiesResults: selectActivitiesResults(state)
+  activitiesResults: selectActivitiesResults(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  setActivityResult: (result) => dispatch(setActivityResult(result))
-})
+  setActivityResult: result => dispatch(setActivityResult(result)),
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Activity));
