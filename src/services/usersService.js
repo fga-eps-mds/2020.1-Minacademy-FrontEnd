@@ -1,11 +1,15 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
+<<<<<<< HEAD
 import {
   USER_ENDPOINT,
   LOGIN_ENDPOINT,
   LOGOUT_ENDPOINT,
   PROFILE_ENDPOINT,
 } from './endpoints/users';
+=======
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, RESET_PASS_ENDPOINT, CHANGE_PASS_ENDPOINT } from './endpoints/users';
+>>>>>>> Adição dos ENDPOINTS no arquivo userService
 
 import api from "./api";
 
@@ -67,24 +71,24 @@ const editUser = async (values) => {
 };
 
 
-const recoveryPassword = async (values) => {
+const resetUserPassword = async (values) => {
   try {
-    const response = await api.post(PROFILE_ENDPOINT, values);
+    const response = await api.post(RESET_PASS_ENDPOINT, values);
     console.log(response.data)
-    alert('perfil editado com sucesso')
+    alert('Email enviado')
   } catch (err) {
-    alert('Erro ao editar perfil.')
+    alert('Erro ao ao enviar Email')
   }
 };
 
 
-const changePassword = async (values) => {
+const changeUserPassword = async (values) => {
   try {
-    const response = await api.post(PROFILE_ENDPOINT, values);
+    const response = await api.post(CHANGE_PASS_ENDPOINT, values);
     console.log(response.data)
-    alert('perfil editado com sucesso')
+    alert('Senha alterada com sucesso')
   } catch (err) {
-    alert('Erro ao editar perfil.')
+    alert('Erro ao alterar senha')
   }
 };
 
@@ -97,4 +101,6 @@ export {
   changePassword,
   registerRequest,
   editUser,
+  resetUserPassword,
+  changeUserPassword 
 }
