@@ -4,7 +4,7 @@ import '../../index.css'
 import './style.scss';
 import { useForm } from 'react-hook-form';
 import { registerRequest } from '../../services/usersService';
-
+  
 function Register() {
 
     const { handleSubmit, register, watch, errors } = useForm();

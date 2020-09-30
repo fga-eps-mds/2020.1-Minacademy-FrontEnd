@@ -67,10 +67,34 @@ const editUser = async (values) => {
 };
 
 
+const recoveryPassword = async (values) => {
+  try {
+    const response = await api.post(PROFILE_ENDPOINT, values);
+    console.log(response.data)
+    alert('perfil editado com sucesso')
+  } catch (err) {
+    alert('Erro ao editar perfil.')
+  }
+};
+
+
+const changePassword = async (values) => {
+  try {
+    const response = await api.post(PROFILE_ENDPOINT, values);
+    console.log(response.data)
+    alert('perfil editado com sucesso')
+  } catch (err) {
+    alert('Erro ao editar perfil.')
+  }
+};
+
+
 export {
   listUsers,
   login,
   logout,
+  recoveryPassword,
+  changePassword,
   registerRequest,
   editUser,
 }
