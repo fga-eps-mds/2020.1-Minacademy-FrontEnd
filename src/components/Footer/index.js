@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../index.css';
-import './style.css';
+import './style.scss';
 function Footer() {
     return (
         <div className="footer">

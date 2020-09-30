@@ -13,21 +13,26 @@ function Home() {
         <h1 >Nós encorajamos mulheres a se apaixonarem por programação</h1>
       </div>
 
+
       <div className="infoBar">
         <img className='infobar--shape' src={infoBar} alt="descricao" />
-        <h1 className="title">A iniciativa Minacademy</h1>
-        <h2>Minacademy é uma plataforma para incentivar mulheres a programarem. </h2>
-        <p>Na plataforma é oferecido um curso sobre Django, um framework para desenvolvimento web.</p>
-        <Button small >Explorar</Button>
-        <img className='infobarImage' src={infobarImage} alt='curso' />
+        <div className="infoBar--text">
+          <h1>A iniciativa Minacademy</h1>
+          <h2>Minacademy é uma plataforma para incentivar mulheres a programarem. </h2>
+          <p>Na plataforma é oferecido um curso sobre Django, um framework para desenvolvimento web.</p>
+          <Button small >Explorar</Button>
+        </div>
+        <img className='infoBar--image' src={infobarImage} alt='curso' />
       </div>
 
       <div className="infoBar2">
-        <h1>Como funciona</h1>
-        <p>Para auxiliar o curso é possível interagir com um <span>mentor</span>, além do <span>fórum</span> para tirar dúvidas
+        <div className="infoBar2--text">
+          <h1>Como funciona</h1>
+          <p>Para auxiliar o curso é possível interagir com um <span>mentor</span>, além do <span>fórum</span> para tirar dúvidas
         ou fazer uma observação. </p>
+        </div>
         <Button small>Explorar</Button>
-        <img className='infobarImage2' src={infobarImage2} alt='funcionamento' />
+        <img className='infoBar2--image2' src={infobarImage2} alt='funcionamento' />
       </div>
     </>
   );
