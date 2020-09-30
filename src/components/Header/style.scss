@@ -1,68 +1,68 @@
 .navbar {
-  display: flex;
   text-align: center;
   position: sticky;
   filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.08));
   a {
     color: var(--paragraph-color) !important;
-
+    text-align: center;
+    margin-left: 7vw;
+    font: 600 1.25rem Overpass;
     &:hover {
       color: var(--title-color) !important;
+      text-decoration: none;
     }
   }
+  button {
+    color: var(--white);
+    background-color: var(--login-button);
+    margin-right: 4px;
+    &:hover {
+      border: 1px solid var(--login-button);
+      color: var(--login-button);
+    }
+  }
+}
+
+.navbar-brand {
+  margin-left: 0 !important; 
 }
 .navbar-collapse {
   text-align: center;
 }
 
-.dropdown-menu.show {
-  margin-left: 3.4rem  !important;
+.nav-buttons {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: rows;
 }
+
+
+.dropdown-menu.show {
+  text-align: center;
+  
+}
+
+.dropdown-menu.show a {
+  display: block;
+  font-size: 16px;
+  text-align: center !important;
+  margin-left: 0; 
+}
+
 
 .logo {
   width: 240px;
 }
 .notification{
   width: 20px;
-}
-.nav-link {
-  text-align: center;
   margin-left: 7vw;
-  font:  600 1.25rem Overpass;
 }
+
 
 .nav-link:last-child {
   margin-right: 5px;
-}
-
-.login-button {
-  margin-right: 1rem;
-  border-radius: 30px;
-  padding: 2px 2px;
-  text-align: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  text-decoration: none;
-  transition-duration: 0.5s;
-  
-  display: inline-block;
-  outline: none;
-  text-decoration: none;
-
-  width: 144px;
-  height: 28px;
-  background: white;
-
-
-  font: 700 18px Overpass;
-  color: var(--login-button);
-  border: 2px solid var(--login-button);
-}
-
-.login-button:hover {
-  color: white;
-  background: var(--login-button);
-  text-decoration: none;
 }
 
 .profileImg {
@@ -73,23 +73,6 @@
 @media (max-width: 800px) {
   .logo {
     width: 160px;
-  }
-  .login-button {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: white;
-    background:var(--primary-button);
-    border-radius: 0;
-    border: 0;
-    text-align: center;
-    height: 40px;
-    width: 100%;
-    z-index: 4;
-  }
-  .login-button:hover {
-    background: #3C0966;
   }
   .nav-link {
     margin-left: 2px;

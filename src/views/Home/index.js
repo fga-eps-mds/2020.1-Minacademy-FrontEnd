@@ -5,7 +5,9 @@ import infoBar from '../../assets/images/infoBar.svg';
 import Button from '../../components/Button';
 import infobarImage from '../../assets/images/infobarImage.png';
 import infobarImage2 from '../../assets/images/infobarImage2.png';
+import { useHistory } from 'react-router-dom';
 function Home() {
+  const history = useHistory()
   return (
     <>
       <div className="vector">

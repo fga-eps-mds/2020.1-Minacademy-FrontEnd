@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectCurrentUser} from '../../slices/usersSlice'
+import { selectCurrentUser } from '../../slices/usersSlice'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import './style.scss';
 import minaLogo from '../../assets/images/minacademyLogo.svg';
 import notification from '../../assets/images/notification.svg'
 import Button from '../Button';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import '../../index.css';
 import { logout } from '../../services/usersService';
 
@@ -20,36 +20,40 @@ function Header({ currentUser, logout }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {currentUser ? (<>
-              <Nav.Link href="/tutorial">Tutorial</Nav.Link>
-              <Nav.Link href="/">Ranking</Nav.Link>
-              <Nav.Link href="/">Fórum</Nav.Link>
-              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/tutorial">Tutorial</Link>
+              <Link to="/">Fórum</Link>
+              <Link to="/">Ranking</Link>
             </>
             ) :
               (<>
-                <Nav.Link href="/tutorial">Cursos</Nav.Link>
-                <Nav.Link href="/">Como funciona</Nav.Link>
-                <Nav.Link href="/">A Iniciativa Minacademy</Nav.Link>
+                <Link to="/tutorial">Tutorial</Link>
+                <Link to="#infoBar2">Como funciona</Link>
+                <Link to="/">A Iniciativa Minacademy</Link>
               </>
               )}
           </Nav>
         </Navbar.Collapse>
         {currentUser ? (
           <>
-            <div href="/"><img className="notification" src={notification} alt="logo" /></div>
+            <img className="notification" src={notification} alt="logo" />
             <NavDropdown title={currentUser.name}>
-              <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
-              <NavDropdown.Item href="/">Certificados</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => logout()}>Sair</NavDropdown.Item>
+              <Link to="/perfil">Perfil</Link>
+              <Link to="/">Certificados</Link>
+              <Link onClick={() => logout()}>Sair</Link>
             </NavDropdown>
           </>
         )
           : (
-            
-              <Button onClick={() => {history.push('/login')}} inverted color small>
+            <div className="nav-buttons">
+              <Button onClick={() => { history.push('/cadastro') }} small>
+                Cadastrar
+              </Button>
+              <Button onClick={() => { history.push('/login') }} inverted color small>
                 Entrar
-            </Button>
-          
+              </Button>
+            </div>
+
           )}
       </Navbar>
     </>

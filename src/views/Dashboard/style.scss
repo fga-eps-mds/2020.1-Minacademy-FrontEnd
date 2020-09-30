@@ -21,6 +21,7 @@
 
     p {
       max-width: 432px;
+      font-size: 16px;
     }
   }
   
@@ -34,6 +35,7 @@
 
 .dashboard__container--info {
     & {
+      
       padding-top: 10px;
       padding-left: 20px;
       width: 350px;
@@ -51,7 +53,8 @@
       margin-bottom: 30px;
     }
 
-    a{
+    a {
+      font-size: 16px;
       position: relative;
       float: right;
       padding-right: 30px;
