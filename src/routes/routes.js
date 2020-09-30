@@ -23,9 +23,9 @@ const Routes = () => {
           <Route exact path="/" component={Home} />
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/cadastro" component={Register} />
+          <PrivateRoute path="/tutorial" component={Tutorial} />
           <PublicRoute exact path="/recovery" component={Recovery} />
           <PublicRoute exact path="/change" component={Change} />
-          <PrivateRoute exact path="/tutorial" component={Tutorial} />
           <PrivateRoute exact path="/perfil" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>

@@ -1,15 +1,6 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-<<<<<<< HEAD
-import {
-  USER_ENDPOINT,
-  LOGIN_ENDPOINT,
-  LOGOUT_ENDPOINT,
-  PROFILE_ENDPOINT,
-} from './endpoints/users';
-=======
 import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, RESET_PASS_ENDPOINT, CHANGE_PASS_ENDPOINT } from './endpoints/users';
->>>>>>> Adição dos ENDPOINTS no arquivo userService
 
 import api from "./api";
 
@@ -81,7 +72,6 @@ const resetUserPassword = async (values) => {
   }
 };
 
-
 const changeUserPassword = async (values) => {
   try {
     const response = await api.post(CHANGE_PASS_ENDPOINT, values);
@@ -97,6 +87,8 @@ export {
   listUsers,
   login,
   logout,
+  recoveryPassword,
+  changePassword,
   registerRequest,
   editUser,
   resetUserPassword,

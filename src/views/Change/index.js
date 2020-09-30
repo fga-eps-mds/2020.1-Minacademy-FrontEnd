@@ -4,12 +4,20 @@ import '../../index.css'
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+<<<<<<< HEAD
 import { changeUserPassword  } from '../../services/usersService';
+=======
+import { changePassword } from '../../services/usersService';
+>>>>>>> Implementaçao das Telas de Recuperaçao e Alteraçao de Senha
 
 function Change() {
 
     const { handleSubmit, register, watch, errors } = useForm();
+<<<<<<< HEAD
     const onSubmit = changeUserPassword 
+=======
+    const onSubmit = changePassword
+>>>>>>> Implementaçao das Telas de Recuperaçao e Alteraçao de Senha
 
     return (
         <>
