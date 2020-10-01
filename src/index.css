@@ -13,7 +13,7 @@
   --background: #E5E5E5E5;
 }
 
-h/*******************
+/*******************
  Box Sizing
  *******************/
 html {
@@ -238,5 +238,5 @@ input[type="radio"]:focus{
 }
 
 p, label {
-  color: var(--text-color); 
+  color: var(--text-color);
 }

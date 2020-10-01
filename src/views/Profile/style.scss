@@ -1,6 +1,5 @@
 #profile {
   padding: 5%;
-  background: var(--background);
 }
 
 .profile__form {
@@ -52,11 +51,11 @@
   grid-template-columns: 100px 2fr 1fr;
   padding-left: 40px;
   padding-right: 20px;
-  
+
   width: 100%;
   align-items: left;
   flex-direction: column;
-  
+
    p {
      grid-column-start: 2;
    }
@@ -108,20 +107,20 @@ textarea {
       text-align: center;
     }
 
-    
+
     .button {
         margin: 0 auto;
         margin-top: 4vh;
         height: 30px;
-        
+
     }
-    
+
     label form input[type="text"], input[type="url"], textarea{
       width: 60vw;
       margin-left: auto;
       margin-right: auto;
     }
-   
+
 }
 .profile__inputs {
   display: flex;

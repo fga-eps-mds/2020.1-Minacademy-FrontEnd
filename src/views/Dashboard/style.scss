@@ -1,8 +1,3 @@
-#profile {
-  padding: 5%;
-  background: var(--background);
-}
-
 .dashboard__container {
 
   & {
@@ -24,18 +19,18 @@
       font-size: 16px;
     }
   }
-  
+
   &--body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    
-  } 
+
+  }
 }
 
 .dashboard__container--info {
     & {
-      
+
       padding-top: 10px;
       padding-left: 20px;
       width: 350px;
@@ -60,12 +55,12 @@
       padding-right: 30px;
       top: 18px;
       color: #9241C8;
-     
+
       &:hover {
         color: var(--title-color)
       }
     }
-  
+
 }
 
 @media(max-width: 800px) {
@@ -75,7 +70,7 @@
       flex-direction: column;
       align-items: center;
     }
-    
+
     &--body {
       display: block;
     }

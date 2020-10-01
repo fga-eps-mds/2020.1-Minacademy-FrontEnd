@@ -21,7 +21,7 @@
     bottom: 55vw;
   }
 
-  
+
 }
 
 .infoBar {
@@ -31,7 +31,7 @@
   &--shape {
     width: 100%;
   }
-  
+
   &--text {
     position: relative;
     bottom: 50vw;
@@ -46,7 +46,6 @@
     bottom:76vw;
     width: 45%;
     position: relative;
-    z-index: 1;
   }
 
   h1 {
@@ -63,23 +62,23 @@
     font-size: 2vw;
     font-family: Overpass;
     padding-left: 4.5vw;
-  
+
   }
-  
+
   p {
     box-sizing: border-box;
     font-weight: 300;
     font-size: 2vw;
     font-family: Overpass;
     padding-left: 4.5vw;
-   
+
   }
   .button {
     box-sizing: border-box;
     position: relative;
     margin-left: 14vw;
   }
-  
+
 }
 
 
