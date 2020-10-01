@@ -1,51 +1,36 @@
 .footer {
-    background: var(--footer-color);
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    color: var(--black);
-    text-align: center;
-}
-.footer__body {
-    & {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    }
+    background-color: var(--footer-color);
+    padding: 2rem 2rem 0;
+    font-family: Overpass;
 
-    p {
-        font-family: Overpass;
-        font-weight: 700;
-        color: var(--white);
-    }
+    &__body {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        color: white;
 
-    a {
-        font-family: Overpass;
-        font-weight: 600;
-        color: var(--white);
-
-        &:hover {
-            color: var(--hover-button);
-            text-decoration: none;
+        @media(max-width: 600px) {
+            justify-content: space-around;
         }
-    }
-}
 
-@media(max-width: 800px) {
-    .footer {
-        background: var(--footer-color);
-        p {
-            margin-bottom: 0;
+        a {
+            color: white;
+            &:hover {
+                color: var(--secondary-color)
+            }
         }
-    }
-    .footer__body {
-        grid-template-columns: 2fr 2fr;
-        column-gap: 30vw;
-        justify-content: center;
-        padding-top: 20px;
-        &--django {
-            grid-row: 2;
+
+        &-item {
+            padding-bottom: 1rem;
+
+            @media(max-width: 600px) {
+            }
+
+            &-title {
+                border-bottom: 1px solid white;
+            }
+
         }
-        
     }
 }
