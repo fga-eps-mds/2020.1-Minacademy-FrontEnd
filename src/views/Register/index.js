@@ -18,7 +18,7 @@ function Register() {
                     <label>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="register__inputs">
-                                <div className="register__grid1">
+                                <label>
                                     <p>nome</p><input type="text" name="name" ref={register({
                                         required: "campo obrigatório",
                                         pattern: {
@@ -27,6 +27,8 @@ function Register() {
                                         }
                                     })} />
                                     {(errors.name && <span className="danger">{errors.name.message}</span>) || <br />}
+                                </label>
+                                <label>
                                     <p>email</p> <input
                                         type="text"
                                         name="email"
@@ -40,8 +42,9 @@ function Register() {
                                         })}
                                     />
                                     {(errors.email && <span className="danger">{errors.email.message}</span>) || <br />}
-                                </div>
-                                <div className="register__grid2">
+                                </label>
+
+                                <label>
                                     <p>senha</p> <input
                                         type="password"
                                         name="password"
@@ -54,7 +57,9 @@ function Register() {
                                         })}
                                     />
                                     {(errors.password && <span className="danger">{errors.password.message}</span>) || <br />}
+                                </label>
 
+                                <label>
                                     <p>confirmar senha</p> <input
                                         type="password"
                                         name="confirmPassword"
@@ -66,13 +71,13 @@ function Register() {
                                             },
                                             validate: (value) => {
                                                 const passwordMatches = value === watch('password');
-                                                return passwordMatches ? passwordMatches : "As senhas nao coincidem"  
+                                                return passwordMatches ? passwordMatches : "As senhas nao coincidem"
                                             }
                                         })}
 
                                     />
                                     {(errors.confirmPassword && <span className="danger">{errors.confirmPassword.message} </span>) || <br />}
-                                </div>
+                                </label>
                             </div>
                             <div className="register__options">
                                 <div className="register__options--user">
