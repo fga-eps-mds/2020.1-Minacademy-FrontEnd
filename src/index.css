@@ -236,7 +236,3 @@ input[type="radio"]:checked{
 input[type="radio"]:focus{
   outline: none;
 }
-
-p, label {
-  color: var(--text-color);
-}
