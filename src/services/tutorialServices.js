@@ -3,7 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,
-  RESULT_ENDPOINT
+  RESULT_ENDPOINT, 
+  IS_MODULE_COMPLETE
 } from './endpoints/tutorials';
 
 const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
@@ -54,10 +55,21 @@ const getModules = createAsyncThunk('tutorial/getModules', async () => {
   }
 });
 
+const getIsCompleted = async module => {
+    try {
+        const response = await api.get(`${IS_MODULE_COMPLETE}?moduleNumber=${module}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
 export {
   getQuestions,
   updateMarkdown,
   getModules,
   answerQuestion,
-  getQuestionsResults
+  getQuestionsResults,
+  getIsCompleted
 };
