@@ -4,7 +4,6 @@ import Button from '../components/Button';
 
 it('Expect to render Button component', () => {
   expect(shallow(<Button></Button>).length).toEqual(1)
-  expect(shallow(<Button></Button>)).toMatchSnapshot()
 })
 
 it('Expect to click button', () => {
