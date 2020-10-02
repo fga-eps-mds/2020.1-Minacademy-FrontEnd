@@ -4,12 +4,12 @@ import '../../index.css'
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { changePassword } from '../../services/usersService';
+import { changeUserPassword  } from '../../services/usersService';
 
 function Change() {
 
     const { handleSubmit, register, watch, errors } = useForm();
-    const onSubmit = changePassword
+    const onSubmit = changeUserPassword 
 
     return (
         <>
