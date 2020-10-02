@@ -86,8 +86,6 @@ export {
   listUsers,
   login,
   logout,
-  recoveryPassword,
-  changePassword,
   registerRequest,
   editUser,
   resetUserPassword,
