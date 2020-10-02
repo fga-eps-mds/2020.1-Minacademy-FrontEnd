@@ -11,7 +11,7 @@ function Home() {
     <>
       <div className="vector">
         <img src={vector} alt="imagemFundo" />
-        <h1 >Nós encorajamos mulheres a se apaixonarem por programação</h1>
+        <h1 >Nós encorajamos mulheres a se apaixonarem por programação.</h1>
       </div>
 
 

@@ -23,7 +23,7 @@ const listUsers = async () => {
 const login = createAsyncThunk('users/login', async (values) => {
   try {
     const response = await api.post(LOGIN_ENDPOINT, values, { withCredentials: true });
-    toast.success(`Seja bem vindo ${response.data.user.name}!`)
+    toast.success(`Seja bem-vindo ${response.data.user.name}!`)
     return response.data.user
   } catch (err) {
     console.log(err)

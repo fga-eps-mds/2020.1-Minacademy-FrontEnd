@@ -86,13 +86,9 @@ function Register() {
                                     <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} defaultChecked /> aprendiz</label>
                                 </div>
                                 <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
-                                    required: "concorde com os termos de uso",
-
+                                    required: "concorde com os termo de consentimento",
                                 })} /> Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.</label>
-                                <label htmlFor="terms"><input name="terms" type="checkbox" ref={register({
-                                    required: "concorde com os termos de uso",
-                                })} /> Concordo com os termos de uso.</label>
-                                {errors.terms && <span className="danger">{errors.terms.message}</span>}
+                                {errors.agree && <span className="danger">{errors.agree.message}</span>}
                             </div>
                             <Button>REGISTRAR</Button>
                         </form>
