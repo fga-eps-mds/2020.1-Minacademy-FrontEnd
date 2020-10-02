@@ -1,4 +1,5 @@
 import api from './api';
+import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT } from './endpoints/users';
 
@@ -22,11 +23,11 @@ const listUsers = async () => {
 const login = createAsyncThunk('users/login', async (values) => {
   try {
     const response = await api.post(LOGIN_ENDPOINT, values, { withCredentials: true });
-    alert(`Você está logado ${response.data.user.name}`)
+    toast.success(`Seja bem vindo ${response.data.user.name}!`)
     return response.data.user
   } catch (err) {
     console.log(err)
-    alert('Email ou senha incorretos')
+    toast.error('Email ou senha incorretos')
   }
 });
 
@@ -34,6 +35,7 @@ const login = createAsyncThunk('users/login', async (values) => {
 const logout = createAsyncThunk('users/logout', async () => {
   try {
     const response = await api.post(LOGOUT_ENDPOINT);
+    toast('Volte logo!')
     console.log(response.data);
   } catch (error) {
     console.log(error.message)
@@ -51,10 +53,10 @@ const registerRequest = async (values) => {
     };
     const response = await api.post(USER_ENDPOINT, values, headers);
     console.log(response.data)
-    alert('Cadastro realizado com sucesso')
+    toast.success('Cadastro realizado com sucesso!')
     window.location.href = '/login'
   } catch (err) {
-    alert('Erro no cadastro, tente novamente.')
+    toast.error('Estamos com problema no servidor')
   }
 }
 
@@ -62,9 +64,9 @@ const editUser = async (values) => {
   try {
     const response = await api.post(PROFILE_ENDPOINT, values);
     console.log(response.data)
-    alert('perfil editado com sucesso')
+    toast.success('Informações atualizadas!')
   } catch (err) {
-    alert('Erro ao editar perfil.')
+    toast.error('Não foi possivel editar o perfil')
   }
 };
 

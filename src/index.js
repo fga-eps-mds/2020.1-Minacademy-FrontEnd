@@ -8,11 +8,21 @@ import Routes from './routes/routes';
 import './app.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './alert.scss'
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <PersistGate loading={null} persistor={persistor}>
-                <Routes />
+            <ToastContainer 
+                hideProgressBar
+                closeButton={false}
+                newestOnTop
+                autoClose={5000}
+            />
+                    <Routes />
             </PersistGate>
         </BrowserRouter>
     </Provider>,
