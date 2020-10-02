@@ -5,9 +5,8 @@ import infoBar from '../../assets/images/infoBar.svg';
 import Button from '../../components/Button';
 import infobarImage from '../../assets/images/infobarImage.png';
 import infobarImage2 from '../../assets/images/infobarImage2.png';
-import { useHistory } from 'react-router-dom';
+
 function Home() {
-  const history = useHistory()
   return (
     <>
       <div className="vector">
@@ -16,7 +15,7 @@ function Home() {
       </div>
 
 
-      <div className="infoBar">
+      <div id="infoBar" className="infoBar">
         <img className='infobar--shape' src={infoBar} alt="descricao" />
         <div className="infoBar--text">
           <h1>A iniciativa Minacademy</h1>
@@ -27,7 +26,7 @@ function Home() {
         <img className='infoBar--image' src={infobarImage} alt='curso' />
       </div>
 
-      <div className="infoBar2">
+      <div id="infoBar2" className="infoBar2">
         <div className="infoBar2--text">
           <h1>Como funciona</h1>
           <p>Para auxiliar o curso é possível interagir com um <span>mentor</span>, além do <span>fórum</span> para tirar dúvidas

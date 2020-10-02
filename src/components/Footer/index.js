@@ -9,9 +9,9 @@ function Footer() {
                 <div className="footer__body-item">
                     <p className="footer__body-item-title">CONTRIBUA</p>
                     <ul>
-                        <li><a target="_blank" href="https://fga-eps-mds.github.io/2020.1-Minacademy-Wiki/documentos/doc_arqui/">Documentação</a></li>
-                        <li><a target="_blank" href="https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd">Frontend</a></li>
-                        <li><a target="_blank" href="https://github.com/fga-eps-mds/2020.1-Minacademy-BackEnd">Backend</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://fga-eps-mds.github.io/2020.1-Minacademy-Wiki/documentos/doc_arqui/">Documentação</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd">Frontend</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/fga-eps-mds/2020.1-Minacademy-BackEnd">Backend</a></li>
                     </ul>
                 </div>
                 <div className="footer__body-item">
@@ -25,8 +25,8 @@ function Footer() {
                 <div className="footer__body-item">
                     <p className="footer__body-item-title">DJANGO GIRLS</p>
                     <ul>
-                        <li><a target="_blank" href="https://djangogirls.org/">Conheça</a></li>
-                        <li><a target="_blank" href="https://github.com/djangogirls" >Github</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://djangogirls.org/">Conheça</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/djangogirls" >Github</a></li>
                     </ul>
                 </div>
             </footer>

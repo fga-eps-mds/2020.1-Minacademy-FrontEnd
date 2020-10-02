@@ -19,6 +19,7 @@
     &__body {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
 
       @media(max-width: 600px) {
         flex-direction: column;
@@ -27,11 +28,16 @@
       &--card {
         display: flex;
         flex-direction: column;
-        flex-basis: 30%;
+        flex-basis: 45%;
         padding: 2rem;
+        margin-bottom: 2rem;
         border-radius: 10px;
         background-color: white;
         box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.07), 0px 15px 40px rgba(0, 0, 0, 0.04);
+
+        @media(max-width: 800px) {
+          flex-basis: 100%;
+        }
 
         @media(max-width: 600px) {
          margin-bottom: 2rem;

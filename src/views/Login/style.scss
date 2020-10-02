@@ -1,4 +1,3 @@
-$danger--color: red;
 
 .login{
     display: flex;
@@ -59,5 +58,6 @@ $danger--color: red;
 }
 
 .danger {
-    color: $danger--color;
+    color: var(--error-color);
 }
+

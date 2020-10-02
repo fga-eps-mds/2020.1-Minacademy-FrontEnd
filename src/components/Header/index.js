@@ -6,6 +6,8 @@ import { logout } from '../../services/usersService';
 import Button from '../Button';
 import { ReactComponent as Logo } from '../../assets/images/minacademyLogo.svg';
 import { ReactComponent as Bell } from '../../assets/images/notification.svg';
+import { ReactComponent as Arrow } from '../../assets/images/arrow.svg';
+import { ReactComponent as Hamburguer } from '../../assets/images/hamburguer.svg';
 import './style.scss';
 
 function Header({ currentUser, logout }) {
@@ -14,7 +16,6 @@ function Header({ currentUser, logout }) {
 
   const responsive = () => {
     var nav = document.getElementsByClassName('header__navigation');
-    console.log(nav);
     if (nav.length > 0) {
       nav[0].className += '-responsive';
     } else {
@@ -26,7 +27,7 @@ function Header({ currentUser, logout }) {
   return (
     <div className="header">
       <Link className="header__logo" to="/">
-        <Logo className="name" />
+        <Logo width={210} className="name" />
       </Link>
 
       <div className="header__navigation">
@@ -44,15 +45,15 @@ function Header({ currentUser, logout }) {
           </>
         ) : (
           <>
-            <Link className="header__navigation-option" to="/">
+            <Link className="header__navigation-option" >
               Tutorial
             </Link>
-            <Link className="header__navigation-option" to="/">
+            <a className="header__navigation-option" href="#infoBar2">
               Como funciona
-            </Link>
-            <Link className="header__navigation-option" to="/">
+            </a>
+            <a className="header__navigation-option" href="#infoBar">
               A Iniciativa Minacademy
-            </Link>
+            </a>
           </>
         )}
       </div>
@@ -61,12 +62,12 @@ function Header({ currentUser, logout }) {
         {currentUser ? (
           <>
             <div>
-              <Bell className="header__navigation-action-icon" />
-              <span className="header__navigation-action-name">{currentUser.name}</span>
-              <span className="header__navigation-action-dropdown"
+              <Bell className="header__navigation-action-icon" width={20}  height={23} />
+              <span
+                className="header__navigation-action-name"
                 onClick={() => setHidden(!hidden)}
               >
-                icon
+              {currentUser.name}  <Arrow className="header__navigation-action-icon" width={14}  height={15}/>
               </span>
               {hidden ? null : (
                 <div className="nav-dropdown">
@@ -125,54 +126,10 @@ function Header({ currentUser, logout }) {
           </>
         )}
         <div className="icon" onClick={responsive}>
-          icon
+          <Hamburguer width={25}  height={25}/>
         </div>
       </div>
     </div>
-    // <>
-    //   <Navbar bg="white" expand="md">
-    //     <Navbar.Brand href="/"><img className="logo" src={minaLogo} alt="logo" /></Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    //     <Navbar.Collapse id="basic-navbar-nav">
-    //       <Nav className="mr-auto">
-    //         {currentUser ? (<>
-    //           <Link to="/dashboard">Dashboard</Link>
-    //           <Link to="/tutorial">Tutorial</Link>
-    //           <Link to="/">Fórum</Link>
-    //           <Link to="/">Ranking</Link>
-    //         </>
-    //         ) :
-    //           (<>
-    //             <Link to="/tutorial">Tutorial</Link>
-    //             <Link to="#infoBar2">Como funciona</Link>
-    //             <Link to="/">A Iniciativa Minacademy</Link>
-    //           </>
-    //           )}
-    //       </Nav>
-    //     </Navbar.Collapse>
-    //     {currentUser ? (
-    //       <>
-    //         <img className="notification" src={notification} alt="logo" />
-    //         <NavDropdown title={currentUser.name}>
-    //           <Link to="/perfil">Perfil</Link>
-    //           <Link to="/">Certificados</Link>
-    //           <Link onClick={() => logout()}>Sair</Link>
-    //         </NavDropdown>
-    //       </>
-    //     )
-    //       : (
-    //         <div className="nav-buttons">
-    //           <Button onClick={() => { history.push('/cadastro') }} small>
-    //             Cadastrar
-    //           </Button>
-    //           <Button onClick={() => { history.push('/login') }} inverted color small>
-    //             Entrar
-    //           </Button>
-    //         </div>
-
-    //       )}
-    //   </Navbar>
-    // </>
   );
 }
 
