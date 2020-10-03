@@ -4,15 +4,22 @@
   flex-direction: column;
   font-family: Overpass;
   padding: 4rem 8rem;
-  max-width: 90%;
   margin: 0 auto;
 
+  @media(max-width: 600px) {
+    padding: 3rem 0;
+  }
+
   &__content {
+    max-width: 90%;
+    margin: 0 auto;
+    align-self: center;
     &--header {
       display: flex;
       justify-content: space-between;
 
       @media(max-width: 600px) {
+        padding: 0 1rem;
         flex-direction: column;
       }
 
@@ -33,8 +40,9 @@
       margin-bottom: 3rem;
 
       @media(max-width: 600px) {
+        margin-top: 2rem;
         flex-direction: column;
-        padding: 1.5rem;
+        padding: 1rem;
       }
     }
   }

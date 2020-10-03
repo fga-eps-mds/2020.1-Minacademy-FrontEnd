@@ -20,7 +20,7 @@ ReactDOM.render(
                 hideProgressBar
                 closeButton={false}
                 newestOnTop
-                autoClose={5000}
+                autoClose={3500}
             />
                     <Routes />
             </PersistGate>

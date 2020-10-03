@@ -12,14 +12,4 @@ it('Expect to render Tutorial component', () => {
         <Tutorial />
       </MemoryRouter>
     ).length).toEqual(1)
-
-  expect(
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Tutorial />
-        </MemoryRouter>
-      </Provider>
-    )
-  ).toMatchSnapshot()
 })
