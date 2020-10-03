@@ -44,6 +44,12 @@
     padding: 0.4rem;
     font-size: 16px;
     font-weight: bolder;
+
+    @media (max-width: 600px) {
+      min-width: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 15px;
+    }
   }
 
   &.color {

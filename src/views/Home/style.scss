@@ -1,133 +1,139 @@
-.vector img {
-  width: 100%;
-  clip-path: view-box;
-}
-
-.vector h1 {
-  font-weight: 600;
-  font-family: Overpass;
-  font-size: 4.5vw;
-  box-sizing: border-box;
-  width: 50vw;
-  padding-left: 10vw;
-  color: var(--white);
-  position: relative;
-  bottom: 55vw;
-}
 
 .vector {
-  max-height: 66vw;
-}
+  & {
+    max-height: 66vw;
+  }
 
-.infobar--shape {
-  width: 100%;
+  img {
+    width: 100%;
+    clip-path: view-box;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-family: Overpass;
+    font-size: 4.5vw;
+    box-sizing: border-box;
+    width: 50vw;
+    padding-left: 10vw;
+    color: var(--white);
+    position: relative;
+    bottom: 55vw;
+  }
+
+
 }
 
 .infoBar {
-  max-height: 160vw;
+  & {
+  max-height: 1200px;
+  }
+  &--shape {
+    width: 100%;
+  }
+
+  &--text {
+    position: relative;
+    bottom: 50vw;
+    max-width: 40vw;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: 5vw;
+  }
+
+  &--image {
+    display: inline-block;
+    bottom:76vw;
+    width: 45%;
+    position: relative;
+  }
+
+  h1 {
+    box-sizing: border-box;
+    font-size: 3vw;
+    font-family: Overpass;
+    margin-left: 4.5vw;
+    color: var(--title-color);
+  }
+
+  h2 {
+    color: var(--secondary-color);
+    box-sizing: border-box;
+    font-size: 2vw;
+    font-family: Overpass;
+    padding-left: 4.5vw;
+
+  }
+
+  p {
+    box-sizing: border-box;
+    font-weight: 300;
+    font-size: 2vw;
+    font-family: Overpass;
+    padding-left: 4.5vw;
+
+  }
+  .button {
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 14vw;
+  }
+
 }
 
 
-.infoBar h1 {
-  box-sizing: border-box;
-  font-size: 3vw;
-  font-family: Overpass;
-  margin-left: 4.5vw;
-  position: relative;
-  bottom: 40vw;
-  color: var(--title-color);
-}
-.infoBar h2 {
-  color: var(--secondary-color);
-  box-sizing: border-box;
-  width: 40vw;
-  max-width:  650px;
-  font-size: 2vw;
-  font-family: Overpass;
-  padding-left: 4.5vw;
-  position: relative;
-  bottom: 40vw;
-}
-
-.infoBar p {
-  box-sizing: border-box;
-  width: 40vw;
-  max-width:  650px;
-  font-weight: 300;
-  font-size: 2vw;
-  max-width: 50%;
-  font-family: Overpass;
-  padding-left: 4.5vw;
-  position: relative;
-  bottom: 40vw;
-}
-.infoBar .button {
-  box-sizing: border-box;
-  position: relative;
-  bottom: 40vw;
-  margin-left: 12vw;
-}
 
 
-.infobarImage {
-  display: inline-block;
-  width: 45%;
-  position: relative;
-  bottom: 70vw;
-  margin-left: 40vw;
-  padding-left: 5.5vw;
-  z-index: 1;
-}
+.infoBar2 {
+  & {
+    text-align: justify;
+    position: relative;
+  }
 
-.infobarImage2 {
-  display: block;
-  margin-left: auto;
-  width: 45%;
-  position: relative;
-  bottom: 55vw;
-  margin-right: 4.5vw;
-  padding-right: 5.5vw;
-  z-index: 1;
-}
+  &--image2 {
+    position: relative;
+    bottom: 20vw;
+    width: 30%;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: 5vw;
+  }
+  &--text {
+    font-family: Overpass;
+    box-sizing: border-box;
+    h1 {
+    font-size: 3vw;
+    margin-left: 4.5vw;
+    color: var(--title-color);
+  }
+  p {
+      width: 40vw;
+      max-width:  650px;
+      font-weight: 300;
+      font-size: 2vw;
+      max-width: 50%;
+      font-family: Overpass;
+      padding-left: 4.5vw;
+    }
+  }
 
-.infoBar2{
-  max-height: 200px;
-}
+  button {
+    box-sizing: border-box;
+    margin-left: 12vw;
+  }
 
-.infoBar2 h1 {
-  box-sizing: border-box;
-  font-size: 3vw;
-  font-family: Overpass;
-  margin-left: 4.5vw;
-  position: relative;
-  bottom: 25vw;
-  color: var(--title-color);
 }
-
-.infoBar2 p {
-  box-sizing: border-box;
-  width: 40vw;
-  max-width:  650px;
-  font-weight: 300;
-  font-size: 2vw;
-  max-width: 50%;
-  font-family: Overpass;
-  padding-left: 4.5vw;
-  position: relative;
-  bottom: 25vw;
-}
-
-.infoBar2 button {
-  box-sizing: border-box;
-  position: relative;
-  bottom: 25vw;
-  margin-left: 12vw;
-}
-/* span {
-  color: var(--secondary-color)
-} */
 
 @media(max-width: 800px) {
+
+  .infoBar {
+    & {
+      max-height: 300px;
+    }
+    &--image {
+      bottom: 80vw;
+    }
+  }
   .infoBar .button.small {
     line-height: 1px;
     min-width: 80px;
@@ -140,4 +146,5 @@
     width: 80px;
     font-size: 10px;
   }
+
 }

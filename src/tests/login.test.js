@@ -8,7 +8,6 @@ global.MutationObserver = window.MutationObserver;
 
 it('Expect to render Login Component', () => {
   expect(shallow(<Login store={store}></Login>).length).toEqual(1)
-  expect(shallow(<Login store={store} ></Login>)).toMatchSnapshot()
 })
 
 it('Expect to click button', () => {

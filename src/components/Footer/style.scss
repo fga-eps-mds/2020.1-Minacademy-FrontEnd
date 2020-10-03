@@ -1,0 +1,36 @@
+.footer {
+    background-color: var(--footer-color);
+    padding: 2rem 2rem 0;
+    font-family: Overpass;
+
+    &__body {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        color: white;
+
+        @media(max-width: 600px) {
+            justify-content: space-around;
+        }
+
+        a {
+            color: white;
+            &:hover {
+                color: var(--secondary-color)
+            }
+        }
+
+        &-item {
+            padding-bottom: 1rem;
+
+            @media(max-width: 600px) {
+            }
+
+            &-title {
+                border-bottom: 1px solid white;
+            }
+
+        }
+    }
+}

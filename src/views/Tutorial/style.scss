@@ -2,20 +2,15 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(125deg, #fffffff0, #F0F0F0 100%);
   font-family: Overpass;
+  padding: 4rem 8rem;
+  max-width: 90%;
+  margin: 0 auto;
 
   &__content {
-    width: 1100px;
-    max-width: 85%;
-    padding: 2rem 1rem;
-    margin: 0 auto;
-    align-self: center;
-
     &--header {
       display: flex;
       justify-content: space-between;
-      margin: 2em 0;
 
       @media(max-width: 600px) {
         flex-direction: column;
@@ -43,14 +38,5 @@
         padding: 1.5rem;
       }
     }
-  }
-
-  h1 {
-    font-size: 2rem;
-    color: var(--title-color);
-  }
-
-  p {
-    color: var(--paragraph-color)
   }
 }

@@ -7,7 +7,6 @@ global.MutationObserver = window.MutationObserver;
 
 it('Expect to render Register Component', () => {
   expect(shallow(<Register store={store}></Register>).length).toEqual(1)
-  expect(shallow(<Register></Register>)).toMatchSnapshot()
 })
 
 it('Expect to click button', () => {
