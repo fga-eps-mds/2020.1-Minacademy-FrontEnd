@@ -21,12 +21,6 @@ function Dashboard({ currentUser, currentModule }) {
             <a className="dashboard__body--card-link" href="/tutorial">continuar tutorial</a>
           </div>
           <div className="dashboard__body--card">
-            <p className="dashboard__body--card-title"> ultima tentativa no fórum</p>
-            <p className="dashboard__body--card-content-emphasis">o mentor joãozinho respondeu a sua dúvida ontem!</p>
-            <p>tópico: instalação</p>
-            <a className="dashboard__body--card-link" href="exemplo">ir para o fórum</a>
-          </div>
-          <div className="dashboard__body--card">
             <p className="dashboard__body--card-title"> certificados</p>
             <p className="dashboard__body--card-content-emphasis">
               Certificado de conclusão do tutorial <span>básico</span>

@@ -39,19 +39,19 @@ function Header({ currentUser, logout }) {
             <Link className="header__navigation-option" to="/tutorial">
               Tutorial
             </Link>
-            <Link className="header__navigation-option" to="/forum">
-              Fórum
+            <Link className="header__navigation-option" to="/mentoria">
+              Mentoria
             </Link>
           </>
         ) : (
           <>
-            <Link className="header__navigation-option" >
+            <Link className="header__navigation-option" to="/login" >
               Tutorial
             </Link>
-            <a className="header__navigation-option" href="#infoBar2">
+            <a className="header__navigation-option" href="/#infoBar2">
               Como funciona
             </a>
-            <a className="header__navigation-option" href="#infoBar">
+            <a className="header__navigation-option" href="/#infoBar">
               A Iniciativa Minacademy
             </a>
           </>

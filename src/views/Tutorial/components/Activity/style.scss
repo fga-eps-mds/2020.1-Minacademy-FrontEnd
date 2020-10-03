@@ -1,30 +1,48 @@
-.activity{
-  max-width: 80%;
+.activity {
+  width: 80%;
   font-family: Overpass;
   padding-left: 2rem;
   text-align: justify;
 
   @media(max-width: 600px) {
-    max-width: 100%;
+    width: 100%;
     margin-top: 2rem;
     padding: 0;
   }
 
   &__description {
     color: var(--title-color);
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
   }
 
-  &__body{
-    margin: 2rem 0;
-  }
-
-  &__action-bar{
+  &__alternatives{
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    margin: 2rem 0;
 
+    &--item {
+      margin: 1rem 0;
+    }
+
+    &--error {
+      margin-top: 2rem;
+      font-weight: bold;
+      color: var(--error-color);
+    }
+
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    .button {
+      margin-top: 0.75rem;
+    }
     @media(max-width: 600px) {
       flex-direction: column;
-      align-items: center;
     }
   }
 }
