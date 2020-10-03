@@ -37,6 +37,17 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #ffffff00;
+  opacity: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 5px;
 }
 
 /****************************

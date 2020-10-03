@@ -7,9 +7,11 @@ import { answerQuestion } from '../../../../services/tutorialServices';
 import './style.scss';
 import Button from '../../../../components/Button';
 
-function Activity({ activity, activitiesResults, setActivityResult }) {
+function Activity({ activity, activitiesResults, setActivityResult, history}) {
   const { handleSubmit, register, errors } = useForm();
+
   const result = useMemo(() => activitiesResults.find(result => result.question === activity._id), [activitiesResults]);
+
 
   const onSubmit = alternative => {
     answerQuestion({ ...alternative, question: activity._id }).then(async (response) => {
@@ -32,7 +34,7 @@ function Activity({ activity, activitiesResults, setActivityResult }) {
           </div>
         ) : (
           <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form id="question" onSubmit={handleSubmit(onSubmit)}>
               {Object.keys(activity.alternatives).map((item) => (
                 <div className="activity__alternatives--item" key={item}>
                   <label htmlFor="alternative">
@@ -41,15 +43,28 @@ function Activity({ activity, activitiesResults, setActivityResult }) {
                   </label>
                 </div>
               ))}
-              <Button inverted shadow>
-                Responder
-              </Button>
               {result?.isCorrect === false && <div className="activity__alternatives--error">Resposta errada, tente novamente!</div>}
               {errors.alternative && <div className="activity__alternatives--error">Escolha uma alternativa</div>}
             </form>
           </>
         )}
-      </div>
+        </div>
+        <div className="activity__buttons">
+          {!result?.isCorrect &&
+            <Button
+              shadow
+              form='question'
+              type="submit"
+            >
+              Responder
+            </Button> }
+            <Button
+              onClick={() => history.push('/tutorial')}
+              shadow
+            >
+              Voltar
+            </Button>
+        </div>
     </div>
   );
 }

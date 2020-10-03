@@ -37,4 +37,13 @@
       margin-top: 1rem;
     }
   }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+
+    @media(max-width: 600px) {
+      flex-direction: column;
+    }
+  }
 }

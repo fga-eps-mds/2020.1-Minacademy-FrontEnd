@@ -1,27 +1,14 @@
 import React, { useState,useEffect } from 'react';
 import './style.scss'
 import { selectCurrentUser } from '../../slices/usersSlice'
-import { connect } from 'react-redux';
 import {getIsCompleted} from '../../services/tutorialServices'
 
-function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection, currentUser }) {
+function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection }) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([items[0]]);
   const toggle = () => setOpen(!open);
 
-  
-  //console.log(currentUser.completedModules);//log de teste
-
-  function isModuleComplete(item){
-    const {moduleNumber} = item;
-    console.log(moduleNumber);
-    const data = getIsCompleted(moduleNumber);
-    console.log(data);
-    return false;
-  }
-
   useEffect(() => {
-    //console.log(getIsCompleted);
     if (initialSelection){
       setSelection([items[initialSelection-1]])
     } else {
@@ -69,7 +56,8 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
                 toggle(!open)
                 return toggleItem(item)
               }}>
-                <span>{isItemInSelection(item) ? '-':''} {item.title || item.value} {isModuleComplete(item) ? '(Concluído)':''}</span>
+                <span>{isItemInSelection(item) ? '-':''} {item.title || item.value}</span>
+                {item.completed && <span>Concluido</span>}
               </button>
             </li>
           ))}
@@ -79,8 +67,4 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
   );
 }
 
-const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state)
-})
-
-export default connect (mapStateToProps) (Dropdown)
+export default Dropdown
