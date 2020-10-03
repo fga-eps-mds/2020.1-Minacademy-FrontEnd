@@ -8,11 +8,11 @@ import '../../index.css';
 import './style.scss';
 
 function Login({ login }) {
-    const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors } = useForm();
 
-    const onSubmit = async (credentials) => {
-        login(credentials);
-    };
+  const onSubmit = (credentials) => {
+    login(credentials);
+  };
 
     return (
         <>

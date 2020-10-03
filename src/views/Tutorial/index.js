@@ -1,9 +1,13 @@
 import React from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import './style.scss'
 import Markdown from './components/Markdown';
-import Activities from './components/Activities';
+import ActivitiesList from './components/ActivitiesList';
+import Activity from './components/Activity';
 
 function Tutorial() {
+  const match = useRouteMatch();
+
   return (
   <div className="tutorial">
     <div className="tutorial__content">
@@ -17,8 +21,13 @@ function Tutorial() {
         </div>
       </div>
       <div className="tutorial__content--body">
-        <Activities />
-        <Markdown />
+        <ActivitiesList />
+        <Switch>
+          <Route path={`${match.path}/atividades/:activityNumber`} component={() => <Activity />}>
+          </Route>
+          <Route path={match.path} component={Markdown}>
+          </Route>
+        </Switch>
       </div>
     </div>
   </div>
