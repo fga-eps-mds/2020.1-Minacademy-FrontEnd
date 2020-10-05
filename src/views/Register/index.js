@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
 import { useForm } from 'react-hook-form';
 import { registerRequest } from '../../services/usersService';
+import './components/Checkbox/index'
 
 function Register() {
 
     const { handleSubmit, register, watch, errors } = useForm();
     const onSubmit = registerRequest
+
+    let userGender
+    let registerType
+
+    const genderChangeHandler = (event) => {
+        userGender = event.target.value
+        console.log(userGender)
+    }
 
     return (
         <>
@@ -80,15 +89,17 @@ function Register() {
                                 </label>
                             </div>
                             <div className="register__options">
-                                <div className="register__options--user">
+                                <div className='register__options--gender'>
+                                    <p>gênero</p>
+                                    <label htmlFor="female"><input name="userGender" value="feminino" type="radio" onChange={genderChangeHandler} defaultChecked/> feminino</label>
+                                    <label htmlFor="male"><input name="userGender" value="masculino" type="radio" onChange={genderChangeHandler}/> masculino</label>
+                                </div>
+                                {/*userGender==='feminino'?(<div className="register__options--user">
                                     <p>tipo de cadastro</p>
                                     <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} /> mentor</label>
                                     <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} defaultChecked /> aprendiz</label>
-                                </div>
-                                <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
-                                    required: "concorde com os termo de consentimento",
-                                })} /> Concordo que este tutorial é somente para aqueles que se identificam com o gênero feminino.</label>
-                                {errors.agree && <span className="danger">{errors.agree.message}</span>}
+                                    </div>):
+                                    (<label htmlFor="genderWarning">Você será cadastrado como mentor, pois a plataforma requer que a aprendiz se identifique com o gênero feminino</label>)*/}
                             </div>
                             <Button>REGISTRAR</Button>
                         </form>
