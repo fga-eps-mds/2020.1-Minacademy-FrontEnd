@@ -148,3 +148,44 @@
   }
 
 }
+
+.FAQ {
+  max-height: 40vw;
+  max-width: 50vw;
+
+  h1 {
+    box-sizing: border-box;
+    font-size: 3vw;
+    font-family: Overpass;
+    margin-left: 4.5vw;
+    color: var(--title-color);
+  }
+
+  h2 {
+    color: var(--secondary-color);
+    box-sizing: border-box;
+    font-size: 2vw;
+    font-family: Overpass;
+    padding-left: 4.5vw;
+
+  }
+
+  p {
+    width: 40vw;
+    font-weight: 300;
+    font-size: 2vw;
+    font-family: Overpass;
+    padding-left: 4.5vw;
+    text-align: justify;
+  }
+
+  .question1 {
+    position: absolute;
+  }
+
+  .question2 {
+    position: relative;
+    left: 50vw;
+    word-wrap: break-word;
+  }
+}

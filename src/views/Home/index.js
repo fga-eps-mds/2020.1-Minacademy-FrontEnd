@@ -36,6 +36,19 @@ function Home() {
         <Button onClick={() => history.push('/login')} small>Explorar</Button>
         <img className='infoBar2--image2' src={infobarImage2} alt='funcionamento' />
       </div>
+      <div id='FAQ' className='FAQ'>
+        <h1>F.A.Q.:</h1>
+        <div id='questions' className='questions'>
+          <div id='question1' className='question1'>
+            <h2>Quem pode se tornar aprendiz?</h2>
+            <p>Qualquer pessoa que se identifica com o gênero feminino pode se cadastrar como aprendiz.</p>
+          </div>
+          <div id='question2' className='question2'>
+            <h2>Quem pode se tornar mentor?</h2>
+            <p>Alunas que terminaram o tutorial e as atividades podem se cadastrar como mentores.</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
