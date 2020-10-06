@@ -12,6 +12,8 @@ import Profile from '../views/Profile';
 import PrivateRoute from './components/privateRoute';
 import PublicRoute from './components/publicRoute';
 import Dashboard from '../views/Dashboard';
+import FemaleRegister from '../views/Register/components/FemaleRegister';
+import MaleRegister from '../views/Register/components/MaleRegister';
 
 
 const Routes = () => {
@@ -23,6 +25,8 @@ const Routes = () => {
           <Route exact path="/" component={Home} />
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/cadastro" component={Register} />
+          <PublicRoute exact path="/cadastro/feminino" component={FemaleRegister} />
+          <PublicRoute exact path="/cadastro/masculino" component={MaleRegister} />
           <PrivateRoute path="/tutorial" component={Tutorial} />
           <PublicRoute exact path="/forgotPassword" component={ForgotPassword} />
           <PublicRoute exact path="/change/:resetLink" component={Change} />
