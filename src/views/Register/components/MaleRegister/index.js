@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
-import Button from '../../components/Button';
-import '../../index.css'
-import './style.scss';
+import Button from '../../../../components/Button';
 import { useForm } from 'react-hook-form';
-import { registerRequest } from '../../services/usersService';
-import './components/Checkbox/index'
+import { registerRequest } from '../../../../services/usersService';
 
-function Register() {
+function MaleRegister() {
 
     const { handleSubmit, register, watch, errors } = useForm();
     const onSubmit = registerRequest
-
-    let userGender
-    let registerType
-
-    const genderChangeHandler = (event) => {
-        userGender = event.target.value
-        console.log(userGender)
-    }
 
     return (
         <>
@@ -64,7 +53,7 @@ function Register() {
                                                 message: "tamanho mínimo é 6"
                                             },
                                             pattern: {
-                                                value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9])$/,
+                                                value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8})$/,
                                                 message: "utilize numeros, letras maiusculas e minusculas"
                                             }
                                         })}
@@ -80,7 +69,7 @@ function Register() {
                                             required: "campo obrigatório",
                                             validate: (value) => {
                                                 const passwordMatches = value === watch('password');
-                                                return passwordMatches || "As senhas nao coincidem"
+                                                return passwordMatches ? passwordMatches : "As senhas nao coincidem"
                                             }
                                         })}
 
@@ -89,17 +78,10 @@ function Register() {
                                 </label>
                             </div>
                             <div className="register__options">
-                                <div className='register__options--gender'>
-                                    <p>gênero</p>
-                                    <label htmlFor="female"><input name="userGender" value="feminino" type="radio" onChange={genderChangeHandler} defaultChecked/> feminino</label>
-                                    <label htmlFor="male"><input name="userGender" value="masculino" type="radio" onChange={genderChangeHandler}/> masculino</label>
-                                </div>
-                                {/*userGender==='feminino'?(<div className="register__options--user">
+                                <div className="register__options--user">
                                     <p>tipo de cadastro</p>
-                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} /> mentor</label>
-                                    <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} defaultChecked /> aprendiz</label>
-                                    </div>):
-                                    (<label htmlFor="genderWarning">Você será cadastrado como mentor, pois a plataforma requer que a aprendiz se identifique com o gênero feminino</label>)*/}
+                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} defaultChecked/> Você será cadastrado como mentor, pois a plataforma permite apenas aprendizes que se identificam com o gênero feminino.</label>
+                                    </div>
                             </div>
                             <Button>REGISTRAR</Button>
                         </form>
@@ -110,4 +92,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default MaleRegister;
