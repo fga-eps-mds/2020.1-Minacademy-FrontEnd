@@ -1,22 +1,20 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectActivity, selectActivitiesResults, setActivityResult } from '../../../../slices/tutorialSlice';
+import { selectActivity, selectActivitiesResults } from '../../../../slices/tutorialSlice';
 import { answerQuestion } from '../../../../services/tutorialServices';
 import './style.scss';
 import Button from '../../../../components/Button';
 
-function Activity({ activity, activitiesResults, setActivityResult, history}) {
+function Activity({ activity, activitiesResults, answerQuestion, history}) {
   const { handleSubmit, register, errors } = useForm();
 
   const result = useMemo(() => activitiesResults.find(result => result.question === activity._id), [activitiesResults]);
 
 
   const onSubmit = alternative => {
-    answerQuestion({ ...alternative, question: activity._id }).then(async (response) => {
-      setActivityResult(response);
-    });
+    answerQuestion({ ...alternative, question: activity._id })
   };
 
   let descriptionText = activity.description.split('\n').map((i) => {
@@ -75,7 +73,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setActivityResult: result => dispatch(setActivityResult(result)),
+  answerQuestion: answerData => dispatch(answerQuestion(answerData))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Activity));

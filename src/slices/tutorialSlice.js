@@ -1,6 +1,7 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import {
   getQuestions,
+  answerQuestion,
   updateMarkdown,
   getModules,
   getQuestionsResults
@@ -20,15 +21,15 @@ const tutorial = createSlice({
   reducers: {
     setCurrentModule(state, action) {
       state.currentModule = action.payload;
-    },
-    setActivityResult(state, action) {
-      const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
-      state.activitiesResults = [...activitiesResults, action.payload]
     }
   },
   extraReducers: {
     [getQuestions.fulfilled]: (state, action) => {
       state.activities = action.payload
+    },
+    [answerQuestion.fulfilled]: (state, action) => {
+      const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
+      state.activitiesResults = [...activitiesResults, action.payload]
     },
     [updateMarkdown.fulfilled]: (state, action) => {
       state.markdown = action.payload
@@ -80,4 +81,4 @@ export const selectModuleList = createSelector(
 )
 
 export default tutorial.reducer;
-export const { setCurrentModule, setActivityResult } = tutorial.actions;
+export const { setCurrentModule } = tutorial.actions;
