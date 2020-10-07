@@ -11,24 +11,21 @@ import PrivateRoute from './components/privateRoute';
 import PublicRoute from './components/publicRoute';
 import Dashboard from '../views/Dashboard';
 
-
-const Routes = () => {
-  return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <PublicRoute exact path="/login" component={Login} />
-          <PublicRoute exact path="/cadastro" component={Register} />
-          <PrivateRoute path="/tutorial" component={Tutorial} />
-          <PrivateRoute exact path="/perfil" component={Profile} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </>
-  );
-}
+const Routes = () => (
+  <>
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <PublicRoute exact path="/login" component={Login} />
+        <PublicRoute exact path="/cadastro" component={Register} />
+        <PrivateRoute path="/tutorial" component={Tutorial} />
+        <PrivateRoute exact path="/perfil" component={Profile} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      </Switch>
+      <Footer />
+    </BrowserRouter>
+  </>
+);
 
 export default Routes;

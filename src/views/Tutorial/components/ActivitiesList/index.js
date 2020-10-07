@@ -5,7 +5,9 @@ import { selectActivitiesList, selectCurrentModule, selectActivitiesResults } fr
 import { getQuestions, getQuestionsResults } from '../../../../services/tutorialServices';
 import './style.scss';
 
-function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQuestions, getQuestionsResults }) {
+function ActivitiesList({
+  activitiesList, activitiesResults, currentModule, getQuestions, getQuestionsResults,
+}) {
   const match = useRouteMatch();
 
   useEffect(() => {
@@ -13,10 +15,10 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
   }, [currentModule]);
 
   useEffect(() => {
-    getQuestionsResults(activitiesList.map(activity => activity._id));
+    getQuestionsResults(activitiesList.map((activity) => activity._id));
   }, [activitiesList]);
 
-  const result = activity => activitiesResults.find(result => result.question === activity._id)?.isCorrect
+  const result = (activity) => activitiesResults.find((result) => result.question === activity._id)?.isCorrect;
 
   return (
     <div className="activities-list">
@@ -24,20 +26,26 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
         <div>
           <h3>Forum</h3>
           <p>
-            Modulo <b>{currentModule}</b>
+            Modulo
+            {' '}
+            <b>{currentModule}</b>
           </p>
         </div>
       </div>
       <div className="activities-list__list">
-        {activitiesList.map(activity => (
-          <p key={activity._id}
+        {activitiesList.map((activity) => (
+          <p
+            key={activity._id}
             className={`
             activities-list__list-item
-            ${result(activity) === false ? 'wrong':''}
-            ${result(activity) ? 'correct':''}
+            ${result(activity) === false ? 'wrong' : ''}
+            ${result(activity) ? 'correct' : ''}
             `}
           >
-            <Link to={`${match.path}/atividades/${activity.number}`}>Atividade {activity.number}</Link>
+            <Link to={`${match.path}/atividades/${activity.number}`}>
+              Atividade
+              {activity.number}
+            </Link>
           </p>
         ))}
       </div>
@@ -45,15 +53,15 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   activitiesList: selectActivitiesList(state),
   currentModule: selectCurrentModule(state),
   activitiesResults: selectActivitiesResults(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
-  getQuestionsResults: questions => dispatch(getQuestionsResults(questions)),
+const mapDispatchToProps = (dispatch) => ({
+  getQuestions: (moduleNumber) => dispatch(getQuestions(moduleNumber)),
+  getQuestionsResults: (questions) => dispatch(getQuestionsResults(questions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivitiesList);

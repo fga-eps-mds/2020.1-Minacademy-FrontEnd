@@ -1,13 +1,13 @@
-import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import api from './api';
 import {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,
-  RESULT_ENDPOINT, 
-  IS_MODULE_COMPLETE
+  RESULT_ENDPOINT,
+  IS_MODULE_COMPLETE,
 } from './endpoints/tutorials';
 
-const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
+const getQuestions = createAsyncThunk('tutorial/getQuestions', async (module) => {
   try {
     const response = await api.get(`${QUESTIONS_ENDPOINT}?moduleNumber=${module}`);
     return response.data;
@@ -17,7 +17,7 @@ const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
   }
 });
 
-const answerQuestion = async data => {
+const answerQuestion = async (data) => {
   try {
     const response = await api.post(RESULT_ENDPOINT, data);
     return response.data;
@@ -27,22 +27,22 @@ const answerQuestion = async data => {
   }
 };
 
-const getQuestionsResults = createAsyncThunk('tutorial/getQuestionsResults', async questions => {
-  questions = questions.map(item => `questions=${item}`).join('&');
+const getQuestionsResults = createAsyncThunk('tutorial/getQuestionsResults', async (questions) => {
+  questions = questions.map((item) => `questions=${item}`).join('&');
   try {
     const response = await api.get(`${RESULT_ENDPOINT}?${questions}`);
     return response.data;
   } catch (error) {
     console.log(error);
-    return []
+    return [];
   }
 });
 
-const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async currentModule => {
+const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async (currentModule) => {
   const file = await import(`../assets/tutorial/${currentModule}.md`);
   const response = await fetch(file.default);
   const text = await response.text();
-  return text
+  return text;
 });
 
 const getModules = createAsyncThunk('tutorial/getModules', async () => {
@@ -55,14 +55,14 @@ const getModules = createAsyncThunk('tutorial/getModules', async () => {
   }
 });
 
-const getIsCompleted = async module => {
-    try {
-        const response = await api.get(`${IS_MODULE_COMPLETE}?moduleNumber=${module}`);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-        return [];
-    }
+const getIsCompleted = async (module) => {
+  try {
+    const response = await api.get(`${IS_MODULE_COMPLETE}?moduleNumber=${module}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };
 
 export {
@@ -71,5 +71,5 @@ export {
   getModules,
   answerQuestion,
   getQuestionsResults,
-  getIsCompleted
+  getIsCompleted,
 };

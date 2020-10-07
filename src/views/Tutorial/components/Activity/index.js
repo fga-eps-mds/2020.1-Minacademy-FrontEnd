@@ -7,21 +7,20 @@ import { answerQuestion } from '../../../../services/tutorialServices';
 import './style.scss';
 import Button from '../../../../components/Button';
 
-function Activity({ activity, activitiesResults, setActivityResult, history}) {
+function Activity({
+  activity, activitiesResults, setActivityResult, history,
+}) {
   const { handleSubmit, register, errors } = useForm();
 
-  const result = useMemo(() => activitiesResults.find(result => result.question === activity._id), [activitiesResults]);
+  const result = useMemo(() => activitiesResults.find((result) => result.question === activity._id), [activitiesResults]);
 
-
-  const onSubmit = alternative => {
+  const onSubmit = (alternative) => {
     answerQuestion({ ...alternative, question: activity._id }).then(async (response) => {
       setActivityResult(response);
     });
   };
 
-  let descriptionText = activity.description.split('\n').map((i) => {
-    return <p key={i}>{i}</p>;
-  });
+  const descriptionText = activity.description.split('\n').map((i) => <p key={i}>{i}</p>);
 
   return (
     <div className="activity">
@@ -48,23 +47,25 @@ function Activity({ activity, activitiesResults, setActivityResult, history}) {
             </form>
           </>
         )}
-        </div>
-        <div className="activity__buttons">
-          {!result?.isCorrect &&
+      </div>
+      <div className="activity__buttons">
+        {!result?.isCorrect
+            && (
             <Button
               shadow
-              form='question'
+              form="question"
               type="submit"
             >
               Responder
-            </Button> }
-            <Button
-              onClick={() => history.push('/tutorial')}
-              shadow
-            >
-              Voltar
             </Button>
-        </div>
+            ) }
+        <Button
+          onClick={() => history.push('/tutorial')}
+          shadow
+        >
+          Voltar
+        </Button>
+      </div>
     </div>
   );
 }
@@ -74,8 +75,8 @@ const mapStateToProps = (state, props) => ({
   activitiesResults: selectActivitiesResults(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  setActivityResult: result => dispatch(setActivityResult(result)),
+const mapDispatchToProps = (dispatch) => ({
+  setActivityResult: (result) => dispatch(setActivityResult(result)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Activity));

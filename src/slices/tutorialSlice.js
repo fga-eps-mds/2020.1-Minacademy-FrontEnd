@@ -3,7 +3,7 @@ import {
   getQuestions,
   updateMarkdown,
   getModules,
-  getQuestionsResults
+  getQuestionsResults,
 } from '../services/tutorialServices';
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
   markdown: '',
   activities: [],
   activitiesResults: [],
-  modules: []
+  modules: [],
 };
 
 const tutorial = createSlice({
@@ -22,62 +22,58 @@ const tutorial = createSlice({
       state.currentModule = action.payload;
     },
     setActivityResult(state, action) {
-      const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
-      state.activitiesResults = [...activitiesResults, action.payload]
-    }
+      const activitiesResults = state.activitiesResults.filter((item) => item._id !== action.payload._id);
+      state.activitiesResults = [...activitiesResults, action.payload];
+    },
   },
   extraReducers: {
     [getQuestions.fulfilled]: (state, action) => {
-      state.activities = action.payload
+      state.activities = action.payload;
     },
     [updateMarkdown.fulfilled]: (state, action) => {
-      state.markdown = action.payload
+      state.markdown = action.payload;
     },
     [getModules.fulfilled]: (state, action) => {
-      state.modules = action.payload
+      state.modules = action.payload;
     },
     [getQuestionsResults.fulfilled]: (state, action) => {
-      state.activitiesResults = action.payload
-    }
-  }
+      state.activitiesResults = action.payload;
+    },
+  },
 });
 
-const selectTutorial = state => state.tutorial;
-const getActivity = (state, props) => {
-  return state.tutorial.activities.find(activitie =>
-      (activitie.number == props.match.params.activityNumber)
-    )
-}
+const selectTutorial = (state) => state.tutorial;
+const getActivity = (state, props) => state.tutorial.activities.find((activitie) => (activitie.number == props.match.params.activityNumber));
 
 export const selectCurrentModule = createSelector(
   [selectTutorial],
-  tutorial => tutorial.currentModule
-)
+  (tutorial) => tutorial.currentModule,
+);
 
 export const selectMarkdown = createSelector(
   [selectTutorial],
-  tutorial => tutorial.markdown
-)
+  (tutorial) => tutorial.markdown,
+);
 
 export const selectActivity = createSelector(
   [getActivity],
-  activity => activity
-)
+  (activity) => activity,
+);
 
 export const selectActivitiesResults = createSelector(
   [selectTutorial],
-  tutorial => tutorial.activitiesResults
-)
+  (tutorial) => tutorial.activitiesResults,
+);
 
 export const selectActivitiesList = createSelector(
   [selectTutorial],
-  tutorial => tutorial.activities
-)
+  (tutorial) => tutorial.activities,
+);
 
 export const selectModuleList = createSelector(
   [selectTutorial],
-  tutorial => tutorial.modules
-)
+  (tutorial) => tutorial.modules,
+);
 
 export default tutorial.reducer;
 export const { setCurrentModule, setActivityResult } = tutorial.actions;

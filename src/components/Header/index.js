@@ -12,10 +12,10 @@ import './style.scss';
 
 function Header({ currentUser, logout }) {
   const history = useHistory();
-  const [hidden, setHidden] = useState(true)
+  const [hidden, setHidden] = useState(true);
 
   const responsive = () => {
-    var nav = document.getElementsByClassName('header__navigation');
+    let nav = document.getElementsByClassName('header__navigation');
     if (nav.length > 0) {
       nav[0].className += '-responsive';
     } else {
@@ -45,7 +45,7 @@ function Header({ currentUser, logout }) {
           </>
         ) : (
           <>
-            <Link className="header__navigation-option" to="/login" >
+            <Link className="header__navigation-option" to="/login">
               Tutorial
             </Link>
             <a className="header__navigation-option" href="/#infoBar2">
@@ -62,12 +62,14 @@ function Header({ currentUser, logout }) {
         {currentUser ? (
           <>
             <div>
-              <Bell className="header__navigation-action-icon" width={20}  height={23} />
+              <Bell className="header__navigation-action-icon" width={20} height={23} />
               <span
                 className="header__navigation-action-name"
                 onClick={() => setHidden(!hidden)}
               >
-              {currentUser.name}  <Arrow className="header__navigation-action-icon" width={14}  height={15}/>
+                {currentUser.name}
+                {' '}
+                <Arrow className="header__navigation-action-icon" width={14} height={15} />
               </span>
               {hidden ? null : (
                 <div className="nav-dropdown">
@@ -88,8 +90,8 @@ function Header({ currentUser, logout }) {
                     </Link>
                     <Link
                       onClick={() => {
-                        setHidden(!hidden)
-                        logout()
+                        setHidden(!hidden);
+                        logout();
                       }}
                       className="nav-dropdown__items-item"
                       to="/"
@@ -126,18 +128,18 @@ function Header({ currentUser, logout }) {
           </>
         )}
         <div className="icon" onClick={responsive}>
-          <Hamburguer width={25}  height={25}/>
+          <Hamburguer width={25} height={25} />
         </div>
       </div>
     </div>
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
 });
 

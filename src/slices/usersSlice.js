@@ -1,9 +1,8 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { login } from '../services/usersService'
-import { logout } from '../services/usersService'
+import { login, logout } from '../services/usersService';
 
 const initialState = {
-  currentUser: null
+  currentUser: null,
 };
 
 const userSlice = createSlice({
@@ -11,26 +10,26 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser(state, action) {
-      state.currentUser = action.payload
-    }
+      state.currentUser = action.payload;
+    },
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      state.currentUser = action.payload
+      state.currentUser = action.payload;
     },
 
     [logout.fulfilled]: (state, action) => {
-      state.currentUser = null
+      state.currentUser = null;
     },
 
-  }
+  },
 });
 
-const selectUser = state => state.user;
+const selectUser = (state) => state.user;
 export const selectCurrentUser = createSelector(
   [selectUser],
-  user => user.currentUser
-)
+  (user) => user.currentUser,
+);
 
 export const { setCurrentUser } = userSlice.actions;
 export default userSlice.reducer;

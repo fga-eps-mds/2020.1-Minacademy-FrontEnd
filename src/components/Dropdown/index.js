@@ -1,23 +1,25 @@
-import React, { useState,useEffect } from 'react';
-import './style.scss'
-import { selectCurrentUser } from '../../slices/usersSlice'
-import {getIsCompleted} from '../../services/tutorialServices'
+import React, { useState, useEffect } from 'react';
+import './style.scss';
+import { selectCurrentUser } from '../../slices/usersSlice';
+import { getIsCompleted } from '../../services/tutorialServices';
 
-function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection }) {
+function Dropdown({
+  items = [], multiSelect = false, toggleItem, initialSelection,
+}) {
   const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([items[0]]);
   const toggle = () => setOpen(!open);
 
   useEffect(() => {
-    if (initialSelection){
-      setSelection([items[initialSelection-1]])
+    if (initialSelection) {
+      setSelection([items[initialSelection - 1]]);
     } else {
-      setSelection([items[0]])
+      setSelection([items[0]]);
     }
-  }, [items])
+  }, [items]);
 
   function handleOnClick(item) {
-    if (!selection.some(current => current._id === item._id)) {
+    if (!selection.some((current) => current._id === item._id)) {
       if (!multiSelect) {
         setSelection([item]);
       } else if (multiSelect) {
@@ -27,7 +29,7 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
   }
 
   function isItemInSelection(item) {
-    if (selection.some(current => current._id === item._id)) {
+    if (selection.some((current) => current._id === item._id)) {
       return true;
     }
     return false;
@@ -43,20 +45,28 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
         onClick={() => toggle(!open)}
       >
 
-          <span className="dd-header__title--bold">{selection[0] ? selection[0].title : ''}</span>
+        <span className="dd-header__title--bold">{selection[0] ? selection[0].title : ''}</span>
 
-          <span>{open ? 'Close' : 'Open'}</span>
+        <span>{open ? 'Close' : 'Open'}</span>
       </div>
       {open && (
         <ul className="dd-list">
-          {items.map(item => (
-            <li className='dd-list-item' key={item._id}>
-              <button type="button" className={`${isItemInSelection(item) ? 'selected' : '' }`} onClick={() => {
-                handleOnClick(item)
-                toggle(!open)
-                return toggleItem(item)
-              }}>
-                <span>{isItemInSelection(item) ? '-':''} {item.title || item.value}</span>
+          {items.map((item) => (
+            <li className="dd-list-item" key={item._id}>
+              <button
+                type="button"
+                className={`${isItemInSelection(item) ? 'selected' : ''}`}
+                onClick={() => {
+                  handleOnClick(item);
+                  toggle(!open);
+                  return toggleItem(item);
+                }}
+              >
+                <span>
+                  {isItemInSelection(item) ? '-' : ''}
+                  {' '}
+                  {item.title || item.value}
+                </span>
                 {item.completed && <span>Concluído</span>}
               </button>
             </li>
@@ -67,4 +77,4 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
   );
 }
 
-export default Dropdown
+export default Dropdown;
