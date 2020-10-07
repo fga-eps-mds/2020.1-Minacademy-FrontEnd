@@ -10,7 +10,7 @@
     background-color: white;
     border-radius: 10px;
     width: 698px;
-    height: 717px;
+    height: 750px;
     margin: auto;
     margin-top: 10vw;
     margin-bottom: 10vw;
@@ -34,7 +34,24 @@
       
 }
 
-
+.register__gender {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
+    margin-left: 80px;
+    p {
+        font-size: 16px;
+        color: var(--title-color);
+        font-family: Overpass;
+        margin-top: 5px;
+    }
+    select {
+        background-color: white;
+        border-radius: 20px;
+        display: flex;
+        margin-right: 80px;
+    }
+}
 
 .register__inputs {
     max-width: 600px;

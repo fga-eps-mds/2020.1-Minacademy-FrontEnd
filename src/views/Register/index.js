@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
 import { useForm } from 'react-hook-form';
 import { registerRequest } from '../../services/usersService';
-import './components/Checkbox/index'
 
 function Register() {
-
-    const { handleSubmit, register, watch, errors } = useForm();
+    const { handleSubmit, register, watch, errors, getValues } = useForm();
     const onSubmit = registerRequest
+    const [gender, setGender] = useState(false);
+    function toggle (){
+        getValues("gender")==="Female"?setGender(true):setGender(false);
+    };
 
     let userGender
     let registerType
@@ -26,6 +28,20 @@ function Register() {
                     <h1>Cadastro</h1>
                     <label>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="register__gender">
+                                <p>gênero que se identifica</p>
+                                <select name="gender" onChange={toggle} ref={register({
+                                    required: true,
+                                    pattern:{
+                                        value: /^[A-Za-z]+ale$/,
+                                        message: "campo obrigatorio"
+                                    }})}>
+                                    <option>Selecione</option>
+                                    <option value="Female">Feminino</option>
+                                    <option value="Male">Masculino</option>
+                                </select>
+                                {(errors.gender && <span className="danger">{errors.gender.message}</span>) || <br />}
+                            </div>
                             <div className="register__inputs">
                                 <label>
                                     <p>nome</p><input type="text" name="name" ref={register({
@@ -64,7 +80,7 @@ function Register() {
                                                 message: "tamanho mínimo é 6"
                                             },
                                             pattern: {
-                                                value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9])$/,
+                                                value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])$/,
                                                 message: "utilize numeros, letras maiusculas e minusculas"
                                             }
                                         })}
@@ -80,7 +96,7 @@ function Register() {
                                             required: "campo obrigatório",
                                             validate: (value) => {
                                                 const passwordMatches = value === watch('password');
-                                                return passwordMatches || "As senhas nao coincidem"
+                                                return passwordMatches ? passwordMatches : "As senhas nao coincidem"
                                             }
                                         })}
 
@@ -89,17 +105,17 @@ function Register() {
                                 </label>
                             </div>
                             <div className="register__options">
-                                <div className='register__options--gender'>
-                                    <p>gênero</p>
-                                    <label htmlFor="female"><input name="userGender" value="feminino" type="radio" onChange={genderChangeHandler} defaultChecked/> feminino</label>
-                                    <label htmlFor="male"><input name="userGender" value="masculino" type="radio" onChange={genderChangeHandler}/> masculino</label>
-                                </div>
-                                {/*userGender==='feminino'?(<div className="register__options--user">
+                                <div className="register__options--user">
                                     <p>tipo de cadastro</p>
-                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} /> mentor</label>
-                                    <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} defaultChecked /> aprendiz</label>
-                                    </div>):
-                                    (<label htmlFor="genderWarning">Você será cadastrado como mentor, pois a plataforma requer que a aprendiz se identifique com o gênero feminino</label>)*/}
+                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} defaultChecked /> mentor</label>
+                                    {(gender && <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} /> aprendiz</label>)}
+                                </div>
+                                <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
+                                    required: "concorde com os termo de consentimento",
+                                })} /> Li e concordo que para se cadastrar nesta plataforma,
+                                 o usuário que se identifica com gênero masculino só pode se cadastrar como mentor
+                                 e o usuário que se identifica com gênero feminino pode escolher entre mentor e aprendiz</label>
+                                {errors.agree && <span className="danger">{errors.agree.message}</span>}
                             </div>
                             <Button>REGISTRAR</Button>
                         </form>
