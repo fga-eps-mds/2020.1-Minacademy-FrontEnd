@@ -4,21 +4,23 @@ on:
   push:
     branches:
       - develop
+      - 68-code-climate
 
 jobs:
   tests:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-    - name: Check out the repo
-      uses: actions/checkout@v2
-
-    - name: Install modules
-      run: npm install
-
-    - name: Run tests
-      run: npm test
-
+      - uses: actions/checkout@v2
+      - name: Install Modules
+        run: npm install
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
+        with:
+          coverageCommand: npm run test
+          coverageLocations: coverage/lcov.info:lcov
   build:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
