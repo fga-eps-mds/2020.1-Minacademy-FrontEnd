@@ -4,6 +4,15 @@ on:
   pull_request:
 
 jobs:
+  eslint: 
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: src/
+
   tests:
     name: Run tests
     runs-on: ubuntu-latest
