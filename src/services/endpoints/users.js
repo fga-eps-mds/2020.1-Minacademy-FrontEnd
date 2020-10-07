@@ -2,7 +2,7 @@ const USER_ENDPOINT = '/users';
 const LOGIN_ENDPOINT = '/users/login'
 const LOGOUT_ENDPOINT = '/users/logout'
 const PROFILE_ENDPOINT = `/editUser/`
-const RESET_PASS_ENDPOINT = '/resetPass'
+const FORGOT_PASSWORD_ENDPOINT = '/forgotPassword'
 const CHANGE_PASS_ENDPOINT = '/changePass'
 
 export {
@@ -10,6 +10,6 @@ export {
   LOGIN_ENDPOINT,
   LOGOUT_ENDPOINT,
   PROFILE_ENDPOINT,
-  RESET_PASS_ENDPOINT,
+  FORGOT_PASSWORD_ENDPOINT,
   CHANGE_PASS_ENDPOINT
 }

@@ -4,12 +4,12 @@ import '../../index.css'
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { resetUserPassword } from '../../services/usersService';
+import { forgotPassword } from '../../services/usersService';
 
-function Recovery() {
+function ForgotPassword() {
 
     const { handleSubmit, register, watch, errors } = useForm();
-    const onSubmit = resetUserPassword
+    const onSubmit = forgotPassword
 
     return (
         <>
@@ -42,4 +42,4 @@ function Recovery() {
     );
 }
 
-export default Recovery;
+export default ForgotPassword;

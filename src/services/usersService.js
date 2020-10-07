@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, RESET_PASS_ENDPOINT, CHANGE_PASS_ENDPOINT } from './endpoints/users';
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT } from './endpoints/users';
 
 import api from "./api";
 
@@ -62,9 +62,9 @@ const editUser = async (values) => {
 };
 
 
-const resetUserPassword = async (values) => {
+const forgotPassword = async (values) => {
   try {
-    const response = await api.post(RESET_PASS_ENDPOINT, values);
+    const response = await api.post(FORGOT_PASSWORD_ENDPOINT, values);
     console.log(response.data)
     alert('Email enviado')
   } catch (err) {
@@ -88,6 +88,6 @@ export {
   logout,
   registerRequest,
   editUser,
-  resetUserPassword,
+  forgotPassword,
   changeUserPassword 
 }
