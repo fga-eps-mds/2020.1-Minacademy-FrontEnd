@@ -19,6 +19,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
           SKIP_PREFLIGHT_CHECK: true
+          CI: true
         with:
           coverageCommand: npm run test
           coverageLocations: coverage/lcov.info:lcov

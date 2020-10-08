@@ -3,11 +3,7 @@ WORKDIR /app
 
 ENV NODE_ENV=development
 
-RUN npm install react-scripts@3.4.1 -g --silent
-
 COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
-COPY yarn.lock /app/yarn.lock
 
 RUN npm install --no-optional
 
