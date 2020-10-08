@@ -12,8 +12,10 @@
 
   &__content {
     max-width: 90%;
+    min-width: 90%;
     margin: 0 auto;
     align-self: center;
+
     &--header {
       display: flex;
       justify-content: space-between;

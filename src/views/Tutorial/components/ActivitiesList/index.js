@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { selectActivitiesList, selectCurrentModule, selectActivitiesResults } from '../../../../slices/tutorialSlice';
-import { getQuestions, getQuestionsResults } from '../../../../services/tutorialServices';
+import { getQuestions, getAnswers } from '../../../../services/tutorialServices';
 import './style.scss';
 
-function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQuestions, getQuestionsResults }) {
+function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQuestions, getAnswers }) {
   const match = useRouteMatch();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function ActivitiesList({ activitiesList, activitiesResults, currentModule, getQ
   }, [currentModule]);
 
   useEffect(() => {
-    getQuestionsResults(activitiesList.map(activity => activity._id));
+    getAnswers(activitiesList.map(activity => activity._id));
   }, [activitiesList]);
 
   const result = activity => activitiesResults.find(result => result.question === activity._id)?.isCorrect
@@ -53,7 +53,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
-  getQuestionsResults: questions => dispatch(getQuestionsResults(questions)),
+  getAnswers: questions => dispatch(getAnswers(questions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivitiesList);
