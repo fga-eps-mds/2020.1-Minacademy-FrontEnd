@@ -20,7 +20,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
           SKIP_PREFLIGHT_CHECK: true
         with:
-          coverageCommand: npm test
+          coverageCommand: npm run test
           coverageLocations: coverage/lcov.info:lcov
   build:
     name: Push Docker image to GitHub Packages
