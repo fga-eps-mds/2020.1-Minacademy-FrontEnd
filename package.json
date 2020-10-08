@@ -5,6 +5,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.20.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "bootstrap": "^4.5.2",
     "install": "^0.13.0",
     "mutationobserver-shim": "^0.3.7",
