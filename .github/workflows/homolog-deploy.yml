@@ -31,7 +31,7 @@ jobs:
           SKIP_PREFLIGHT_CHECK: true
         run: npm run test
   publish:
-    name: Run tests
+    name: Publish CC
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
