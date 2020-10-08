@@ -1,11 +1,9 @@
 const QUESTIONS_ENDPOINT = '/questions';
 const MODULES_ENDPOINT = '/modules';
-const RESULT_ENDPOINT = './questions/result';
-const IS_MODULE_COMPLETE = '/questions/completed';
+const ANSWERS_ENDPOINT = '/answer'
 
 export {
- QUESTIONS_ENDPOINT,
- MODULES_ENDPOINT,
- RESULT_ENDPOINT,
- IS_MODULE_COMPLETE
+  QUESTIONS_ENDPOINT,
+  MODULES_ENDPOINT,
+  ANSWERS_ENDPOINT
 }

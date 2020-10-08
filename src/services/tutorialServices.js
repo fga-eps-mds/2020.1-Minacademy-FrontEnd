@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,
-  RESULT_ENDPOINT
+  ANSWERS_ENDPOINT
 } from './endpoints/tutorials';
 
 const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
@@ -18,7 +18,7 @@ const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
 
 const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async data => {
   try {
-    const response = await api.post(RESULT_ENDPOINT, data);
+    const response = await api.post(ANSWERS_ENDPOINT, data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -26,17 +26,15 @@ const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async data =>
   }
 });
 
-const getQuestionsResults = createAsyncThunk('tutorial/getQuestionsResults', async questions => {
+const getAnswers = createAsyncThunk('tutorial/getQuestionsResults', async (questions = []) => {
   questions = questions.map(item => `questions=${item}`).join('&');
   try {
-    const response = await api.get(`${RESULT_ENDPOINT}?${questions}`);
+    const response = await api.get(`${ANSWERS_ENDPOINT}?${questions}`);
     return response.data;
   } catch (error) {
-    console.log(error);
-    return []
+    return { correctAnswers: 0, queryAnswers: []}
   }
 });
-
 
 
 const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async currentModule => {
@@ -61,5 +59,5 @@ export {
   updateMarkdown,
   getModules,
   answerQuestion,
-  getQuestionsResults,
+  getAnswers,
 };

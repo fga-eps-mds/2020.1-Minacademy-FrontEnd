@@ -4,7 +4,7 @@ import {
   answerQuestion,
   updateMarkdown,
   getModules,
-  getQuestionsResults
+  getAnswers
 } from '../services/tutorialServices';
 
 const initialState = {
@@ -12,7 +12,10 @@ const initialState = {
   markdown: '',
   activities: [],
   activitiesResults: [],
-  modules: []
+  modules: [],
+  completedActivities: 0,
+  completedModules: [],
+  totalProgress: 0
 };
 
 const tutorial = createSlice({
@@ -28,7 +31,7 @@ const tutorial = createSlice({
       state.activities = action.payload
     },
     [answerQuestion.fulfilled]: (state, action) => {
-      const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
+      const activitiesResults = state.activitiesResults.filter(item => item.question !== action.payload.question)
       state.activitiesResults = [...activitiesResults, action.payload]
     },
     [updateMarkdown.fulfilled]: (state, action) => {
@@ -37,8 +40,12 @@ const tutorial = createSlice({
     [getModules.fulfilled]: (state, action) => {
       state.modules = action.payload
     },
-    [getQuestionsResults.fulfilled]: (state, action) => {
-      state.activitiesResults = action.payload
+    [getAnswers.fulfilled]: (state, action) => {
+      if (action.payload.queryAnswers) {
+        state.activitiesResults = action.payload.queryAnswers
+      }
+      state.completedActivities = action.payload.correctAnswers
+      state.totalProgress = action.payload.totalProgress
     }
   }
 });
@@ -73,6 +80,16 @@ export const selectActivitiesResults = createSelector(
 export const selectActivitiesList = createSelector(
   [selectTutorial],
   tutorial => tutorial.activities
+)
+
+export const selectCompletedActivities = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.completedActivities
+)
+
+export const selectTotalProgress = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.totalProgress
 )
 
 export const selectModuleList = createSelector(
