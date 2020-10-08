@@ -18,6 +18,7 @@ jobs:
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
+          SKIP_PREFLIGHT_CHECK: true
         with:
           coverageCommand: npm run test
           coverageLocations: coverage/lcov.info:lcov
