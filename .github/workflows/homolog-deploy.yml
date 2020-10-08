@@ -26,14 +26,18 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Modules
         run: npm install
-      - name: Test & publish code coverage
+      - name: Run Tests
+        env:
+          SKIP_PREFLIGHT_CHECK: true
+          CI: true
+        run: npm run test
+      - name: Publish code coverage
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
           SKIP_PREFLIGHT_CHECK: true
           CI: true
         with:
-          coverageCommand: npm test
           coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
   build:
     name: Push Docker image to GitHub Packages
