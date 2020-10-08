@@ -21,6 +21,7 @@ jobs:
           SKIP_PREFLIGHT_CHECK: true
           CI: true
         with:
+          coverageCommand: npm run test
           coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
   build:
     name: Push Docker image to GitHub Packages
