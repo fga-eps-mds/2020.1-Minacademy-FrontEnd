@@ -30,6 +30,13 @@ jobs:
         env:
           SKIP_PREFLIGHT_CHECK: true
         run: npm run test
+  publish:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Modules
+        run: npm install      
       - name: Publish
         uses: paambaati/codeclimate-action@v2.7.4
         env:
