@@ -64,7 +64,7 @@ const editUser = async (values) => {
 
 const forgotPassword = async (values) => {
   try {
-    const response = await api.post(FORGOT_PASSWORD_ENDPOINT, values);
+    const response = await api.put(FORGOT_PASSWORD_ENDPOINT, values);
     console.log(response.data)
     alert('Email enviado')
   } catch (err) {
