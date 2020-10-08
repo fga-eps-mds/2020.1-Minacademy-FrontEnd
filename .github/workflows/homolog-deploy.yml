@@ -38,7 +38,7 @@ jobs:
           SKIP_PREFLIGHT_CHECK: true
           CI: true
         with:
-          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
+          coverageLocations: coverage/lcov.info:lcov
   build:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
