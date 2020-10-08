@@ -8,14 +8,14 @@ on:
 
 jobs:
   lint:
-    name: Run tests
+    name: Run Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install Modules
         run: npm install
       - name: ESLint
-        run: npm build
+        run: npm run build
   tests:
     name: Run tests
     runs-on: ubuntu-latest
