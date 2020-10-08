@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watch=false --coverage --sourceMap=true --codeCoverage=true",
+    "test": "react-scripts test --collect-coverage",
     "eject": "react-scripts eject",
     "lint": "eslint ."
   },
