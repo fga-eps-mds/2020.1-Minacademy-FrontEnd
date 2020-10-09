@@ -25,7 +25,7 @@ const Routes = () => {
           <PublicRoute exact path="/cadastro" component={Register} />
           <PrivateRoute path="/tutorial" component={Tutorial} />
           <PublicRoute exact path="/forgotPassword" component={ForgotPassword} />
-          <PublicRoute exact path="/change" component={Change} />
+          <PublicRoute exact path="/change/:resetLink" component={Change} />
           <PrivateRoute exact path="/perfil" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>

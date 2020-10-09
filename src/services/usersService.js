@@ -67,6 +67,7 @@ const forgotPassword = async (values) => {
     const response = await api.put(FORGOT_PASSWORD_ENDPOINT, values);
     console.log(response.data)
     alert('Email enviado')
+    return response.data;
   } catch (err) {
     alert('Erro ao ao enviar Email')
   }
@@ -74,7 +75,7 @@ const forgotPassword = async (values) => {
 
 const changeUserPassword = async (values) => {
   try {
-    const response = await api.post(CHANGE_PASS_ENDPOINT, values);
+    const response = await api.put(CHANGE_PASS_ENDPOINT, values);
     console.log(response.data)
     alert('Senha alterada com sucesso')
   } catch (err) {

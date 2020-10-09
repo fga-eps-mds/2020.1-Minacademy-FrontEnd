@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from '../../components/Button';
 import '../../index.css'
 import './style.scss';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { changeUserPassword  } from '../../services/usersService';
+import {forgotPassword} from '../../services/usersService';
 
 function Change() {
     const { handleSubmit, register, watch, errors } = useForm();
-    const onSubmit = changeUserPassword  
+    const {resetLink} = useParams();
+    const onSubmit = (values)=>{
+        console.log(resetLink);
+        changeUserPassword({password: values.password, resetLink: resetLink});
+    }
+
     return (
         <>
         <div className="change">
