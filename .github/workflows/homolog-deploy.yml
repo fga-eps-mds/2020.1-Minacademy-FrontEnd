@@ -4,22 +4,11 @@ on:
   push:
     branches:
       - develop
-      - 68-quality-cc
 
 jobs:
-  lint:
-    name: Run Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Modules
-        run: npm install
-      - name: ESLint
-        env:
-          CI: true
-        run: npm run lint
+
   tests:
-    name: Run Tests
+    name: Run Tests and Publish to CC
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +18,7 @@ jobs:
         env:
           SKIP_PREFLIGHT_CHECK: true
         run: npm run test
-      - name: Publish
+      - name: Publish to CC
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}

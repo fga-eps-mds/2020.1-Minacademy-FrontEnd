@@ -4,8 +4,19 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    name: Run Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Modules
+        run: npm install
+      - name: ESLint
+        env:
+          CI: true
+        run: npm run lint
   tests:
-    name: Run tests
+    name: Run Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,4 +24,6 @@ jobs:
     - name: Install Modules
       run: npm install
     - name: Run Tests
+      env:
+        SKIP_PREFLIGHT_CHECK: true
       run: npm test
