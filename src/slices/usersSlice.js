@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { login } from '../services/usersService'
-import { logout } from '../services/usersService'
+import { login , logout } from '../services/usersService'
+
 
 const initialState = {
   currentUser: null

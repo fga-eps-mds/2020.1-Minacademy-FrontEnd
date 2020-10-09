@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../index.css';
 import './style.scss';
+import { connect } from 'react-redux';
 import { selectCurrentModule } from '../../slices/tutorialSlice';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import { connect } from 'react-redux';
 
 function Dashboard({ currentUser, currentModule }) {
   return (

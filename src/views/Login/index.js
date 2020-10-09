@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import Button from '../../components/Button';
 import { login } from '../../services/usersService';
 import '../../index.css';
 import './style.scss';

@@ -19,7 +19,7 @@ function Activity({ activity, activitiesResults, setActivityResult, history}) {
     });
   };
 
-  let descriptionText = activity.description.split('\n').map((i) => {
+  const descriptionText = activity.description.split('\n').map((i) => {
     return <p key={i}>{i}</p>;
   });
 

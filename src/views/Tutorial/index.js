@@ -23,10 +23,8 @@ function Tutorial() {
       <div className="tutorial__content--body">
         <ActivitiesList />
         <Switch>
-          <Route path={`${match.path}/atividades/:activityNumber`} component={() => <Activity />}>
-          </Route>
-          <Route path={match.path} component={Markdown}>
-          </Route>
+          <Route path={`${match.path}/atividades/:activityNumber`} component={() => <Activity />} />
+          <Route path={match.path} component={Markdown} />
         </Switch>
       </div>
     </div>

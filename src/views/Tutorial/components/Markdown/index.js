@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
+import ReactMarkdown from 'react-markdown'
 import {
   selectCurrentModule,
   selectMarkdown,
@@ -7,7 +8,6 @@ import {
   selectModuleList
 } from '../../../../slices/tutorialSlice'
 import { updateMarkdown, getModules } from '../../../../services/tutorialServices'
-import ReactMarkdown from 'react-markdown'
 import Dropdown from '../../../../components/Dropdown';
 import Button from '../../../../components/Button'
 import './style.scss'

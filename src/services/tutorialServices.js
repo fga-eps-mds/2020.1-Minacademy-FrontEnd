@@ -1,5 +1,5 @@
-import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import api from './api';
 import {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,

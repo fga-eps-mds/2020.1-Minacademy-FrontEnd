@@ -87,8 +87,7 @@ function Profile({ currentUser }) {
                                     <input
                                         name="profileImg"
                                         type="url"
-                                        ref={register}>
-                                    </input>
+                                        ref={register} />
                                 </label>
                             </div>
                             
