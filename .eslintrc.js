@@ -42,6 +42,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'no-underscore-dangle':'off',
     'jsx-a11y/label-has-associated-control':'warn',
-    'import/no-named-as-default':'off'
+    'import/no-named-as-default':'off',
+    'no-undef':'warn'
   },
 };

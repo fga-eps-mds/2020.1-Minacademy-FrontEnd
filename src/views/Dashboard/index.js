@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo } from 'react';
 import '../../index.css';
 import './style.scss';
-import { selectCurrentModule } from '../../slices/tutorialSlice';
-import { selectCurrentUser } from '../../slices/usersSlice';
 import { connect } from 'react-redux';
-import { selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
+import { selectCurrentModule , selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
+import { selectCurrentUser } from '../../slices/usersSlice';
+
 import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
 
 function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module }) {

@@ -20,7 +20,7 @@ function Activity({ question, questionResults, answerQuestion, getProgress, hist
 
   };
 
-  let descriptionText = question.description.split('\n').map((i) => {
+  const descriptionText = question.description.split('\n').map((i) => {
     return <p key={i}>{i}</p>;
   });
 

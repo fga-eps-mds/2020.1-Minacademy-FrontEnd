@@ -15,7 +15,7 @@ function Header({ currentUser, logout }) {
   const [hidden, setHidden] = useState(true)
 
   const responsive = () => {
-    var nav = document.getElementsByClassName('header__navigation');
+    let nav = document.getElementsByClassName('header__navigation');
     if (nav.length > 0) {
       nav[0].className += '-responsive';
     } else {

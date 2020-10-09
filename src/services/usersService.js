@@ -1,4 +1,3 @@
-import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import {

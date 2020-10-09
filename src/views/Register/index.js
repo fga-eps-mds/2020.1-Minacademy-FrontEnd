@@ -71,7 +71,7 @@ function Register() {
                                             },
                                             validate: (value) => {
                                                 const passwordMatches = value === watch('password');
-                                                return passwordMatches ? passwordMatches : "As senhas nao coincidem"
+                                                return passwordMatches || "As senhas nao coincidem"
                                             }
                                         })}
 
