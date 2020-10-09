@@ -1,5 +1,3 @@
-const { off } = require("npm");
-
 module.exports = {
   env: {
     es6: true,
