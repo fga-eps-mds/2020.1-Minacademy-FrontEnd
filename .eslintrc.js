@@ -1,9 +1,14 @@
+const { off } = require("npm");
+
 module.exports = {
   env: {
-    browser: true,
     es6: true,
   },
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: [
+    'airbnb',
+    'prettier',
+    'prettier/react',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -17,12 +22,26 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: [
+    'react',
+    'prettier',
+  ],
   rules: {
-    'prettier/prettier': 'error',
-    'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
+    'react/jsx-filename-extension': [
+      'warn',
+      {
+        extensions: ['.jsx', '.js'],
+      },
+    ],
     'import/prefer-default-export': 'off',
-    'no-param-reassign': 'off',
-    'no-console': ['error', { allow: ['tron'] }],
+    'react/state-in-constructor': 'off',
+    'react/static-property-placement': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'warn',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'no-underscore-dangle':'off',
+    'jsx-a11y/label-has-associated-control':'warn',
+    'import/no-named-as-default':'off'
   },
 };
