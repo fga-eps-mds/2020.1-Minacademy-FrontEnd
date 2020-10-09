@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import '../../index.css';
 import './style.scss';
 import { selectCurrentModule } from '../../slices/tutorialSlice';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { connect } from 'react-redux';
+import { selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
+import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
 
-function Dashboard({ currentUser, currentModule }) {
+function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module }) {
+  const progress = useMemo(() => {
+    const correctAnswers = questionResults.filter(question => question.isCorrect).length
+    const totalQuestions = moduleQuestions.length
+    return totalQuestions ? { 
+      moduleProgress: Math.floor((correctAnswers / totalQuestions)*100),
+      remainingQuestions: totalQuestions - correctAnswers
+    } : 
+    {}
+  }, [questionResults])
+
+  useEffect(() => {
+    getModules()
+    getProgress(currentModule)
+    getQuestions(currentModule)
+  }, []);
+
   return (
     <>
       <div className="dashboard">
@@ -15,9 +33,13 @@ function Dashboard({ currentUser, currentModule }) {
         </div>
         <div className="dashboard__body">
           <div className="dashboard__body--card">
-            <p className="dashboard__body--card-title"> 12% completo</p>
-            <p  className="dashboard__body--card-content-emphasis">Módulo {currentModule}: Introdução a linha de comando</p>
-            <p  className="dashboard__body--card-content">3 atividades restantes</p>
+            <p className="dashboard__body--card-title"> Módulo {currentModule}: {module?.title}</p>
+            <p className="dashboard__body--card-content emphasis">{ progress?.moduleProgress || 0}% Completo</p>
+            {progress?.remainingQuestions ? 
+              <p className="dashboard__body--card-content">{progress?.remainingQuestions} atividades restantes</p>
+              :
+              <p className="dashboard__body--card-content">Módulo concluido</p>
+            }
             <a className="dashboard__body--card-link" href="/tutorial">continuar tutorial</a>
           </div>
           <div className="dashboard__body--card">
@@ -36,6 +58,14 @@ function Dashboard({ currentUser, currentModule }) {
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
   currentModule: selectCurrentModule(state),
+  module: selectModule(state),
+  questionResults: selectQuestionsResults(state),
+  moduleQuestions: selectQuestionsList(state)
 });
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => ({
+  getModules: () => dispatch(getModules()),
+  getProgress: (module) => dispatch(getProgress(module)),
+  getQuestions: (module) => dispatch(getQuestions(module))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

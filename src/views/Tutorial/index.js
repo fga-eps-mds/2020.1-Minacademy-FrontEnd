@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import './style.scss'
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import Activity from './components/Activity';
+import { selectCompletedActivities, selectTotalProgress } from '../../slices/tutorialSlice';
 
-function Tutorial() {
+function Tutorial({ completedActivities, totalProgress }) {
   const match = useRouteMatch();
 
   return (
@@ -14,10 +16,10 @@ function Tutorial() {
       <div className="tutorial__content--header">
         <div>
           <h1>Tutorial</h1>
-          <p>0% total concluído</p>
+          <p>Total concluído: { totalProgress || 0 }%</p>
         </div>
         <div className="tutorial__content--header--progress">
-          0 atividades completas
+          { completedActivities } atividades completas
         </div>
       </div>
       <div className="tutorial__content--body">
@@ -34,4 +36,9 @@ function Tutorial() {
   );
 }
 
-export default Tutorial;
+const mapStateToProps = state => ({
+  completedActivities: selectCompletedActivities(state),
+  totalProgress: selectTotalProgress(state)
+})
+
+export default connect(mapStateToProps)(Tutorial)

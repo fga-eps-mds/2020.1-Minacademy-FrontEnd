@@ -43,15 +43,16 @@
          margin-bottom: 2rem;
         }
 
-        &-title{
-          font-weight: 500;
+        &-title {
+          color: var(--title-color);
           border-bottom: 1px solid var(--border-color);
         }
 
         &-content {
           word-wrap: wrap;
+          color: var(--text-color);
 
-          &-emphasis {
+          &.emphasis {
             font-weight: 600;
           }
         }
@@ -60,7 +61,10 @@
           align-self: flex-end;
           text-align: right;
           text-decoration: underline;
-          color: var(--secondary-color);
+          color: var(--primary-button);
+          &:hover {
+            color: var(--secondary-color);
+          }
         }
       }
     }

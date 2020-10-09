@@ -1,17 +1,21 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import {
   getQuestions,
+  answerQuestion,
   updateMarkdown,
   getModules,
-  getQuestionsResults
+  getProgress,
 } from '../services/tutorialServices';
 
 const initialState = {
   currentModule: 1,
   markdown: '',
-  activities: [],
-  activitiesResults: [],
-  modules: []
+  questionsList: [],
+  questionsResults: [],
+  modules: [],
+  completedActivities: 0,
+  completedModules: [],
+  totalProgress: 0
 };
 
 const tutorial = createSlice({
@@ -20,15 +24,15 @@ const tutorial = createSlice({
   reducers: {
     setCurrentModule(state, action) {
       state.currentModule = action.payload;
-    },
-    setActivityResult(state, action) {
-      const activitiesResults = state.activitiesResults.filter(item => item._id !== action.payload._id)
-      state.activitiesResults = [...activitiesResults, action.payload]
     }
   },
   extraReducers: {
     [getQuestions.fulfilled]: (state, action) => {
-      state.activities = action.payload
+      state.questionsList = action.payload
+    },
+    [answerQuestion.fulfilled]: (state, action) => {
+      const questionsResults = state.questionsResults.filter(item => item.question !== action.payload.question)
+      state.questionsResults = [...questionsResults, action.payload]
     },
     [updateMarkdown.fulfilled]: (state, action) => {
       state.markdown = action.payload
@@ -36,17 +40,27 @@ const tutorial = createSlice({
     [getModules.fulfilled]: (state, action) => {
       state.modules = action.payload
     },
-    [getQuestionsResults.fulfilled]: (state, action) => {
-      state.activitiesResults = action.payload
+    [getProgress.fulfilled]: (state, action) => {
+      if (action.payload.queryAnswers) {
+        state.questionsResults = action.payload.queryAnswers
+      }
+      state.completedActivities = action.payload.correctAnswers
+      state.totalProgress = action.payload.totalProgress
     }
   }
 });
 
 const selectTutorial = state => state.tutorial;
 const getActivity = (state, props) => {
-  return state.tutorial.activities.find(activitie =>
-      (activitie.number == props.match.params.activityNumber)
-    )
+  return state.tutorial.questionsList.find(question =>
+    (question.number == props.match.params.activityNumber)
+  )
+}
+
+const getCurrentModule = (state, props) => {
+  return state.tutorial.modules.find(module =>
+    (module.moduleNumber == state.tutorial.currentModule)
+  )
 }
 
 export const selectCurrentModule = createSelector(
@@ -59,19 +73,34 @@ export const selectMarkdown = createSelector(
   tutorial => tutorial.markdown
 )
 
-export const selectActivity = createSelector(
+export const selectQuestion = createSelector(
   [getActivity],
-  activity => activity
+  question => question
 )
 
-export const selectActivitiesResults = createSelector(
-  [selectTutorial],
-  tutorial => tutorial.activitiesResults
+export const selectModule = createSelector(
+  [getCurrentModule],
+  module => module
 )
 
-export const selectActivitiesList = createSelector(
+export const selectQuestionsResults = createSelector(
   [selectTutorial],
-  tutorial => tutorial.activities
+  tutorial => tutorial.questionsResults
+)
+
+export const selectQuestionsList = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.questionsList
+)
+
+export const selectCompletedActivities = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.completedActivities
+)
+
+export const selectTotalProgress = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.totalProgress
 )
 
 export const selectModuleList = createSelector(
@@ -80,4 +109,4 @@ export const selectModuleList = createSelector(
 )
 
 export default tutorial.reducer;
-export const { setCurrentModule, setActivityResult } = tutorial.actions;
+export const { setCurrentModule } = tutorial.actions;

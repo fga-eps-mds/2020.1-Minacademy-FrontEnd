@@ -1,7 +1,5 @@
 import React, { useState,useEffect } from 'react';
 import './style.scss'
-import { selectCurrentUser } from '../../slices/usersSlice'
-import {getIsCompleted} from '../../services/tutorialServices'
 
 function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection }) {
   const [open, setOpen] = useState(false);

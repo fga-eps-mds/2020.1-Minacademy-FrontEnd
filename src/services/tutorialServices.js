@@ -3,8 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,
-  RESULT_ENDPOINT, 
-  IS_MODULE_COMPLETE
+  ANSWERS_ENDPOINT,
+  PROGRESS_ENDPOINT
 } from './endpoints/tutorials';
 
 const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
@@ -17,26 +17,25 @@ const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
   }
 });
 
-const answerQuestion = async data => {
+const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async data => {
   try {
-    const response = await api.post(RESULT_ENDPOINT, data);
+    const response = await api.post(ANSWERS_ENDPOINT, data);
     return response.data;
   } catch (error) {
     console.log(error);
     return {};
   }
-};
+});
 
-const getQuestionsResults = createAsyncThunk('tutorial/getQuestionsResults', async questions => {
-  questions = questions.map(item => `questions=${item}`).join('&');
+const getProgress = createAsyncThunk('tutorial/getProgress', async moduleNumber => {
   try {
-    const response = await api.get(`${RESULT_ENDPOINT}?${questions}`);
+    const response = await api.get(`${PROGRESS_ENDPOINT}?${moduleNumber ? `moduleNumber=${moduleNumber}` : ''}`);
     return response.data;
   } catch (error) {
-    console.log(error);
-    return []
+    return { correctAnswers: 0, queryAnswers: []}
   }
 });
+
 
 const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async currentModule => {
   const file = await import(`../assets/tutorial/${currentModule}.md`);
@@ -55,21 +54,10 @@ const getModules = createAsyncThunk('tutorial/getModules', async () => {
   }
 });
 
-const getIsCompleted = async module => {
-    try {
-        const response = await api.get(`${IS_MODULE_COMPLETE}?moduleNumber=${module}`);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-        return [];
-    }
-};
-
 export {
   getQuestions,
   updateMarkdown,
   getModules,
   answerQuestion,
-  getQuestionsResults,
-  getIsCompleted
+  getProgress,
 };

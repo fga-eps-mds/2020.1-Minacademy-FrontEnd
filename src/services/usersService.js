@@ -1,7 +1,12 @@
 import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT } from './endpoints/users';
+import {
+  USER_ENDPOINT,
+  LOGIN_ENDPOINT,
+  LOGOUT_ENDPOINT,
+  PROFILE_ENDPOINT,
+} from './endpoints/users';
 
 const listUsers = async () => {
   try {
@@ -15,7 +20,7 @@ const listUsers = async () => {
 
 const login = createAsyncThunk('users/login', async (values) => {
   try {
-    const response = await api.post(LOGIN_ENDPOINT, values, { withCredentials: true });
+    const response = await api.post(LOGIN_ENDPOINT, values);
     toast.success(`Seja bem-vindo ${response.data.user.name}!`)
     return response.data.user
   } catch (err) {
@@ -33,8 +38,6 @@ const logout = createAsyncThunk('users/logout', async () => {
     console.log(error.message)
   }
 });
-
-
 
 const registerRequest = async (values) => {
   try {
@@ -63,12 +66,10 @@ const editUser = async (values) => {
 };
 
 
-
-
 export {
   listUsers,
   login,
   logout,
   registerRequest,
-  editUser
+  editUser,
 }
