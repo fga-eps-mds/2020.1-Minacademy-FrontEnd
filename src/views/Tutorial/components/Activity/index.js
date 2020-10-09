@@ -2,26 +2,25 @@ import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectActivity, selectActivitiesResults } from '../../../../slices/tutorialSlice';
-import { answerQuestion, getAnswers } from '../../../../services/tutorialServices';
+import { selectQuestion, selectQuestionsResults } from '../../../../slices/tutorialSlice';
+import { answerQuestion, getProgress } from '../../../../services/tutorialServices';
 import './style.scss';
 import Button from '../../../../components/Button';
 
-function Activity({ activity, activitiesResults, answerQuestion, getAnswers, history}) {
+function Activity({ question, questionResults, answerQuestion, getProgress, history}) {
   const { handleSubmit, register, errors } = useForm();
 
-  const result = useMemo(() => activitiesResults.find(result => result.question === activity._id), [activitiesResults]);
+  const result = useMemo(() => questionResults.find(result => result.question === question._id), [questionResults]);
 
   const onSubmit = async alternative => {
-    const response = await answerQuestion({ ...alternative, question: activity._id })
+    const response = await answerQuestion({ ...alternative, question: question._id })
     if (response.payload.isCorrect) {
-      console.log("entrou")
-      getAnswers()
+      getProgress()
     }
 
   };
 
-  let descriptionText = activity.description.split('\n').map((i) => {
+  let descriptionText = question.description.split('\n').map((i) => {
     return <p key={i}>{i}</p>;
   });
 
@@ -32,16 +31,16 @@ function Activity({ activity, activitiesResults, answerQuestion, getAnswers, his
         {result?.isCorrect ? (
           <div className="activity__result">
             <h4>CORRETO!</h4>
-            <p>{activity.alternatives[result.alternative]}</p>
+            <p>{question.alternatives[result.alternative]}</p>
           </div>
         ) : (
           <>
             <form id="question" onSubmit={handleSubmit(onSubmit)}>
-              {Object.keys(activity.alternatives).map((item) => (
+              {Object.keys(question.alternatives).map((item) => (
                 <div className="activity__alternatives--item" key={item}>
                   <label htmlFor="alternative">
                     <input name="alternative" value={item} type="radio" ref={register({ required: true })} />
-                    {activity.alternatives[item]}
+                    {question.alternatives[item]}
                   </label>
                 </div>
               ))}
@@ -72,13 +71,13 @@ function Activity({ activity, activitiesResults, answerQuestion, getAnswers, his
 }
 
 const mapStateToProps = (state, props) => ({
-  activity: selectActivity(state, props),
-  activitiesResults: selectActivitiesResults(state),
+  question: selectQuestion(state, props),
+  questionResults: selectQuestionsResults(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   answerQuestion: answerData => dispatch(answerQuestion(answerData)),
-  getAnswers: questions => dispatch(getAnswers(questions))
+  getProgress: questions => dispatch(getProgress(questions))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Activity));

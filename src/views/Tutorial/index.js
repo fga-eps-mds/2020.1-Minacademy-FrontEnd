@@ -16,7 +16,7 @@ function Tutorial({ completedActivities, totalProgress }) {
       <div className="tutorial__content--header">
         <div>
           <h1>Tutorial</h1>
-          <p>Total concluído: { totalProgress }%</p>
+          <p>Total concluído: { totalProgress || 0 }%</p>
         </div>
         <div className="tutorial__content--header--progress">
           { completedActivities } atividades completas
