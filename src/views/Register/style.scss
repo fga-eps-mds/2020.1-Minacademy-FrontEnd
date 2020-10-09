@@ -10,20 +10,19 @@
     background-color: white;
     border-radius: 10px;
     width: 698px;
-    height: 750px;
+    height: 850px;
     margin: auto;
     margin-top: 10vw;
     margin-bottom: 10vw;
 
     h1 {
         font-family: Overpass;
-        margin-left: 80px;
         font-size: 48px;
     }
 
     label form input[type="text"], input[type="password"] {
         outline: none;
-        width: 200px;
+        width: 225px;
         display: block;
         border-width: 0.2px;
         box-sizing: border-box;
@@ -34,44 +33,51 @@
       
 }
 
-.register__gender {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 15px;
-    margin-left: 80px;
+.register__inputs {
+    max-width: 600px;
+    height: 310px;
+    margin-top: 40px;
+    display: flexbox;
     p {
-        font-size: 16px;
+        font-size: 20px;
         color: var(--title-color);
         font-family: Overpass;
         margin-top: 5px;
     }
+}
+
+.register__names {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
+}
+
+
+.register__mailngender {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
+    
+}
+.register__gender {
     select {
+        width: 225px;
+        height: 30px;
         background-color: white;
         border-radius: 20px;
         display: flex;
-        margin-right: 80px;
     }
 }
 
-.register__inputs {
-    max-width: 600px;
-    margin-top: 40px;
+.register__password {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 30px;
-    p {
-        margin-bottom: 0;
-    }
-    padding-right: 80px;
-    padding-left: 80px;
-    
+    grid-column-gap: 15px;
 }
-  
 
 .register__options {
     display: flex;
     flex-direction: column;
-    margin-left: 80px;
 
     p {
         font-size: 16px;

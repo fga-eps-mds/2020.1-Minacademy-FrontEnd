@@ -45,7 +45,7 @@ function Home() {
           </div>
           <div id='question2' className='question2'>
             <h2>Quem pode se tornar mentor?</h2>
-            <p>Alunas que terminaram o tutorial e as atividades podem se cadastrar como mentores.</p>
+            <p>Alunas que terminaram o tutorial e as atividades se tornam automaticamente mentoras.</p>
           </div>
         </div>
       </div>

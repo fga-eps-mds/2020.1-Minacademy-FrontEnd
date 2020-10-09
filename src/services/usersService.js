@@ -1,13 +1,6 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import {
-  USER_ENDPOINT,
-  LOGIN_ENDPOINT,
-  LOGOUT_ENDPOINT,
-  PROFILE_ENDPOINT,
-} from './endpoints/users';
-
-import api from "./api";
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, EMAIL_ENDPOINT } from './endpoints/users';
 
 const listUsers = async () => {
   try {
@@ -40,6 +33,16 @@ const logout = createAsyncThunk('users/logout', async () => {
   }
 });
 
+const isEmailUsed = async (value) => {
+  try {
+    const response = await api.get(EMAIL_ENDPOINT+`?email=${value}`);
+    console.log(response.data);
+    return response.data ? "email já cadastrado" : false;
+  }catch (err) {
+    return [];
+  }
+}
+
 const registerRequest = async (values) => {
   try {
     const headers = {
@@ -71,6 +74,7 @@ export {
   listUsers,
   login,
   logout,
+  isEmailUsed,
   registerRequest,
   editUser,
 }
