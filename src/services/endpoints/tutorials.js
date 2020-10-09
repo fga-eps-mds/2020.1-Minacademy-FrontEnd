@@ -1,9 +1,11 @@
 const QUESTIONS_ENDPOINT = '/questions';
 const MODULES_ENDPOINT = '/modules';
 const ANSWERS_ENDPOINT = '/answer'
+const PROGRESS_ENDPOINT = '/progress'
 
 export {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,
-  ANSWERS_ENDPOINT
+  ANSWERS_ENDPOINT,
+  PROGRESS_ENDPOINT
 }

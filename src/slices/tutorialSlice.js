@@ -4,14 +4,14 @@ import {
   answerQuestion,
   updateMarkdown,
   getModules,
-  getAnswers
+  getProgress,
 } from '../services/tutorialServices';
 
 const initialState = {
   currentModule: 1,
   markdown: '',
-  activities: [],
-  activitiesResults: [],
+  questionsList: [],
+  questionsResults: [],
   modules: [],
   completedActivities: 0,
   completedModules: [],
@@ -28,11 +28,11 @@ const tutorial = createSlice({
   },
   extraReducers: {
     [getQuestions.fulfilled]: (state, action) => {
-      state.activities = action.payload
+      state.questionsList = action.payload
     },
     [answerQuestion.fulfilled]: (state, action) => {
-      const activitiesResults = state.activitiesResults.filter(item => item.question !== action.payload.question)
-      state.activitiesResults = [...activitiesResults, action.payload]
+      const questionsResults = state.questionsResults.filter(item => item.question !== action.payload.question)
+      state.questionsResults = [...questionsResults, action.payload]
     },
     [updateMarkdown.fulfilled]: (state, action) => {
       state.markdown = action.payload
@@ -40,9 +40,9 @@ const tutorial = createSlice({
     [getModules.fulfilled]: (state, action) => {
       state.modules = action.payload
     },
-    [getAnswers.fulfilled]: (state, action) => {
+    [getProgress.fulfilled]: (state, action) => {
       if (action.payload.queryAnswers) {
-        state.activitiesResults = action.payload.queryAnswers
+        state.questionsResults = action.payload.queryAnswers
       }
       state.completedActivities = action.payload.correctAnswers
       state.totalProgress = action.payload.totalProgress
@@ -52,9 +52,15 @@ const tutorial = createSlice({
 
 const selectTutorial = state => state.tutorial;
 const getActivity = (state, props) => {
-  return state.tutorial.activities.find(activitie =>
-      (activitie.number == props.match.params.activityNumber)
-    )
+  return state.tutorial.questionsList.find(question =>
+    (question.number == props.match.params.activityNumber)
+  )
+}
+
+const getCurrentModule = (state, props) => {
+  return state.tutorial.modules.find(module =>
+    (module.moduleNumber == state.tutorial.currentModule)
+  )
 }
 
 export const selectCurrentModule = createSelector(
@@ -67,19 +73,24 @@ export const selectMarkdown = createSelector(
   tutorial => tutorial.markdown
 )
 
-export const selectActivity = createSelector(
+export const selectQuestion = createSelector(
   [getActivity],
-  activity => activity
+  question => question
 )
 
-export const selectActivitiesResults = createSelector(
-  [selectTutorial],
-  tutorial => tutorial.activitiesResults
+export const selectModule = createSelector(
+  [getCurrentModule],
+  module => module
 )
 
-export const selectActivitiesList = createSelector(
+export const selectQuestionsResults = createSelector(
   [selectTutorial],
-  tutorial => tutorial.activities
+  tutorial => tutorial.questionsResults
+)
+
+export const selectQuestionsList = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.questionsList
 )
 
 export const selectCompletedActivities = createSelector(

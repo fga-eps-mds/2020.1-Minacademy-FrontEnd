@@ -3,7 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   QUESTIONS_ENDPOINT,
   MODULES_ENDPOINT,
-  ANSWERS_ENDPOINT
+  ANSWERS_ENDPOINT,
+  PROGRESS_ENDPOINT
 } from './endpoints/tutorials';
 
 const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
@@ -26,10 +27,9 @@ const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async data =>
   }
 });
 
-const getAnswers = createAsyncThunk('tutorial/getQuestionsResults', async (questions = []) => {
-  questions = questions.map(item => `questions=${item}`).join('&');
+const getProgress = createAsyncThunk('tutorial/getProgress', async moduleNumber => {
   try {
-    const response = await api.get(`${ANSWERS_ENDPOINT}?${questions}`);
+    const response = await api.get(`${PROGRESS_ENDPOINT}?${moduleNumber ? `moduleNumber=${moduleNumber}` : ''}`);
     return response.data;
   } catch (error) {
     return { correctAnswers: 0, queryAnswers: []}
@@ -59,5 +59,5 @@ export {
   updateMarkdown,
   getModules,
   answerQuestion,
-  getAnswers,
+  getProgress,
 };
