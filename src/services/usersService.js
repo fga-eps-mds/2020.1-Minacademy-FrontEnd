@@ -35,6 +35,16 @@ const logout = createAsyncThunk('users/logout', async () => {
   }
 });
 
+const isEmailUsed = async (value) => {
+  try {
+    const response = await api.get(EMAIL_ENDPOINT+`?email=${value}`);
+    console.log(response.data);
+    return response.data ? "email já cadastrado" : false;
+  }catch (err) {
+    return [];
+  }
+}
+
 const registerRequest = async (values) => {
   try {
     const headers = {
@@ -87,6 +97,7 @@ export {
   listUsers,
   login,
   logout,
+  isEmailUsed,
   registerRequest,
   editUser,
   forgotPassword,
