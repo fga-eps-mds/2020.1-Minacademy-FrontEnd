@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, EMAIL_ENDPOINT } from './endpoints/users';
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, EMAIL_ENDPOINT, CHANGE_ENDPOINT } from './endpoints/users';
 
 const listUsers = async () => {
   try {
@@ -36,28 +36,33 @@ const logout = createAsyncThunk('users/logout', async () => {
 const isEmailUsed = async (value) => {
   try {
     const response = await api.get(EMAIL_ENDPOINT+`?email=${value}`);
-    console.log(response.data);
-    return response.data ? "email já cadastrado" : false;
+    return response.data;
   }catch (err) {
     return [];
   }
 }
 
-const registerRequest = async (values) => {
+const registerRequest = createAsyncThunk('users/register', async (values) => {
   try {
-    const headers = {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    };
-    const response = await api.post(USER_ENDPOINT, values, headers);
-    console.log(response.data)
-    toast.success('Cadastro realizado com sucesso!')
-    window.location.href = '/login'
+    const response = await api.post(USER_ENDPOINT, values);
+    toast.success('Cadastro realizado com sucesso!');
+    return response.data.user;
   } catch (err) {
     toast.error('Estamos com problema no servidor')
   }
-}
+});
+
+const changeToLearner = async () => {
+    console.log('Entrou');
+    try{
+        const response = await api.post(CHANGE_ENDPOINT);
+        toast.success('Você agora é uma aprendiz!');
+        console.log(response.data);
+        return response.data;
+    } catch (err) {
+        toast.error('Estamos com problema no servidor');
+    }
+};
 
 const editUser = async (values) => {
   try {
@@ -77,4 +82,5 @@ export {
   isEmailUsed,
   registerRequest,
   editUser,
+  changeToLearner
 }
