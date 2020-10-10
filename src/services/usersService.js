@@ -1,3 +1,4 @@
+import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, EMAIL_ENDPOINT, CHANGE_ENDPOINT } from './endpoints/users';
