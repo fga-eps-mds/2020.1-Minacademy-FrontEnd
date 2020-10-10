@@ -7,6 +7,8 @@ import {
   PROFILE_ENDPOINT,
 } from './endpoints/users';
 
+import api from "./api";
+
 const listUsers = async () => {
   try {
     const response = await api.get(USER_ENDPOINT);
