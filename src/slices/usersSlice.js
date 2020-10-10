@@ -1,6 +1,7 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { login , logout } from '../services/usersService'
-
+import { login } from '../services/usersService'
+import { logout } from '../services/usersService'
+import { registerRequest } from '../services/usersService';
 
 const initialState = {
   currentUser: null
@@ -22,6 +23,9 @@ const userSlice = createSlice({
     [logout.fulfilled]: (state, action) => {
       state.currentUser = null
     },
+    [registerRequest.fulfilled]: (state, action) => {
+        state.currentUser = action.payload
+    }
 
   }
 });
