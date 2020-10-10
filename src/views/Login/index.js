@@ -55,14 +55,14 @@ function Login({ login }) {
                         <Button small>Login</Button>
                     </form>
                     <div className="login__resources">
-                        <p>Recuperar senha</p>
+                        <p><Link to ="/forgotPassword">Recuperar senha</Link></p>
                         <p>
                             Não possui conta? <Link to="/cadastro">Cadastre-se</Link>
                         </p>
                     </div>
                 </div>
             </div>
-        </>
+        </>  
     );
 }
 

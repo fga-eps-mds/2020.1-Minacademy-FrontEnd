@@ -7,7 +7,6 @@ import { store, persistor } from './store'
 import Routes from './routes/routes';
 import './app.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './alert.scss'

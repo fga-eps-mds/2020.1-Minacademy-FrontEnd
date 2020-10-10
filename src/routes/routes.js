@@ -6,6 +6,8 @@ import Home from '../views/Home';
 import Tutorial from '../views/Tutorial';
 import Login from '../views/Login';
 import Register from '../views/Register';
+import ForgotPassword from '../views/ForgotPassword';
+import Change from '../views/Change';
 import Profile from '../views/Profile';
 import PrivateRoute from './components/privateRoute';
 import PublicRoute from './components/publicRoute';
@@ -22,6 +24,8 @@ const Routes = () => {
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/cadastro" component={Register} />
           <PrivateRoute path="/tutorial" component={Tutorial} />
+          <PublicRoute exact path="/forgotPassword" component={ForgotPassword} />
+          <PublicRoute exact path="/change/:resetLink" component={Change} />
           <PrivateRoute exact path="/perfil" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
