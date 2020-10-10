@@ -4,5 +4,5 @@ import Dropdown from '../components/Dropdown';
 import { store } from '../store';
 
 it('Expect to render Dropdown component', () => {
-  expect(shallow(<Dropdown store={store} items={[{ _id: "9999", title: "teste"}]}></Dropdown>).length).toEqual(1)
+  expect(shallow(<Dropdown store={store} items={[{ _id: "9999", title: "teste"}]} />).length).toEqual(1)
 })

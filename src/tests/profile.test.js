@@ -8,7 +8,7 @@ import 'mutationobserver-shim';
 global.MutationObserver = window.MutationObserver;
 
 it('Expect to render Profile Component', () => {
-  expect(shallow(<Profile  store={store}></Profile>).length).toEqual(1)
+  expect(shallow(<Profile  store={store} />).length).toEqual(1)
 })
 
 it('Expect to click button', () => {

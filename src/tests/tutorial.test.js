@@ -1,8 +1,8 @@
 import { shallow, render } from 'enzyme';
 import React from 'react';
-import Tutorial from '../views/Tutorial';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
+import Tutorial from '../views/Tutorial';
 import { store } from "../store";
 
 it('Expect to render Tutorial component', () => {

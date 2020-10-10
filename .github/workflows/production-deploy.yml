@@ -7,17 +7,22 @@ on:
 
 jobs:
   tests:
-    name: Run tests
+    name: Run Tests and Publish to CC
     runs-on: ubuntu-latest
     steps:
-    - name: Check out the repo
-      uses: actions/checkout@v2
-
-    - name: Install modules
-      run: npm install
-
-    - name: Run tests
-      run: npm test
+      - uses: actions/checkout@v2
+      - name: Install Modules
+        run: npm install
+      - name: Run Tests
+        env:
+          SKIP_PREFLIGHT_CHECK: true
+        run: npm run test
+      - name: Publish to CC
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
+        with:
+          coverageLocations: coverage/lcov.info:lcov
 
   build:
     name: Push Docker image to GitHub Packages

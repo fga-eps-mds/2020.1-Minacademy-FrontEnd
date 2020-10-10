@@ -12,6 +12,7 @@ services:
       - client-server-network
     environment: 
       REACT_APP_SERVER_URL: http://localhost:9000
+      SKIP_PREFLIGHT_CHECK: 'true'
 
 networks:
   client-server-network:

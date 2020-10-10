@@ -7,7 +7,7 @@ import { store } from '../store'
 global.MutationObserver = window.MutationObserver;
 
 it('Expect to render Login Component', () => {
-  expect(shallow(<Login store={store}></Login>).length).toEqual(1)
+  expect(shallow(<Login store={store} />).length).toEqual(1)
 })
 
 it('Expect to click button', () => {
