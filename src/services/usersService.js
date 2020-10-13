@@ -38,7 +38,7 @@ const logout = createAsyncThunk('users/logout', async () => {
 
 const isEmailUsed = async (value) => {
   try {
-    const response = await api.get(EMAIL_ENDPOINT+`?email=${value}`);
+    const response = await api.get(USER_ENDPOINT+`?email=${value}`);
     return response.data;
   }catch (err) {
     return [];
@@ -69,7 +69,7 @@ const changeToLearner = async () => {
 
 const editUser = async (values) => {
   try {
-    const response = await api.post(PROFILE_ENDPOINT, values);
+    const response = await api.patch(USER_ENDPOINT, values);
     console.log(response.data)
     toast.success('Informações atualizadas!')
   } catch (err) {

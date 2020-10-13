@@ -52,7 +52,7 @@ function Register({registerRequest}) {
                                         required: "campo obrigatório",
                                         pattern: {
                                             value: /^[A-Za-z][A-Za-z\s]*$/,
-                                            message: "Sobrenomeome requer apenas letras"
+                                            message: "Sobrenome requer apenas letras"
                                         }
                                     })} />
                                     {(errors.lastname && <span className="danger">{errors.lastname.message}</span>) || <br />}
@@ -137,8 +137,8 @@ function Register({registerRequest}) {
                             <div className="register__options">
                                 <div className="register__options--user">
                                     <p>tipo de cadastro</p>
-                                    <label htmlFor="mentor"><input name="userType" value="mentor" type="radio" ref={register} defaultChecked /> mentor</label>
-                                    {(gender && <label htmlFor="learner"><input name="userType" value="aprendiz" type="radio" ref={register} /> aprendiz</label>)}
+                                    <label htmlFor="Mentor"><input name="userType" value="Mentor" type="radio" ref={register} defaultChecked /> mentor</label>
+                                    {(gender && <label htmlFor="Learner"><input name="userType" value="Learner" type="radio" ref={register} /> aprendiz</label>)}
                                 </div>
                                 <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
                                     required: "concorde com os termo de consentimento",

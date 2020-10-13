@@ -14,8 +14,8 @@ function Profile({ currentUser }) {
 
     const dispatch = useDispatch();
     const onSubmit = async (data) => {
-        await editUser(data)
         data.userType = currentUser.userType
+        await editUser(data)
         dispatch(setCurrentUser(data))
     }
 
@@ -29,7 +29,7 @@ function Profile({ currentUser }) {
                             <h1>Perfil</h1>
                             <p>Adicione ou edite suas informações</p>
                         </div>
-                        <Button>{currentUser.userType.toUpperCase()}</Button>
+                        <Button>{currentUser.userType.toUpperCase()}{currentUser.isValidated === false ? " EM ESPERA" : ""}</Button>
                     </div>
                     <label>
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,6 +86,7 @@ function Profile({ currentUser }) {
                                     <span>Link da sua foto</span> <small>(comece com https://)</small>
                                     <input
                                         name="profileImg"
+                                        defaultValue={currentUser.profileImg}
                                         type="url"
                                         ref={register} />
                                 </label>
