@@ -1,8 +1,8 @@
+import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT } from './endpoints/users';
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT, CHANGE_ENDPOINT } from './endpoints/users';
 
-import api from "./api";
 
 const listUsers = async () => {
   try {
@@ -35,25 +35,40 @@ const logout = createAsyncThunk('users/logout', async () => {
   }
 });
 
-const registerRequest = async (values) => {
+const isEmailUsed = async (value) => {
   try {
-    const headers = {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    };
-    const response = await api.post(USER_ENDPOINT, values, headers);
-    console.log(response.data)
-    toast.success('Cadastro realizado com sucesso!')
-    window.location.href = '/login'
-  } catch (err) {
-    toast.error('Estamos com problema no servidor')
+    const response = await api.get(USER_ENDPOINT+`?email=${value}`);
+    return response.data;
+  }catch (err) {
+    return [];
   }
 }
 
+const registerRequest = createAsyncThunk('users/register', async (values) => {
+  try {
+    const response = await api.post(USER_ENDPOINT, values);
+    toast.success('Cadastro realizado com sucesso!');
+    return response.data.user;
+  } catch (err) {
+    toast.error('Estamos com problema no servidor')
+  }
+});
+
+const changeToLearner = async () => {
+    console.log('Entrou');
+    try{
+        const response = await api.post(CHANGE_ENDPOINT);
+        toast.success('Você agora é uma aprendiz!');
+        console.log(response.data);
+        return response.data;
+    } catch (err) {
+        toast.error('Estamos com problema no servidor');
+    }
+};
+
 const editUser = async (values) => {
   try {
-    const response = await api.post(PROFILE_ENDPOINT, values);
+    const response = await api.patch(USER_ENDPOINT, values);
     console.log(response.data)
     toast.success('Informações atualizadas!')
   } catch (err) {
@@ -87,8 +102,10 @@ export {
   listUsers,
   login,
   logout,
+  isEmailUsed,
   registerRequest,
   editUser,
   forgotPassword,
-  changeUserPassword 
+  changeUserPassword,
+  changeToLearner
 }

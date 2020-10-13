@@ -6,8 +6,9 @@ import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import Activity from './components/Activity';
 import { selectCompletedActivities, selectTotalProgress } from '../../slices/tutorialSlice';
+import { selectCurrentUser } from '../../slices/usersSlice';
 
-function Tutorial({ completedActivities, totalProgress }) {
+function Tutorial({currentUser, completedActivities, totalProgress }) {
   const match = useRouteMatch();
 
   return (
@@ -16,16 +17,16 @@ function Tutorial({ completedActivities, totalProgress }) {
       <div className="tutorial__content--header">
         <div>
           <h1>Tutorial</h1>
-          <p>Total concluído: { totalProgress || 0 }%</p>
+          {currentUser.userType == "Learner" && <p>Total concluído: { totalProgress || 0 }%</p>}
         </div>
-        <div className="tutorial__content--header--progress">
+        {currentUser.userType == "Learner" && <div className="tutorial__content--header--progress">
           { completedActivities } atividades completas
-        </div>
+        </div>}
       </div>
       <div className="tutorial__content--body">
-        <ActivitiesList />
+        {currentUser.userType == "Learner" && <ActivitiesList />}
         <Switch>
-          <Route path={`${match.path}/atividades/:activityNumber`} component={() => <Activity />} />
+          {currentUser.userType == "Learner" && <Route path={`${match.path}/atividades/:activityNumber`} component={() => <Activity />} />}
           <Route path={match.path} component={Markdown} />
         </Switch>
       </div>
@@ -35,6 +36,7 @@ function Tutorial({ completedActivities, totalProgress }) {
 }
 
 const mapStateToProps = state => ({
+  currentUser: selectCurrentUser(state),
   completedActivities: selectCompletedActivities(state),
   totalProgress: selectTotalProgress(state)
 })

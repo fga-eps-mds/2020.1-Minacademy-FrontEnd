@@ -5,25 +5,24 @@
 
 .register__form {
     padding: 5%;
-    max-height: 900px;
+    max-height: 1100px;
     font-family: Overpass;
     background-color: white;
     border-radius: 10px;
     width: 698px;
-    height: 717px;
     margin: auto;
-    margin-top: 10vw;
-    margin-bottom: 10vw;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
 
     h1 {
         font-family: Overpass;
-        margin-left: 80px;
         font-size: 48px;
+        padding-left: 20px;
     }
 
     label form input[type="text"], input[type="password"] {
         outline: none;
-        width: 200px;
+        width: 225px;
         display: block;
         border-width: 0.2px;
         box-sizing: border-box;
@@ -34,28 +33,37 @@
       
 }
 
-
-
 .register__inputs {
     max-width: 600px;
+    height: 375px;
     margin-top: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 30px;
+    grid-column-gap: 15px;
+    padding-left: 20px;
     p {
-        margin-bottom: 0;
+        font-size: 20px;
+        color: var(--title-color);
+        font-family: Overpass;
+        margin-top: 5px;
     }
-    padding-right: 80px;
-    padding-left: 80px;
-    
 }
-  
+
+
+.register__gender {
+    select {
+        width: 225px;
+        height: 30px;
+        background-color: white;
+        border-radius: 20px;
+        display: flex;
+    }
+}
 
 .register__options {
     display: flex;
     flex-direction: column;
-    margin-left: 80px;
-
+    padding-left: 20px;
     p {
         font-size: 16px;
         color: var(--title-color);
@@ -87,7 +95,7 @@
 @media(max-width: 800px) {
     .register__form {
         width: 90vw;
-        height: 46rem;
+        height: 275rem;
     }
     .register__inputs {
        display: flex;
@@ -96,6 +104,7 @@
        margin: 0;
        padding-left: 0;
        padding-right: 0;
+       height: auto;
     }
   
     .register__form h1 {
@@ -119,7 +128,8 @@
     }
 
     .register__options--user{
-        text-align: center;
+        margin-left: 20px;
+        text-align: left;
     }
    
     .register__form .button {

@@ -1,0 +1,48 @@
+.welcome {
+    height: 75vh;
+    max-width: 100%;
+
+    h1 {
+        padding-top: 5vw;
+        box-sizing: border-box;
+        font-size: 3vw;
+        font-family: Overpass;
+        margin-left: 4.5vw;
+        color: var(--title-color);
+    }
+    
+    p {
+        max-width: 90vw;
+        font-weight: 300;
+        font-size: 2vw;
+        font-family: Overpass;
+        padding-left: 4.5vw;
+        padding-right: 4.5vw;
+        text-align: justify;
+    }
+
+    .footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+
+    button {
+        position: relative;
+        margin-left: 50vw;
+        margin-right: 20vw;
+        top:2vw
+    }
+}
+
+.links {
+    a {
+        display: inline-block;
+        align-self: flex-end;
+        text-align: left;
+        text-decoration: underline;
+        color: var(--secondary-color);
+        position: relative;
+        padding-left: 65vw;
+    }
+}
