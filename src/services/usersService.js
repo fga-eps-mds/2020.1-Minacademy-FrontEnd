@@ -1,9 +1,8 @@
 import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, PROFILE_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT } from './endpoints/users';
+import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT, CHANGE_ENDPOINT } from './endpoints/users';
 
-import api from "./api";
 
 const listUsers = async () => {
   try {
