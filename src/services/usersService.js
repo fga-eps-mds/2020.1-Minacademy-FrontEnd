@@ -2,6 +2,7 @@ import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT, CHANGE_ENDPOINT } from './endpoints/users';
+import {MENTOR_REQUEST_ENDPOINT} from './endpoints/learner';
 
 
 const listUsers = async () => {

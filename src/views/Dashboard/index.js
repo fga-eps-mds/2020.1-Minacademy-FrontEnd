@@ -5,6 +5,7 @@ import './style.scss';
 import { connect } from 'react-redux';
 import { selectCurrentModule, selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
 import { selectCurrentUser } from '../../slices/usersSlice';
+import {mentorRequest} from '../../services/learnersService'
 
 import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
 
@@ -42,8 +43,13 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
           />
           <Card title="certificados"
             mainContent="Certificado de conclusão do tutorial básico"
-            linkText="Vizualizar certificados"
+            linkText="Visualizar certificados"
             linkPath="/certificados"
+          />
+          <Card title="mentoria"
+            mainContent={'Ainda não lhe foi designado nenhum mentor'}
+            linkText="Solicitar mentor"
+            linkPath='/mentoria'
           />
         </div>:
         
