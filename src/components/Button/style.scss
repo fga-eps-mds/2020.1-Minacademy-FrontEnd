@@ -1,6 +1,6 @@
 .button {
   min-width: 135px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.7rem;
   font-size: 16px;
   background-color: var(--primary-button);
   color: white;
@@ -39,7 +39,7 @@
   }
 
   &.small {
-    padding: 0.25rem;
+    padding: 0.25rem 0.7rem;
     font-size: 16px;
     font-weight: bolder;
 
@@ -57,6 +57,26 @@
     &:hover {
       background-color: var(--login-button);
       color: white;
+    }
+  }
+
+  &.success {
+    background-color: var(--secondary-green);
+
+    &:hover {
+      background-color: white;
+      border-color: var(--secondary-green);
+      color: var(--secondary-green);
+    }
+  }
+
+  &.error {
+    background-color: var(--error-color);
+
+    &:hover {
+      background-color: white;
+      border-color: var(--error-color);
+      color: var(--error-color);
     }
   }
 

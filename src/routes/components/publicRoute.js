@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom'
 
 export const PublicRoute = ({ currentUser, component: Component, ...rest }) => {
     const location = useLocation();
-    console.log(location.pathname);
     return (
         <Route {...rest} component={(props) => (
             currentUser ? (
