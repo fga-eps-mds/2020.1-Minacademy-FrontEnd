@@ -14,6 +14,9 @@ const mentorRequest = async (values) => {
   }
 };
 
+const getMentor = (learner) => {
+  
+}
 
 export {
   mentorRequest
