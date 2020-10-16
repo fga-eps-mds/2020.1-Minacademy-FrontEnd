@@ -1,9 +1,16 @@
 import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { USER_ENDPOINT, LOGIN_ENDPOINT, LOGOUT_ENDPOINT, FORGOT_PASSWORD_ENDPOINT, CHANGE_PASS_ENDPOINT, CHANGE_ENDPOINT } from './endpoints/users';
-import {MENTOR_REQUEST_ENDPOINT} from './endpoints/learner';
-
+import {
+  USER_ENDPOINT,
+  LOGIN_ENDPOINT,
+  LOGOUT_ENDPOINT,
+  FORGOT_PASSWORD_ENDPOINT,
+  CHANGE_PASS_ENDPOINT,
+  CHANGE_ENDPOINT
+} from './endpoints/users';
+import { MENTOR_REQUEST_ENDPOINT } from './endpoints/learner'
+import { setAvailability } from '../slices/mentorshipSlice';
 
 const listUsers = async () => {
   try {
@@ -15,10 +22,11 @@ const listUsers = async () => {
   }
 }
 
-const login = createAsyncThunk('users/login', async (values) => {
+const login = createAsyncThunk('users/login', async (values, { dispatch }) => {
   try {
     const response = await api.post(LOGIN_ENDPOINT, values);
     toast.success(`Seja bem-vindo ${response.data.user.name}!`)
+    dispatch(setAvailability(response.data.user.isAvailable))
     return response.data.user
   } catch (err) {
     console.log(err)
@@ -38,9 +46,9 @@ const logout = createAsyncThunk('users/logout', async () => {
 
 const isEmailUsed = async (value) => {
   try {
-    const response = await api.get(USER_ENDPOINT+`?email=${value}`);
+    const response = await api.get(USER_ENDPOINT + `?email=${value}`);
     return response.data;
-  }catch (err) {
+  } catch (err) {
     return [];
   }
 }
@@ -56,15 +64,15 @@ const registerRequest = createAsyncThunk('users/register', async (values) => {
 });
 
 const changeToLearner = async () => {
-    console.log('Entrou');
-    try{
-        const response = await api.post(CHANGE_ENDPOINT);
-        toast.success('Você agora é uma aprendiz!');
-        console.log(response.data);
-        return response.data;
-    } catch (err) {
-        toast.error('Estamos com problema no servidor');
-    }
+  console.log('Entrou');
+  try {
+    const response = await api.post(CHANGE_ENDPOINT);
+    toast.success('Você agora é uma aprendiz!');
+    console.log(response.data);
+    return response.data;
+  } catch (err) {
+    toast.error('Estamos com problema no servidor');
+  }
 };
 
 const editUser = async (values) => {

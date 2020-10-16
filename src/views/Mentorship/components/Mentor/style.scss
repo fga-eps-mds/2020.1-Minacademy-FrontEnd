@@ -1,13 +1,20 @@
 .mentor {
   width: 100%;
-  
+  font-family: Overpass;
+    
   &__header {
-    color: var(--text-color);
-    font-weight: 600;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 2rem;
+    padding-bottom: 1rem; 
+    color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
+    
+    &-title {
+      font-weight: 500;
+      font-size: 1.3rem;
+    }
   }
 
   &__content {
@@ -21,6 +28,10 @@
       @media(max-width: 600px) {
         flex-basis: 100%;
       }
+    }
+
+    h5 {
+      color: var(--text-color);
     }
   }
 
