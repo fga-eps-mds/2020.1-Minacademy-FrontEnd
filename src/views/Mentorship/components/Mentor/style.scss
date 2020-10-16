@@ -1,0 +1,46 @@
+.mentor {
+  width: 100%;
+  
+  &__header {
+    color: var(--text-color);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .card {
+      flex-basis: 30%;
+
+      @media(max-width: 600px) {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  &__action {
+    width: 40%;
+    padding: 1rem 0;
+    margin: 0 auto;
+    text-align: center;
+
+    @media(max-width: 600px) {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-weight: 600;
+    }
+  }
+}
