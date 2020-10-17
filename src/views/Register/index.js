@@ -38,7 +38,7 @@ function Register({registerRequest}) {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="register__inputs">
                                 <label>
-                                    <p>Nome</p><input type="text" name="name" ref={register({
+                                    <p>Nome</p><input type="text" name="name" id="register_first_name" ref={register({
                                         required: "campo obrigatório",
                                         pattern: {
                                             value: /^[A-Za-z][A-Za-z\s]*$/,
@@ -48,7 +48,7 @@ function Register({registerRequest}) {
                                     {(errors.name && <span className="danger">{errors.name.message}</span>) || <br />}
                                 </label>
                                 <label>
-                                    <p>Sobrenome</p><input type="text" name="lastname" ref={register({
+                                    <p>Sobrenome</p><input type="text" name="lastname" id="register_last_name" ref={register({
                                         required: "campo obrigatório",
                                         pattern: {
                                             value: /^[A-Za-z][A-Za-z\s]*$/,
@@ -95,6 +95,7 @@ function Register({registerRequest}) {
                                     <p>Senha</p> <input
                                         type="password"
                                         name="password"
+                                        id="register_password"
                                         ref={register({
                                             required: "campo obrigatório",
                                             validate:{
