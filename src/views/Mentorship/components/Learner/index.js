@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { loading, selectMentor, setMentor}  from '../../../../slices/mentorshipSlice';
+import { fetchingMentor, selectMentor, setMentor}  from '../../../../slices/mentorshipSlice';
 import { connect } from 'react-redux'
 import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
+import Loader from '../../../../components/Loader'
 import { mentorRequest, getMentor  } from '../../../../services/learnersService';
 import { selectCurrentUser } from '../../../../slices/usersSlice'
 
-function Learner({ currentUser, loading, mentorData, mentor, getMentor, mentorRequest }) {
+function Learner({ currentUser, fetchingMentor, mentorData, mentor, getMentor, mentorRequest }) {
   
   useEffect(() => {
     getMentor()
@@ -24,11 +25,11 @@ function Learner({ currentUser, loading, mentorData, mentor, getMentor, mentorRe
             secodaryContent={mentorData?.email}
           />
         ) : (
-          <p>Não lhe foi designado um mentor ainda</p>
+          <p>Não lhe foi designado um mentor ainda.</p>
         )}
       </div>
-
-      {loading ? 'CARREGANDO...' : ''}
+      
+     
       {mentor ? (
         ''
       ) : (
@@ -36,7 +37,7 @@ function Learner({ currentUser, loading, mentorData, mentor, getMentor, mentorRe
           Solicitar mentor
         </Button>
       )}
-    {loading && <p>Carregando...</p>}
+      {fetchingMentor && <Loader> Procurando mentor </Loader>}
     </div>
   );
 }
@@ -45,7 +46,7 @@ const mapStateToProps = (state) => ({
   mentorData: selectMentor(state),
   currentUser: selectCurrentUser(state),
   mentor: setMentor(state),
-  loading: loading(state)
+  fetchingMentor: fetchingMentor(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

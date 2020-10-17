@@ -8,7 +8,8 @@ const initialState = {
   mentorData: [],
   mentor: null,
   isAvailable: false,
-  fetchingLearners: false
+  fetchingLearners: false,
+  fetchingMentor: false
 };
 
 const mentorshipSlice = createSlice({
@@ -56,16 +57,17 @@ const mentorshipSlice = createSlice({
     [getMentor.fulfilled]: (state, action) => {
       state.mentorData = action.payload
     },
-    [mentorRequest.fulfilled]: (state, action) => {
-      console.log("teste", state.mentor)
-      state.mentor = action.payload ? action.payload._id : null
-    },
     [mentorRequest.pending]: (state, action) => {
       state.mentor = state.mentor
+      state.fetchingMentor = true
+    },
+    [mentorRequest.fulfilled]: (state, action) => {
+      state.mentor = action.payload ? action.payload._id : null
+      state.fetchingMentor = false
     },
     [mentorRequest.rejected]: (state, action) => {
-      console.log("teste", state.mentor)
       state.mentor = state.mentor
+      state.fetchingMentor = false
     },
   }
 
@@ -81,6 +83,11 @@ export const loading = createSelector(
 export const fetchingLearners = createSelector(
   [selectMentorship],
   mentorship => mentorship.fetchingLearners
+)
+
+export const fetchingMentor = createSelector(
+  [selectMentorship],
+  mentorship => mentorship.fetchingMentor
 )
 
 export const selectLearners = createSelector(
