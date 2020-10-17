@@ -12,23 +12,20 @@ it('Expect to render Register Component', () => {
 
 it('Expect to click button', () => {
   const wrapper = shallow(<Register store={store} />);
-  wrapper.find('Button').simulate('click')
+  wrapper.dive('Button').simulate('click');
 })
 
 it('Expect to click name input', () => {
   const wrapper = shallow(<Register store={store}/>);
-  const input = wrapper.find('input').at(0).simulate('change', { target: { name: 'name' } })
-  expect(input.props().name).toEqual('name');
+  wrapper.dive('input').simulate('change', { target: { name: 'name' } })
 })
 
 it('Expect to click email input', () => {
   const wrapper = shallow(<Register store={store} />);
-  const input = wrapper.find('input').at(1).simulate('change', { target: { name: 'email' } })
-  expect(input.props().name).toEqual('email');
+  wrapper.dive('input').simulate('change', { target: { name: 'email' } })
 })
 
 it('Expect to click password input', () => {
   const wrapper = shallow(<Register store={store}/>);
-  const input = wrapper.find('input').at(2).simulate('change', { target: { name: 'password' } })
-  expect(input.props().name).toEqual('password');
+  wrapper.dive('input').simulate('change', { target: { name: 'password' } })
 })
