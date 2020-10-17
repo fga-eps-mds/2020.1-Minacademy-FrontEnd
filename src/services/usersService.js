@@ -35,8 +35,9 @@ const login = createAsyncThunk('users/login', async (values, { dispatch }) => {
   }
 });
 
-const logout = createAsyncThunk('users/logout', async () => {
+const logout = createAsyncThunk('users/logout', async (values, { dispatch }) => {
   try {
+    dispatch(setMentor(null))
     const response = await api.post(LOGOUT_ENDPOINT);
     toast('Volte logo!');
     console.log(response.data);
