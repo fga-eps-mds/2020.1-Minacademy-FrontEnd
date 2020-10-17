@@ -5,11 +5,12 @@ import './style.scss';
 import { connect } from 'react-redux';
 import { selectCurrentModule, selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import {mentorRequest} from '../../services/learnersService'
+import { selectMentor, setMentor } from '../../slices/mentorshipSlice';
+import {getMentor} from '../../services/learnersService'
 
 import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
 
-function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module }) {
+function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module, getMentor, mentorData, mentor }) {
   const progress = useMemo(() => {
     const correctAnswers = questionResults.filter(question => question.isCorrect).length
     const totalQuestions = moduleQuestions.length
@@ -25,6 +26,19 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
     getProgress(currentModule)
     getQuestions(currentModule)
   }, []);
+
+  useEffect(() => {
+  
+    getMentor()
+  }, []);
+  
+  //const currentMentor = getMentor(currentUser).then(data => console.log(data))
+  /*async function mentorName() {
+    let mentor = await getMentor(currentUser).then(data => {mentor = data.name})
+    return mentor
+  }*/
+
+  //console.log(mentorName());
 
   return (
     <>
@@ -47,8 +61,14 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
             linkPath="/certificados"
           />
           <Card title="mentoria"
-            mainContent={'Ainda não lhe foi designado nenhum mentor'}
-            linkText="Solicitar mentor"
+            mainContent={mentor ?
+              `Seu mentor: ${mentorData?.name + ' ' + mentorData?.lastname}` :
+              'Ainda não lhe foi designado nenhum mentor.'
+            }
+            secodaryContent={mentor ? 'Ele estará disponível para te ajudar nessa trilha.':''}
+            linkText={mentor ?
+              'Mentoria' :
+              'Solicitar mentor'}
             linkPath='/mentoria'
           />
         </div>:
@@ -63,7 +83,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
           />
           <Card title="certificados"
             mainContent="Certificado de mentorias"
-            linkText="Vizualizar certificados"
+            linkText="Visualizar certificados"
             linkPath="/certificados"
           />
         </div> :
@@ -89,6 +109,8 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
 }
 
 const mapStateToProps = (state) => ({
+  mentorData: selectMentor(state),
+  mentor: setMentor(state),
   currentUser: selectCurrentUser(state),
   currentModule: selectCurrentModule(state),
   module: selectModule(state),
@@ -97,8 +119,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  getMentor: () => dispatch(getMentor()),
+  setMentor: () => dispatch(setMentor()),
   getModules: () => dispatch(getModules()),
   getProgress: (module) => dispatch(getProgress(module)),
-  getQuestions: (module) => dispatch(getQuestions(module))
+  getQuestions: (module) => dispatch(getQuestions(module)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
