@@ -10,11 +10,8 @@ function ActivitiesList({ questionsList, questionsResults, currentModule, getQue
 
   useEffect(() => {
     getQuestions(currentModule);
+    getProgress(currentModule);
   }, [currentModule]);
-
-  useEffect(() => {
-    getProgress(currentModule)
-  }, [questionsList]);
 
   const result = activity => questionsResults.find(result => result.question === activity._id)?.isCorrect
 

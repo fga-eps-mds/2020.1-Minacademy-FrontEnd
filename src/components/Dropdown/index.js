@@ -12,7 +12,7 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
     } else {
       setSelection([items[0]])
     }
-  }, [items])
+  }, [items, initialSelection])
 
   function handleOnClick(item) {
     if (!selection.some(current => current._id === item._id)) {

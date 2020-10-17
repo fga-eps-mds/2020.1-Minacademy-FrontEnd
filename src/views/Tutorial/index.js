@@ -13,24 +13,22 @@ function Tutorial({currentUser, completedActivities, totalProgress }) {
 
   return (
   <div className="tutorial">
-    <div className="tutorial__content">
-      <div className="tutorial__content--header">
+      <div className="tutorial__header">
         <div>
           <h1>Tutorial</h1>
           {currentUser.userType == "Learner" && <p>Total concluído: { totalProgress || 0 }%</p>}
         </div>
-        {currentUser.userType == "Learner" && <div className="tutorial__content--header--progress">
+        {currentUser.userType == "Learner" && <div className="tutorial__header--progress">
           { completedActivities } atividades completas
         </div>}
       </div>
-      <div className="tutorial__content--body">
+      <div className="tutorial__body">
         {currentUser.userType == "Learner" && <ActivitiesList />}
         <Switch>
           {currentUser.userType == "Learner" && <Route path={`${match.path}/atividades/:activityNumber`} component={() => <Activity />} />}
           <Route path={match.path} component={Markdown} />
         </Switch>
       </div>
-    </div>
   </div>
   );
 }

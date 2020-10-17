@@ -1,51 +1,44 @@
 .tutorial {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: Overpass;
-  padding: 4rem 8rem;
+  max-width: 80%;
   margin: 0 auto;
+  padding: 5rem 1rem;
+  font-family: Overpass;
 
   @media(max-width: 600px) {
-    padding: 3rem 0;
+    max-width: 90%;
+    padding: 5rem 0;
   }
 
-  &__content {
-    max-width: 90%;
-    min-width: 90%;
-    margin: 0 auto;
-    align-self: center;
+  &__header {
+    display: flex;
+    justify-content: space-between;
 
-    &--header {
-      display: flex;
-      justify-content: space-between;
-
-      @media(max-width: 600px) {
-        padding: 0 1rem;
-        flex-direction: column;
-      }
-
-      &--progress {
-        color: var(--secondary-green);
-        font-weight: 600;
-        text-transform: uppercase;
-      }
+    @media(max-width: 600px) {
+      padding: 0 1rem;
+      flex-direction: column;
     }
 
-    &--body {
-      display: flex;
-      min-height: 50vh;
-      padding: 3em;
-      background: #FFFFFF;
-      box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.05), 0px 15px 40px rgba(0, 0, 0, 0.02);
-      border-radius: 10px;
-      margin-bottom: 3rem;
+    &--progress {
+      color: var(--secondary-green);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
 
-      @media(max-width: 600px) {
-        margin-top: 2rem;
-        flex-direction: column;
-        padding: 1rem;
-      }
+  &__body {
+    display: flex;
+    min-height: 50vh;
+    padding: 3em;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.05), 0px 15px 40px rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    margin-bottom: 3rem;
+
+    @media(max-width: 600px) {
+      margin-top: 2rem;
+      flex-direction: column;
+      padding: 1rem;
     }
   }
 }
