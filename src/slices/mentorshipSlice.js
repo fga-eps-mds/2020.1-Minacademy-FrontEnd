@@ -1,11 +1,14 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { getLearners, assignLearner, changeAvailability } from '../services/mentorsService'
+import { getMentor, mentorRequest} from '../services/learnersService'
 
 const initialState = {
   loading: false,
-  fetchingLearners: false,
   learners: [],
-  isAvailable: false
+  mentorData: [],
+  mentor: null,
+  isAvailable: false,
+  fetchingLearners: false
 };
 
 const mentorshipSlice = createSlice({
@@ -49,9 +52,23 @@ const mentorshipSlice = createSlice({
     },
     [changeAvailability.rejected]: (state, action) => {
       state.isAvailable = state.isAvailable
-    }
+    },
+    [getMentor.fulfilled]: (state, action) => {
+      state.mentorData = action.payload
+    },
+    [mentorRequest.fulfilled]: (state, action) => {
+      console.log("teste", state.mentor)
+      state.mentor = action.payload ? action.payload._id : null
+    },
+    [mentorRequest.pending]: (state, action) => {
+      state.mentor = state.mentor
+    },
+    [mentorRequest.rejected]: (state, action) => {
+      console.log("teste", state.mentor)
+      state.mentor = state.mentor
+    },
   }
-    
+
 });
 
 const selectMentorship = state => state.mentorship;
@@ -74,6 +91,16 @@ export const selectLearners = createSelector(
 export const selectAvailability = createSelector(
   [selectMentorship],
   mentorship => mentorship.isAvailable
+)
+
+export const selectMentor = createSelector(
+  [selectMentorship],
+  mentorship => mentorship.mentorData
+)
+
+export const setMentor = createSelector(
+  [selectMentorship],
+  mentorship => mentorship.mentor
 )
 
 export const { removeLearner, setAvailability } = mentorshipSlice.actions;

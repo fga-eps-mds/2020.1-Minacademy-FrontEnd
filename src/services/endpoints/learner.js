@@ -1,4 +1,4 @@
-const MENTOR_REQUEST_ENDPOINT = '/mentorRequest';
+const MENTOR_REQUEST_ENDPOINT = '/learners';
 const LEARNER_ENDPOINT = '/learners';
 
 export {

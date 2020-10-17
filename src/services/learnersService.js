@@ -1,23 +1,30 @@
 import api from './api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import {MENTOR_REQUEST_ENDPOINT} from './endpoints/learner';
+import {MENTOR_REQUEST_ENDPOINT, LEARNER_ENDPOINT } from './endpoints/learner';
 
-const mentorRequest = async (values) => {
+const mentorRequest = createAsyncThunk('mentorShip/mentorRequest', async () => {
   try {
-    const response = await api.put(MENTOR_REQUEST_ENDPOINT, values);
+    const response = await api.patch(MENTOR_REQUEST_ENDPOINT);
     console.log(response.data)
-    alert('Voce agora tem um mentor')
+    toast.success('Você agora tem um mentor')
     return response.data;
   } catch (err) {
-    alert('No momento nao temos mentores disponível porém,  nao se preocupe, assim que possivel alocaremos um monitor alocaremos um monitor para voce!')
+    toast.error('No momento não temos mentores disponíveis porém, não se preocupe, assim que possível alocaremos um mentor para você!')
   }
-};
+});
 
-const getMentor = (learner) => {
-  
-}
+const getMentor = createAsyncThunk('mentorship/getMentor', async () => {
+  try {
+    const response = await api.get(LEARNER_ENDPOINT)
+    console.log(response.data)
+    return response.data
+  } catch(err) {
+    toast.error('Não foram encontrados mentores')
+  }
+});
 
 export {
-  mentorRequest
+  mentorRequest,
+  getMentor
 }

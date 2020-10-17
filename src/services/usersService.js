@@ -11,6 +11,7 @@ import {
 } from './endpoints/users';
 import { MENTOR_REQUEST_ENDPOINT } from './endpoints/learner'
 import { setAvailability } from '../slices/mentorshipSlice';
+import { setMentor } from '../slices/mentorshipSlice';
 
 const listUsers = async () => {
   try {
@@ -20,7 +21,7 @@ const listUsers = async () => {
     console.log(error);
     return error;
   }
-}
+};
 
 const login = createAsyncThunk('users/login', async (values, { dispatch }) => {
   try {
@@ -29,18 +30,18 @@ const login = createAsyncThunk('users/login', async (values, { dispatch }) => {
     dispatch(setAvailability(response.data.user.isAvailable))
     return response.data.user
   } catch (err) {
-    console.log(err)
-    toast.error('Email ou senha incorretos')
+    console.log(err);
+    toast.error('Email ou senha incorretos');
   }
 });
 
 const logout = createAsyncThunk('users/logout', async () => {
   try {
     const response = await api.post(LOGOUT_ENDPOINT);
-    toast('Volte logo!')
+    toast('Volte logo!');
     console.log(response.data);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 });
 
@@ -51,7 +52,7 @@ const isEmailUsed = async (value) => {
   } catch (err) {
     return [];
   }
-}
+};
 
 const registerRequest = createAsyncThunk('users/register', async (values) => {
   try {
@@ -59,7 +60,7 @@ const registerRequest = createAsyncThunk('users/register', async (values) => {
     toast.success('Cadastro realizado com sucesso!');
     return response.data.user;
   } catch (err) {
-    toast.error('Estamos com problema no servidor')
+    toast.error('Estamos com problema no servidor');
   }
 });
 
@@ -78,32 +79,31 @@ const changeToLearner = async () => {
 const editUser = async (values) => {
   try {
     const response = await api.patch(USER_ENDPOINT, values);
-    console.log(response.data)
-    toast.success('Informações atualizadas!')
+    console.log(response.data);
+    toast.success('Informações atualizadas!');
   } catch (err) {
-    toast.error('Não foi possivel editar o perfil')
+    toast.error('Não foi possivel editar o perfil');
   }
 };
-
 
 const forgotPassword = async (values) => {
   try {
     const response = await api.put(FORGOT_PASSWORD_ENDPOINT, values);
-    console.log(response.data)
-    alert('Email enviado')
+    console.log(response.data);
+    alert('Email enviado');
     return response.data;
   } catch (err) {
-    alert('Erro ao ao enviar Email')
+    alert('Erro ao ao enviar Email');
   }
 };
 
 const changeUserPassword = async (values) => {
   try {
     const response = await api.put(CHANGE_PASS_ENDPOINT, values);
-    console.log(response.data)
-    alert('Senha alterada com sucesso')
+    console.log(response.data);
+    alert('Senha alterada com sucesso');
   } catch (err) {
-    alert('Erro ao alterar senha')
+    alert('Erro ao alterar senha');
   }
 };
 
@@ -116,5 +116,5 @@ export {
   editUser,
   forgotPassword,
   changeUserPassword,
-  changeToLearner
-}
+  changeToLearner,
+};
