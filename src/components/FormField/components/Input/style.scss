@@ -1,0 +1,19 @@
+.field {
+  &__input {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.35rem 1rem;
+    &--danger {
+      color: var(--error-color);
+    }
+  }
+
+}
+
+label {
+  font-size: 20px;
+  color: var(--title-color);
+  font-family: Overpass;
+  margin-top: 5px;
+}
