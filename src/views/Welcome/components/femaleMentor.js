@@ -1,10 +1,10 @@
 import React from 'react';
 import '../style.scss';
-import { useHistory } from 'react-router-dom'
-import Button from "../../../components/Button";
+// import { useHistory } from 'react-router-dom'
+// import Button from "../../../components/Button";
 
 function FemaleMentor() {
-    const history = useHistory()
+    // const history = useHistory()
 
   return (
     <>
