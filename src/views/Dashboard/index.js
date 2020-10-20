@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { selectCurrentModule, selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
 import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
 import { selectCurrentUser } from '../../slices/usersSlice';
+import { selectMentor }  from '../../slices/learnerSlice';
+import { getMentor } from '../../services/learnersService';
 import Card from '../../components/Card';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module }) {
+function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module, mentor, getMentor }) {
   const progress = useMemo(() => {
     const correctAnswers = questionResults.filter(question => question.isCorrect).length;
     const totalQuestions = moduleQuestions.length;
@@ -17,12 +19,14 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
       remainingQuestions: totalQuestions - correctAnswers
     } : {}
   }, [questionResults]);
-
+  
   useEffect(() => {
     getModules();
     getProgress(currentModule);
     getQuestions(currentModule);
+    getMentor();
   }, []);
+  
   /* eslint-disable no-nested-ternary */
   return (
     <>
@@ -46,8 +50,9 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
             linkPath="/certificados"
           />
           <Card title="mentoria"
-            mainContent="Ainda não lhe foi designado nenhum mentor"
-            linkText="Solicitar mentor"
+            mainContent={mentor ? `Seu Mentor: ${mentor.name} ${mentor.lastname}` : "Ainda não lhe foi designado nenhum mentor"}
+            secondaryContent={currentUser.mentor_request && 'Você receberá um mentor assim que houver um disponível'}
+            linkText={(mentor || currentUser.mentor_request) ? 'Monitoria' : "Solicitar mentor"} 
             linkPath='/mentoria'
           />
         </div> :
@@ -92,13 +97,15 @@ const mapStateToProps = (state) => ({
   currentModule: selectCurrentModule(state),
   module: selectModule(state),
   questionResults: selectQuestionsResults(state),
-  moduleQuestions: selectQuestionsList(state)
+  moduleQuestions: selectQuestionsList(state),
+  mentor: selectMentor(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   getModules: () => dispatch(getModules()),
   getProgress: (module) => dispatch(getProgress(module)),
   getQuestions: (module) => dispatch(getQuestions(module)),
+  getMentor: () => dispatch(getMentor())
 });
 
 Dashboard.defaultProps = {
@@ -119,7 +126,9 @@ Dashboard.propTypes = {
   questionResults: PropTypes.arrayOf(PropTypes.object),
   module: PropTypes.shape({
     title: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  getMentor: PropTypes.func.isRequired,
+  mentor: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

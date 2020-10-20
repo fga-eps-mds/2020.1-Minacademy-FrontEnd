@@ -9,11 +9,11 @@ import Button from '../../../../components/Button';
 import Loader from '../../../../components/Loader';
 
 /* eslint-disable no-shadow */
-function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor }) {
+function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, currentUser }) {
   useEffect(() => {
     getMentor()
   }, []);
-  
+
   return (
     <div className="learner">
       <div className="learner__content">
@@ -21,7 +21,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor }) {
           <Card
             title='Seu Mentor'
             mainContent={`${mentor?.name} ${mentor?.lastname}`}
-            secodaryContent={mentor?.email}
+            secondaryContent={mentor?.email}
           />
         ) : (
           <>
@@ -29,15 +29,16 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor }) {
             {!fetchingMentor && <h5>Você ainda não tem um mentor</h5>}
           </>
         )}
+        {currentUser.mentor_request && <p>Você será designada a um mentor assim que houver um disponível</p>}
       </div>
      
       {mentor ? (
         ''
       ) : (
         <>
-          <Button small onClick={assignMentor}>
+          {!(currentUser.mentor_request) && <Button small onClick={assignMentor}>
             Solicitar mentor
-          </Button>
+          </Button>}
           {loading && <Loader>Procurando mentor</Loader>}
         </>
       )}
@@ -50,7 +51,11 @@ Learner.propTypes = {
   mentor: PropTypes.oneOfType([PropTypes.object]).isRequired,
   getMentor: PropTypes.func.isRequired,
   assignMentor: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  currentUser: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.object
+  ]).isRequired
 };
 
 const mapStateToProps = (state) => ({

@@ -21,6 +21,11 @@ function Register({ registerRequest }) {
         getValues("gender") === "Female" ? setGender(true) : setGender(false)
     );
 
+    const [type, setType] = useState(false);
+    const toggleType = () => (
+        getValues("userType") === "Learner" ? setType(true) : setType(false)
+    );
+
     return (
     <>
         <div id="register">
@@ -124,9 +129,12 @@ function Register({ registerRequest }) {
                         <div className="register__options">
                             <div className="register__options--user">
                                 <p>tipo de cadastro</p>
-                                <label htmlFor="Mentor"><input name="userType" value="Mentor" type="radio" ref={register} defaultChecked /> mentor</label>
-                                {(gender && <label htmlFor="Learner"><input name="userType" value="Learner" type="radio" ref={register} /> aprendiz</label>)}
+                                <label htmlFor="Mentor"><input name="userType" value="Mentor" type="radio" ref={register} onChange={toggleType} defaultChecked /> mentor</label>
+                                {(gender && <label htmlFor="Learner"><input name="userType" value="Learner" type="radio" onChange={toggleType} ref={register} /> aprendiz</label>)}
                             </div>
+                            {type && <div className="register__options--mentorship">
+                                <label htmlFor='Mentorship'><input name="mentor_request" value="true" type="checkbox" ref={register} />Solicitar mentor (Também poderá ser solicitado posteriormente)</label>
+                            </div>}
                             <label htmlFor="agree"><input name="agree" type="checkbox" ref={register({
                                 required: "concorde com os termo de consentimento",
                             })} /> Li e concordo que para se cadastrar nesta plataforma,
