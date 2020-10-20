@@ -14,8 +14,8 @@ function Welcome({ currentUser }) {
     <>
       <div id='welcome' className='welcome'>{
           currentUser ? (
-              currentUser.userType === "learn" ? Learner() : (
-                currentUser.gender === "Female" ? FemaleMentor() : MaleMentor()
+              currentUser.userType === "Learner" ? <Learner/> : (
+                currentUser.gender === "Female" ? <FemaleMentor/> : <MaleMentor/>
               )
           ) : (
             <>
