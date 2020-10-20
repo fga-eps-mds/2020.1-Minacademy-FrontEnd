@@ -1,20 +1,22 @@
-import { combineReducers } from "redux"
+import { combineReducers } from "redux" // eslint-disable-line import/no-extraneous-dependencies
 import { persistReducer } from 'redux-persist'
 import storageSession from 'redux-persist/lib/storage/session'
 import tutorialReducer from './tutorialSlice'
 import userReducer from './usersSlice'
-import mentorshipReducer from './mentorshipSlice'
+import mentorReducer from './mentorSlice'
+import learnerReducer from './learnerSlice'
 
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  whitelist: ['user', 'tutorial', 'mentorship']
+  whitelist: ['user', 'tutorial', 'mentor', 'learner']
 }
 
 const rootReducer = combineReducers({
   user: userReducer,
   tutorial: tutorialReducer,
-  mentorship: mentorshipReducer
-})
+  mentor: mentorReducer,
+  learner: learnerReducer
+});
 
 export default persistReducer(persistConfig, rootReducer)

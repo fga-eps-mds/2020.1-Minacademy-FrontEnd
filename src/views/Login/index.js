@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -7,8 +8,11 @@ import { login } from '../../services/usersService';
 import '../../index.css';
 import './style.scss';
 
+/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 function Login({ login }) {
   const { handleSubmit, register, errors } = useForm();
+
 
   const onSubmit = (credentials) => {
     login(credentials);
@@ -52,7 +56,7 @@ function Login({ login }) {
                             })}
                         />
                         {errors.password && <span className="danger">{errors.password.message}</span>}
-                        <Button small>Login</Button>
+                        <Button type="submit" small>Login</Button>
                     </form>
                     <div className="login__resources">
                         <p><Link to ="/forgotPassword">Recuperar senha</Link></p>
@@ -65,6 +69,10 @@ function Login({ login }) {
         </>  
     );
 }
+
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
     login: (credentials) => dispatch(login(credentials)),

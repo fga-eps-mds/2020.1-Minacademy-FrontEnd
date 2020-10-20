@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux"
 import { PersistGate } from 'redux-persist/integration/react'
+import { ToastContainer } from 'react-toastify';
 import { store, persistor } from './store'
 import Routes from './routes/routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './app.scss'
 import './assets/loader.scss'
@@ -26,5 +26,5 @@ ReactDOM.render(
             </PersistGate>
         </BrowserRouter>
     </Provider>,
-    document.getElementById('root'),
+    document.getElementById('root'), // eslint-disable-line no-undef
 );

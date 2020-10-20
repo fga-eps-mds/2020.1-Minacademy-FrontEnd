@@ -1,9 +1,8 @@
 import React from 'react';
 import '../style.scss';
-import Button from './../../../components/Button';
-import { changeToLearner } from './../../../services/usersService';
-import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom'
+import Button from "../../../components/Button";
+
 
 function FemaleMentor() {
     const history = useHistory()

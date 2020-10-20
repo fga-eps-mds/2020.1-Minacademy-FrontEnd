@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { logout } from '../../services/usersService';
 import Button from '../Button';
@@ -10,16 +11,17 @@ import { ReactComponent as Arrow } from '../../assets/images/arrow.svg';
 import { ReactComponent as Hamburguer } from '../../assets/images/hamburguer.svg';
 import './style.scss';
 
-function Header({ currentUser, logout }) {
+
+function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
   const history = useHistory();
   const [hidden, setHidden] = useState(true)
 
   const responsive = () => {
-    let nav = document.getElementsByClassName('header__navigation');
+    let nav = document.getElementsByClassName('header__navigation'); // eslint-disable-line no-undef
     if (nav.length > 0) {
       nav[0].className += '-responsive';
     } else {
-      nav = document.getElementsByClassName('header__navigation-responsive');
+      nav = document.getElementsByClassName('header__navigation-responsive'); // eslint-disable-line no-undef
       nav[0].className = 'header__navigation';
     }
   };
@@ -140,5 +142,17 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
 });
+
+Header.defaultProps = {
+  currentUser: null,
+};
+
+Header.propTypes = {
+  currentUser: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.object
+  ]),
+  logout: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

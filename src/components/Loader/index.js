@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import './style.scss'
 
 const Loader = ({ children, big }) => (
@@ -11,9 +12,18 @@ const Loader = ({ children, big }) => (
         ${big ? 'big' : ''}
         `
       }
-      >
-    </div>
+       />
   </div>
 )
+
+Loader.defaultProps = {
+  children: '',
+  big: false
+};
+
+Loader.propTypes = {
+  children: PropTypes.string,
+  big: PropTypes.bool
+};
 
 export default Loader

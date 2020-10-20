@@ -1,23 +1,20 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { getLearners, assignLearner, changeAvailability } from '../services/mentorsService'
-import { getMentor, mentorRequest} from '../services/learnersService'
 
 const initialState = {
   loading: false,
   learners: [],
-  mentorData: [],
-  mentor: null,
   isAvailable: false,
   fetchingLearners: false,
-  fetchingMentor: false
 };
 
-const mentorshipSlice = createSlice({
-  name: 'mentorship',
+const mentorSlice = createSlice({
+  name: 'mentor',
   initialState,
   reducers: {
+    /* eslint-disable no-unused-vars */
+    /* eslint-disable no-param-reassign */
     removeLearner(state, action) {
-      console.log(action.payload)
       state.learners = state.learners.filter(learner => learner._id !== action.payload)
     },
     setAvailability(state, action) {
@@ -25,6 +22,7 @@ const mentorshipSlice = createSlice({
     }
   },
   extraReducers: {
+    /* eslint-disable no-param-reassign */
     [assignLearner.pending]: (state, action) => {
       state.loading = true
     },
@@ -52,63 +50,33 @@ const mentorshipSlice = createSlice({
       state.isAvailable = action.payload
     },
     [changeAvailability.rejected]: (state, action) => {
-      state.isAvailable = state.isAvailable
-    },
-    [getMentor.fulfilled]: (state, action) => {
-      state.mentorData = action.payload
-    },
-    [mentorRequest.pending]: (state, action) => {
-      state.mentor = state.mentor
-      state.fetchingMentor = true
-    },
-    [mentorRequest.fulfilled]: (state, action) => {
-      state.mentor = action.payload ? action.payload._id : null
-      state.fetchingMentor = false
-    },
-    [mentorRequest.rejected]: (state, action) => {
-      state.mentor = state.mentor
-      state.fetchingMentor = false
-    },
+      state.loading = false
+    }
   }
 
 });
 
-const selectMentorship = state => state.mentorship;
+const selectMentor = state => state.mentor;
 
 export const loading = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.loading
+  [selectMentor],
+  mentor => mentor.loading
 )
 
 export const fetchingLearners = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.fetchingLearners
-)
-
-export const fetchingMentor = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.fetchingMentor
+  [selectMentor],
+  mentor => mentor.fetchingLearners
 )
 
 export const selectLearners = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.learners
+  [selectMentor],
+  mentor => mentor.learners
 )
 
 export const selectAvailability = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.isAvailable
+  [selectMentor],
+  mentor => mentor.isAvailable
 )
 
-export const selectMentor = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.mentorData
-)
-
-export const setMentor = createSelector(
-  [selectMentorship],
-  mentorship => mentorship.mentor
-)
-
-export const { removeLearner, setAvailability } = mentorshipSlice.actions;
-export default mentorshipSlice.reducer;
+export const { removeLearner, setAvailability } = mentorSlice.actions;
+export default mentorSlice.reducer;

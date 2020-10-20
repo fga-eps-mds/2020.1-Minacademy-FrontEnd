@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import Mentor from './components/Mentor';
-import Learner from './components/Learner'
+import Learner from './components/Learner';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import './style.scss'
+import './style.scss';
 
-function Mentoring({ currentUser }) {
+function Mentorship({ currentUser }) {
 
   return(
     <div className="mentorship">
@@ -20,8 +21,15 @@ function Mentoring({ currentUser }) {
   );
 }
 
+Mentorship.propTypes = {
+  currentUser: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.object
+  ]).isRequired
+}
+
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state)
 })
 
-export default connect(mapStateToProps)(Mentoring);
+export default connect(mapStateToProps)(Mentorship);

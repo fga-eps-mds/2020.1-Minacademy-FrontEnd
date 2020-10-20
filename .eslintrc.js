@@ -24,6 +24,7 @@ module.exports = {
     'react',
     'prettier',
   ],
+  ignorePatterns: ['src/tests/*'],
   rules: {
     'react/jsx-filename-extension': [
       'warn',

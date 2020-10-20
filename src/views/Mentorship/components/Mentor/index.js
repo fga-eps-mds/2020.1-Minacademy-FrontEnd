@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import Card from '../../../../components/Card';
 import { getLearners, assignLearner, unassignLearner, changeAvailability } from '../../../../services/mentorsService';
@@ -8,18 +9,18 @@ import {
   loading,
   fetchingLearners,
   removeLearner,
-} from '../../../../slices/mentorshipSlice'
+} from '../../../../slices/mentorSlice'
 import { selectCurrentUser } from '../../../../slices/usersSlice'
 import Button from '../../../../components/Button'
 import Loader from '../../../../components/Loader';
 import './style.scss';
 
+/* eslint-disable no-shadow */
 function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, removeLearner, learnersList, loading, fetchingLearners, currentUser }) {
-
   useEffect(() => {
     getLearners()
   }, [])
-
+   
   return (
     <div className="mentor">
       {currentUser.isValidated ?
@@ -44,18 +45,18 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
                 {learnersList.map(learner =>
                   <Card
                     key={learner._id}
-                    title={learner.name + ' ' + learner.lastname}
+                    title={`${learner.name  } ${  learner.lastname}`}
                     mainContent={learner.email}
                     deleteAction={() => {
                       unassignLearner(learner._id)
                       removeLearner(learner._id)
                     }}
-                    secodaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
+                    secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
                 )}
               </>
               :
               <>
-                {fetchingLearners && <Loader big></Loader>}
+                {fetchingLearners && <Loader big />}
                 {!fetchingLearners && <h5>Você não possui nenhum aprendiz</h5>}
               </>
             }
@@ -79,6 +80,21 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
     </div>
   );
 }
+
+Mentor.propTypes = {
+  currentUser: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.object
+  ]).isRequired,
+  isAvailable: PropTypes.bool.isRequired,
+  getLearners: PropTypes.func.isRequired,
+  assignLearner: PropTypes.func.isRequired,
+  fetchingLearners: PropTypes.bool.isRequired,
+  loading:  PropTypes.bool.isRequired,
+  learnersList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  changeAvailability: PropTypes.func.isRequired,
+  removeLearner: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   isAvailable: selectAvailability(state),

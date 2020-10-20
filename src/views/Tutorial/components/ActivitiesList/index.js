@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
 import { getQuestions, getProgress } from '../../../../services/tutorialServices';
 import './style.scss';
 
+/* eslint-disable no-shadow */
 function ActivitiesList({ questionsList, questionsResults, currentModule, getQuestions, getProgress }) {
   const match = useRouteMatch();
 
@@ -41,6 +43,18 @@ function ActivitiesList({ questionsList, questionsResults, currentModule, getQue
     </div>
   );
 }
+
+ActivitiesList.defaultProps = {
+  questionsResults: []
+}
+
+ActivitiesList.propTypes = {
+  questionsList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  questionsResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
+  currentModule: PropTypes.number.isRequired,
+  getQuestions: PropTypes.func.isRequired,
+  getProgress: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   questionsList: selectQuestionsList(state),

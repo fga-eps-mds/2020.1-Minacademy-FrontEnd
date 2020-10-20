@@ -46,25 +46,28 @@
         color: var(--secondary-color);
       }
     }
-  }
-  
-  .X {
-    font-family: sans-serif;
-    font-weight: 600;
-    color: var(--error-color);
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    border: 1px solid var(--error-color);
-    width: 25px;
-    height: 26px;
-    border-radius: 50%;
-    text-align: center; 
-    transition: all 0.2s;
 
-    &:hover {
-      cursor: pointer;
-      background-color: var(--error-color);
-      color: white;
+    &-delete {
+      padding: 0;
+      font-family: sans-serif;
+      font-weight: 600;
+      color: var(--error-color);
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border: 1px solid var(--error-color);
+      width: 25px;
+      height: 26px;
+      border-radius: 50%;
+      text-align: center; 
+      transition: all 0.2s;
+  
+      &:hover {
+        cursor: pointer;
+        background-color: var(--error-color);
+        color: white;
+      }
     }
   }
+  
+  

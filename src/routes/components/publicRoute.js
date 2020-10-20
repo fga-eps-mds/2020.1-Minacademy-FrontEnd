@@ -1,15 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect , useLocation } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import { useLocation } from 'react-router-dom'
 
 export const PublicRoute = ({ currentUser, component: Component, ...rest }) => {
     const location = useLocation();
     return (
         <Route {...rest} component={(props) => (
-            currentUser ? (
-            location.pathname == '/login' ? <Redirect to="/dashboard" /> : <Redirect to="/bem-vindo"/>
+            currentUser ? ( // eslint-disable-line no-nested-ternary
+            location.pathname === '/login' ? <Redirect to="/dashboard" /> : <Redirect to="/bem-vindo"/>
             ) : (
                 <Component {...props} />
             )
@@ -19,7 +19,18 @@ export const PublicRoute = ({ currentUser, component: Component, ...rest }) => {
 
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state)
-})
+});
 
+PublicRoute.defaultProps = {
+    currentUser: null,
+};
+  
+PublicRoute.propTypes = {
+    currentUser: PropTypes.oneOfType([
+        PropTypes.oneOf([null]),
+        PropTypes.object
+    ]),
+    component: PropTypes.elementType.isRequired
+};
 
 export default connect(mapStateToProps)(PublicRoute);
