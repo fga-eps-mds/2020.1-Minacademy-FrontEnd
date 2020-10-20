@@ -7,9 +7,14 @@ import Learner from './components/learner';
 import FemaleMentor from './components/femaleMentor';
 import MaleMentor from './components/maleMentor';
 import { selectCurrentUser } from '../../slices/usersSlice';
+import { assignMentor } from '../../services/learnersService'
 
-function Welcome({ currentUser }) {
+/* eslint-disable no-shadow */
+function Welcome({ currentUser, assignMentor }) {
   /* eslint-disable no-nested-ternary */
+  if(currentUser.mentor_request){
+    assignMentor()
+  }
   return (
     <>
       <div id='welcome' className='welcome'>{
@@ -34,11 +39,16 @@ Welcome.propTypes = {
   currentUser: PropTypes.oneOfType([
     PropTypes.oneOf([null]),
     PropTypes.object
-  ]).isRequired
+  ]).isRequired,
+  assignMentor: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     currentUser: selectCurrentUser(state)
 });
 
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = dispatch => ({
+  assignMentor: () =>dispatch(assignMentor())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
