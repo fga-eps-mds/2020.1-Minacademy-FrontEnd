@@ -2,6 +2,7 @@ FROM node:13.12.0-alpine as build
 
 ENV NODE_ENV=production
 ENV SKIP_PREFLIGHT_CHECK=true
+ENV REACT_APP_SERVER_URL=https://hom-minacademy.tk/api
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
