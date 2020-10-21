@@ -26,6 +26,16 @@
     transform: scale(0.95);
   }
 
+  &:disabled {
+    background-color: var(--placeholder-color);
+    border: var(--border-color);
+    cursor: auto;
+
+    &:hover {
+      color: white;
+    }
+  }
+
   &.inverted {
     background-color: white;
     color: var(--hover-button);
