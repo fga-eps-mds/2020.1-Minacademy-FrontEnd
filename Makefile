@@ -18,9 +18,3 @@ npm:
 
 npm-dev:
 	docker-compose exec app npm install -D $(pacote)
-
-yarn:
-	docker-compose exec app yarn add $(pacote)
-
-yarn-dev:
-	docker-compose exec app yarn add --dev $(pacote)
