@@ -1,5 +1,7 @@
 version: '3.7'
+
 services:
+
   app:
     stdin_open: true
     build: ./
@@ -8,13 +10,6 @@ services:
       - '/app/node_modules'
     ports:
       - '3000:3000'
-    networks:
-      - client-server-network
     environment: 
-      REACT_APP_SERVER_URL: http://localhost:9000
+      REACT_APP_SERVER_URL: http://localhost:9000/api
       SKIP_PREFLIGHT_CHECK: 'true'
-
-networks:
-  client-server-network:
-    external:
-      name: client-server-network
