@@ -24,6 +24,10 @@ function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, g
     window.scrollTo(0, 0) // eslint-disable-line no-undef
   }, [currentModule]);
 
+  function LinkRenderer(props) {
+    return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>
+  }
+
   function next() {
     if (currentModule >= 25) return
     setCurrentModule(currentModule+1)
@@ -43,7 +47,7 @@ function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, g
         <Dropdown items={modulesList} initialSelection={currentModule} toggleItem={changeModule}/>
       </div>
       <div className="markdown__content--body">
-        <ReactMarkdown source={markdown} />
+        <ReactMarkdown source={markdown} renderers={{link: LinkRenderer}} />
       </div>
       <div className="markdown__content--navigation">
         <Button onClick={previous} shadow>anterior</Button>
