@@ -1,4 +1,8 @@
-FROM node:latest as build
+FROM node:13.12.0-alpine as build
+
+ENV NODE_ENV=production
+ENV SKIP_PREFLIGHT_CHECK=true
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app
