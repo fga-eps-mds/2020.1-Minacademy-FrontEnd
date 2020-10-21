@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loading, fetchingMentor, selectMentor, selectMentorRequest }  from '../../../../slices/learnerSlice';
 import { assignMentor, cancelMentorRequest, getMentor  } from '../../../../services/learnersService';
-import { selectCurrentUser } from '../../../../slices/usersSlice';
 import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
 import Loader from '../../../../components/Loader';
 
 /* eslint-disable no-shadow */
-function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, cancelMentorRequest, currentUser, mentorRequest }) {
+function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, cancelMentorRequest, mentorRequest }) {
   useEffect(() => {
     getMentor()
   }, []);
@@ -17,7 +16,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, can
   return (
     <div className="learner">
       <div className="learner__content">
-        {currentUser.mentor ? ( 
+        {mentor ? ( 
           <Card
             title='Seu Mentor'
             mainContent={`${mentor?.name} ${mentor?.lastname}`}
@@ -29,10 +28,10 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, can
             {!fetchingMentor && <h5>Você ainda não tem um mentor</h5>}
           </>
         )}
-        {(mentorRequest && !currentUser.mentor) && <p>Você será designada a um mentor assim que houver um disponível</p>}
+        {(mentorRequest && !mentor) && <p>Você será designada a um mentor assim que houver um disponível</p>}
       </div>
      
-      {currentUser.mentor ? (
+      {mentor ? (
         ''
       ) : (
         <>
@@ -54,16 +53,11 @@ Learner.propTypes = {
   assignMentor: PropTypes.func.isRequired,
   cancelMentorRequest: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  currentUser: PropTypes.oneOfType([
-    PropTypes.oneOf([null]),
-    PropTypes.object
-  ]).isRequired,
   mentorRequest: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   loading: loading(state),
-  currentUser: selectCurrentUser(state),
   fetchingMentor: fetchingMentor(state),
   mentor: selectMentor(state),
   mentorRequest: selectMentorRequest(state)

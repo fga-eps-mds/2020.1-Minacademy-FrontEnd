@@ -50,8 +50,8 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
             linkPath="/certificados"
           />
           <Card title="mentoria"
-            mainContent={currentUser.mentor ? `Seu Mentor: ${mentor?.name} ${mentor?.lastname}` : "Ainda não lhe foi designado nenhum mentor"}
-            secondaryContent={(currentUser.mentor_request && !currentUser.mentor) && 'Você receberá um mentor assim que houver um disponível'}
+            mainContent={mentor ? `Seu Mentor: ${mentor?.name} ${mentor?.lastname}` : "Ainda não lhe foi designado nenhum mentor"}
+            secondaryContent={(currentUser.mentor_request && !mentor) && 'Você receberá um mentor assim que houver um disponível'}
             linkText={(mentor || currentUser.mentor_request) ? 'Monitoria' : "Solicitar mentor"} 
             linkPath='/mentoria'
           />
