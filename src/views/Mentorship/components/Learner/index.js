@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loading, fetchingMentor, selectMentor }  from '../../../../slices/learnerSlice';
-import { assignMentor, getMentor  } from '../../../../services/learnersService';
+import { loading, fetchingMentor, selectMentor, selectMentorRequest }  from '../../../../slices/learnerSlice';
+import { assignMentor, cancelMentorRequest, getMentor  } from '../../../../services/learnersService';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
 import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
 import Loader from '../../../../components/Loader';
 
 /* eslint-disable no-shadow */
-function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, currentUser }) {
+function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, cancelMentorRequest, currentUser, mentorRequest }) {
   useEffect(() => {
     getMentor()
   }, []);
-
+  
   return (
     <div className="learner">
       <div className="learner__content">
-        {mentor ? ( 
+        {currentUser.mentor ? ( 
           <Card
             title='Seu Mentor'
             mainContent={`${mentor?.name} ${mentor?.lastname}`}
@@ -29,16 +29,17 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, cur
             {!fetchingMentor && <h5>Você ainda não tem um mentor</h5>}
           </>
         )}
-        {currentUser.mentor_request && <p>Você será designada a um mentor assim que houver um disponível</p>}
+        {(mentorRequest && !currentUser.mentor) && <p>Você será designada a um mentor assim que houver um disponível</p>}
       </div>
      
-      {mentor ? (
+      {currentUser.mentor ? (
         ''
       ) : (
         <>
-          {!(currentUser.mentor_request) && <Button small onClick={assignMentor}>
+          {!(mentorRequest) && <Button small onClick={assignMentor}>
             Solicitar mentor
           </Button>}
+          {(mentorRequest) && <Button small onClick={() => cancelMentorRequest()}>Cancelar solicitação</Button>}
           {loading && <Loader>Procurando mentor</Loader>}
         </>
       )}
@@ -51,23 +52,27 @@ Learner.propTypes = {
   mentor: PropTypes.oneOfType([PropTypes.object]).isRequired,
   getMentor: PropTypes.func.isRequired,
   assignMentor: PropTypes.func.isRequired,
+  cancelMentorRequest: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   currentUser: PropTypes.oneOfType([
     PropTypes.oneOf([null]),
     PropTypes.object
-  ]).isRequired
+  ]).isRequired,
+  mentorRequest: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   loading: loading(state),
   currentUser: selectCurrentUser(state),
   fetchingMentor: fetchingMentor(state),
-  mentor: selectMentor(state)
+  mentor: selectMentor(state),
+  mentorRequest: selectMentorRequest(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getMentor: () => dispatch(getMentor()),
-  assignMentor: () => dispatch(assignMentor())
+  assignMentor: () => dispatch(assignMentor()),
+  cancelMentorRequest: () => dispatch(cancelMentorRequest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Learner);
