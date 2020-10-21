@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import Card from '../../../../components/Card';
@@ -13,14 +13,24 @@ import {
 import { selectCurrentUser } from '../../../../slices/usersSlice'
 import Button from '../../../../components/Button'
 import Loader from '../../../../components/Loader';
+import Modal from '../../../../components/Modal';
 import './style.scss';
 
 /* eslint-disable no-shadow */
 function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, removeLearner, learnersList, loading, fetchingLearners, currentUser }) {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [learnerToRemoval, setLearnerToRemoval] = useState()
+
   useEffect(() => {
     getLearners()
   }, [])
-   
+
+  const unassign = (learner) => {
+    setIsModalVisible(false)
+    unassignLearner(learner._id)
+    removeLearner(learner._id)
+  }
+
   return (
     <div className="mentor">
       {currentUser.isValidated ?
@@ -48,11 +58,24 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
                     title={`${learner.name  } ${  learner.lastname}`}
                     mainContent={learner.email}
                     deleteAction={() => {
-                      unassignLearner(learner._id)
-                      removeLearner(learner._id)
+                      setLearnerToRemoval(learner)
+                      setIsModalVisible(true)
                     }}
                     secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
                 )}
+                {isModalVisible ?
+                  <Modal
+                    title={`Desvincular ${learnerToRemoval.name}`}
+                    confirmMessage='desvincular'
+                    closeMessage='cancelar'
+                    onClose={() => setIsModalVisible(false)}
+                    onConfirm={() => unassign(learnerToRemoval)}
+                  >
+                    <p>Que pena que essa relação não deu certo.</p>
+                    <p>Você tem certeza que deseja fazer isso?</p>
+                  </Modal>
+                  :
+                  null}
               </>
               :
               <>
@@ -75,7 +98,6 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
         :
         (<>
           <span className="mentor__header-title">Você ainda não foi validado para ser mentor, assim que validado poderá solicitar um aprendiz.</span>
-          
           </>)}
     </div>
   );

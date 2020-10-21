@@ -1,16 +1,16 @@
 .mentor {
   width: 100%;
   font-family: Overpass;
-    
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    padding-bottom: 1rem; 
+    padding-bottom: 1rem;
     color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
-    
+
     &-title {
       font-weight: 500;
       font-size: 1.3rem;
