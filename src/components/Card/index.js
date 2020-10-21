@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 
 function Card({ title, mainContent, secondaryContent, linkText, linkPath, deleteAction, ...otherProps }) {
   return (
-    <div className="card" {...otherProps}>
-      {deleteAction &&  <button type="button" className="card-delete" onClick={deleteAction}>X</button>}
-      <p className="card-title">{title}</p>
-      <p className="card-content emphasis">{mainContent}</p>
-      <p className="card-content">{secondaryContent}</p>
+    <div className="custom-card" {...otherProps}>
+      {deleteAction && <button type="button" className="custom-card__delete" onClick={deleteAction}>X</button>}
+      <p className="custom-card__title">{title}</p>
+      <p className="custom-card__content emphasis">{mainContent}</p>
+      <p className="custom-card__content">{secondaryContent}</p>
       {linkText &&
-        <Link className="card-link" to={linkPath}>{linkText}</Link>
+        <Link className="custom-card__link" to={linkPath}>{linkText}</Link>
       }
     </div>
   );

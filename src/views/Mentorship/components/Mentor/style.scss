@@ -22,7 +22,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
 
-    .card {
+    .custom-card {
       flex-basis: 30%;
 
       @media(max-width: 600px) {
