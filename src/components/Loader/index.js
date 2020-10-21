@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import './style.scss'
 
-const Loader = ({ children, big }) => (
-  <div  className="loader">
+const Loader = ({ children, big, ...otherProps }) => (
+  <div className="loader" {...otherProps}>
     <span className="loader__text">{children}</span>
-    <div 
+    <div
       className={
         `
         loader__dual-ring
