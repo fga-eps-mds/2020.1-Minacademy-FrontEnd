@@ -12,7 +12,7 @@ RUN npm install
 COPY . /usr/src/app
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:1.14.2
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
 COPY hom-nginx.conf /etc/nginx/nginx.conf
 
