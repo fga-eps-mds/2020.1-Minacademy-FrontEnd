@@ -17,7 +17,7 @@ import Modal from '../../../../components/Modal';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, removeLearner, learnersList, loading, fetchingLearners, currentUser }) {
+function Mentor({ getLearners, assignLearner, unassignLearner, isAvailable, changeAvailability, removeLearner, learnersList, loading, fetchingLearners, currentUser }) {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [learnerToRemoval, setLearnerToRemoval] = useState()
 
@@ -52,23 +52,27 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
           <div className="mentor__content">
             {learnersList.length ?
               <>
+                {fetchingLearners && <Loader big />}
                 {learnersList.map(learner =>
-                  <Card
-                    key={learner._id}
-                    title={`${learner.name  } ${  learner.lastname}`}
-                    mainContent={learner.email}
-                    deleteAction={() => {
-                      setLearnerToRemoval(learner)
-                      setIsModalVisible(true)
-                    }}
-                    secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
+                    <Card
+                      key={learner._id}
+                      title={`${learner.name  } ${  learner.lastname}`}
+                      mainContent={learner.email}
+                      deleteAction={() => {
+                        setLearnerToRemoval(learner)
+                        setIsModalVisible(true)
+                      }}
+                      secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
                 )}
                 {isModalVisible ?
                   <Modal
                     title={`Desvincular ${learnerToRemoval.name}`}
                     confirmMessage='desvincular'
                     closeMessage='cancelar'
-                    onClose={() => setIsModalVisible(false)}
+                    onClose={() => {
+                      setIsModalVisible(false)
+                      setLearnerToRemoval(null)
+                    }}
                     onConfirm={() => unassign(learnerToRemoval)}
                   >
                     <p>Que pena que essa relação não deu certo.</p>
@@ -96,9 +100,10 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
           </div>
         </>)
         :
-        (<>
-          <span className="mentor__header-title">Você ainda não foi validado para ser mentor, assim que validado poderá solicitar um aprendiz.</span>
-          </>)}
+        (<span className="mentor__header-title">
+          Você ainda não foi validado para ser mentor, assim que validado poderá solicitar um aprendiz.
+        </span>)
+      }
     </div>
   );
 }
@@ -130,6 +135,7 @@ const mapDispatchToProps = dispatch => ({
   getLearners: () => dispatch(getLearners()),
   assignLearner: () => dispatch(assignLearner()),
   removeLearner: learnerID => dispatch(removeLearner(learnerID)),
+  unassignLearner: learnerID => dispatch(unassignLearner(learnerID)),
   changeAvailability: () => dispatch(changeAvailability())
 })
 
