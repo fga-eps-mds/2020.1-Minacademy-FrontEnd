@@ -1,51 +1,61 @@
 import React, { useEffect, useMemo } from 'react';
-import Card from '../../components/Card';
-import '../../index.css';
-import './style.scss';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectCurrentModule, selectModule, selectQuestionsList, selectQuestionsResults } from '../../slices/tutorialSlice';
-import { selectCurrentUser } from '../../slices/usersSlice';
-
 import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
+import { selectCurrentUser } from '../../slices/usersSlice';
+import { selectMentor }  from '../../slices/learnerSlice';
+import { getMentor } from '../../services/learnersService';
+import Card from '../../components/Card';
+import './style.scss';
 
-function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module }) {
+/* eslint-disable no-shadow */
+function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module, mentor, getMentor }) {
   const progress = useMemo(() => {
-    const correctAnswers = questionResults.filter(question => question.isCorrect).length
-    const totalQuestions = moduleQuestions.length
-    return totalQuestions ? {
-      moduleProgress: Math.floor((correctAnswers / totalQuestions) * 100),
+    const correctAnswers = questionResults.filter(question => question.isCorrect).length;
+    const totalQuestions = moduleQuestions.length;
+    return totalQuestions 
+    ? { moduleProgress: Math.floor((correctAnswers / totalQuestions) * 100),
       remainingQuestions: totalQuestions - correctAnswers
-    } :
-      {}
-  }, [questionResults])
-
+    } : {}
+  }, [questionResults]);
+  
   useEffect(() => {
-    getModules()
-    getProgress(currentModule)
-    getQuestions(currentModule)
+    getMentor();
+    getModules();
+    getProgress(currentModule);
+    getQuestions(currentModule);
   }, []);
-
+  
+  /* eslint-disable no-nested-ternary */
   return (
     <>
       <div className="dashboard">
         <div className="dashboard__header">
           <h1>Olá, {currentUser.name}</h1>
-          {currentUser.userType == "Learner" && <p>Aqui você pode acompanhar seu progresso, contatar um mentor ou mentora e acessar seus certificados.</p>}
+          {currentUser.userType === "Learner" && <p>Aqui você pode acompanhar seu progresso, contatar um mentor ou mentora e acessar seus certificados.</p>}
         </div>
-        {currentUser.userType == "Learner" ? <div className="dashboard__body">
+        {currentUser.userType === "Learner" ? 
+        <div className="dashboard__body">
           <Card
             title={`Módulo ${currentModule}: ${module?.title}`}
             mainContent={`${progress?.moduleProgress || 0}% Completo`}
-            secodaryContent={progress?.remainingQuestions ? `${progress?.remainingQuestions} atividades restantes` : 'Módulo concluido'}
+            secondaryContent={progress?.remainingQuestions ? `${progress?.remainingQuestions} atividades restantes` : 'Módulo concluido'}
             linkText="atividades restantes"
             linkPath="/tutorial"
           />
           <Card title="certificados"
             mainContent="Certificado de conclusão do tutorial básico"
-            linkText="Vizualizar certificados"
+            linkText="Visualizar certificados"
             linkPath="/certificados"
           />
-        </div>:
+          <Card title="mentoria"
+            mainContent={mentor ? `Seu Mentor: ${mentor?.name} ${mentor?.lastname}` : "Ainda não lhe foi designado nenhum mentor"}
+            secondaryContent={(currentUser.mentor_request && !mentor) && 'Você receberá um mentor assim que houver um disponível'}
+            linkText={(mentor || currentUser.mentor_request) ? 'Monitoria' : "Solicitar mentor"} 
+            linkPath='/mentoria'
+          />
+        </div> :
         
         currentUser.isValidated ?
         <div className="dashboard__body">
@@ -57,7 +67,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
           />
           <Card title="certificados"
             mainContent="Certificado de mentorias"
-            linkText="Vizualizar certificados"
+            linkText="Visualizar certificados"
             linkPath="/certificados"
           />
         </div> :
@@ -72,7 +82,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
           <Card
             title="Tutorial"
             mainContent="Aqui você conhecer o tutorial que poderá lecionar se for validado."
-            secodaryContent="Se for validado, você poderá dar suporte para os aprendizes da platorma, por isso é importante conhecer bem o tutorial."
+            secondaryContent="Se for validado, você poderá dar suporte para os aprendizes da platorma, por isso é importante conhecer bem o tutorial."
             linkText="Tutorial"
             linkPath="/tutorial"
           />
@@ -80,19 +90,45 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
       </div>
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
   currentModule: selectCurrentModule(state),
   module: selectModule(state),
   questionResults: selectQuestionsResults(state),
-  moduleQuestions: selectQuestionsList(state)
+  moduleQuestions: selectQuestionsList(state),
+  mentor: selectMentor(state)
 });
 
 const mapDispatchToProps = dispatch => ({
   getModules: () => dispatch(getModules()),
   getProgress: (module) => dispatch(getProgress(module)),
-  getQuestions: (module) => dispatch(getQuestions(module))
+  getQuestions: (module) => dispatch(getQuestions(module)),
+  getMentor: () => dispatch(getMentor())
 });
+
+Dashboard.defaultProps = {
+  moduleQuestions: [],
+  questionResults: []
+};
+
+Dashboard.propTypes = {
+  currentUser: PropTypes.oneOfType([
+    PropTypes.oneOf([null]),
+    PropTypes.object
+  ]).isRequired,
+  currentModule: PropTypes.number.isRequired,
+  getModules: PropTypes.func.isRequired,
+  getQuestions: PropTypes.func.isRequired,
+  moduleQuestions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
+  getProgress: PropTypes.func.isRequired,
+  questionResults: PropTypes.arrayOf(PropTypes.object),
+  module: PropTypes.shape({
+    title: PropTypes.string
+  }).isRequired,
+  getMentor: PropTypes.func.isRequired,
+  mentor: PropTypes.oneOfType([PropTypes.object]).isRequired
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

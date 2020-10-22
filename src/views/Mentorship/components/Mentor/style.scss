@@ -1,0 +1,57 @@
+.mentor {
+  width: 100%;
+  font-family: Overpass;
+    
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem; 
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    
+    &-title {
+      font-weight: 500;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .card {
+      flex-basis: 30%;
+
+      @media(max-width: 600px) {
+        flex-basis: 100%;
+      }
+    }
+
+    h5 {
+      color: var(--text-color);
+    }
+  }
+
+  &__action {
+    width: 40%;
+    padding: 1rem 0;
+    margin: 0 auto;
+    text-align: center;
+
+    @media(max-width: 600px) {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-weight: 600;
+    }
+  }
+}

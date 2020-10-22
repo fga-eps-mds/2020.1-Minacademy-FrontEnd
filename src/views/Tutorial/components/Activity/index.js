@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectQuestion, selectQuestionsResults } from '../../../../slices/tutorialSlice';
 import { answerQuestion, getProgress } from '../../../../services/tutorialServices';
-import './style.scss';
 import Button from '../../../../components/Button';
+import './style.scss';
 
-function Activity({ question, questionResults, answerQuestion, getProgress, history}) {
+/* eslint-disable no-shadow */
+function Activity({ question, questionResults, answerQuestion, getProgress, history }) {
   const { handleSubmit, register, errors } = useForm();
 
   const result = useMemo(() => questionResults.find(result => result.question === question._id), [questionResults]);
@@ -69,6 +71,22 @@ function Activity({ question, questionResults, answerQuestion, getProgress, hist
     </div>
   );
 }
+
+Activity.defaultProps = {
+  questionResults: []
+}
+
+Activity.propTypes = {
+  question: PropTypes.shape({ 
+    _id: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    alternatives: PropTypes.oneOf([PropTypes.object]).isRequired
+  }).isRequired,
+  questionResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
+  answerQuestion: PropTypes.func.isRequired,
+  getProgress: PropTypes.func.isRequired,
+  history: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state, props) => ({
   question: selectQuestion(state, props),

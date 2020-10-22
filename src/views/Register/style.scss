@@ -47,6 +47,17 @@
         font-family: Overpass;
         margin-top: 5px;
     }
+
+    input {
+        outline: none;
+        width: 225px;
+        display: block;
+        border-width: 0.2px;
+        box-sizing: border-box;
+        padding: 5px;
+        border-radius: 10px;
+        padding: 4px 4px;
+    }
 }
 
 

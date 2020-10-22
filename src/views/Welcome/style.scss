@@ -2,6 +2,18 @@
     height: 75vh;
     max-width: 100%;
 
+    .welcome-learner {
+        p {
+            max-width: 90vw;
+            font-weight: 300;
+            font-size: 1.5vw;
+            font-family: Overpass;
+            padding-left: 4.5vw;
+            padding-right: 4.5vw;
+            text-align: justify;
+        }
+    }
+
     h1 {
         padding-top: 5vw;
         box-sizing: border-box;
@@ -9,6 +21,16 @@
         font-family: Overpass;
         margin-left: 4.5vw;
         color: var(--title-color);
+    }
+
+    h2 {
+        max-width: 90vw;
+        font-weight: 300;
+        font-size: 1.7vw;
+        font-family: Overpass;
+        padding-left: 4.5vw;
+        padding-right: 4.5vw;
+        text-align: justify;
     }
     
     p {

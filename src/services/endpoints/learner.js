@@ -1,0 +1,7 @@
+const MENTOR_REQUEST_ENDPOINT = '/learners';
+const LEARNER_ENDPOINT = '/learners';
+
+export {
+MENTOR_REQUEST_ENDPOINT,
+LEARNER_ENDPOINT,
+}

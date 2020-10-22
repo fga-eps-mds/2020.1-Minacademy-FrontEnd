@@ -7,41 +7,44 @@ import {
   PROGRESS_ENDPOINT
 } from './endpoints/tutorials';
 
-const getQuestions = createAsyncThunk('tutorial/getQuestions', async module => {
+const getQuestions = createAsyncThunk('tutorial/getQuestions', async (module, { rejectWithValue }) => {
   try {
     const response = await api.get(`${QUESTIONS_ENDPOINT}?moduleNumber=${module}`);
     return response.data;
   } catch (error) {
-    console.log(error);
-    return [];
+    return rejectWithValue([]);
   }
 });
 
-const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async data => {
+const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async (data, { rejectWithValue }) => {
   try {
     const response = await api.post(ANSWERS_ENDPOINT, data);
     return response.data;
   } catch (error) {
-    console.log(error);
-    return {};
+    return rejectWithValue({});
   }
 });
 
-const getProgress = createAsyncThunk('tutorial/getProgress', async moduleNumber => {
+const getProgress = createAsyncThunk('tutorial/getProgress', async (moduleNumber, { rejectWithValue }) => {
   try {
     const response = await api.get(`${PROGRESS_ENDPOINT}?${moduleNumber ? `moduleNumber=${moduleNumber}` : ''}`);
     return response.data;
   } catch (error) {
-    return { correctAnswers: 0, queryAnswers: []}
+    return rejectWithValue({ correctAnswers: 0, queryAnswers: []})
   }
 });
 
 
-const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async currentModule => {
-  const file = await import(`../assets/tutorial/${currentModule}.md`);
-  const response = await fetch(file.default);
-  const text = await response.text();
-  return text
+const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async (currentModule, { rejectWithValue }) => {
+  try {
+    const file = await import(`../assets/tutorial/${currentModule}.md`);
+    const response = await fetch(file.default); // eslint-disable-line no-undef
+    const text = await response.text();
+    return text
+  } catch (error) {
+    return rejectWithValue('Ocorreu um erro ao carregar o tutorial')
+  }
+  
 });
 
 const getModules = createAsyncThunk('tutorial/getModules', async () => {
@@ -49,7 +52,6 @@ const getModules = createAsyncThunk('tutorial/getModules', async () => {
     const response = await api.get(MODULES_ENDPOINT);
     return response.data;
   } catch (error) {
-    console.log(error);
     return [];
   }
 });

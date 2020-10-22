@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import ReactMarkdown from 'react-markdown'
 import {
@@ -10,27 +11,25 @@ import {
 import { updateMarkdown, getModules } from '../../../../services/tutorialServices'
 import Dropdown from '../../../../components/Dropdown';
 import Button from '../../../../components/Button'
+
 import './style.scss'
-
+/* eslint-disable no-shadow */
 function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, getModules, modulesList }) {
-
   useEffect(() => {
     getModules()
   }, [])
 
   useEffect(() => {
     updateMarkdown(currentModule)
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0) // eslint-disable-line no-undef
   }, [currentModule]);
 
   function next() {
     if (currentModule >= 25) return
-    console.log("NEXT");
     setCurrentModule(currentModule+1)
   }
   function previous() {
     if (currentModule === 1) return
-    console.log("PREVIOUS");
     setCurrentModule(currentModule-1)
   }
 
@@ -53,6 +52,15 @@ function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, g
     </div>
   );
 }
+
+Markdown.propTypes = {
+  markdown: PropTypes.string.isRequired,
+  updateMarkdown: PropTypes.func.isRequired,
+  currentModule: PropTypes.number.isRequired,
+  getModules: PropTypes.func.isRequired,
+  setCurrentModule: PropTypes.func.isRequired,
+  modulesList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired
+};
 
 const mapStateToProps = state => ({
   currentModule: selectCurrentModule(state),

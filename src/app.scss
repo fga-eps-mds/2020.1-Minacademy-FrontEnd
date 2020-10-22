@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(125deg, #fffffff0, #F0F0F0 100%);
+  font-family: Overpass;
 }
 
 h1 {
@@ -7,9 +8,9 @@ h1 {
 }
 
 p {
-  color: (--text-color);
+  color: var(--text-color);
 }
 
 span {
-  color: (--text-color);
+  color: var(--text-color);
 }

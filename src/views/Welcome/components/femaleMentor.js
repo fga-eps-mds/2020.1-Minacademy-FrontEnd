@@ -1,12 +1,10 @@
 import React from 'react';
 import '../style.scss';
-import Button from './../../../components/Button';
-import { changeToLearner } from './../../../services/usersService';
-import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
+// import Button from "../../../components/Button";
 
 function FemaleMentor() {
-    const history = useHistory()
+    // const history = useHistory()
 
   return (
     <>
@@ -17,7 +15,7 @@ function FemaleMentor() {
         Porém você pode fazer o tutorial, e após o fim do tutorial você se tornará automáticamente mentora.
               </p>
         <form >
-          <Button onClick={history.push('/tutorial')}>VIRAR APRENDIZ</Button>
+          {/* <Button onClick={changeToLearner}>VIRAR APRENDIZ</Button> */}
         </form>
       </div>
     </>
