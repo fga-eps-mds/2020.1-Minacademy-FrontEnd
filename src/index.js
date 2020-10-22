@@ -16,7 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <PersistGate loading={null} persistor={persistor}>
-            <ToastContainer 
+            <ToastContainer
                 hideProgressBar
                 closeButton={false}
                 newestOnTop

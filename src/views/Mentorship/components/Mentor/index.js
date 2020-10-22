@@ -58,6 +58,7 @@ function Mentor({ getLearners, assignLearner, unassignLearner, isAvailable, chan
                       key={learner._id}
                       title={`${learner.name  } ${  learner.lastname}`}
                       mainContent={learner.email}
+                      deleteActionMessage='Desvincular'
                       deleteAction={() => {
                         setLearnerToRemoval(learner)
                         setIsModalVisible(true)

@@ -4,16 +4,16 @@
   flex-wrap: wrap;
   padding: 2rem;
   margin-bottom: 2rem;
-  border-radius: 10px !important;
+  border-radius: 10px;
+  border: 1px solid transparent;
   background-color: white;
-  border: 1px solid var(--border-color);
   box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.07), 0px 15px 40px rgba(0, 0, 0, 0.04);
   transition: all 0.2s;
 
   &:hover {
-    box-shadow: 0px 5px 10px rgba(49, 49, 49, 0.1),
-      0px 15px 40px rgba(0, 0, 0, 0.07);
-    transform: scale(1.03);
+    box-shadow: 0px 5px 10px rgba(49, 49, 49, 0.25),
+      0px 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
   }
 
   @media (max-width: 800px) {
@@ -48,25 +48,52 @@
     }
   }
 
-  &__delete {
-    padding: 0;
-    font-family: sans-serif;
-    font-weight: 600;
-    color: var(--error-color);
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    border: 1px solid var(--error-color);
-    width: 25px;
-    height: 26px;
-    border-radius: 50%;
-    text-align: center;
-    transition: all 0.2s;
+  &__action {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
 
-    &:hover {
-      cursor: pointer;
-      background-color: var(--error-color);
-      color: white;
+  &__delete {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+    .delete-button {
+      position: absolute;
+      right: -1.5rem;
+      top: -1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--error-color);
+      border-radius: 50%;
+      outline: none;
+      height: 30px;
+
+      &:before,
+      &:after {
+        content: ' ';
+        position: absolute;
+        width: 2px;
+        height: 18px;
+        background-color: var(--error-color);
+      }
+      &:before {
+        transform: rotate(45deg);
+      }
+      &:after {
+        transform: rotate(-45deg);
+      }
+
+      &:hover {
+        background-color: var(--error-color);
+        &:before,
+        &:after {
+        background-color: white;
+        }
+      }
     }
   }
 }
