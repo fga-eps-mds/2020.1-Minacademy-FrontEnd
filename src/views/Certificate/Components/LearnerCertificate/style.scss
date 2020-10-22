@@ -1,3 +1,33 @@
 .certificate {
-  border: 15px solid green;
+  border: 15px solid var(--secondary-color);
+  margin: 15px;
+  padding: 15px;
+
+  .certificate-content {
+    background-color: var(--background);
+    padding: 15px;
+    p {
+      font-size: 4vh;
+    }
+
+    h3 {
+      font-size: 4.3vh;
+      color: var(--title-color);
+      span {
+        color: var(--text-color)
+      }
+    }
+  }
+
+  .certificate-logo {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    h1 {
+      color: white;
+    }
+  }
+
+  body {
+    max-height: 20%;
+  }
 }

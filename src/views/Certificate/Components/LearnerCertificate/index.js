@@ -1,22 +1,29 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss'
+// import { ReactComponent as Logo } from '../../../../assets/images/minacademyLogo.svg'
 
 function LearnerCertificate({name, lastname, completedModules, courseType, workload, conclusion }) {
 
+  const month = conclusion.getMonth()
+  const year = conclusion.getFullYear()
+  const day = conclusion.getDay()
   useEffect(() => {
 
   }, [])
   return (
     <div id='certificate' className='certificate'>
-      <h1>Minacademy</h1>
-      <h3>nome: {name} {lastname}</h3>
-      <h3>tipo de certificado: {courseType}</h3>
-      <h3>módulos completos: {completedModules}</h3>
-      <h3>carga horária: {workload}</h3>
-      <h3>Data de conclusão: {conclusion}</h3>
-      
-      <p>Certificamos que a {name} {lastname} concluiu o tutorial. </p>
+      <div id='certificate-logo' className='certificate-logo'>
+        {/* <Logo/> */}
+        <h1>Minacademy</h1>
+      </div>
+      <div id='certificate-content' className='certificate-content'>
+        <p>Certificamos que a aprendiz <b>{name} {lastname}</b> concluiu o tutorial e as atividades. </p>
+        <h3>tipo de certificado: <span>{courseType}</span></h3>
+        <h3>módulos completos: <span>{completedModules}</span></h3>
+        <h3>carga horária: <span>{workload}</span></h3>
+        <h3>Data de conclusão: <span>{day}/{month}/{year}</span></h3>
+      </div>
     </div>
   );
 }
