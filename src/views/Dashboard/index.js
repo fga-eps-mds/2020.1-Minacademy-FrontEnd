@@ -46,7 +46,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
           />
           <Card title="certificados"
             mainContent="Certificado de conclusão do tutorial básico"
-            linkText="Visualizar certificados"
+            linkText="Visualizar certificado"
             linkPath="/certificados"
           />
           <Card title="mentoria"
@@ -55,6 +55,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
             linkText={(mentor || currentUser.mentor_request) ? 'Monitoria' : "Solicitar mentor"} 
             linkPath='/mentoria'
           />
+
         </div> :
 
         currentUser.isValidated ?
