@@ -7,8 +7,7 @@ const assignMentor = createAsyncThunk('learner/mentorRequest', async (values, { 
   try {
     const response = await api.patch(MENTOR_REQUEST_ENDPOINT);
     /* eslint-disable no-unused-expressions */
-    toast.success(`${response.data.name} é seu novo mentor`)
-
+    toast.success(`${response.data.mentor.name} é seu novo mentor`)
     return response.data;
   } catch (error) {
     if(error.response.data.error === 'There are no available mentors'){

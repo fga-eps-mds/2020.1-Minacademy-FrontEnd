@@ -18,13 +18,11 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
         <ToastContainer
           closeButton={false}
-          newestOnTop
           pauseOnFocusLoss
           pauseOnHover
           newestOnTop={false}
           autoClose={3500}
           hideProgressBar
-
         />
         <Routes />
       </PersistGate>

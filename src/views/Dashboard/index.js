@@ -5,11 +5,12 @@ import { selectCurrentModule, selectModule, selectQuestionsList, selectQuestions
 import { getModules, getProgress, getQuestions } from '../../services/tutorialServices';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor }  from '../../slices/learnerSlice';
+import { getMentor } from '../../services/learnersService';
 import Card from '../../components/Card';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module, mentor }) {
+function Dashboard({ currentUser, currentModule, getModules, getQuestions, moduleQuestions, getProgress, questionResults, module, mentor, getMentor }) {
   const progress = useMemo(() => {
     const correctAnswers = questionResults.filter(question => question.isCorrect).length;
     const totalQuestions = moduleQuestions.length;
@@ -128,6 +129,7 @@ const mapDispatchToProps = dispatch => ({
   getModules: () => dispatch(getModules()),
   getProgress: (module) => dispatch(getProgress(module)),
   getQuestions: (module) => dispatch(getQuestions(module)),
+  getMentor: () => dispatch(getMentor()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

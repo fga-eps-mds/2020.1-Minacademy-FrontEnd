@@ -26,8 +26,8 @@ const learnerSlice = createSlice({
       state.loading = true
     },
     [assignMentor.fulfilled]: (state, action) => {
-      if(action.payload.mentor) state.mentor = action.payload 
-      state.mentorRequest = true
+      state.mentor = action.payload.mentor
+      state.mentorRequest = action.payload.mentorRequest
       state.loading = false
     },
     [assignMentor.rejected]: (state, action) => {
@@ -59,12 +59,13 @@ const learnerSlice = createSlice({
       state.mentor = action.payload
       state.fetchingMentor = false
     },
+
+
     [cancelMentorRequest.fulfilled]: (state, action) => {
       state.mentorRequest = action.payload
     },
     [cancelMentorRequest.rejected]: (state, action) => {
       state.mentorRequest = action.payload
-      state.loading = false
     }
 
     // [changeAvailability.fulfilled]: (state, action) => {

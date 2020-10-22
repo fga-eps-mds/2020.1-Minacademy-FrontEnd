@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button';
 import './style.scss'
 
@@ -22,6 +23,21 @@ function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, cl
       </div>
     </div>
   );
+};
+
+Modal.defaultProps = {
+  onConfirm: false,
+  confirmMessage: ""
+}
+
+Modal.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  closeMessage: PropTypes.string.isRequired,
+  onClose: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]).isRequired,
+  confirmMessage: PropTypes.string,
+  onConfirm: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  children: PropTypes.element.isRequired
 };
 
 export default Modal;

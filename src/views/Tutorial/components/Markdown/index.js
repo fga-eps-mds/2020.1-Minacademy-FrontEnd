@@ -24,8 +24,8 @@ function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, g
     window.scrollTo(0, 0) // eslint-disable-line no-undef
   }, [currentModule]);
 
-  function LinkRenderer(props) {
-    return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>
+  function LinkRenderer({ href, children }) { // eslint-disable-line react/prop-types
+    return <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
   }
 
   function next() {
@@ -63,7 +63,7 @@ Markdown.propTypes = {
   currentModule: PropTypes.number.isRequired,
   getModules: PropTypes.func.isRequired,
   setCurrentModule: PropTypes.func.isRequired,
-  modulesList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired
+  modulesList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
 };
 
 const mapStateToProps = state => ({

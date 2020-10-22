@@ -117,6 +117,7 @@ Mentor.propTypes = {
   isAvailable: PropTypes.bool.isRequired,
   getLearners: PropTypes.func.isRequired,
   assignLearner: PropTypes.func.isRequired,
+  unassignLearner: PropTypes.func.isRequired,
   fetchingLearners: PropTypes.bool.isRequired,
   loading:  PropTypes.bool.isRequired,
   learnersList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
