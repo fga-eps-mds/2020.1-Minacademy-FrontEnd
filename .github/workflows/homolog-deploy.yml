@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - 79-nginx
 
 jobs:
 
@@ -28,7 +29,7 @@ jobs:
   build:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
-    needs: tests
+    #needs: tests
     steps:
     - name: Check out the repo
       uses: actions/checkout@v2
@@ -43,7 +44,7 @@ jobs:
         tags: homolog
         context: ./
         default_branch: 50-ci-cd
-        dockerfile: prod.Dockerfile
+        dockerfile: hom.Dockerfile
 
   deploy:
     name: Deploy package to DigitalOcean 
@@ -64,4 +65,4 @@ jobs:
             cd minacademy-frontend
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:homolog
-            docker-compose -f docker-compose-hml.yml up -d
+            docker-compose -f docker-compose-hom.yml up -d
