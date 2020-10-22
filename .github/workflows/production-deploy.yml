@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - 79-nginx
 
 jobs:
   tests:
@@ -27,7 +28,7 @@ jobs:
   build:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
-    needs: tests
+    #needs: tests
     steps:
     - name: Check out the repo
       uses: actions/checkout@v2

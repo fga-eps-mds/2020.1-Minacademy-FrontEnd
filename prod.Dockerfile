@@ -1,14 +1,21 @@
-FROM node:13.12.0-alpine as build
-WORKDIR /
+FROM node:13-alpine as build
 
 ENV NODE_ENV=production
+ENV SKIP_PREFLIGHT_CHECK=true
+ENV REACT_APP_SERVER_URL=https://minacademy.tk/api
 
-RUN npm install react-scripts@3.4.1 -g --silent
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app
 
-COPY package*.json ./
-RUN npm ci --silent
+RUN npm install
 
-COPY . ./
-EXPOSE 3000
+COPY . /usr/src/app
+RUN npm run build
 
-CMD ["npm", "start"]
+FROM nginx:1.14.2
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+COPY prod-nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
