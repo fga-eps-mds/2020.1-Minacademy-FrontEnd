@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import Card from '../../../../components/Card';
@@ -13,14 +13,24 @@ import {
 import { selectCurrentUser } from '../../../../slices/usersSlice'
 import Button from '../../../../components/Button'
 import Loader from '../../../../components/Loader';
+import Modal from '../../../../components/Modal';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, removeLearner, learnersList, loading, fetchingLearners, currentUser }) {
+function Mentor({ getLearners, assignLearner, unassignLearner, isAvailable, changeAvailability, removeLearner, learnersList, loading, fetchingLearners, currentUser }) {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [learnerToRemoval, setLearnerToRemoval] = useState()
+
   useEffect(() => {
     getLearners()
   }, [])
-   
+
+  const unassign = (learner) => {
+    setIsModalVisible(false)
+    unassignLearner(learner._id)
+    removeLearner(learner._id)
+  }
+
   return (
     <div className="mentor">
       {currentUser.isValidated ?
@@ -42,17 +52,35 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
           <div className="mentor__content">
             {learnersList.length ?
               <>
+                {fetchingLearners && <Loader big />}
                 {learnersList.map(learner =>
-                  <Card
-                    key={learner._id}
-                    title={`${learner.name  } ${  learner.lastname}`}
-                    mainContent={learner.email}
-                    deleteAction={() => {
-                      unassignLearner(learner._id)
-                      removeLearner(learner._id)
-                    }}
-                    secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
+                    <Card
+                      key={learner._id}
+                      title={`${learner.name  } ${  learner.lastname}`}
+                      mainContent={learner.email}
+                      deleteActionMessage='Desvincular'
+                      deleteAction={() => {
+                        setLearnerToRemoval(learner)
+                        setIsModalVisible(true)
+                      }}
+                      secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`} />
                 )}
+                {isModalVisible ?
+                  <Modal
+                    title={`Desvincular ${learnerToRemoval.name}`}
+                    confirmMessage='desvincular'
+                    closeMessage='cancelar'
+                    onClose={() => {
+                      setIsModalVisible(false)
+                      setLearnerToRemoval(null)
+                    }}
+                    onConfirm={() => unassign(learnerToRemoval)}
+                  >
+                    <p>Que pena que essa relação não deu certo.</p>
+                    <p>Você tem certeza que deseja fazer isso?</p>
+                  </Modal>
+                  :
+                  null}
               </>
               :
               <>
@@ -73,10 +101,10 @@ function Mentor({ getLearners, assignLearner, isAvailable, changeAvailability, r
           </div>
         </>)
         :
-        (<>
-          <span className="mentor__header-title">Você ainda não foi validado para ser mentor, assim que validado poderá solicitar um aprendiz.</span>
-          
-          </>)}
+        (<span className="mentor__header-title">
+          Você ainda não foi validado para ser mentor, assim que validado poderá solicitar um aprendiz.
+        </span>)
+      }
     </div>
   );
 }
@@ -89,6 +117,7 @@ Mentor.propTypes = {
   isAvailable: PropTypes.bool.isRequired,
   getLearners: PropTypes.func.isRequired,
   assignLearner: PropTypes.func.isRequired,
+  unassignLearner: PropTypes.func.isRequired,
   fetchingLearners: PropTypes.bool.isRequired,
   loading:  PropTypes.bool.isRequired,
   learnersList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
@@ -108,6 +137,7 @@ const mapDispatchToProps = dispatch => ({
   getLearners: () => dispatch(getLearners()),
   assignLearner: () => dispatch(assignLearner()),
   removeLearner: learnerID => dispatch(removeLearner(learnerID)),
+  unassignLearner: learnerID => dispatch(unassignLearner(learnerID)),
   changeAvailability: () => dispatch(changeAvailability())
 })
 

@@ -1,16 +1,16 @@
 .mentor {
   width: 100%;
   font-family: Overpass;
-    
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    padding-bottom: 1rem; 
+    padding-bottom: 1rem;
     color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
-    
+
     &-title {
       font-weight: 500;
       font-size: 1.3rem;
@@ -22,7 +22,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
 
-    .card {
+    .custom-card {
       flex-basis: 30%;
 
       @media(max-width: 600px) {
@@ -36,7 +36,9 @@
   }
 
   &__action {
-    width: 40%;
+    display:  flex;
+    align-items: center;
+    flex-direction: column;
     padding: 1rem 0;
     margin: 0 auto;
     text-align: center;
@@ -46,7 +48,7 @@
     }
 
     button {
-      width: 100%;
+      width: 15rem;
       margin-bottom: 1.5rem;
     }
 

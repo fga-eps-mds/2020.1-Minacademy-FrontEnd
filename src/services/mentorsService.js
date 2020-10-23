@@ -17,21 +17,22 @@ const assignLearner = createAsyncThunk('mentor/assignLearner', async (values, { 
     const response = await api.patch(MENTOR_ENDPOINT, values);
     toast.success(`${response.data.learner.name} é sua nova aprendiz!`);
     return response.data;
-  } catch (err) {
-    toast.dark('Nenhum aprendiz disponivel no momento')
-    return rejectWithValue([])
+  } catch (error) {
+    toast.dark('Nenhum aprendiz disponivel no momento', { toastId: "customId" })
+    return rejectWithValue(error.response.data.isAvailable)
   }
 });
 
-const unassignLearner = async learnerID => {
+const unassignLearner = createAsyncThunk('mentor/unassignLearner', async (learnerID, { rejectWithValue }) => {
   try {
     const response = await api.delete(MENTOR_ENDPOINT, {params: { learnerID }});
     toast.success('Aprendiz desvinculado com sucesso');
     return response.data
   } catch (error) {
-    return error
+    toast.error('Ocorreu um erro ao desvincular aprendiz')
+    return rejectWithValue(error.response.data.learners)
   }
-}
+})
 
 const changeAvailability = createAsyncThunk('mentor/changeAvailability', async (values, { rejectWithValue }) => {
   try {

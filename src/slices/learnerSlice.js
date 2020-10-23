@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { assignMentor, cancelMentorRequest, getMentor } from '../services/learnersService'
+import { assignMentor, cancelMentorRequest, unassignMentor, getMentor } from '../services/learnersService'
 
 const initialState = {
   loading: false,
@@ -17,7 +17,7 @@ const learnerSlice = createSlice({
     removeMentor(state, action) {
       state.mentor = null
     },
-    setAvailability(state, action) {
+    setMentorRequest(state, action) {
       state.mentorRequest = action.payload
     }
   },
@@ -26,13 +26,26 @@ const learnerSlice = createSlice({
       state.loading = true
     },
     [assignMentor.fulfilled]: (state, action) => {
-      if(action.payload.mentor) state.mentor = action.payload 
-      state.mentorRequest = true
+      state.mentor = action.payload.mentor
+      state.mentorRequest = action.payload.mentorRequest
       state.loading = false
     },
     [assignMentor.rejected]: (state, action) => {
       state.mentorRequest = action.payload
       state.loading = false
+    },
+
+    [unassignMentor.pending]: (state, action) => {
+      state.fetchingMentor = true
+    },
+    [unassignMentor.fulfilled]: (state, action) => {
+      state.mentor = action.payload.mentor
+      state.mentorRequest = action.payload.mentorRequest
+      state.fetchingMentor = false
+    },
+    [unassignMentor.rejected]: (state, action) => {
+      state.mentor = action.payload
+      state.fetchingMentor = false
     },
 
     [getMentor.pending]: (state, action) => {
@@ -46,12 +59,13 @@ const learnerSlice = createSlice({
       state.mentor = action.payload
       state.fetchingMentor = false
     },
+
+
     [cancelMentorRequest.fulfilled]: (state, action) => {
       state.mentorRequest = action.payload
     },
     [cancelMentorRequest.rejected]: (state, action) => {
       state.mentorRequest = action.payload
-      state.loading = false
     }
 
     // [changeAvailability.fulfilled]: (state, action) => {
@@ -61,7 +75,7 @@ const learnerSlice = createSlice({
     //   state.mentorRequest = state.mentorRequest
     // }
   }
-    
+
 });
 
 const selectLearnerState = state => state.learner;
@@ -86,10 +100,5 @@ export const selectMentorRequest = createSelector(
   learner => learner.mentorRequest
 )
 
-// export const selectAvailability = createSelector(
-//   [selectLearnerState],
-//   learner => learner.mentorRequest
-// )
-
-export const { removeLearner, setAvailability } = learnerSlice.actions;
+export const { removeLearner, setMentorRequest } = learnerSlice.actions;
 export default learnerSlice.reducer;

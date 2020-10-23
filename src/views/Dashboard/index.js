@@ -14,19 +14,19 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
   const progress = useMemo(() => {
     const correctAnswers = questionResults.filter(question => question.isCorrect).length;
     const totalQuestions = moduleQuestions.length;
-    return totalQuestions 
+    return totalQuestions
     ? { moduleProgress: Math.floor((correctAnswers / totalQuestions) * 100),
       remainingQuestions: totalQuestions - correctAnswers
     } : {}
   }, [questionResults]);
-  
+
   useEffect(() => {
     getMentor();
     getModules();
     getProgress(currentModule);
     getQuestions(currentModule);
   }, []);
-  
+
   /* eslint-disable no-nested-ternary */
   return (
     <>
@@ -35,7 +35,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
           <h1>Olá, {currentUser.name}</h1>
           {currentUser.userType === "Learner" && <p>Aqui você pode acompanhar seu progresso, contatar um mentor ou mentora e acessar seus certificados.</p>}
         </div>
-        {currentUser.userType === "Learner" ? 
+        {currentUser.userType === "Learner" ?
         <div className="dashboard__body">
           <Card
             title={`Módulo ${currentModule}: ${module?.title}`}
@@ -56,7 +56,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
             linkPath='/mentoria'
           />
         </div> :
-        
+
         currentUser.isValidated ?
         <div className="dashboard__body">
           <Card
@@ -71,7 +71,7 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
             linkPath="/certificados"
           />
         </div> :
-        
+
         <div className="dashboard__body">
           <Card
             title="Validação"
@@ -92,21 +92,6 @@ function Dashboard({ currentUser, currentModule, getModules, getQuestions, modul
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentUser: selectCurrentUser(state),
-  currentModule: selectCurrentModule(state),
-  module: selectModule(state),
-  questionResults: selectQuestionsResults(state),
-  moduleQuestions: selectQuestionsList(state),
-  mentor: selectMentor(state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  getModules: () => dispatch(getModules()),
-  getProgress: (module) => dispatch(getProgress(module)),
-  getQuestions: (module) => dispatch(getQuestions(module)),
-  getMentor: () => dispatch(getMentor())
-});
 
 Dashboard.defaultProps = {
   moduleQuestions: [],
@@ -130,5 +115,21 @@ Dashboard.propTypes = {
   getMentor: PropTypes.func.isRequired,
   mentor: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
+
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+  currentModule: selectCurrentModule(state),
+  module: selectModule(state),
+  questionResults: selectQuestionsResults(state),
+  moduleQuestions: selectQuestionsList(state),
+  mentor: selectMentor(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  getModules: () => dispatch(getModules()),
+  getProgress: (module) => dispatch(getProgress(module)),
+  getQuestions: (module) => dispatch(getQuestions(module)),
+  getMentor: () => dispatch(getMentor()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

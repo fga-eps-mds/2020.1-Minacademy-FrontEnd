@@ -13,7 +13,7 @@ function Button({ children, inverted, shadow , small, color, success, error, ...
         ${color ? 'color' : ''}
         ${success ? 'success' : ''}
         ${error ? 'error' : ''}
-         button`}
+         custom-button`}
             {...otherProps}
         >
             {children}
