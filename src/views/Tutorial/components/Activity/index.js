@@ -29,10 +29,11 @@ function Activity({
   const { handleSubmit, register, errors } = useForm();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [certificate, setCertificate] = useState()
+  const [certificate, setCertificate] = useState(null)
   useEffect(() => {
     if (totalProgress === 100) {
-      generateCertificate().then(data => setCertificate(data.certificate._id));
+      console.log("entrou")
+      generateCertificate().then(data => setCertificate(data._id));
       setIsModalVisible(true);
     }
   }, [totalProgress]);
@@ -47,13 +48,7 @@ function Activity({
       question: question._id,
     });
     if (response.payload.isCorrect) {
-      getProgress().then(async (data) => {
-        if (data.payload.totalProgress > 1) {
-          await setIsModalVisible(true);
-          console.log(data.payload.totalProgress);
-          console.log(isModalVisible);
-        }
-      });
+      getProgress()
     }
   };
 
@@ -65,7 +60,7 @@ function Activity({
     <div className="activity">
       {isModalVisible && (
         <Modal
-          title={`Curso concluído`}
+          title="Curso concluído"
           confirmMessage="vizualizar"
           closeMessage="cancelar"
           onClose={() => {
@@ -74,6 +69,7 @@ function Activity({
           onConfirm={() => history.push(`/certificados/${certificate}`)}
         >
           <p>Parabéns, você concluiu o tutorial.</p>
+          <p>Você poderá acessar o certificado a qualquer momento pela Dashboard.</p>
           <p>Clique em vizualizar para ver seu certificado</p>
         </Modal>
       )}
@@ -148,6 +144,7 @@ Activity.propTypes = {
   answerQuestion: PropTypes.func.isRequired,
   getProgress: PropTypes.func.isRequired,
   history: PropTypes.func.isRequired,
+  totalProgress: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state, props) => ({
