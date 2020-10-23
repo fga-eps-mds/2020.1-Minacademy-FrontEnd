@@ -10,6 +10,6 @@ services:
       - '/app/node_modules'
     ports:
       - '3000:3000'
-    environment: 
+    environment:
       REACT_APP_SERVER_URL: http://localhost:9000/api
       SKIP_PREFLIGHT_CHECK: 'true'
