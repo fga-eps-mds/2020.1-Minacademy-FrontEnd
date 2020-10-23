@@ -1,11 +1,20 @@
 .certificate {
   border: 15px solid var(--secondary-color);
-  margin: 15px;
   padding: 15px;
+  // margin: 0 auto;
+  // display: flex;
+  // justify-content: center;
+
+  .logo-container {
+    background-color: white;
+    width: 205px;
+    border-radius: 10px;
+  }
 
   .certificate-content {
     background-color: var(--background);
     padding: 15px;
+    padding-bottom: 16.6%;
     p {
       font-size: 4vh;
     }
