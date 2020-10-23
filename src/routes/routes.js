@@ -19,6 +19,7 @@ import Dashboard from '../views/Dashboard';
 import Welcome from '../views/Welcome'
 import Mentorship from '../views/Mentorship'
 import Certificate from '../views/Certificate';
+import CourseCertificates from '../views/CourseCertificates';
 
 const Routes = () => {
   return (
@@ -34,6 +35,7 @@ const Routes = () => {
           <PublicRoute exact path="/change/:resetLink" component={Change} />
           <PrivateRoute exact path="/perfil" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/certificados/" component={CourseCertificates} />
           <Route exact path="/certificados/:_id" component={Certificate} />
         </Switch>
       

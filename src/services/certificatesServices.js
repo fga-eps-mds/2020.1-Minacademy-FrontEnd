@@ -15,11 +15,9 @@ const getLearnerCertificate = async (values) => {
 const generateCertificate = async ()=> {
   try {
     const response = await api.patch(CERTIFICATE_ENDPOINT);
-    console.log(response.data)
     return response.data;
   } catch(error){
-    window.location.href ="/" // eslint-disable-line no-undef 
-    return error;
+    return error.response.data;
   }
 };
 
