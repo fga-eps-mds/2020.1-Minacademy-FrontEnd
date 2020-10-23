@@ -7,7 +7,6 @@ function LearnerCertificate({
   name,
   lastname,
   completedModules,
-  courseType,
   workload,
   conclusion,
 }) {
@@ -19,7 +18,6 @@ function LearnerCertificate({
         <div id='logo-container' className='logo-container'>
           <Logo/>
         </div>
-        {/* <h1>Minacademy</h1> */}
 
 
       </div>
@@ -29,19 +27,19 @@ function LearnerCertificate({
           <b>
             {name} {lastname}
           </b>{' '}
-          concluiu o tutorial e as atividades.{' '}
+          concluiu o tutorial e as atividades relativos ao <b>curso introdutório de Django e Python</b> hospedado em nossa plataforma.{' '}
         </p>
         <br/>
         <h3>
-          tipo de certificado: <span>{courseType}</span>
+          Tipo de certificado: <span>Aprendiz</span>
         </h3>
         <br/>
         <h3>
-          módulos completos: <span>{completedModules}</span>
+          Módulos completos: <span>{completedModules}</span>
         </h3>
         <br/>
         <h3>
-          carga horária: <span>{workload}h</span>
+          Carga horária: <span>{workload}h</span>
         </h3>
         <br/>
         <h3>
@@ -55,7 +53,6 @@ function LearnerCertificate({
 LearnerCertificate.defaultProps = {
   name: null,
   lastname: null,
-  courseType: null,
   completedModules: null,
   workload: null,
   conclusion: null,
@@ -64,7 +61,6 @@ LearnerCertificate.defaultProps = {
 LearnerCertificate.propTypes = {
   name: PropTypes.string,
   lastname: PropTypes.string,
-  courseType: PropTypes.string,
   completedModules: PropTypes.number,
   workload: PropTypes.number,
   conclusion: PropTypes.string,
