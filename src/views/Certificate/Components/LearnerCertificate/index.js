@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import { ReactComponent as Logo } from '../../../../assets/images/minacademyLogo.svg'
@@ -12,7 +12,7 @@ function LearnerCertificate({
   conclusion,
 }) {
 
-   
+  
   return (
     <div id="certificate" className="certificate">
       <div id="certificate-logo" className="certificate-logo">
