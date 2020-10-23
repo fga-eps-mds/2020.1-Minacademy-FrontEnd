@@ -44,6 +44,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
               onConfirm={() => unassign()}
             >
               <p>Que pena que essa relação não deu certo.</p>
+              <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
               <p>Você tem certeza que deseja fazer isso?</p>
             </Modal>
             :
@@ -54,14 +55,14 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
             {fetchingMentor && <Loader big />}
             {!fetchingMentor && <h5>Você não tem um mentor</h5>}
             {mentorRequest && <p>Será designado á você um mentor(a) assim que houver um disponível</p>}
-            {mentorRequest ? 
+            {mentorRequest ?
               <Button onClick={() => cancelMentorRequest()} shadow error>Cancelar solicitação</Button>
               :
               <Button onClick={() => assignMentor()} shadow disabled={mentorRequest}>
                 Solicitar mentor
               </Button>
             }
-            {loading && <Loader>Procurando mentor</Loader>}           
+            {loading && <Loader>Procurando mentor</Loader>}
           </>
         )}
       </div>
