@@ -10,8 +10,8 @@ const Input = ({
   defaultValue,
   register,
   errors,
-  required = false,
-  pattern = {},
+  required = false, // eslint-disable-line no-unused-vars
+  pattern = {},  // eslint-disable-line no-unused-vars
   ...otherProps
 }) => {
   return (
@@ -32,6 +32,7 @@ const Input = ({
 Input.defaultProps = {
   type: "text",
   placeholder: "",
+  defaultValue: "",
   required: "",
   pattern: {value: {}, message: ""},
   minLength: {value: 0, name: ""},
@@ -44,6 +45,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
   register: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
   required: PropTypes.string,
   pattern: PropTypes.shape({

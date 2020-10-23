@@ -2,6 +2,7 @@ import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { login , logout , registerRequest, editUser } from '../services/usersService'
 
 const initialState = {
+  loading: false,
   currentUser: null
 };
 
@@ -28,9 +29,16 @@ const userSlice = createSlice({
         state.currentUser = action.payload
     },
 
+    [editUser.pending]: (state,action) => {
+      state.loading = true
+    },
     [editUser.fulfilled]: (state,action) => {
       state.currentUser = action.payload
-    }
+      state.loading = false
+    },
+    [editUser.rejected]: (state,action) => {
+      state.loading = false
+    },
 
   }
 });
@@ -39,6 +47,11 @@ const selectUser = state => state.user;
 export const selectCurrentUser = createSelector(
   [selectUser],
   user => user.currentUser
+)
+
+export const isLoading = createSelector(
+  [selectUser],
+  user => user.loading
 )
 
 export const { setCurrentUser } = userSlice.actions;
