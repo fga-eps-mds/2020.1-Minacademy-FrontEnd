@@ -61,7 +61,7 @@ function Activity({
       {isModalVisible && (
         <Modal
           title="Curso concluído"
-          confirmMessage="vizualizar"
+          confirmMessage="visualizar"
           closeMessage="cancelar"
           onClose={() => {
             setIsModalVisible(false);
@@ -70,7 +70,7 @@ function Activity({
         >
           <p>Parabéns, você concluiu o tutorial.</p>
           <p>Você poderá acessar o certificado a qualquer momento pela Dashboard.</p>
-          <p>Clique em vizualizar para ver seu certificado</p>
+          <p>Clique em visualizar para ver seu certificado</p>
         </Modal>
       )}
       <div className="activity__description">{descriptionText}</div>

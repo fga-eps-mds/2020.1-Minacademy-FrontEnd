@@ -3,14 +3,17 @@
   padding: 15px;
   margin: 15px;
   max-width: 100vw;
-  // margin: 0 auto;
-  // display: flex;
-  // justify-content: center;
+  text-align: center;
 
+  p:first-child {
+    font-weight: bold;
+  }
   .logo-container {
-    background-color: whitesmoke;
-    width: 205px;
+    background-color: white;
+    width: 220px;
     border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .certificate-content {
@@ -25,7 +28,7 @@
       font-size: 4.3vh;
       color: var(--title-color);
       span {
-        color: var(--text-color)
+        color: var(--text-color);
       }
     }
   }
@@ -33,9 +36,5 @@
   .certificate-logo {
     padding: 15px;
     background-color: var(--secondary-color);
-  }
-
-  body {
-    max-height: 20%;
   }
 }

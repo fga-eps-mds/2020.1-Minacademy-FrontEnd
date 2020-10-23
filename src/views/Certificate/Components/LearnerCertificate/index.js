@@ -9,16 +9,17 @@ function LearnerCertificate({
   completedModules,
   workload,
   conclusion,
+  id,
 }) {
 
   /* eslint-disable react/self-closing-comp */
   return (
-    <div id="certificate" className="certificate">
-      <div id="certificate-logo" className="certificate-logo">
-        <div id='logo-container' className='logo-container'>
+    <div className="certificate">
+      <div className="certificate-logo">
+        <div className='logo-container'>
           <Logo/>
+          <p># {id}</p>
         </div>
-
 
       </div>
       <div id="certificate-content" className="certificate-content">
@@ -30,9 +31,6 @@ function LearnerCertificate({
           concluiu o tutorial e as atividades relativos ao <b>curso introdutório de Django e Python</b> hospedado em nossa plataforma.{' '}
         </p>
         <br/>
-        <h3>
-          Tipo de certificado: <span>Aprendiz</span>
-        </h3>
         <br/>
         <h3>
           Módulos completos: <span>{completedModules}</span>
@@ -45,6 +43,7 @@ function LearnerCertificate({
         <h3>
           Data de conclusão: <span>{conclusion}</span>
         </h3>
+    
       </div>
     </div>
   );

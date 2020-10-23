@@ -33,6 +33,7 @@ function Certificate() {
             month: 'long',
             day: '2-digit',
           }).format(new Date(Date.parse(createdAt)))}
+          id={_id}
         />
       </>
     );
