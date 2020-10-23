@@ -16,7 +16,7 @@ function Certificate() {
   // console.log(typeof certificate);
 
   if(certificate === null) {
-    return <div></div>
+    return <div/>
   }
   else{
     const { user, workload, courseType, createdAt } = certificate

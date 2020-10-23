@@ -12,7 +12,7 @@ function LearnerCertificate({
   conclusion,
 }) {
 
-  
+  /* eslint-disable react/self-closing-comp */
   return (
     <div id="certificate" className="certificate">
       <div id="certificate-logo" className="certificate-logo">

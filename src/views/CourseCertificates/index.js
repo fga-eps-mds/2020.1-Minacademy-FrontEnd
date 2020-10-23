@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Loader from '../../components/Loader';
 import CertificateList from './components/CertificateList';
 import { generateCertificate } from '../../services/certificatesServices';
 import { selectTotalProgress } from '../../slices/tutorialSlice';
@@ -57,5 +57,9 @@ function CourseCertificates({ totalProgress }) {
 const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
 });
+
+CourseCertificates.propTypes = {
+  totalProgress: PropTypes.number.isRequired
+};
 
 export default connect(mapStateToProps)(CourseCertificates);

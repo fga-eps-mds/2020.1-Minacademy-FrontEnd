@@ -32,7 +32,7 @@ function Activity({
   const [certificate, setCertificate] = useState(null)
   useEffect(() => {
     if (totalProgress === 100) {
-      console.log("entrou")
+      
       generateCertificate().then(data => setCertificate(data._id));
       setIsModalVisible(true);
     }
