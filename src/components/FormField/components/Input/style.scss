@@ -1,19 +1,38 @@
-.field {
-  &__input {
-    width: 100%;
+.custom-input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: Overpass;
+  padding-bottom: 1.5rem;
+
+  input {
+    outline: none;
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    padding: 0.35rem 1rem;
-    &--danger {
-      color: var(--error-color);
+    padding: 0.4rem 0.7rem;
+    color: var(--title-color);
+
+    &:focus {
+      border: 1px solid var(--secondary-color);
     }
   }
 
-}
+  ::placeholder{
+    color: var(--placeholder-color);
+  }
 
-label {
-  font-size: 20px;
-  color: var(--title-color);
-  font-family: Overpass;
-  margin-top: 5px;
+  label {
+    font-size: 1rem;
+    margin-left: 0.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.2rem;
+  }
+
+  .error {
+    color: var(--error-color);
+    position: absolute;
+    align-self: center;
+    bottom: -1px;
+    font-weight: 600;
+  }
 }

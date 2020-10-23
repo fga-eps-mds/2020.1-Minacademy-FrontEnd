@@ -7,28 +7,27 @@ const Input = ({
   name,
   type,
   placeholder,
+  defaultValue,
   register,
-  pattern,
-  minLength,
-  required,
-  validate,
   errors,
-}) => (
-  <div className="field">
-    <label htmlFor={label}>{label}</label>
-    <input
-      className="field__input"
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      ref={register({ required, pattern, minLength, validate })}
-      errors={errors}
-    />
-    {(errors?.name && (
-      <span className="field__input--danger">{errors?.name.message}</span>
-    )) || <br />}
-  </div>
-);
+  required = false,
+  pattern = {},
+  ...otherProps
+}) => {
+  return (
+    <div className="custom-input">
+      <label htmlFor={name}>{label}</label>
+      <input
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        ref={register}
+        {...otherProps}
+      />
+      {errors[name] ? <span className="error">{errors[name].message}</span> : null}
+    </div>
+)};
 
 Input.defaultProps = {
   type: "text",
@@ -63,5 +62,5 @@ Input.propTypes = {
     PropTypes.oneOf([null]),
     PropTypes.object
   ]),
-};  
-export default Input;
+};
+export default (Input);
