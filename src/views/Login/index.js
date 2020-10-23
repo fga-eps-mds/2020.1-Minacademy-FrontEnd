@@ -28,27 +28,32 @@ function Login({ login }) {
               type="text"
               label="e-mail"
               name="email"
-              placeholder="email@email.com"
-              register={register}
-              required="Campo obrigatório"
-              pattern={{
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'email inválido',
-              }}
+              placeholder="email@exemplo.com"
+              register={register({
+                required: 'Campo obrigatório',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Email inválido',
+                },
+              })}
               errors={errors}
+              autoComplete="on"
             />
 
             <Input
               type="password"
               label="senha"
               name="password"
-              register={register}
-              required="campo obrigatório"
-              minLength={{
-                value: 6,
-                message: 'tamanho mínimo é 6',
-              }}
+              placeholder="senha"
+              register={register({
+                required: 'Campo obrigatório',
+                minLength: {
+                  value: 6,
+                  message: 'Tamanho mínimo é 6',
+                },
+              })}
               errors={errors}
+              autoComplete="off"
             />
 
             <Button type="submit" small>
