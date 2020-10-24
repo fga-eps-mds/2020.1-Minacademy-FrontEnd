@@ -28,7 +28,7 @@ function LearnerCertificate({
           <b>
             {name} {lastname}
           </b>{' '}
-          concluiu o tutorial e as atividades relativos ao <b>curso introdutório de Django e Python</b> hospedado em nossa plataforma.{' '}
+          concluiu o tutorial e as atividades relativas ao <b>curso introdutório de Django e Python</b> hospedado em nossa plataforma.{' '}
         </p>
         <br/>
         <br/>
