@@ -55,6 +55,7 @@ LearnerCertificate.defaultProps = {
   completedModules: null,
   workload: null,
   conclusion: null,
+  id: null,
 };
 
 LearnerCertificate.propTypes = {
@@ -63,5 +64,6 @@ LearnerCertificate.propTypes = {
   completedModules: PropTypes.number,
   workload: PropTypes.number,
   conclusion: PropTypes.string,
+  id: PropTypes.string,
 };
 export default LearnerCertificate;
