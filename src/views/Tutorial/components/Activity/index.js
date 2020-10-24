@@ -1,25 +1,54 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectQuestion, selectQuestionsResults } from '../../../../slices/tutorialSlice';
-import { answerQuestion, getProgress } from '../../../../services/tutorialServices';
+import { generateCertificate } from '../../../../services/certificatesServices';
+import {
+  selectQuestion,
+  selectQuestionsResults,
+  selectTotalProgress,
+} from '../../../../slices/tutorialSlice';
+import {
+  answerQuestion,
+  getProgress,
+} from '../../../../services/tutorialServices';
 import Button from '../../../../components/Button';
 import './style.scss';
+import Modal from '../../../../components/Modal';
 
 /* eslint-disable no-shadow */
-function Activity({ question, questionResults, answerQuestion, getProgress, history }) {
+function Activity({
+  question,
+  questionResults,
+  answerQuestion,
+  getProgress,
+  history,
+  totalProgress,
+}) {
   const { handleSubmit, register, errors } = useForm();
 
-  const result = useMemo(() => questionResults.find(result => result.question === question._id), [questionResults]);
-
-  const onSubmit = async alternative => {
-    const response = await answerQuestion({ ...alternative, question: question._id })
-    if (response.payload.isCorrect) {
-      getProgress()
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [certificate, setCertificate] = useState(null);
+  useEffect(() => {
+    if (totalProgress === 100) {
+      generateCertificate().then((data) => setCertificate(data._id));
+      setIsModalVisible(true);
     }
+  }, [totalProgress]);
+  const result = useMemo(
+    () => questionResults.find((result) => result.question === question._id),
+    [questionResults]
+  );
 
+  const onSubmit = async (alternative) => {
+    const response = await answerQuestion({
+      ...alternative,
+      question: question._id,
+    });
+    if (response.payload.isCorrect) {
+      getProgress();
+    }
   };
 
   const descriptionText = question.description.split('\n').map((i) => {
@@ -28,6 +57,23 @@ function Activity({ question, questionResults, answerQuestion, getProgress, hist
 
   return (
     <div className="activity">
+      {isModalVisible && (
+        <Modal
+          title="Curso concluído"
+          confirmMessage="visualizar"
+          closeMessage="cancelar"
+          onClose={() => {
+            setIsModalVisible(false);
+          }}
+          onConfirm={() => history.push(`/certificados/${certificate}`)}
+        >
+          <p>Parabéns, você concluiu o tutorial.</p>
+          <p>
+            Você poderá acessar o certificado a qualquer momento pela Dashboard.
+          </p>
+          <p>Clique em visualizar para ver seu certificado</p>
+        </Modal>
+      )}
       <div className="activity__description">{descriptionText}</div>
       <div className="activity__alternatives">
         {result?.isCorrect ? (
@@ -41,61 +87,78 @@ function Activity({ question, questionResults, answerQuestion, getProgress, hist
               {Object.keys(question.alternatives).map((item) => (
                 <div className="activity__alternatives--item" key={item}>
                   <label htmlFor="alternative">
-                    <input name="alternative" value={item} type="radio" ref={register({ required: true })} />
+                    <input
+                      name="alternative"
+                      value={item}
+                      type="radio"
+                      ref={register({ required: true })}
+                    />
                     {question.alternatives[item]}
                   </label>
                 </div>
               ))}
-              {result?.isCorrect === false && <div className="activity__alternatives--error">Resposta errada, tente novamente!</div>}
-              {errors.alternative && <div className="activity__alternatives--error">Escolha uma alternativa</div>}
+              {result?.isCorrect === false && (
+                <div className="activity__alternatives--error">
+                  Resposta errada, tente novamente!
+                </div>
+              )}
+              {errors.alternative && (
+                <div className="activity__alternatives--error">
+                  Escolha uma alternativa
+                </div>
+              )}
             </form>
           </>
         )}
-        </div>
-        <div className="activity__buttons">
-          {!result?.isCorrect &&
-            <Button
-              shadow
-              form='question'
-              type="submit"
-            >
-              Responder
-            </Button> }
-            <Button
-              onClick={() => history.push('/tutorial')}
-              shadow
-            >
-              Voltar
-            </Button>
-        </div>
+      </div>
+
+      <div className="activity__buttons">
+        <Button
+          onClick={() => {
+            history.push('/tutorial');
+          }}
+          shadow
+        >
+          Voltar
+        </Button>
+        {!result?.isCorrect && (
+          <Button shadow form="question" type="submit">
+            Responder
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
 
 Activity.defaultProps = {
-  questionResults: []
-}
+  questionResults: [],
+};
 
 Activity.propTypes = {
-  question: PropTypes.shape({ 
+  question: PropTypes.shape({
     _id: PropTypes.string,
     description: PropTypes.string.isRequired,
-    alternatives: PropTypes.oneOf([PropTypes.object]).isRequired
+    alternatives: PropTypes.oneOf([PropTypes.object]).isRequired,
   }).isRequired,
   questionResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
   answerQuestion: PropTypes.func.isRequired,
   getProgress: PropTypes.func.isRequired,
-  history: PropTypes.func.isRequired
+  history: PropTypes.func.isRequired,
+  totalProgress: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
   question: selectQuestion(state, props),
   questionResults: selectQuestionsResults(state),
+  totalProgress: selectTotalProgress(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  answerQuestion: answerData => dispatch(answerQuestion(answerData)),
-  getProgress: questions => dispatch(getProgress(questions))
+const mapDispatchToProps = (dispatch) => ({
+  answerQuestion: (answerData) => dispatch(answerQuestion(answerData)),
+  getProgress: (questions) => dispatch(getProgress(questions)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Activity));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Activity)
+);

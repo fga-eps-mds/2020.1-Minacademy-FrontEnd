@@ -1,0 +1,40 @@
+.certificate {
+  border: 15px solid var(--secondary-color);
+  padding: 15px;
+  margin: 15px;
+  max-width: 100vw;
+  text-align: center;
+
+  p:first-child {
+    font-weight: bold;
+  }
+  .logo-container {
+    background-color: white;
+    width: 220px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .certificate-content {
+    background-color: var(--background);
+    padding: 15px;
+    padding-bottom: 16.6%;
+    p {
+      font-size: 4vh;
+    }
+
+    h3 {
+      font-size: 4.3vh;
+      color: var(--title-color);
+      span {
+        color: var(--text-color);
+      }
+    }
+  }
+
+  .certificate-logo {
+    padding: 15px;
+    background-color: var(--secondary-color);
+  }
+}
