@@ -21,10 +21,13 @@ function ActivitiesList({ questionsList, questionsResults, currentModule, getQue
     <div className="activities-list">
       <div className="activities-list__header">
         <div>
-          <h3>Forum</h3>
-          <p>
-            Modulo <b>{currentModule}</b>
-          </p>
+          {match.path.includes('avaliacao') && <h3>Questões</h3>}
+          {match.path.includes('tutorial') && (
+            <>
+            <h3>Forum</h3>
+            <p> Modulo <b>{currentModule}</b> </p>
+            </>
+            )}
         </div>
       </div>
       <div className="activities-list__list">
