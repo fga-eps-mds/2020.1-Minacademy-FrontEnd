@@ -1,0 +1,31 @@
+.exam-rules {
+  margin-left: 2rem;
+  text-align: justify;
+  font-family: Overpass;
+
+  &__header {
+    position: relative;
+    color: var(--title-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+
+    @media(max-width: 600px) {
+      margin-top: 2rem;
+    }
+
+    &:after {
+      content : "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom  : 0;
+      height  : 1px;
+      width   : 45%;
+      margin-left: auto;
+      margin-right: auto;
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+}

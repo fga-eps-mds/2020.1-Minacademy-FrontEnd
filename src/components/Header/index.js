@@ -38,6 +38,12 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             <Link className="header__navigation-option" to="/dashboard">
               Dashboard
             </Link>
+            {currentUser?.isValidated
+              ? null
+              : <Link className="header__navigation-option" to="/avaliacao">
+                 Avaliação
+                </Link>
+            }
             <Link className="header__navigation-option" to="/tutorial">
               Tutorial
             </Link>

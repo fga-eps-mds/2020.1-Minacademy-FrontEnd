@@ -14,6 +14,7 @@ import Welcome from '../views/Welcome'
 import Mentorship from '../views/Mentorship'
 import Certificate from '../views/Certificate';
 import CourseCertificate from '../views/CourseCertificates';
+import Exam from '../views/Exam';
 
 const Routes = () => {
   return (
@@ -24,6 +25,7 @@ const Routes = () => {
           <PublicRoute exact path="/cadastro" component={Register} />
           <PrivateRoute exact path="/bem-vindo" component={Welcome}/>
           <PrivateRoute path="/tutorial" component={Tutorial} />
+          <PrivateRoute path="/avaliacao" component={Exam} />
           <PrivateRoute exact path="/mentoria" component={Mentorship} />
           <PublicRoute exact path="/forgotPassword" component={ForgotPassword} />
           <PublicRoute exact path="/change/:resetLink" component={Change} />
@@ -32,7 +34,7 @@ const Routes = () => {
           <PrivateRoute exact path="/certificados/" component={CourseCertificate} />
           <Route exact path="/certificados/:_id" component={Certificate} />
         </Switch>
-      
+
     </>
   );
 };
