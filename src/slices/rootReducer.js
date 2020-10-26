@@ -6,6 +6,7 @@ import userReducer from './usersSlice'
 import mentorReducer from './mentorSlice'
 import learnerReducer from './learnerSlice'
 import certificateReducer from './certificateSlice'
+import modalReducer from './modalSlice'
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   tutorial: tutorialReducer,
   mentor: mentorReducer,
   learner: learnerReducer,
-  certificate: certificateReducer
+  certificate: certificateReducer,
+  modal: modalReducer
 });
 
 export default persistReducer(persistConfig, rootReducer)

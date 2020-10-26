@@ -32,8 +32,13 @@ const tutorial = createSlice({
       state.questionsList = action.payload
     },
     [answerQuestion.fulfilled]: (state, action) => {
-      const questionsResults = state.questionsResults.filter(item => item.question !== action.payload.question)
-      state.questionsResults = [...questionsResults, action.payload]
+      const index = state.questionsResults.findIndex(item => item.question === action.payload.question)
+      if (index !== -1) {
+        state.questionsResults[index].isCorrect = action.payload.isCorrect
+        state.questionsResults[index].alternative = action.payload.alternative
+      } else {
+        state.questionsResults = state.questionsResults.concat(action.payload)
+      }
     },
     [updateMarkdown.fulfilled]: (state, action) => {
       state.markdown = action.payload

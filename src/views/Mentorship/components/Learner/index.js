@@ -7,18 +7,18 @@ import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
 import Modal from '../../../../components/Modal';
 import Loader from '../../../../components/Loader';
+import { toggleModalVisible } from '../../../../slices/modalSlice';
 
 /* eslint-disable no-shadow */
-function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, unassignMentor, mentorRequest, cancelMentorRequest }) {
-  const [isModalVisible, setIsModalVisible] = useState(false)
+function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, unassignMentor, mentorRequest, cancelMentorRequest, toggleModalVisible }) {
   useEffect(() => {
     getMentor()
   }, []);
 
   const unassign = () => {
-    setIsModalVisible(false)
+    toggleModalVisible()
     unassignMentor()
-  }
+  };
 
   return (
     <div className="learner">
@@ -32,23 +32,20 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
             secondaryContent={mentor?.email}
             deleteActionMessage='Desvincular'
             deleteAction={() => {
-              setIsModalVisible(true)
+              toggleModalVisible()
             }}
           />
-          {isModalVisible ?
-            <Modal
-              title={`Desvincular ${mentor.name}`}
-              confirmMessage='desvincular'
-              closeMessage='cancelar'
-              onClose={() => setIsModalVisible(false)}
-              onConfirm={() => unassign()}
-            >
-              <p>Que pena que essa relação não deu certo.</p>
-              <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
-              <p>Você tem certeza que deseja fazer isso?</p>
-            </Modal>
-            :
-            null}
+          <Modal
+            title={`Desvincular ${mentor.name}`}
+            confirmMessage='desvincular'
+            closeMessage='cancelar'
+            onClose={() => toggleModalVisible()}
+            onConfirm={() => unassign()}
+          >
+            <p>Que pena que essa relação não deu certo.</p>
+            <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
+            <p>Você tem certeza que deseja fazer isso?</p>
+          </Modal>
         </>
         ) : (
           <>
@@ -92,7 +89,8 @@ const mapDispatchToProps = (dispatch) => ({
   getMentor: () => dispatch(getMentor()),
   assignMentor: () => dispatch(assignMentor()),
   cancelMentorRequest: () => dispatch(cancelMentorRequest()),
-  unassignMentor: () => dispatch(unassignMentor())
+  unassignMentor: () => dispatch(unassignMentor()),
+  toggleModalVisible: () => dispatch(toggleModalVisible())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Learner);
