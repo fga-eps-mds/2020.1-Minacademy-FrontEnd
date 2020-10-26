@@ -1,5 +1,5 @@
-.activity {
-  width: 80%;
+.question {
+  // width: 80%;
   font-family: Overpass;
   padding-left: 2rem;
   text-align: justify;
@@ -38,7 +38,8 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
-    .button {
+
+    .custom-button {
       margin-top: 0.75rem;
     }
     @media(max-width: 600px) {
