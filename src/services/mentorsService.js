@@ -43,9 +43,19 @@ const changeAvailability = createAsyncThunk('mentor/changeAvailability', async (
   }
 })
 
+const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, { rejectWithValue }) => {
+  try {
+    const response = await api.patch(`${MENTOR_ENDPOINT}/validation`)
+    return response.data
+  } catch(error) {
+    return rejectWithValue(error.response.data.isAvailable)
+  }
+})
+
 export {
   assignLearner,
   unassignLearner,
   getLearners,
-  changeAvailability
+  changeAvailability,
+  validateMentor
 }

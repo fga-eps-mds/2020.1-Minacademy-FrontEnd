@@ -1,11 +1,12 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { getLearners, assignLearner, unassignLearner, changeAvailability } from '../services/mentorsService'
+import { getLearners, assignLearner, unassignLearner, changeAvailability, validateMentor } from '../services/mentorsService'
 
 const initialState = {
   loading: false,
   learners: [],
   isAvailable: false,
   fetchingLearners: false,
+  isValidated: false,
 };
 
 const mentorSlice = createSlice({
@@ -64,6 +65,12 @@ const mentorSlice = createSlice({
     },
     [changeAvailability.rejected]: (state, action) => {
       state.loading = false
+    },
+    [validateMentor.fulfilled]: (state, action) => {
+      state.isValidated = action.payload
+    },
+    [validateMentor.rejected]: (state, action) => {
+      state.isValidated = action.payload
     }
   }
 
@@ -89,6 +96,11 @@ export const selectLearners = createSelector(
 export const selectAvailability = createSelector(
   [selectMentor],
   mentor => mentor.isAvailable
+)
+
+export const selectValidation = createSelector(
+  [selectMentor],
+  mentor => mentor.isValidated
 )
 
 export const { removeLearner, setAvailability } = mentorSlice.actions;
