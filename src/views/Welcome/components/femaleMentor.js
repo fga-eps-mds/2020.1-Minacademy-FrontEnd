@@ -1,22 +1,29 @@
 import React from 'react';
 import '../style.scss';
+import { Link } from 'react-router-dom'
 // import { useHistory } from 'react-router-dom'
 // import Button from "../../../components/Button";
 
 function FemaleMentor() {
-    // const history = useHistory()
+  // const history = useHistory()
 
   return (
     <>
       <div>
-        <h1>Seja Bem Vinda</h1>
-        <p>A plataforma ainda está em desenvolvimento, os usuários do gênero feminino podem escolher sua forma da cadastro
-        Entre aprendiz e mentor, as aprendizes podem fazer as atividades da plataforma, e os parâmetros para definir um mentor ainda serão definidos.
-        Porém você pode fazer o tutorial, e após o fim do tutorial você se tornará automáticamente mentora.
-              </p>
-        <form >
-          {/* <Button onClick={changeToLearner}>VIRAR APRENDIZ</Button> */}
-        </form>
+        <h1>Seja Bem-vinda</h1>
+        <br />
+        <p>Você está a um passo de ajudar as aprendizes da plataforma a conseguirem sua certificação em nosso curso introdutório de Django.</p>
+        <p>Antes disso, precisamos que você passe por uma avaliação para comprovar seus conhecimentos acerca do conteúdo do curso.</p>
+        <ul>As regras são as seguintes:
+            <li>- Você precisará de uma nota maior ou igual a 70% para ser aprovada;</li>
+          <li>- Caso não consiga de primeira, não se preocupe. Você terá um total de 3 tentativas.</li>
+        </ul>
+        <div className='links'>
+          <br />
+          <br />
+          <Link to='/avaliacao' className='test-link'>Fazer a Avaliação</Link>
+          <Link to='/dashboard' className='dashboard-link'>Quero ser avaliada depois</Link>
+        </div>
       </div>
     </>
   );

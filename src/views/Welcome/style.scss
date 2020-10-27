@@ -1,18 +1,7 @@
 .welcome {
  
   max-width: 100%;
-
-  .welcome-learner {
-    p {
-      max-width: 90vw;
-      font-weight: 300;
-      font-size: 1.5vw;
-      font-family: Overpass;
-      padding-left: 4.5vw;
-      padding-right: 4.5vw;
-      text-align: justify;
-    }
-  }
+  min-height: 50vw;
 
   h1 {
     padding-top: 5vw;
@@ -34,6 +23,15 @@
   }
 
   p {
+    font-weight: 300;
+    font-size: 2vw;
+    font-family: Overpass;
+    padding-left: 4.5vw;
+    padding-right: 4.5vw;
+    text-align: left;
+  }
+
+  ul {
     max-width: 90vw;
     font-weight: 300;
     font-size: 2vw;
@@ -41,6 +39,7 @@
     padding-left: 4.5vw;
     padding-right: 4.5vw;
     text-align: justify;
+    color: var(--paragraph-color);
   }
 
   button {
@@ -59,6 +58,20 @@
     text-decoration: underline;
     color: var(--secondary-color);
     position: relative;
-    padding-left: 65vw;
+  }
+
+  .test-link {
+    position: absolute;
+    margin-left: 75vw;
+  }
+
+  .learner-dashboard-link {
+    position: absolute;
+    margin-left: 75vw;
+  }
+
+  .dashboard-link {
+    position: absolute;
+    margin-left: 50vw;
   }
 }

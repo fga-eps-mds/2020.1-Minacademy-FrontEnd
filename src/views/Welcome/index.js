@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
 import './style.scss';
 import Learner from './components/learner';
 import FemaleMentor from './components/femaleMentor';
@@ -27,9 +26,6 @@ function Welcome({ currentUser, assignMentor }) {
                 <div>Erro</div>
             </>
           )}
-          <div className='links'>
-            <Link to='/dashboard'>Prosseguir para a dashboard</Link>
-          </div>
       </div>
     </>
   );
