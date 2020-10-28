@@ -56,7 +56,7 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
                 return toggleItem(item)
               }}>
                 <span>{isItemInSelection(item) ? '-':''} {item.title || item.value}</span>
-                {item.completed && <span>Concluído</span>}
+                {item?.completed && <span>Concluído</span>}
               </button>
             </li>
           ))}
