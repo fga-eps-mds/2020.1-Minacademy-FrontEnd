@@ -15,6 +15,7 @@ import {
   loading,
   fetchingLearners,
   removeLearner,
+  selectValidation
 } from '../../../../slices/mentorSlice';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
 import Button from '../../../../components/Button';
@@ -36,6 +37,7 @@ function Mentor({
   fetchingLearners,
   currentUser,
   toggleModalVisible,
+  isValidated
 }) {
   const [learnerToRemoval, setLearnerToRemoval] = useState();
 
@@ -51,7 +53,7 @@ function Mentor({
 
   return (
     <div className="mentor">
-      {currentUser.isValidated ? (
+      {isValidated ? (
         <>
           <div className="mentor__header">
             <span className="mentor__header-title">Meus aprendizes</span>
@@ -115,7 +117,7 @@ function Mentor({
         <span className="mentor__header-title">
         Você ainda não foi validado como monitor.
         Faça a sua <Link to='/avaliacao'>avaliação</Link> e
-        tenha acesso a todas as funcionalidades de monitoria
+        tenha acesso a todas as funcionalidades de mentoria
         </span>
       )}
     </div>
