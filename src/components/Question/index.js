@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
@@ -6,12 +6,14 @@ import { withRouter } from 'react-router-dom';
 import {
   selectQuestion,
   selectQuestionsResults,
+  isLoading
 } from '../../slices/tutorialSlice';
 import {
   answerQuestion,
   getProgress,
 } from '../../services/tutorialServices';
 import Button from '../Button';
+import Loader from '../Loader'
 import './style.scss';
 
 /* eslint-disable no-shadow */
@@ -22,25 +24,30 @@ function Question({
   getProgress,
   history,
   showResult = true,
-  showGoBack = true
+  showGoBack = true,
+  isLoading
 }) {
   const result = useMemo(
     () => questionResults.find((result) => result.question === question._id),
     [questionResults]
   );
 
-  const { handleSubmit, register, errors } = useForm({
+  const { handleSubmit, register, errors, watch } = useForm({
     defaultValues: {
       alternative: result?.alternative,
     },
   });
+
+  const previousAlternative = useMemo(() =>
+    watch('alternative') === result?.alternative
+  , [watch('alternative'), result])
 
   const onSubmit = async (alternative) => {
     const response = await answerQuestion({
       ...alternative,
       question: question._id,
     });
-    if (response.payload.isCorrect) {
+    if (response.payload.isCorrect === true) {
       getProgress();
     }
   };
@@ -70,11 +77,12 @@ function Question({
                       type="radio"
                       ref={register({ required: true })}
                     />
-                    {question.alternatives[item]}
+                    <span>{question.alternatives[item]}</span>
                   </label>
                 </div>
               ))}
-              {result?.isCorrect === false && showResult && (
+              {isLoading && <Loader> Verificando... </Loader>}
+              {result?.isCorrect === false && showResult && !isLoading && (
                 <div className="question__alternatives--error">
                   Resposta errada, tente novamente!
                 </div>
@@ -89,6 +97,7 @@ function Question({
         )}
       </div>
 
+
       <div className="question__buttons">
         {showGoBack && <Button
           onClick={() => {
@@ -99,7 +108,7 @@ function Question({
           Voltar
         </Button>}
         {(!result?.isCorrect || !showResult) && (
-          <Button shadow form="question" type="submit">
+          <Button shadow form="question" type="submit" disabled={previousAlternative || isLoading}>
             Responder
           </Button>
         )}
@@ -127,6 +136,7 @@ function Question({
 const mapStateToProps = (state, props) => ({
   question: selectQuestion(state, props),
   questionResults: selectQuestionsResults(state),
+  isLoading: isLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
