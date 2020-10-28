@@ -7,12 +7,16 @@ import { getQuestions, getProgress } from '../../../../services/tutorialServices
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function ActivitiesList({ questionsList, questionsResults, currentModule, getQuestions, getProgress }) {
+function ActivitiesList({ exam = false, questionsList, questionsResults, currentModule, getQuestions, getProgress }) {
   const match = useRouteMatch();
 
   useEffect(() => {
-    getQuestions(currentModule);
-    getProgress(currentModule);
+    if (exam) {
+      getQuestions({ exam })
+    }
+    else  {
+      getQuestions({ moduleNumber: currentModule })
+    };
   }, [currentModule]);
 
   const result = activity => questionsResults.find(result => result.question === activity._id)?.isCorrect
@@ -34,9 +38,10 @@ function ActivitiesList({ questionsList, questionsResults, currentModule, getQue
         {questionsList.map(activity => (
           <p key={activity._id}
             className={`
-            activities-list__list-item
-            ${result(activity) === false ? 'wrong':''}
-            ${result(activity) ? 'correct':''}
+              activities-list__list-item
+              ${(result(activity) === false) && !exam ? 'wrong':''}
+              ${result(activity) && !exam ? 'correct':''}
+              ${(result(activity) !== undefined) && exam ? 'answer':''}
             `}
           >
             <Link to={`${match.path}/atividades/${activity.number}`}>Atividade {activity.number}</Link>

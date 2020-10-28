@@ -11,8 +11,30 @@
   }
 
   &__header {
-    padding-bottom: 3rem;
-    color: var(--title-color);
+    position: relative;
+    // padding-bottom: 1px;
+    margin-bottom: 2.5rem;
+    color: var(--text-color);
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      width: 30%;
+      margin-left: 0;
+      margin-right: 0;
+      border-bottom: 1px solid var(--border-color);
+
+      @media (max-width: 600px) {
+        width: 25%;
+        left: 0;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
   }
 
   &__list {
@@ -36,6 +58,10 @@
 
       &.wrong{
         a { color: var(--error-color); }
+      }
+
+      &.answer{
+        a { color: var(--secondary-color); }
       }
     }
 
