@@ -32,7 +32,7 @@ function Question({
     [questionResults]
   );
 
-  const { handleSubmit, register, errors, watch } = useForm({
+  const { handleSubmit, register, errors, setError, clearErrors, watch } = useForm({
     defaultValues: {
       alternative: result?.alternative,
     },
@@ -50,11 +50,30 @@ function Question({
     if (response.payload.isCorrect === true) {
       getProgress();
     }
+    if (result?.isCorrect === false && showResult && !isLoading)
+      setError('alternative', {type: 'manual', message: 'Resposta errada, tente novamente!' })
   };
 
-  const descriptionText = question.description.split('\n').map((i) => {
-    return <p key={i}>{i}</p>;
-  });
+  const descriptionText = useMemo(() => question.description
+    .split('\n')
+    .map((word, i) => <p key={i}>{word}</p>
+  ), [question])
+
+  const questionAlternatives = useMemo(() =>
+    Object.keys(question.alternatives).map((item) =>
+      <div className="question__alternatives--item" key={item}>
+        <label htmlFor="alternative">
+          <input
+            name="alternative"
+            value={item}
+            type="radio"
+            onChange={() => clearErrors('alternative')}
+            ref={register({ required: "Escolha uma alternativa" })}
+          />
+          <span>{question.alternatives[item]}</span>
+        </label>
+      </div>
+  ), [question])
 
   return (
     <div className="question">
@@ -68,35 +87,17 @@ function Question({
         ) : (
           <>
             <form id="question" onSubmit={handleSubmit(onSubmit)}>
-              {Object.keys(question.alternatives).map((item, i) => (
-                <div className="question__alternatives--item" key={item}>
-                  <label htmlFor="alternative">
-                    <input
-                      name="alternative"
-                      value={item}
-                      type="radio"
-                      ref={register({ required: true })}
-                    />
-                    <span>{question.alternatives[item]}</span>
-                  </label>
-                </div>
-              ))}
+              {questionAlternatives}
               {isLoading && <Loader> Verificando... </Loader>}
-              {result?.isCorrect === false && showResult && !isLoading && (
-                <div className="question__alternatives--error">
-                  Resposta errada, tente novamente!
-                </div>
-              )}
               {errors.alternative && (
                 <div className="question__alternatives--error">
-                  Escolha uma alternativa
+                  {errors.alternative.message}
                 </div>
               )}
             </form>
           </>
         )}
       </div>
-
 
       <div className="question__buttons">
         {showGoBack && <Button
