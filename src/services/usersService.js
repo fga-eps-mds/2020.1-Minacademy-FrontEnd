@@ -38,7 +38,6 @@ const logout = createAsyncThunk('users/logout', async (values, { rejectWithValue
   try {
     const response = await api.post(LOGOUT_ENDPOINT);
     toast('Volte logo!')
-    sessionStorage.clear() // eslint-disable-line no-undef
     return response.data
   } catch (error) {
     return rejectWithValue(null)
