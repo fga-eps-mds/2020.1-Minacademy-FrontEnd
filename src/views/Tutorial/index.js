@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { selectCompletedActivities, selectTotalProgress } from '../../slices/tutorialSlice';
+import { getProgress } from '../../services/tutorialServices';
+import { selectCurrentUser } from '../../slices/usersSlice';
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity'
-import { selectCompletedActivities, selectTotalProgress } from '../../slices/tutorialSlice';
-import { selectCurrentUser } from '../../slices/usersSlice';
 import './style.scss'
 
-function Tutorial({ currentUser, completedActivities, totalProgress }) {
-  const match = useRouteMatch();
+function Tutorial({ currentUser, completedActivities, getProgress, totalProgress, match }) {
+  useEffect(() => {
+    getProgress();
+  }, []);
 
   return (
   <div className="tutorial">
@@ -46,7 +49,11 @@ Tutorial.propTypes = {
 const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state),
   completedActivities: selectCompletedActivities(state),
-  totalProgress: selectTotalProgress(state)
+  totalProgress: selectTotalProgress(state),
 })
 
-export default connect(mapStateToProps)(Tutorial)
+const mapDispatchToProps = dispatch => ({
+  getProgress: () => dispatch(getProgress())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tutorial)
