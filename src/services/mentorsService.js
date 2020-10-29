@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { MENTOR_ENDPOINT } from './endpoints/mentor';
 import api from './api';
+import { setCurrentUser } from '../slices/usersSlice';
 
 const getLearners = createAsyncThunk('mentor/getLearners', async (values, { rejectWithValue }) => {
   try {
@@ -43,12 +44,20 @@ const changeAvailability = createAsyncThunk('mentor/changeAvailability', async (
   }
 })
 
-const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, { rejectWithValue }) => {
+const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, { dispatch, rejectWithValue }) => {
   try {
     const response = await api.patch(`${MENTOR_ENDPOINT}/validation`)
+    if (response.data.user.isValidated) {
+      toast.success('Parabens! Voĉe agora é um mentor(a)')
+      dispatch(setCurrentUser(response.data.user))
+    } else {
+      toast.error(`Voĉe não atingiu o resultado mínimo para ser validado.
+      Seus acertos: ${response.data.result}.
+      ${response.data.attempts ? 'Tente novamente!': ''}`, {autoClose: false})
+    }
     return response.data
   } catch(error) {
-    return rejectWithValue(error.response.data.isAvailable)
+    return rejectWithValue(error.response.data)
   }
 })
 

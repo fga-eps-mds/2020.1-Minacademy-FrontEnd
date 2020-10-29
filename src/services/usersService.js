@@ -9,7 +9,7 @@ import {
   CHANGE_PASS_ENDPOINT,
   CHANGE_ENDPOINT
 } from './endpoints/users';
-import { setAvailability } from '../slices/mentorSlice';
+import { setAvailability, setValidationAttempts } from '../slices/mentorSlice';
 import { setMentorRequest } from '../slices/learnerSlice';
 
 const listUsers = async () => {
@@ -27,6 +27,7 @@ const login = createAsyncThunk('users/login', async (values, { dispatch, rejectW
     toast.success(`Seja bem-vindo ${response.data.user.name}!`)
     dispatch(setAvailability(response.data.user.isAvailable)) // eslint-disable-line no-undef
     dispatch(setMentorRequest(response.data.user.mentor_request))
+    dispatch(setValidationAttempts(response.data.user.attempts))
     return response.data.user
   } catch (err) {
     toast.error('Email ou senha incorretos')
@@ -66,7 +67,6 @@ const changeToLearner = async () => {
   }
 };
 
-// TODO createAsyncThunk
 const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue }) => {
   try {
     const response = await api.patch(USER_ENDPOINT, values);

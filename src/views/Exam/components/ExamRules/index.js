@@ -5,7 +5,6 @@ import './style.scss';
 
 /* eslint-disable no-shadow */
 function ExamRules() {
-  // TODO: tentativas restantes, habilitar botao de finalizar ao responder todas as questões
   return (
     <div className="exam-rules">
       <h4 className="exam-rules__header">
@@ -14,7 +13,6 @@ function ExamRules() {
       </h4>
         <p>Conclua com mais de 70% de acertos para ser validado como mentor(a)</p>
         <p>Não há limite de tempo para realizar a prova</p>
-        <p>3 tentativas restantes</p>
         <Button
           disabled={true}
           shadow

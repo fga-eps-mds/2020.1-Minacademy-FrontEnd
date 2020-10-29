@@ -7,6 +7,7 @@ const initialState = {
   isAvailable: false,
   fetchingLearners: false,
   isValidated: false,
+  validationAttempts: 3
 };
 
 const mentorSlice = createSlice({
@@ -20,6 +21,9 @@ const mentorSlice = createSlice({
     },
     setAvailability(state, action) {
       state.isAvailable = action.payload
+    },
+    setValidationAttempts(state, action) {
+      state.validationAttempts = action.payload
     }
   },
   extraReducers: {
@@ -66,11 +70,18 @@ const mentorSlice = createSlice({
     [changeAvailability.rejected]: (state, action) => {
       state.loading = false
     },
+
+
+    [validateMentor.pending]: (state, action) => {
+      state.loading = true
+    },
     [validateMentor.fulfilled]: (state, action) => {
-      state.isValidated = action.payload
+      state.validationAttempts = action.payload.attempts
+      state.loading = false
     },
     [validateMentor.rejected]: (state, action) => {
-      state.isValidated = action.payload
+      state.validationAttempts = action.payload.attempts
+      state.loading = false
     }
   }
 
@@ -98,10 +109,15 @@ export const selectAvailability = createSelector(
   mentor => mentor.isAvailable
 )
 
+export const selectValidationAttempts = createSelector(
+  [selectMentor],
+  mentor => mentor.validationAttempts
+)
+
 export const selectValidation = createSelector(
   [selectMentor],
   mentor => mentor.isValidated
 )
 
-export const { removeLearner, setAvailability } = mentorSlice.actions;
+export const { removeLearner, setAvailability, setValidationAttempts } = mentorSlice.actions;
 export default mentorSlice.reducer;

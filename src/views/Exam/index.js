@@ -2,19 +2,21 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import ActivitiesList from '../Tutorial/components/ActivitiesList';
-import { selectTotalAnswers } from '../../slices/tutorialSlice';
+import { selectTotalAnswers, selectQuestionsList } from '../../slices/tutorialSlice';
 import { getProgress } from '../../services/tutorialServices';
+import { validateMentor } from '../../services/mentorsService'
+import { selectValidationAttempts } from '../../slices/mentorSlice'
 import { toggleModalVisible } from '../../slices/modalSlice'
+import ActivitiesList from '../Tutorial/components/ActivitiesList';
 import ExamQuestion from './components/ExamQuestion';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import ExamRules from './components/ExamRules';
 import './style.scss';
 
-function Exam({ getProgress, totalAnswers, toggleModalVisible, match }) {
+function Exam({ validateMentor, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, match }) {
   useEffect(() => {
-    getProgress({ exam: true });
+    getProgress({ exam: 'true' });
   }, []);
 
   return (
@@ -27,27 +29,25 @@ function Exam({ getProgress, totalAnswers, toggleModalVisible, match }) {
           </p>
         </div>
         <div className="exam__header--progress">
-          {totalAnswers}/10 questões respondidas
-
-            <Button
-              disabled={totalAnswers <  10}
+          {totalAnswers}/{questionsList.length} questões respondidas
+            {attempts > 0 && <Button
+              disabled={totalAnswers <  questionsList.length}
               onClick={() => {
                 toggleModalVisible();
               }}
               shadow
             >
               Finalizar avaliação
-            </Button>
-
+            </Button>}
         </div>
       </div>
-      <div className="exam__body">
-        <ActivitiesList exam={true} />
+        <div className="exam__body">
+        {attempts > 0 && <ActivitiesList exam={true} />}
         <Switch>
-          <Route
+          {attempts > 0 && <Route
             path={`${match.path}/atividades/:activityNumber`}
             render={() => <ExamQuestion />}
-          />
+          />}
           <Route path={match.path} component={ExamRules} />
         </Switch>
         <Modal
@@ -55,9 +55,18 @@ function Exam({ getProgress, totalAnswers, toggleModalVisible, match }) {
             confirmMessage='sim'
             closeMessage='cancelar'
             onClose={() => toggleModalVisible()}
-            onConfirm={() => {}}
+            onConfirm={() => {
+              validateMentor()
+              toggleModalVisible()
+            }}
         >
-
+          <p>
+            Ao confirmar, suas respostas serão verificadas e
+            caso tenha mais de 70% de acertos, voĉe será validado
+          </p>
+          <p>
+            Voĉe ainda possui mais {attempts} tentativa
+          </p>
         </Modal>
       </div>
     </div>
@@ -66,11 +75,14 @@ function Exam({ getProgress, totalAnswers, toggleModalVisible, match }) {
 
 const mapStateToProps = (state) => ({
   totalAnswers: selectTotalAnswers(state),
+  questionsList: selectQuestionsList(state),
+  attempts: selectValidationAttempts(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModalVisible: () => dispatch(toggleModalVisible()),
-  getProgress: () => dispatch(getProgress())
+  getProgress: (query) => dispatch(getProgress(query)),
+  validateMentor: () => dispatch(validateMentor())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Exam);
