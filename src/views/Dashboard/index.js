@@ -53,7 +53,7 @@ function Dashboard({
     getMentor();
     getModules();
 
-    getProgress(currentModule).then((data) => {
+    getProgress({ moduleNumber: currentModule }).then((data) => {
       if (data.payload.totalProgress === 100) setLearnerCertificate(true);
     });
     getQuestions({ moduleNumber: currentModule });

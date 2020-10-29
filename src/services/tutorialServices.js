@@ -29,9 +29,13 @@ const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async (data, 
   }
 });
 
-const getProgress = createAsyncThunk('tutorial/getProgress', async (moduleNumber, { rejectWithValue }) => {
+const getProgress = createAsyncThunk('tutorial/getProgress', async (query, { rejectWithValue }) => {
   try {
-    const response = await api.get(`${PROGRESS_ENDPOINT}?${moduleNumber ? `moduleNumber=${moduleNumber}` : ''}`);
+    const response = await api.get(PROGRESS_ENDPOINT, {
+      params: {
+        ...query
+      }
+    });
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data)

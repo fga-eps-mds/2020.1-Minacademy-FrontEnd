@@ -14,7 +14,7 @@ import './style.scss';
 
 function Exam({ getProgress, totalAnswers, toggleModalVisible, match }) {
   useEffect(() => {
-    getProgress();
+    getProgress({ exam: true });
   }, []);
 
   return (
