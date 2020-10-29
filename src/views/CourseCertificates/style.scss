@@ -5,6 +5,9 @@
   padding: 5rem 1rem;
   font-family: Overpass;
 
+  h3{
+    color: var(--title-color)
+  }
   @media (max-width: 600px) {
     padding: 2rem;
     max-width: 100%;
