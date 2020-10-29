@@ -1,34 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 /* eslint-disable jsx-a11y/label-has-associated-control */
 const Select = ({
   label,
   name,
   options,
-  onChange,
-  required,
+  children,
   register,
-  pattern,
+  required = false, // eslint-disable-line no-unused-vars
+  pattern = {},  // eslint-disable-line no-unused-vars
   errors,
+  ...otherProps
 }) => (
-  <div>
-    <label>{label}</label>
+  <div className="select">
+    <label htmlFor={name}>{label}</label>
     <select
       name={name}
-      required={required}
-      ref={register({ pattern })}
-      onChange={onChange}
-      errors={errors}
+      ref={register}
+      {...otherProps}
     >
-      <option>Selecione</option>
-      {options.map((option) => (
-        <option value={option.value}>{option.name}</option>
-      ))}
+      <option hidden disabled selected value></option>
+      {children}
     </select>
-    {(errors?.name && (
-      <span className="field__input--danger">{errors?.name.message}</span>
-    )) || <br />}
+    {errors[name] ? <span className="error">{errors[name].message}</span> : null}
   </div>
 );
 
