@@ -16,6 +16,7 @@ import {
 import Button from '../../../../components/Button';
 import './style.scss';
 import Modal from '../../../../components/Modal';
+import { selectCertificate } from '../../../../slices/certificateSlice';
 
 /* eslint-disable no-shadow */
 function Activity({
@@ -25,14 +26,16 @@ function Activity({
   getProgress,
   history,
   totalProgress,
+  certificate,
+  generateCertificate
 }) {
   const { handleSubmit, register, errors } = useForm();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [certificate, setCertificate] = useState(null);
+ 
   useEffect(() => {
     if (totalProgress === 100) {
-      generateCertificate().then((data) => setCertificate(data._id));
+      generateCertificate()
       setIsModalVisible(true);
     }
   }, [totalProgress]);
@@ -65,7 +68,7 @@ function Activity({
           onClose={() => {
             setIsModalVisible(false);
           }}
-          onConfirm={() => history.push(`/certificados/${certificate}`)}
+          onConfirm={() => history.push(`/certificados/${certificate.certificate._id}`)}
         >
           <p>Parabéns, você concluiu o tutorial.</p>
           <p>
@@ -146,17 +149,21 @@ Activity.propTypes = {
   getProgress: PropTypes.func.isRequired,
   history: PropTypes.func.isRequired,
   totalProgress: PropTypes.number.isRequired,
+  certificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  generateCertificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
   question: selectQuestion(state, props),
   questionResults: selectQuestionsResults(state),
   totalProgress: selectTotalProgress(state),
+  certificate: selectCertificate(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   answerQuestion: (answerData) => dispatch(answerQuestion(answerData)),
   getProgress: (questions) => dispatch(getProgress(questions)),
+  generateCertificate: () => dispatch(generateCertificate())
 });
 
 export default withRouter(
