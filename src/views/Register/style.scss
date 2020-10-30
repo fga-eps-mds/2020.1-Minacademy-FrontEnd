@@ -62,6 +62,14 @@
           }
         }
 
+        .custom-radio .disabled-message {
+          visibility: hidden;
+        }
+
+        .custom-radio:hover .disabled-message {
+          visibility: visible;
+        }
+
         .user-type-error {
           position: absolute;
           bottom: 0;

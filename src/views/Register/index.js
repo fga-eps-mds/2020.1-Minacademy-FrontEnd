@@ -143,7 +143,7 @@ function Register({ registerRequest, isLoading }) {
                 name="userType"
                 value="Learner"
                 disabled={watch('gender') !== 'Female'}
-                disabledMessage="Somente usuarias do gênero feminino"
+                disabledMessage="Somente usuárias do gênero feminino"
                 register={register({
                   required: 'Campo obrigatório',
                 })}
