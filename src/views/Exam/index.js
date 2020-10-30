@@ -15,6 +15,7 @@ import Modal from '../../components/Modal';
 import ExamRules from './components/ExamRules';
 import './style.scss';
 
+/* eslint-disable no-shadow */
 function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, match }) {
   useEffect(() => {
     getProgress({ exam: 'true' });
@@ -63,7 +64,7 @@ function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers,
           <Route path={match.path} component={ExamRules} />
         </Switch>
         <Modal
-            title={`Finalizar e enviar?`}
+            title="Finalizar e enviar?"
             confirmMessage='sim'
             closeMessage='cancelar'
             onClose={() => toggleModalVisible()}
@@ -83,6 +84,14 @@ function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers,
       </div>
     </div>
   );
+}
+
+Exam.propTypes = {
+  validateMentor: PropTypes.func.isRequired,
+  attempts: PropTypes.number.isRequired,
+  getProgress: PropTypes.func.isRequired,
+  toggleModalVisible: PropTypes.func.isRequired,
+  
 }
 
 const mapStateToProps = (state) => ({

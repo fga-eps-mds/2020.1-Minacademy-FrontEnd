@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
-import { getQuestions, getProgress } from '../../../../services/tutorialServices';
+import { getQuestions } from '../../../../services/tutorialServices';
 import './style.scss';
 
 /* eslint-disable no-shadow */
@@ -66,7 +66,6 @@ ActivitiesList.propTypes = {
   questionsResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
   currentModule: PropTypes.number.isRequired,
   getQuestions: PropTypes.func.isRequired,
-  getProgress: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -77,7 +76,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
-  getProgress: questions => dispatch(getProgress(questions)),
 });
 
 export default (connect(mapStateToProps, mapDispatchToProps)(ActivitiesList));

@@ -14,8 +14,7 @@ import {
   selectAvailability,
   loading,
   fetchingLearners,
-  removeLearner,
-  selectValidation
+  removeLearner
 } from '../../../../slices/mentorSlice';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
 import Button from '../../../../components/Button';
@@ -36,8 +35,7 @@ function Mentor({
   loading,
   fetchingLearners,
   currentUser,
-  toggleModalVisible,
-  isValidated
+  toggleModalVisible
 }) {
   const [learnerToRemoval, setLearnerToRemoval] = useState();
 
@@ -137,6 +135,7 @@ Mentor.propTypes = {
     .isRequired,
   changeAvailability: PropTypes.func.isRequired,
   removeLearner: PropTypes.func.isRequired,
+  toggleModalVisible: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { selectCompletedActivities, selectTotalProgress } from '../../slices/tutorialSlice';
 import { getProgress } from '../../services/tutorialServices';
-import { selectCurrentUser } from '../../slices/usersSlice';
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity'
 import './style.scss'
 
-function Tutorial({ currentUser, completedActivities, getProgress, totalProgress, match }) {
+/* eslint-disable no-shadow */
+function Tutorial({ completedActivities, getProgress, totalProgress, match }) {
   useEffect(() => {
     getProgress();
   }, []);
@@ -38,16 +38,11 @@ function Tutorial({ currentUser, completedActivities, getProgress, totalProgress
 }
 
 Tutorial.propTypes = {
-  currentUser: PropTypes.oneOfType([
-    PropTypes.oneOf([null]),
-    PropTypes.object
-  ]).isRequired,
   completedActivities: PropTypes.number.isRequired,
   totalProgress: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state),
   completedActivities: selectCompletedActivities(state),
   totalProgress: selectTotalProgress(state),
 })

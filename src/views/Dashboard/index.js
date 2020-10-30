@@ -17,7 +17,6 @@ import { selectMentor } from '../../slices/learnerSlice';
 import { getMentor } from '../../services/learnersService';
 import Card from '../../components/Card';
 import './style.scss';
-import Loader from '../../components/Loader';
 
 /* eslint-disable no-shadow */
 function Dashboard({

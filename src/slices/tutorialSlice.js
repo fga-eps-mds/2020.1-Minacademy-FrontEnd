@@ -32,7 +32,7 @@ const tutorial = createSlice({
       state.questionsList = action.payload
     },
 
-    [answerQuestion.pending]: (state, action) => {
+    [answerQuestion.pending]: (state) => {
       state.loading = true
     },
     [answerQuestion.fulfilled]: (state, action) => {
@@ -45,7 +45,7 @@ const tutorial = createSlice({
       }
       state.loading = false
     },
-    [answerQuestion.rejected]: (state, action) => {
+    [answerQuestion.rejected]: (state) => {
       state.loading = false
     },
 
@@ -56,7 +56,7 @@ const tutorial = createSlice({
       state.modules = action.payload
     },
 
-    [getProgress.pending]: (state, action) => {
+    [getProgress.pending]: (state) => {
       state.loading = true
     },
     [getProgress.fulfilled]: (state, action) => {
@@ -64,7 +64,7 @@ const tutorial = createSlice({
       state.totalProgress = action.payload.totalProgress
       state.loading = false
     },
-    [getProgress.rejected]: (state, action) => {
+    [getProgress.rejected]: (state) => {
       state.loading = false
     },
   }
