@@ -149,6 +149,8 @@ Activity.propTypes = {
   getProgress: PropTypes.func.isRequired,
   history: PropTypes.func.isRequired,
   totalProgress: PropTypes.number.isRequired,
+  certificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  generateCertificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state, props) => ({

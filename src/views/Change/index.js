@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { changeUserPassword } from '../../services/usersService';
 import Button from '../../components/Button';
-import '../../index.css'
+import '../../index.css';
 import './style.scss';
 
 
