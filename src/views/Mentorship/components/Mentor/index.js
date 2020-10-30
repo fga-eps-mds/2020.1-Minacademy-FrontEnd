@@ -53,7 +53,7 @@ function Mentor({
 
   return (
     <div className="mentor">
-      {isValidated ? (
+      {currentUser.isValidated ? (
         <>
           <div className="mentor__header">
             <span className="mentor__header-title">Meus aprendizes</span>

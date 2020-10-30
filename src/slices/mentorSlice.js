@@ -6,7 +6,6 @@ const initialState = {
   learners: [],
   isAvailable: false,
   fetchingLearners: false,
-  isValidated: false,
   validationAttempts: 3
 };
 
@@ -112,11 +111,6 @@ export const selectAvailability = createSelector(
 export const selectValidationAttempts = createSelector(
   [selectMentor],
   mentor => mentor.validationAttempts
-)
-
-export const selectValidation = createSelector(
-  [selectMentor],
-  mentor => mentor.isValidated
 )
 
 export const { removeLearner, setAvailability, setValidationAttempts } = mentorSlice.actions;

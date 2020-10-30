@@ -28,4 +28,12 @@
       border-bottom: 1px solid var(--border-color);
     }
   }
+
+  &__content {
+    text-align: center;
+
+    .emphasis {
+      font-weight: 600;
+    }
+  }
 }
