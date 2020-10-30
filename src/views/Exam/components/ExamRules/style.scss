@@ -36,4 +36,13 @@
       font-weight: 600;
     }
   }
+
+  a {
+    display: inline-block;
+    align-self: flex-end;
+    text-align: left;
+    text-decoration: underline;
+    color: var(--secondary-color);
+    position: relative;
+  }
 }

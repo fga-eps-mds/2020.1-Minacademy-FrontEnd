@@ -20,7 +20,7 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
   useEffect(() => {
     getProgress({ exam: 'true' });
   }, [attempts]);
-
+  
   return (
     <div className="exam">
       <div className="exam__header">
@@ -78,7 +78,7 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
             caso tenha mais de 70% de acertos, você será validado!
           </p>
           <p>
-            Você ainda possui {attempts} {(attempts > 1) ? "tentativas" : "tentativa"}
+            Você ainda possui {attempts} {(attempts > 1) ? "tentativas." : "tentativa."}
           </p>
         </Modal>
       </div>

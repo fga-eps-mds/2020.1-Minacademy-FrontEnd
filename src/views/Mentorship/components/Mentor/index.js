@@ -115,7 +115,7 @@ function Mentor({
         <span className="mentor__header-title">
         Você ainda não foi validado como monitor.
         Faça a sua <Link to='/avaliacao'>avaliação</Link> e
-        tenha acesso a todas as funcionalidades de mentoria
+        tenha acesso a todas as funcionalidades de mentoria.
         </span>
       )}
     </div>
