@@ -16,9 +16,9 @@ it('Expect to render Tutorial component', () => {
     ).length).toEqual(1)
 })
 
-it('Expect to render Activity Component', () => {
-  expect(shallow(<ExamQuestion store={store} />).length).toEqual(1)
-})
+// it('Expect to render Activity Component', () => {
+//   expect(shallow(<ExamQuestion store={store} />).length).toEqual(1)
+// })
 
 it('Expect to render ActivitiesList Component', () => {
   expect(shallow(<ActivitiesList  store={store} />).length).toEqual(1)
