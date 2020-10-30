@@ -13,7 +13,7 @@ function CertificateList({ certificateType, conclusionData, workload, id }) {
       <div className="certificateList__body">
         <p>{certificateType}</p>
         <span>Conquistado em: {conclusionData}</span>
-        <span>Carga horária: {workload}</span>
+        <span>Carga horária: {workload}h</span>
       </div>
       <div className="certificateList__buttons">
         <Share />
