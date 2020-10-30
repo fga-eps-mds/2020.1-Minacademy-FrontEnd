@@ -15,7 +15,6 @@ import {
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
 import { getMentor } from '../../services/learnersService';
-import { selectValidation } from '../../slices/mentorSlice'
 import Card from '../../components/Card';
 import './style.scss';
 import Loader from '../../components/Loader';
@@ -32,7 +31,6 @@ function Dashboard({
   module,
   mentor,
   getMentor,
-  isValidated,
 }) {
   const progress = useMemo(() => {
     const questions = moduleQuestions.map(question => question._id);
@@ -115,7 +113,7 @@ function Dashboard({
               linkPath="/mentoria"
             />
           </div>
-        ) : isValidated ? (
+        ) : currentUser.isValidated ? (
           <div className="dashboard__body">
             <Card
               title="Mentoria"
@@ -126,6 +124,7 @@ function Dashboard({
             <Card
               title="certificados"
               mainContent="Certificado de mentorias"
+              secondaryContent="Você reberá um certificado assim que um de seus aprendizes concluirem o tutorial"
               linkText="Visualizar certificados"
               linkPath="/certificados"
             />
