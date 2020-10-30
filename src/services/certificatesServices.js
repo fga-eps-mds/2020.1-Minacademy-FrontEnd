@@ -1,5 +1,5 @@
-import api from './api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import api from './api';
 import { CERTIFICATE_ENDPOINT } from './endpoints/certificates';
 
 const getLearnerCertificate = async (values) => {
@@ -17,7 +17,6 @@ const generateCertificate = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await api.patch(CERTIFICATE_ENDPOINT);
-      console.log("teste", response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data.learnerCertificate);
@@ -25,4 +24,16 @@ const generateCertificate = createAsyncThunk(
   }
 );
 
-export { getLearnerCertificate, generateCertificate };
+const getAllCertificates = createAsyncThunk (
+  'certificate/getllCertificates',
+  async (values, { rejectWithValue }) => {
+    try {
+      const response = await api.get(CERTIFICATE_ENDPOINT);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export { getLearnerCertificate, generateCertificate, getAllCertificates };

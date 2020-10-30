@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { generateCertificate } from '../services/certificatesServices';
+import { generateCertificate, getAllCertificates } from '../services/certificatesServices';
 
 const initialState = {
   loading: false,
@@ -16,17 +16,25 @@ const certificateSlice = createSlice({
   extraReducers: {
     [generateCertificate.pending]: (state, action) => {
       state.certificate = action.payload;
-      console.log("PENDING")
+     
       state.loading = true;
     },
     [generateCertificate.fulfilled]: (state, action) => {
-      state.certificate = action.payload;
-      console.log("FULLFIELD")
       state.loading = false;
     },
     [generateCertificate.rejected]: (state, action) => {
       state.certificate = action.payload;
-      console.log("REJECTED")
+      state.loading = false;
+    },
+    [getAllCertificates.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getAllCertificates.fulfilled]: (state, action) => {
+      state.certificate = action.payload;
+      state.loading = false;
+    },
+    [getAllCertificates.rejected]: (state, action) => {
+      state.certificate = null;
       state.loading = false;
     },
   },
