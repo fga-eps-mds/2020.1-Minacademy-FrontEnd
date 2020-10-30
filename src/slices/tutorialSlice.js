@@ -116,7 +116,7 @@ export const selectQuestionsList = createSelector(
 
 export const selectCompletedActivities = createSelector(
   [selectQuestionsResults],
-  results => results.filter(result => result.isCorrect).length
+  results => results.filter(result => result.isCorrect === true).length
 );
 
 export const selectTotalAnswers = createSelector(

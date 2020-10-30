@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, NavLink, useRouteMatch } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
 import { getQuestions, getProgress } from '../../../../services/tutorialServices';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function ActivitiesList({ exam = false, questionsList, questionsResults, currentModule, getQuestions, getProgress }) {
+function ActivitiesList({ exam = false, questionsList, questionsResults, currentModule, getQuestions }) {
   const match = useRouteMatch();
 
   useEffect(() => {
@@ -36,16 +36,21 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
       </div>
       <div className="activities-list__list">
         {questionsList.map(activity => (
-          <p key={activity._id}
+          <NavLink
             className={`
-              activities-list__list-item
-              ${(result(activity) === false) && !exam ? 'wrong':''}
-              ${result(activity) && !exam ? 'correct':''}
-              ${(result(activity) !== undefined) && exam ? 'answer':''}
-            `}
+            activities-list__list-item
+            ${(result(activity) === false) && !exam ? 'wrong':''}
+            ${result(activity) && !exam ? 'correct':''}
+            ${(result(activity) !== undefined) && exam ? 'answer':''}
+          `}
+            to={`${match.path}/atividades/${activity.number}`}
+            isActive={(match, location) => {
+              const param = location.pathname.split('/')
+              return param[param.length - 1] === activity.number.toString()
+            }}
           >
-            <Link to={`${match.path}/atividades/${activity.number}`}>Atividade {activity.number}</Link>
-          </p>
+            Atividade {activity.number}
+          </NavLink>
         ))}
       </div>
     </div>
@@ -75,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
   getProgress: questions => dispatch(getProgress(questions)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ActivitiesList);
+export default (connect(mapStateToProps, mapDispatchToProps)(ActivitiesList));

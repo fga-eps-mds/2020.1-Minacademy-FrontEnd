@@ -38,32 +38,57 @@
   }
 
   &__list {
+    display: flex;
+    flex-direction: column;
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: 1rem;
 
-    &-item{
-      a {
-        color: var(--placeholder-color);
+    &-item {
+      position: relative;
+      margin-bottom: 0.6rem;
+      color: var(--placeholder-color);
+      opacity: 0.85;
+
+      &:hover {
+        color: var(--text-color);
+        font-weight: 700;
         text-decoration: none;
-        &:hover {
-          color: var(--text-color);
-          font-weight: 700;
-          text-decoration: none;
+        opacity: 1;
+      }
+
+      &.active {
+        font-weight: 700;
+        opacity: 1;
+        cursor: default;
+
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0px;
+          height: 1px;
+          width: 30%;
+          border-bottom: 2px solid var(--border-color);
+
+          @media (max-width: 600px) {
+            border-width: 1px;
+          }
         }
       }
 
       &.correct {
-        a { color: var(--secondary-green); }
+        color: var(--secondary-green);
       }
 
       &.wrong{
-        a { color: var(--error-color); }
+        color: var(--error-color);
       }
 
       &.answer{
-        a { color: var(--secondary-color); }
+        color: var(--secondary-color);
       }
     }
-
   }
 }
