@@ -38,7 +38,7 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             <NavLink className="header__navigation-option" to="/dashboard">
               Dashboard
             </NavLink>
-            {currentUser?.isValidated
+            {currentUser.userType === 'Mentor' && currentUser?.isValidated
               ? null
               : <NavLink className="header__navigation-option" to="/avaliacao">
                  Avaliação
