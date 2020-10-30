@@ -88,7 +88,7 @@ function Question({
           <>
             <form id="question" onSubmit={handleSubmit(onSubmit)}>
               {questionAlternatives}
-              {isLoading && <Loader> Verificando... </Loader>}
+
               {errors.alternative && (
                 <div className="question__alternatives--error">
                   {errors.alternative.message}
@@ -98,7 +98,6 @@ function Question({
           </>
         )}
       </div>
-
       <div className="question__buttons">
         {showGoBack && <Button
           onClick={() => {
@@ -113,6 +112,7 @@ function Question({
             Responder
           </Button>
         )}
+        {isLoading && <div className="loading"><Loader> Verificando... </Loader></div>}
       </div>
     </div>
   );
