@@ -43,9 +43,28 @@ const changeAvailability = createAsyncThunk('mentor/changeAvailability', async (
   }
 })
 
+const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, { dispatch, rejectWithValue }) => {
+  try {
+    const response = await api.patch(`${MENTOR_ENDPOINT}/validation`)
+    if (response.data.user.isValidated) {
+      toast.success('É isso ai! Agora você pode aceitar aprendizes na página de monitoria!')
+      dispatch({ type: 'user/setCurrentUser', payload: response.data.user })
+    } else {
+      toast.error(`Você não atingiu o resultado mínimo para ser validado.
+      Seus acertos: ${response.data.result}.
+      ${response.data.attempts ? 'Tente novamente!': ''}`, {autoClose: false})
+    }
+    response.data.dispatch = dispatch
+    return response.data
+  } catch(error) {
+    return rejectWithValue(error.response.data)
+  }
+})
+
 export {
   assignLearner,
   unassignLearner,
   getLearners,
-  changeAvailability
+  changeAvailability,
+  validateMentor
 }

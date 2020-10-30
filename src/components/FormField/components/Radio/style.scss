@@ -1,0 +1,40 @@
+.custom-radio {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  margin: 1rem 0;
+
+  label {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    span {
+      margin-right: 1rem;
+      font-weight: 600;
+      &.disabled-option {
+        font-weight: 500;
+        color: var(--placeholder-color);
+      }
+      &.disabled-message {
+        color: var(--error-color);
+      }
+    }
+
+    input {
+      transition: all 0.1s;
+      flex-shrink: 0;
+      margin-bottom: 3px;
+      width: 21px;
+      height: 21px;
+      cursor: pointer;
+
+      &:disabled {
+        border: 1px solid var(--placeholder-color);
+        cursor: not-allowed;
+      }
+    }
+  }
+}

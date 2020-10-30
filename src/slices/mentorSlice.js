@@ -1,11 +1,12 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { getLearners, assignLearner, unassignLearner, changeAvailability } from '../services/mentorsService'
+import { getLearners, assignLearner, unassignLearner, changeAvailability, validateMentor } from '../services/mentorsService' // eslint-disable-line import/no-cycle
 
 const initialState = {
   loading: false,
   learners: [],
   isAvailable: false,
   fetchingLearners: false,
+  validationAttempts: 3
 };
 
 const mentorSlice = createSlice({
@@ -19,6 +20,9 @@ const mentorSlice = createSlice({
     },
     setAvailability(state, action) {
       state.isAvailable = action.payload
+    },
+    setValidationAttempts(state, action) {
+      state.validationAttempts = action.payload
     }
   },
   extraReducers: {
@@ -64,6 +68,19 @@ const mentorSlice = createSlice({
     },
     [changeAvailability.rejected]: (state, action) => {
       state.loading = false
+    },
+
+
+    [validateMentor.pending]: (state, action) => {
+      state.loading = true
+    },
+    [validateMentor.fulfilled]: (state, action) => {
+      state.validationAttempts = action.payload.attempts
+      state.loading = false
+    },
+    [validateMentor.rejected]: (state, action) => {
+      state.validationAttempts = action.payload.attempts
+      state.loading = false
     }
   }
 
@@ -91,5 +108,10 @@ export const selectAvailability = createSelector(
   mentor => mentor.isAvailable
 )
 
-export const { removeLearner, setAvailability } = mentorSlice.actions;
+export const selectValidationAttempts = createSelector(
+  [selectMentor],
+  mentor => mentor.validationAttempts
+)
+
+export const { removeLearner, setAvailability, setValidationAttempts } = mentorSlice.actions;
 export default mentorSlice.reducer;

@@ -32,10 +32,11 @@ function Dashboard({
   getMentor,
 }) {
   const progress = useMemo(() => {
+    const questions = moduleQuestions.map(question => question._id);
     const correctAnswers = questionResults.filter(
-      (question) => question.isCorrect
+      (result) => result.isCorrect && questions.includes(result.question)
     ).length;
-    const totalQuestions = moduleQuestions.length;
+    const totalQuestions = questions.length;
     return totalQuestions
       ? {
           moduleProgress: Math.floor((correctAnswers / totalQuestions) * 100),
@@ -49,10 +50,10 @@ function Dashboard({
     getMentor();
     getModules();
 
-    getProgress(currentModule).then((data) => {
+    getProgress({ moduleNumber: currentModule }).then((data) => {
       if (data.payload.totalProgress === 100) setLearnerCertificate(true);
     });
-    getQuestions(currentModule);
+    getQuestions({ moduleNumber: currentModule });
   }, []);
 
   /* eslint-disable no-nested-ternary */
@@ -81,7 +82,6 @@ function Dashboard({
               linkText="atividades restantes"
               linkPath="/tutorial"
             />
-
             <Card
               title="certificados"
               mainContent="Certificado de conclusão do tutorial básico"
@@ -123,6 +123,7 @@ function Dashboard({
             <Card
               title="certificados"
               mainContent="Certificado de mentorias"
+              secondaryContent="Você reberá um certificado assim que um de seus aprendizes concluirem o tutorial"
               linkText="Visualizar certificados"
               linkPath="/certificados"
             />
@@ -130,14 +131,14 @@ function Dashboard({
         ) : (
           <div className="dashboard__body">
             <Card
-              title="Validação"
-              mainContent="Você ainda não está validado como mentor na plataforma, para poder fazer mentoria, primeiro você precisa se validar."
-              linkText="Faça aqui sua validação!"
-              linkPath="/"
+              title="Mentoria"
+              mainContent="Você ainda não está validado como mentor na plataforma. Faça a avaliação para ter acesso a todas as funcionalidades de monitoria"
+              linkText="Faça aqui sua avaliação!"
+              linkPath="/mentoria"
             />
             <Card
               title="Tutorial"
-              mainContent="Aqui você conhecer o tutorial que poderá lecionar se for validado."
+              mainContent="Aqui você pode conhecer o tutorial que poderá lecionar se for validado."
               secondaryContent="Se for validado, você poderá dar suporte para os aprendizes da platorma, por isso é importante conhecer bem o tutorial."
               linkText="Tutorial"
               linkPath="/tutorial"
@@ -152,6 +153,7 @@ function Dashboard({
 Dashboard.defaultProps = {
   moduleQuestions: [],
   questionResults: [],
+  mentor: null
 };
 
 Dashboard.propTypes = {
@@ -167,7 +169,7 @@ Dashboard.propTypes = {
     title: PropTypes.string,
   }).isRequired,
   getMentor: PropTypes.func.isRequired,
-  mentor: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  mentor: PropTypes.oneOfType([PropTypes.object]),
 };
 
 const mapStateToProps = (state) => ({

@@ -1,34 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 /* eslint-disable jsx-a11y/label-has-associated-control */
 const Select = ({
   label,
   name,
-  options,
-  onChange,
-  required,
+  children,
   register,
-  pattern,
+  required = false, // eslint-disable-line no-unused-vars
+  pattern = {},  // eslint-disable-line no-unused-vars
   errors,
+  ...otherProps
 }) => (
-  <div>
-    <label>{label}</label>
+  <div className="select">
+    <label htmlFor={name}>{label}</label>
     <select
       name={name}
-      required={required}
-      ref={register({ pattern })}
-      onChange={onChange}
-      errors={errors}
+      defaultValue='Selecione'
+      ref={register}
+      {...otherProps}
     >
-      <option>Selecione</option>
-      {options.map((option) => (
-        <option value={option.value}>{option.name}</option>
-      ))}
+      <option value='Selecione' disabled hidden className="teste">Selecione</option>
+      {children}
     </select>
-    {(errors?.name && (
-      <span className="field__input--danger">{errors?.name.message}</span>
-    )) || <br />}
+    {errors[name] ? <span className="error">{errors[name].message}</span> : null}
   </div>
 );
 
@@ -40,15 +36,10 @@ Select.defaultProps = {
 };
 
 Select.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
   required: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   pattern: PropTypes.shape({
     value: PropTypes.oneOfType([PropTypes.object]),

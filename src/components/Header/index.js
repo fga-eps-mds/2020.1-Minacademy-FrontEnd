@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { logout } from '../../services/usersService';
@@ -35,15 +35,21 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
       <div className="header__navigation">
         {currentUser ? (
           <>
-            <Link className="header__navigation-option" to="/dashboard">
+            <NavLink className="header__navigation-option" to="/dashboard">
               Dashboard
-            </Link>
-            <Link className="header__navigation-option" to="/tutorial">
+            </NavLink>
+            {currentUser.userType === 'Mentor' && currentUser?.isValidated
+              ? null
+              : <NavLink className="header__navigation-option" to="/avaliacao">
+                 Avaliação
+                </NavLink>
+            }
+            <NavLink className="header__navigation-option" to="/tutorial">
               Tutorial
-            </Link>
-            <Link className="header__navigation-option" to="/mentoria">
+            </NavLink>
+            <NavLink className="header__navigation-option" to="/mentoria">
               Mentoria
-            </Link>
+            </NavLink>
           </>
         ) : (
           <>

@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
-import { getQuestions, getProgress } from '../../../../services/tutorialServices';
+import { getQuestions } from '../../../../services/tutorialServices';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function ActivitiesList({ questionsList, questionsResults, currentModule, getQuestions, getProgress }) {
+function ActivitiesList({ exam = false, questionsList, questionsResults, currentModule, getQuestions }) {
   const match = useRouteMatch();
 
   useEffect(() => {
-    getQuestions(currentModule);
-    getProgress(currentModule);
+    if (exam) {
+      getQuestions({ exam })
+    }
+    else  {
+      getQuestions({ moduleNumber: currentModule })
+    };
   }, [currentModule]);
 
   const result = activity => questionsResults.find(result => result.question === activity._id)?.isCorrect
@@ -21,23 +25,33 @@ function ActivitiesList({ questionsList, questionsResults, currentModule, getQue
     <div className="activities-list">
       <div className="activities-list__header">
         <div>
-          <h3>Forum</h3>
-          <p>
-            Modulo <b>{currentModule}</b>
-          </p>
+          {match.path.includes('avaliacao') && <h3>Questões</h3>}
+          {match.path.includes('tutorial') && (
+            <>
+            <h3>Forum</h3>
+            <p> Modulo <b>{currentModule}</b> </p>
+            </>
+            )}
         </div>
       </div>
       <div className="activities-list__list">
         {questionsList.map(activity => (
-          <p key={activity._id}
+          <NavLink
+            key={activity._id}
             className={`
             activities-list__list-item
-            ${result(activity) === false ? 'wrong':''}
-            ${result(activity) ? 'correct':''}
-            `}
+            ${(result(activity) === false) && !exam ? 'wrong':''}
+            ${result(activity) && !exam ? 'correct':''}
+            ${(result(activity) !== undefined) && exam ? 'answer':''}
+          `}
+            to={`${match.path}/atividades/${activity.number}`}
+            isActive={(match, location) => {
+              const param = location.pathname.split('/')
+              return param[param.length - 1] === activity.number.toString()
+            }}
           >
-            <Link to={`${match.path}/atividades/${activity.number}`}>Atividade {activity.number}</Link>
-          </p>
+            Atividade {activity.number}
+          </NavLink>
         ))}
       </div>
     </div>
@@ -45,7 +59,8 @@ function ActivitiesList({ questionsList, questionsResults, currentModule, getQue
 }
 
 ActivitiesList.defaultProps = {
-  questionsResults: []
+  questionsResults: [],
+  exam: false
 }
 
 ActivitiesList.propTypes = {
@@ -53,7 +68,7 @@ ActivitiesList.propTypes = {
   questionsResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
   currentModule: PropTypes.number.isRequired,
   getQuestions: PropTypes.func.isRequired,
-  getProgress: PropTypes.func.isRequired
+  exam: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
@@ -64,7 +79,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
-  getProgress: questions => dispatch(getProgress(questions)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ActivitiesList);
+export default (connect(mapStateToProps, mapDispatchToProps)(ActivitiesList));

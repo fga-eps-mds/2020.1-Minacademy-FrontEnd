@@ -7,9 +7,13 @@ import {
   PROGRESS_ENDPOINT
 } from './endpoints/tutorials';
 
-const getQuestions = createAsyncThunk('tutorial/getQuestions', async (module, { rejectWithValue }) => {
+const getQuestions = createAsyncThunk('tutorial/getQuestions', async (query, { rejectWithValue }) => {
   try {
-    const response = await api.get(`${QUESTIONS_ENDPOINT}?moduleNumber=${module}`);
+    const response = await api.get(QUESTIONS_ENDPOINT, {
+      params: {
+        ...query
+      }
+    });
     return response.data;
   } catch (error) {
     return rejectWithValue([]);
@@ -25,12 +29,16 @@ const answerQuestion = createAsyncThunk('tutorial/answerQuestion', async (data, 
   }
 });
 
-const getProgress = createAsyncThunk('tutorial/getProgress', async (moduleNumber, { rejectWithValue }) => {
+const getProgress = createAsyncThunk('tutorial/getProgress', async (query, { rejectWithValue }) => {
   try {
-    const response = await api.get(`${PROGRESS_ENDPOINT}?${moduleNumber ? `moduleNumber=${moduleNumber}` : ''}`);
+    const response = await api.get(PROGRESS_ENDPOINT, {
+      params: {
+        ...query
+      }
+    });
     return response.data;
   } catch (error) {
-    return rejectWithValue({ correctAnswers: 0, queryAnswers: []})
+    return rejectWithValue(error.response.data)
   }
 });
 
@@ -44,7 +52,7 @@ const updateMarkdown = createAsyncThunk('tutorial/updateMarkdown', async (curren
   } catch (error) {
     return rejectWithValue('Ocorreu um erro ao carregar o tutorial')
   }
-  
+
 });
 
 const getModules = createAsyncThunk('tutorial/getModules', async () => {

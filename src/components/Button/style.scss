@@ -27,7 +27,7 @@
 
   &:disabled {
     background-color: var(--placeholder-color);
-    border: var(--border-color);
+    border-color: var(--border-color);
     cursor: auto;
 
     &:hover {

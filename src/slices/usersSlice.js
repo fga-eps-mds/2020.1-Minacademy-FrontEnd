@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { login , logout , registerRequest, editUser } from '../services/usersService'
+import { login , logout , registerRequest, editUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
 const initialState = {
   loading: false,
@@ -17,16 +17,30 @@ const userSlice = createSlice({
     }
   },
   extraReducers: {
+    [login.pending]: (state, action) => {
+      state.loading = true
+    },
     [login.fulfilled]: (state, action) => {
       state.currentUser = action.payload
+      state.loading = false
+    },
+    [login.rejected]: (state, action) => {
+      state.loading = false
     },
 
     [logout.fulfilled]: (state, action) => {
       state.currentUser = null
     },
 
+    [registerRequest.pending]: (state, action) => {
+      state.loading = true
+    },
     [registerRequest.fulfilled]: (state, action) => {
         state.currentUser = action.payload
+        state.loading = false
+    },
+    [registerRequest.rejected]: (state,action) => {
+      state.loading = false
     },
 
     [editUser.pending]: (state,action) => {

@@ -22,7 +22,6 @@ ReactDOM.render(
           pauseOnHover
           newestOnTop={false}
           autoClose={3500}
-          hideProgressBar
         />
         <Routes />
       </PersistGate>
