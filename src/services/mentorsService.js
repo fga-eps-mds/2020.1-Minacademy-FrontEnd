@@ -48,10 +48,10 @@ const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, 
   try {
     const response = await api.patch(`${MENTOR_ENDPOINT}/validation`)
     if (response.data.user.isValidated) {
-      toast.success('Parabens! Voĉe agora é um mentor(a)')
+      toast.success('É isso ai! Agora você pode aceitar aprendizes na página de monitoria!')
       dispatch(setCurrentUser(response.data.user))
     } else {
-      toast.error(`Voĉe não atingiu o resultado mínimo para ser validado.
+      toast.error(`Você não atingiu o resultado mínimo para ser validado.
       Seus acertos: ${response.data.result}.
       ${response.data.attempts ? 'Tente novamente!': ''}`, {autoClose: false})
     }

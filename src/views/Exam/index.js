@@ -73,11 +73,11 @@ function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers,
             }}
         >
           <p>
-            Ao confirmar, suas respostas serão verificadas e
-            caso tenha mais de 70% de acertos, voĉe será validado
+            Ao confirmar, suas respostas serão verificadas e,
+            caso tenha mais de 70% de acertos, você será validado!
           </p>
           <p>
-            Voĉe ainda possui mais {attempts} tentativas
+            Você ainda possui {attempts} {(attempts > 1) ? "tentativas" : "tentativa"}
           </p>
         </Modal>
       </div>
