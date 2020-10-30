@@ -6,7 +6,6 @@ import './style.scss';
 const Select = ({
   label,
   name,
-  options,
   children,
   register,
   required = false, // eslint-disable-line no-unused-vars
@@ -18,10 +17,11 @@ const Select = ({
     <label htmlFor={name}>{label}</label>
     <select
       name={name}
+      defaultValue='Selecione'
       ref={register}
       {...otherProps}
     >
-      <option hidden disabled selected value></option>
+      <option value='Selecione' disabled hidden className="teste">Selecione</option>
       {children}
     </select>
     {errors[name] ? <span className="error">{errors[name].message}</span> : null}
@@ -36,15 +36,10 @@ Select.defaultProps = {
 };
 
 Select.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
   required: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   pattern: PropTypes.shape({
     value: PropTypes.oneOfType([PropTypes.object]),

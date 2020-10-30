@@ -9,7 +9,7 @@ import {
   CHANGE_PASS_ENDPOINT,
   CHANGE_ENDPOINT
 } from './endpoints/users';
-import { setAvailability, setValidationAttempts } from '../slices/mentorSlice';
+import { setAvailability, setValidationAttempts } from '../slices/mentorSlice'; // eslint-disable-line import/no-cycle
 import { setMentorRequest } from '../slices/learnerSlice';
 
 const listUsers = async () => {

@@ -26,7 +26,7 @@ const appReducer = combineReducers({
 const rootReducer = (state, action) => {
   if (action.type === 'users/logout/fulfilled') {
       storageSession.removeItem('persist:root')
-      state = undefined;
+      state = undefined; // eslint-disable-line no-param-reassign
   }
   return appReducer(state, action);
 };

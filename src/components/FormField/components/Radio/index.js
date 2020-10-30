@@ -33,43 +33,31 @@ const Radio = ({
 )};
 
 Radio.defaultProps = {
-  type: "text",
-  placeholder: "",
-  defaultValue: "",
-  required: "",
-  pattern: {value: {}, message: ""},
-  minLength: {value: 0, name: ""},
-  validate: null,
-  errors: null
+  required: false,
+  defaultValue: null,
+  pattern: { value: {}, message: '' },
+  errors: null,
+  disabled: false,
+  disabledMessage: ""
 };
 
 Radio.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  type: PropTypes.string,
   register: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
-  placeholder: PropTypes.string,
-  required: PropTypes.string,
-  pattern: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.object]),
-    message: PropTypes.string.isRequired
-  }),
-  minLength: PropTypes.shape({
-    value: PropTypes.number.isRequired,
-    message: PropTypes.string.isRequired
-  }),
   errors: PropTypes.oneOfType([
     PropTypes.oneOf([null]),
     PropTypes.object
   ]),
-  validate: PropTypes.oneOfType([
-    PropTypes.oneOf([null]),
-    PropTypes.object
-  ]),
-  disabled: PropTypes.bool.isRequired,
-  disabledMessage: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  pattern: PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.object]),
+    message: PropTypes.string.isRequired,
+  }),
+  value: PropTypes.oneOfType([PropTypes.string,  PropTypes.number]).isRequired,
+  disabled: PropTypes.bool,
+  disabledMessage: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 export default Radio;

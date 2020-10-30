@@ -22,6 +22,7 @@ const tutorial = createSlice({
   name: 'tutorial',
   initialState,
   reducers: {
+    /* eslint-disable no-unused-vars */
     /* eslint-disable no-param-reassign */
     setCurrentModule(state, action) {
       state.currentModule = action.payload;

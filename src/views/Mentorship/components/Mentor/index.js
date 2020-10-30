@@ -14,7 +14,7 @@ import {
   selectAvailability,
   loading,
   fetchingLearners,
-  removeLearner
+  removeLearner,
 } from '../../../../slices/mentorSlice';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
 import Button from '../../../../components/Button';
@@ -35,7 +35,7 @@ function Mentor({
   loading,
   fetchingLearners,
   currentUser,
-  toggleModalVisible
+  toggleModalVisible,
 }) {
   const [learnerToRemoval, setLearnerToRemoval] = useState();
 

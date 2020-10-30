@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loading, fetchingMentor, selectMentor, selectMentorRequest }  from '../../../../slices/learnerSlice';
@@ -75,7 +75,8 @@ Learner.propTypes = {
   unassignMentor: PropTypes.func.isRequired,
   cancelMentorRequest: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  mentorRequest: PropTypes.func.isRequired
+  mentorRequest: PropTypes.func.isRequired,
+  toggleModalVisible: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -168,7 +168,7 @@ function Register({ registerRequest, isLoading }) {
                 <label htmlFor="agree">
                   <input
                     name="mentor_request"
-                    value={true}
+                    value
                     type="checkbox"
                     ref={register}
                   />
@@ -217,6 +217,7 @@ function Register({ registerRequest, isLoading }) {
 
 Register.propTypes = {
   registerRequest: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

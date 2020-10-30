@@ -37,6 +37,7 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
       <div className="activities-list__list">
         {questionsList.map(activity => (
           <NavLink
+            key={activity._id}
             className={`
             activities-list__list-item
             ${(result(activity) === false) && !exam ? 'wrong':''}
@@ -58,7 +59,8 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
 }
 
 ActivitiesList.defaultProps = {
-  questionsResults: []
+  questionsResults: [],
+  exam: false
 }
 
 ActivitiesList.propTypes = {
@@ -66,6 +68,7 @@ ActivitiesList.propTypes = {
   questionsResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
   currentModule: PropTypes.number.isRequired,
   getQuestions: PropTypes.func.isRequired,
+  exam: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

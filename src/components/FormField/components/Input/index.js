@@ -35,8 +35,6 @@ Input.defaultProps = {
   defaultValue: "",
   required: "",
   pattern: {value: {}, message: ""},
-  minLength: {value: 0, name: ""},
-  validate: null,
   errors: null
 };
 
@@ -52,15 +50,7 @@ Input.propTypes = {
     value: PropTypes.oneOfType([PropTypes.object]),
     message: PropTypes.string.isRequired
   }),
-  minLength: PropTypes.shape({
-    value: PropTypes.number.isRequired,
-    message: PropTypes.string.isRequired
-  }),
   errors: PropTypes.oneOfType([
-    PropTypes.oneOf([null]),
-    PropTypes.object
-  ]),
-  validate: PropTypes.oneOfType([
     PropTypes.oneOf([null]),
     PropTypes.object
   ]),

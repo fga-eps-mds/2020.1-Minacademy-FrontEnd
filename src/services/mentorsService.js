@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { MENTOR_ENDPOINT } from './endpoints/mentor';
 import api from './api';
-import { setCurrentUser } from '../slices/usersSlice';
+import { setCurrentUser } from '../slices/usersSlice'; // eslint-disable-line import/no-cycle
 
 const getLearners = createAsyncThunk('mentor/getLearners', async (values, { rejectWithValue }) => {
   try {
@@ -55,6 +55,7 @@ const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, 
       Seus acertos: ${response.data.result}.
       ${response.data.attempts ? 'Tente novamente!': ''}`, {autoClose: false})
     }
+    response.data.dispatch = dispatch
     return response.data
   } catch(error) {
     return rejectWithValue(error.response.data)

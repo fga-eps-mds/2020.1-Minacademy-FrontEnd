@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { login , logout , registerRequest, editUser } from '../services/usersService'
+import { login , logout , registerRequest, editUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
 const initialState = {
   loading: false,

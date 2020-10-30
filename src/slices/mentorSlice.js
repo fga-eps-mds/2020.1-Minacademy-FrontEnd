@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { getLearners, assignLearner, unassignLearner, changeAvailability, validateMentor } from '../services/mentorsService'
+import { getLearners, assignLearner, unassignLearner, changeAvailability, validateMentor } from '../services/mentorsService' // eslint-disable-line import/no-cycle
 
 const initialState = {
   loading: false,

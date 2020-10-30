@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { selectCompletedActivities, selectTotalProgress } from '../../slices/tutorialSlice';
 import { getProgress } from '../../services/tutorialServices';
 import Markdown from './components/Markdown';
@@ -9,8 +9,7 @@ import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity'
 import './style.scss'
 
-/* eslint-disable no-shadow */
-function Tutorial({ completedActivities, getProgress, totalProgress, match }) {
+function Tutorial({ completedActivities, getProgress, totalProgress, match }) { // eslint-disable-line no-shadow
   useEffect(() => {
     getProgress();
   }, []);
@@ -39,7 +38,9 @@ function Tutorial({ completedActivities, getProgress, totalProgress, match }) {
 
 Tutorial.propTypes = {
   completedActivities: PropTypes.number.isRequired,
-  totalProgress: PropTypes.number.isRequired
+  totalProgress: PropTypes.number.isRequired,
+  getProgress: PropTypes.func.isRequired,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 const mapStateToProps = state => ({

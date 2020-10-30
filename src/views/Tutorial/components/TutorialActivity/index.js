@@ -28,7 +28,7 @@ function TutorialActivity({
 
   return (
     <div className="learner-activity">
-      <Question showResult={true} />
+      <Question showResult />
 
       <Modal
         title="Curso concluído"
@@ -49,7 +49,13 @@ function TutorialActivity({
   );
 }
 
-const mapStateToProps = (state, props) => ({
+TutorialActivity.propTypes = {
+  toggleModalVisible: PropTypes.func.isRequired,
+  totalProgress: PropTypes.number.isRequired,
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
+
+const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
 });
 

@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import './style.scss'
 import PropTypes from 'prop-types'
+import './style.scss'
 
 function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection }) {
   const [open, setOpen] = useState(false);
@@ -66,10 +66,13 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
   );
 }
 
+Dropdown.defaultProps = {
+  multiSelect: false
+}
 
 Dropdown.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  multiSelect: PropTypes.bool.isRequired,
+  multiSelect: PropTypes.bool,
   toggleItem: PropTypes.func.isRequired,
   initialSelection: PropTypes.number.isRequired,
 };

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
@@ -56,7 +56,7 @@ function Question({
 
   const descriptionText = useMemo(() => question.description
     .split('\n')
-    .map((word, i) => <p key={i}>{word}</p>
+    .map((word, i) => <p key={i}>{word}</p> // eslint-disable-line react/no-array-index-key
   ), [question])
 
   const questionAlternatives = useMemo(() =>
@@ -118,21 +118,26 @@ function Question({
   );
 }
 
-// Question.defaultProps = {
-//   questionResults: [],
-// };
+Question.defaultProps = {
+  questionResults: [],
+  showGoBack: true,
+  showResult: true
+};
 
-// Question.propTypes = {
-//   question: PropTypes.shape({
-//     _id: PropTypes.string,
-//     description: PropTypes.string.isRequired,
-//     alternatives: PropTypes.oneOf([PropTypes.object]).isRequired,
-//   }).isRequired,
-//   questionResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
-//   answerQuestion: PropTypes.func.isRequired,
-//   getProgress: PropTypes.func.isRequired,
-//   history: PropTypes.func.isRequired,
-// };
+Question.propTypes = {
+  question: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    alternatives: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  }).isRequired,
+  questionResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
+  answerQuestion: PropTypes.func.isRequired,
+  getProgress: PropTypes.func.isRequired,
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  showGoBack: PropTypes.bool,
+  showResult: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired
+};
 
 const mapStateToProps = (state, props) => ({
   question: selectQuestion(state, props),

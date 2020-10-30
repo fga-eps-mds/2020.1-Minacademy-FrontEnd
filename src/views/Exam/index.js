@@ -16,7 +16,7 @@ import ExamRules from './components/ExamRules';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, match }) {
+function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, match }) {
   useEffect(() => {
     getProgress({ exam: 'true' });
   }, [attempts]);
@@ -53,7 +53,7 @@ function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers,
         </div>
       </div>
         <div className="exam__body">
-        {attempts > 0 && !currentUser.isValidated && <ActivitiesList exam={true} />}
+        {attempts > 0 && !currentUser.isValidated && <ActivitiesList exam />}
         <Switch>
           {attempts > 0 && !currentUser.isValidated &&
             <Route
@@ -64,7 +64,7 @@ function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers,
           <Route path={match.path} component={ExamRules} />
         </Switch>
         <Modal
-            title="Finalizar e enviar?"
+            title='Finalizar e enviar?'
             confirmMessage='sim'
             closeMessage='cancelar'
             onClose={() => toggleModalVisible()}
@@ -86,19 +86,27 @@ function Exam({ validateMentor, currentUser,attempts, getProgress, totalAnswers,
   );
 }
 
+Exam.defaultProps = {
+  questionsList: []
+}
+
 Exam.propTypes = {
+  currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object])
+    .isRequired,
   validateMentor: PropTypes.func.isRequired,
   attempts: PropTypes.number.isRequired,
   getProgress: PropTypes.func.isRequired,
+  totalAnswers: PropTypes.number.isRequired,
+  questionsList: PropTypes.arrayOf(PropTypes.object),
   toggleModalVisible: PropTypes.func.isRequired,
-  
-}
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired
+};
 
 const mapStateToProps = (state) => ({
   totalAnswers: selectTotalAnswers(state),
   questionsList: selectQuestionsList(state),
   attempts: selectValidationAttempts(state),
-  currentUser: selectCurrentUser(state)
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

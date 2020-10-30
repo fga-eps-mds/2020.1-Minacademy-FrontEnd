@@ -32,17 +32,19 @@ function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, cl
 
 Modal.defaultProps = {
   onConfirm: false,
-  confirmMessage: ""
+  confirmMessage: "",
+  id: "modal"
 };
 
 Modal.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  hidden: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   closeMessage: PropTypes.string.isRequired,
   onClose: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]).isRequired,
   confirmMessage: PropTypes.string,
   onConfirm: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  children: PropTypes.element.isRequired
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -153,6 +153,7 @@ function Dashboard({
 Dashboard.defaultProps = {
   moduleQuestions: [],
   questionResults: [],
+  mentor: null
 };
 
 Dashboard.propTypes = {
@@ -168,7 +169,7 @@ Dashboard.propTypes = {
     title: PropTypes.string,
   }).isRequired,
   getMentor: PropTypes.func.isRequired,
-  mentor: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  mentor: PropTypes.oneOfType([PropTypes.object]),
 };
 
 const mapStateToProps = (state) => ({
