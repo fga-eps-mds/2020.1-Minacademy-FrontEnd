@@ -80,11 +80,16 @@ const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue
 
 const forgotPassword = async (values) => {
   try {
+    console.log(values)
     const response = await api.put(FORGOT_PASSWORD_ENDPOINT, values);
     toast.success('Email enviado com sucesso')
     return response.data;
   } catch (err) {
-    toast.error('Erro ao ao enviar Email')
+    if (err.response.data.message === 'There is no such email in our platform'){
+      toast.error("Este endereço de email não está cadastrado em nossa plataforma!")
+    } else {
+      toast.error('Erro ao ao enviar Email')
+    }
     return err
   }
 };
