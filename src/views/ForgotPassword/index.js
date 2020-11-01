@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { forgotPassword } from '../../services/usersService';
 import Button from '../../components/Button';
+import Input from '../../components/FormField/components/Input'
 import '../../index.css'
 import './style.scss';
 
@@ -18,10 +19,11 @@ function ForgotPassword() {
                 <h1>Recuperar senha</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>e-mail</p>
-                    <input
+                    <Input
                         type="text"
                         name="email"
-                        placeholder="email@email.com"
+                        placeholder="email@exemplo.com"
+                        errors = {errors}
                         ref={register({
                             required: "campo obrigatório",
                             pattern: {
@@ -32,7 +34,7 @@ function ForgotPassword() {
                     />
                     {errors.email && <span className="danger">{errors.email.message}</span>}
                     <Button small>RECUPERAR</Button>
-                    <p>Já tem login e senha? <Link to="/login">Entrar</Link></p>
+                    <p className='login-link'>Já tem login e senha? <Link to="/login">Entrar</Link></p>
                 </form>
             </div>
         </div>

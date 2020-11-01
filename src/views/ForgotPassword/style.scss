@@ -24,12 +24,31 @@ $danger--color: red;
         font-size: 48px;
         margin: 0;
         margin-left: 92.5px;
-        padding-top: 44px;
         color: var(--title-color);
     }
     p {
         margin-top: 20px;
         margin-bottom: 0;
+        text-align: center;
+        padding-right: 180px;
+    }
+    input {
+        width: 235px;
+        margin: auto;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    button {
+        margin: auto;
+        width: 150px;
+    }
+
+    .login-link {
+        margin-top: 30px;
+        margin-bottom: 0;
+        text-align: center;
+        padding-right: 0;
     }
 }
 
@@ -47,7 +66,7 @@ $danger--color: red;
         width: 235px;
         display: block;
         border-width: 0.2px;
-    
+        
         box-sizing: border-box;
         padding: 5px;
         border-radius: 10px;
