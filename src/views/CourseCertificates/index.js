@@ -37,7 +37,7 @@ function CourseCertificates({
         </div>
         {loading && <Loader big />}
         <div className="courseCertificates__body">
-          {certificate.certificate ? certificate.certificate.map((certificateData) => (
+          {certificate.certificate.length ? certificate.certificate.map((certificateData) => (
               <CertificateList
                   certificateType={
                     certificateData.courseType === 'Learner'

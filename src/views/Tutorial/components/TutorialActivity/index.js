@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { generateCertificate } from '../../../../services/certificatesServices';
-import {
-  selectTotalProgress,
-} from '../../../../slices/tutorialSlice';
+import { selectTotalProgress } from '../../../../slices/tutorialSlice';
+import { selectCertificate } from '../../../../slices/certificateSlice';
 import Modal from '../../../../components/Modal';
-import { toggleModalVisible } from '../../../../slices/modalSlice'
+import { toggleModalVisible } from '../../../../slices/modalSlice';
 import Question from '../../../../components/Question';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function TutorialActivity({
-  history,
-  totalProgress,
-  toggleModalVisible,
-}) {
-  const [certificate, setCertificate] = useState(null);
+function TutorialActivity({ history, totalProgress, toggleModalVisible, generateCertificate, certificate }) {
+  
 
   useEffect(() => {
     if (totalProgress === 100) {
-      generateCertificate().then((data) => setCertificate(data._id));
-      toggleModalVisible()
+      generateCertificate();
+      toggleModalVisible();
     }
   }, [totalProgress]);
 
@@ -37,7 +32,7 @@ function TutorialActivity({
         onClose={() => {
           toggleModalVisible();
         }}
-        onConfirm={() => history.push(`/certificados/${certificate}`)}
+        onConfirm={() => history.push(`/certificado/${certificate.certificate._id}`)}
       >
         <p>Parabéns, você concluiu o tutorial.</p>
         <p>
@@ -53,14 +48,20 @@ TutorialActivity.propTypes = {
   toggleModalVisible: PropTypes.func.isRequired,
   totalProgress: PropTypes.number.isRequired,
   history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  certificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  generateCertificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
+  certificate: selectCertificate(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggleModalVisible: () => dispatch(toggleModalVisible())
-})
+const mapDispatchToProps = (dispatch) => ({
+  toggleModalVisible: () => dispatch(toggleModalVisible()),
+  generateCertificate: () => dispatch(generateCertificate())
+});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TutorialActivity));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TutorialActivity)
+);

@@ -22,14 +22,15 @@ const Mentorship = lazy(() => import('../views/Mentorship'));
 const Certificate = lazy(() => import('../views/Certificate'));
 const CourseCertificate = lazy(() => import('../views/CourseCertificates'));
 
-
 const Routes = () => {
   const location = useLocation();
   if (location.pathname.includes('/certificado/')) {
     return (
+      <Suspense fallback={<div/>}>
       <Route exact path="/certificado/:_id">
         <Certificate />
       </Route>
+      </Suspense>
     );
   }
 
