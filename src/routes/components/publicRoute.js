@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect, useLocation } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 
 export const PublicRoute = ({ currentUser, children, exact, path, ...rest }) => {
   const location = useLocation();
   return (
     <>
-      <Header />
       <Route
         exact={exact}
         path={path}
@@ -25,7 +22,6 @@ export const PublicRoute = ({ currentUser, children, exact, path, ...rest }) => 
             <div className="animation">{children}</div>
           )}
       </Route>
-      <Footer />
     </>
   );
 };

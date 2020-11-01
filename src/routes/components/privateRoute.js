@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { Suspense }  from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 
 export const PrivateRoute = ({
   currentUser,
@@ -13,14 +11,12 @@ export const PrivateRoute = ({
   path,
 }) => (
   <>
-  <Header />
     <Route
       exact={exact}
       path={path}
     >
     {currentUser ? <div className="animation">{children}</div> : <Redirect to="/login" />}
     </Route>
-  <Footer />
   </>
 );
 
