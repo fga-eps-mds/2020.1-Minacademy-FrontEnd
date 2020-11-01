@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { changeUserPassword } from '../../services/usersService';
 import Button from '../../components/Button';
@@ -10,9 +10,11 @@ import './style.scss';
 
 function Change() {
   const { handleSubmit, register, errors, watch } = useForm();
+  const history = useHistory();
   const { resetLink } = useParams();
   const onSubmit = (values) => {
     changeUserPassword({ password: values.password, resetLink });
+    history.push('/login')
   }
 
   return (
