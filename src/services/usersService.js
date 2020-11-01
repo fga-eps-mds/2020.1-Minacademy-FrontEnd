@@ -80,7 +80,6 @@ const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue
 
 const forgotPassword = async (values) => {
   try {
-    console.log(values)
     const response = await api.put(FORGOT_PASSWORD_ENDPOINT, values);
     toast.success('Email enviado com sucesso')
     return response.data;
