@@ -8,18 +8,19 @@ import Footer from '../../components/Footer';
 
 export const PrivateRoute = ({
   currentUser,
-  component: Component,
-  ...rest
+  children,
+  exact,
+  path,
 }) => (
   <>
-    <Header />
+  <Header />
     <Route
-      {...rest}
-      component={(props) =>
-        currentUser ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-    <Footer />
+      exact={exact}
+      path={path}
+    >
+    {currentUser ? <div className="animation">{children}</div> : <Redirect to="/login" />}
+    </Route>
+  <Footer />
   </>
 );
 
@@ -36,4 +37,4 @@ PrivateRoute.propTypes = {
   component: PropTypes.elementType.isRequired,
 };
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps, null, null, { pure: true })(PrivateRoute);

@@ -6,25 +6,25 @@ import { selectCurrentUser } from '../../slices/usersSlice';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-export const PublicRoute = ({ currentUser, component: Component, ...rest }) => {
+export const PublicRoute = ({ currentUser, children, exact, path, ...rest }) => {
   const location = useLocation();
   return (
     <>
       <Header />
       <Route
-        {...rest}
-        component={(props) =>
-          currentUser ? ( // eslint-disable-line no-nested-ternary
+        exact={exact}
+        path={path}
+      >
+        {currentUser ? ( // eslint-disable-line no-nested-ternary
             location.pathname === '/login' ? (
               <Redirect to="/dashboard" />
             ) : (
               <Redirect to="/bem-vindo" />
             )
           ) : (
-            <Component {...props} />
-          )
-        }
-      />
+            <div className="animation">{children}</div>
+          )}
+      </Route>
       <Footer />
     </>
   );

@@ -10,31 +10,57 @@ import Profile from '../views/Profile';
 import PrivateRoute from './components/privateRoute';
 import PublicRoute from './components/publicRoute';
 import Dashboard from '../views/Dashboard';
-import Welcome from '../views/Welcome'
-import Mentorship from '../views/Mentorship'
+import Welcome from '../views/Welcome';
+import Mentorship from '../views/Mentorship';
 import Certificate from '../views/Certificate';
 import CourseCertificate from '../views/CourseCertificates';
 import Exam from '../views/Exam';
 
 const Routes = () => {
   return (
-    <div className="App">
+    <>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <PublicRoute exact path="/login" component={Login} />
-        <PublicRoute exact path="/cadastro" component={Register} />
-        <PrivateRoute exact path="/bem-vindo" component={Welcome}/>
-        <PrivateRoute path="/tutorial" component={Tutorial} />
-        <PrivateRoute path="/avaliacao" component={Exam} />
-        <PrivateRoute exact path="/mentoria" component={Mentorship} />
-        <PublicRoute exact path="/forgotPassword" component={ForgotPassword} />
-        <PublicRoute exact path="/change/:resetLink" component={Change} />
-        <PrivateRoute exact path="/perfil" component={Profile} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        <PrivateRoute exact path="/certificados/" component={CourseCertificate} />
-        <Route exact path="/certificados/:_id" component={Certificate} />
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <PublicRoute exact path="/login">
+          <Login />
+        </PublicRoute>
+        <PublicRoute exact path="/cadastro">
+          <Register />
+        </PublicRoute>
+        <PrivateRoute exact path="/bem-vindo">
+          <Welcome />
+        </PrivateRoute>
+        <PrivateRoute path="/tutorial">
+          <Tutorial />
+        </PrivateRoute>
+        <PrivateRoute path="/avaliacao">
+          <Exam />
+        </PrivateRoute>
+        <PrivateRoute exact path="/mentoria">
+          <Mentorship />
+        </PrivateRoute>
+        <PublicRoute exact path="/forgotPassword">
+          <ForgotPassword />
+        </PublicRoute>
+        <PublicRoute exact path="/change/:resetLink">
+          <Change />
+        </PublicRoute>
+        <PrivateRoute exact path="/perfil">
+          <Profile />
+        </PrivateRoute>
+        <PrivateRoute exact path="/dashboard">
+          <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute exact path="/certificados/">
+          <CourseCertificate />
+        </PrivateRoute>
+        <Route exact path="/certificados/:_id">
+          <Certificate />
+        </Route>
       </Switch>
-    </div>
+    </>
   );
 };
 
