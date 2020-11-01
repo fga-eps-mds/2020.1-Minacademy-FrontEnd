@@ -15,7 +15,7 @@ const Exam = lazy(() => import('../views/Exam'));
 // const Register = lazy(() => import('../views/Register'));
 const ForgotPassword = lazy(() => import('../views/ForgotPassword'));
 const Change = lazy(() => import('../views/Change'));
-const Profile = lazy(() => import('../views/Tutorial'));
+const Profile = lazy(() => import('../views/Profile'));
 const Dashboard = lazy(() => import('../views/Dashboard'));
 const Welcome = lazy(() => import('../views/Welcome'));
 const Mentorship = lazy(() => import('../views/Mentorship'));

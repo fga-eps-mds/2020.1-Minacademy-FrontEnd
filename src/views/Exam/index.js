@@ -97,7 +97,6 @@ Exam.propTypes = {
   totalAnswers: PropTypes.number.isRequired,
   questionsList: PropTypes.arrayOf(PropTypes.object),
   toggleModalVisible: PropTypes.func.isRequired,
-  match: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 const mapStateToProps = (state) => ({

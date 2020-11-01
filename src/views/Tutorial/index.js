@@ -12,8 +12,7 @@ import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity';
 import './style.scss';
 
-function Tutorial({ completedActivities, getProgress, totalProgress }) {
-  // eslint-disable-line no-shadow
+function Tutorial({ completedActivities, getProgress, totalProgress }) { // eslint-disable-line no-shadow
   const { path } = useRouteMatch();
 
   useEffect(() => {
@@ -48,7 +47,6 @@ Tutorial.propTypes = {
   completedActivities: PropTypes.number.isRequired,
   totalProgress: PropTypes.number.isRequired,
   getProgress: PropTypes.func.isRequired,
-  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 const mapStateToProps = (state) => ({

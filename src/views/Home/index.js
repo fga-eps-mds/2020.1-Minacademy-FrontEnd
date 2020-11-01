@@ -6,8 +6,6 @@ import infoBar from '../../assets/images/infoBar.svg';
 import Button from '../../components/Button';
 import infobarImage from '../../assets/images/infobarImage.webp';
 import infobarImage2 from '../../assets/images/infobarImage2.webp';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 
 function Home() {
   const history = useHistory();
