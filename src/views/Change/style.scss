@@ -30,6 +30,29 @@ $danger--color: red;
     p {
         margin-top: 20px;
         margin-bottom: 0;
+        text-align: center;
+    }
+    input {
+        width: 235px;
+        margin: auto;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+    button {
+        margin: auto;
+        width: 150px;
+    }
+    .login-link {
+        margin-top: 30px;
+        margin-bottom: 0;
+        text-align: center;
+        padding-right: 0;
+    }
+    .new-password {
+        padding-right: 145px;
+    }
+    .confirm-password {
+        padding-right: 65px;
     }
 }
 
