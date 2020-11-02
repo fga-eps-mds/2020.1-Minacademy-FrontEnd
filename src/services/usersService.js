@@ -30,7 +30,11 @@ const login = createAsyncThunk('users/login', async (values, { dispatch, rejectW
     dispatch(setValidationAttempts(response.data.user.attempts))
     return response.data.user
   } catch (err) {
-    toast.error('Email ou senha incorretos')
+    if (!err.response) {
+      toast.error("Estamos com problemas no servidor, tente novamente mais tarde!")
+    }else if(err.response.data.error === 'Invalid Email or Password') {
+      toast.error('Email ou senha incorretos')
+    } 
     return rejectWithValue(null)
   }
 });
