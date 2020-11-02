@@ -4,16 +4,13 @@ import { useHistory } from 'react-router-dom';
 import vector from '../../assets/images/vector.svg';
 import infoBar from '../../assets/images/infoBar.svg';
 import Button from '../../components/Button';
-import infobarImage from '../../assets/images/infobarImage.png';
-import infobarImage2 from '../../assets/images/infobarImage2.png';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import infobarImage from '../../assets/images/infobarImage.webp';
+import infobarImage2 from '../../assets/images/infobarImage2.webp';
 
 function Home() {
   const history = useHistory();
   return (
     <>
-      <Header />
       <div className="vector">
         <img src={vector} alt="imagemFundo" />
         <h1>Nós encorajamos mulheres a se apaixonarem por programação.</h1>
@@ -74,7 +71,6 @@ function Home() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

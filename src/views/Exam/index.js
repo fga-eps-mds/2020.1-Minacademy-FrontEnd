@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { selectTotalAnswers, selectQuestionsList } from '../../slices/tutorialSlice';
 import { getProgress } from '../../services/tutorialServices';
 import { validateMentor } from '../../services/mentorsService';
@@ -16,11 +16,12 @@ import ExamRules from './components/ExamRules';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, match }) {
+function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible }) {
+  const match = useRouteMatch()
   useEffect(() => {
     getProgress({ exam: 'true' });
-  }, [attempts]);
-  
+  }, [attempts, getProgress]);
+
   return (
     <div className="exam">
       <div className="exam__header">
@@ -56,12 +57,9 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
         {attempts > 0 && !currentUser.isValidated && <ActivitiesList exam />}
         <Switch>
           {attempts > 0 && !currentUser.isValidated &&
-            <Route
-              path={`${match.path}/atividades/:activityNumber`}
-              render={() => <ExamQuestion />}
-            />
+            <Route path={`${match.path}/atividades/:activityNumber`} component={() => <ExamQuestion />}/>
           }
-          <Route path={match.path} component={ExamRules} />
+          <Route exact path={match.path} ><ExamRules /> </Route>
         </Switch>
         <Modal
             title='Finalizar e enviar?'
@@ -99,7 +97,6 @@ Exam.propTypes = {
   totalAnswers: PropTypes.number.isRequired,
   questionsList: PropTypes.arrayOf(PropTypes.object),
   toggleModalVisible: PropTypes.func.isRequired,
-  match: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 const mapStateToProps = (state) => ({

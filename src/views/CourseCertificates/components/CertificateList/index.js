@@ -17,7 +17,7 @@ function CertificateList({ certificateType, conclusionData, workload, id }) {
       </div>
       <div className="certificateList__buttons">
         <Share />
-        <Download onClick={() => history.push(`certificados/${id}`)}/>
+        <Download onClick={() => history.push(`certificado/${id}`)}/>
       </div>
     </div>) :
     (

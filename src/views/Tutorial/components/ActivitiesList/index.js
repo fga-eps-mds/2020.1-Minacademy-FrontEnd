@@ -8,7 +8,7 @@ import './style.scss';
 
 /* eslint-disable no-shadow */
 function ActivitiesList({ exam = false, questionsList, questionsResults, currentModule, getQuestions }) {
-  const match = useRouteMatch();
+  const {url} = useRouteMatch();
 
   useEffect(() => {
     if (exam) {
@@ -25,8 +25,8 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
     <div className="activities-list">
       <div className="activities-list__header">
         <div>
-          {match.path.includes('avaliacao') && <h3>Questões</h3>}
-          {match.path.includes('tutorial') && (
+          {url.includes('avaliacao') && <h3>Questões</h3>}
+          {url.includes('tutorial') && (
             <>
             <h3>Forum</h3>
             <p> Modulo <b>{currentModule}</b> </p>
@@ -44,7 +44,7 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
             ${result(activity) && !exam ? 'correct':''}
             ${(result(activity) !== undefined) && exam ? 'answer':''}
           `}
-            to={`${match.path}/atividades/${activity.number}`}
+            to={`${url}/atividades/${activity.number}`}
             isActive={(match, location) => {
               const param = location.pathname.split('/')
               return param[param.length - 1] === activity.number.toString()
@@ -81,4 +81,4 @@ const mapDispatchToProps = dispatch => ({
   getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
 });
 
-export default (connect(mapStateToProps, mapDispatchToProps)(ActivitiesList));
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: true })(ActivitiesList);

@@ -188,4 +188,4 @@ const mapDispatchToProps = (dispatch) => ({
   getMentor: () => dispatch(getMentor()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: true })(Dashboard);

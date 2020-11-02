@@ -3,37 +3,35 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 
-export const PrivateRoute = ({
-  currentUser,
-  component: Component,
-  ...rest
-}) => (
+const PrivateRoute = ({ currentUser, children, exact, path }) => (
   <>
-    <Header />
-    <Route
-      {...rest}
-      component={(props) =>
-        currentUser ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-    <Footer />
+    <Route exact={exact} path={path}>
+      {currentUser ? (
+        <div className="animation">{children}</div>
+      ) : (
+        <Redirect to="/login" />
+      )}
+    </Route>
   </>
 );
+
+PrivateRoute.defaultProps = {
+  currentUser: null,
+  exact: false
+};
+
+PrivateRoute.propTypes = {
+  currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object]),
+  children: PropTypes.elementType.isRequired,
+  exact: PropTypes.bool,
+  path: PropTypes.string.isRequired
+};
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
 });
 
-PrivateRoute.defaultProps = {
-  currentUser: null,
-};
-
-PrivateRoute.propTypes = {
-  currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object]),
-  component: PropTypes.elementType.isRequired,
-};
-
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps, null, null, { pure: true })(
+  PrivateRoute
+);

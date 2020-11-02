@@ -18,7 +18,7 @@ const assignLearner = createAsyncThunk('mentor/assignLearner', async (values, { 
     toast.success(`${response.data.learner.name} é sua nova aprendiz!`);
     return response.data;
   } catch (error) {
-    toast.dark('Nenhum aprendiz disponivel no momento', { toastId: "customId" })
+    toast.dark('Nenhum aprendiz disponivel no momento', { toastId: "customId", autoClose: false })
     return rejectWithValue(error.response.data.isAvailable)
   }
 });

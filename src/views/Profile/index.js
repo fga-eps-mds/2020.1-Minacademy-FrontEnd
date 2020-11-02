@@ -13,12 +13,13 @@ import './style.scss';
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 function Profile({ currentUser, editUser, isLoading }) {
-  const { handleSubmit, register, errors, formState } = useForm();
+  const { handleSubmit, register, errors, formState, reset } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const payload = { ...formState.dirtyFields };
     Object.keys(payload).forEach((field) => (payload[field] = data[field])); // eslint-disable-line no-return-assign
-    editUser(payload);
+    await editUser(payload);
+    reset()
   };
 
   return (
