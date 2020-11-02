@@ -13,6 +13,17 @@
 
   &__header {
     margin-bottom: 2rem;
+    h5 {
+      padding-top: 0.2rem;
+      text-align: center;
+      width: 7rem;
+      height: 1.8rem;
+      color: var(--secondary-color);
+      border-style: solid;
+      border-radius: 20px;
+      border-width: thin;
+      border-color: var(--secondary-color);
+    }
   }
 
   &__content {
