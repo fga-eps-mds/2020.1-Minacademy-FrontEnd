@@ -81,33 +81,6 @@ function Profile({ currentUser, editUser, isLoading }) {
               errors={errors}
               autoComplete="off"
             />
-
-            <Input
-              type="text"
-              label="sobre você"
-              name="about"
-              placeholder="Escreva uma mensagem sobre vocẽ"
-              defaultValue={currentUser.about}
-              register={register({
-                maxLength: {
-                  value: 300,
-                  message: 'máximo de caracteres: 300',
-                },
-              })}
-              errors={errors}
-              autoComplete="off"
-            />
-
-            <Input
-              type="url"
-              label="Link da sua foto"
-              name="avatar"
-              placeholder="email@exemplo.com"
-              defaultValue={currentUser.profileImg}
-              register={register}
-              errors={errors}
-              autoComplete="off"
-            />
           </form>
         </div>
         <div className="form-action">
