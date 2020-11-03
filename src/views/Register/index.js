@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { registerRequest } from '../../services/usersService';
 import { isLoading } from '../../slices/usersSlice';
+import { openWebSocket } from '../../services/websocket';
 import Input from '../../components/FormField/components/Input';
 import Select from '../../components/FormField/components/Select';
 import Radio from '../../components/FormField/components/Radio';
@@ -22,7 +23,7 @@ function Register({ registerRequest, isLoading }) {
   });
 
   const onSubmit = (credentials) => {
-    registerRequest(credentials);
+    registerRequest(credentials).then(res =>  openWebSocket(res.payload?.accessToken));
   };
 
   return (

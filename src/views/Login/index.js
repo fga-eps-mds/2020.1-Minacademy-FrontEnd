@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import Input from '../../components/FormField/components/Input';
 import Button from '../../components/Button';
 import { login } from '../../services/usersService';
+import { openWebSocket } from '../../services/websocket'
 import '../../index.css';
 import './style.scss';
 
@@ -15,7 +16,7 @@ function Login({ login }) {
   const { handleSubmit, register, errors } = useForm();
 
   const onSubmit = (credentials) => {
-    login(credentials);
+    login(credentials).then(res =>  openWebSocket(res.payload?.accessToken));
   };
 
   return (

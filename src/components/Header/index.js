@@ -4,13 +4,13 @@ import { useHistory, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { logout } from '../../services/usersService';
+import { closeWebSocket } from '../../services/websocket';
 import Button from '../Button';
 import { ReactComponent as Logo } from '../../assets/images/minacademyLogo.svg';
 import { ReactComponent as Bell } from '../../assets/images/notification.svg';
 import { ReactComponent as Arrow } from '../../assets/images/arrow.svg';
 import { ReactComponent as Hamburguer } from '../../assets/images/hamburguer.svg';
 import './style.scss';
-
 
 function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
   const history = useHistory();
@@ -98,6 +98,7 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
                       onClick={() => {
                         setHidden(!hidden)
                         logout()
+                        closeWebSocket()
                       }}
                       className="nav-dropdown__items-item"
                       to="/"

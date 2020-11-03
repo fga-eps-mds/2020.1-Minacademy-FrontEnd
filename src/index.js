@@ -16,6 +16,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate loading={null} persistor={persistor}>
+      {/* <WebSocketProvider> */}
         <ToastContainer
           closeButton={false}
           pauseOnFocusLoss
@@ -24,6 +25,7 @@ ReactDOM.render(
           autoClose={3500}
         />
         <Routes />
+      {/* </WebSocketProvider> */}
       </PersistGate>
     </BrowserRouter>
   </Provider>,

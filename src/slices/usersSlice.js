@@ -22,7 +22,7 @@ const userSlice = createSlice({
       state.loading = true
     },
     [login.fulfilled]: (state, action) => {
-      state.currentUser = action.payload
+      state.currentUser = action.payload.user
       state.loading = false
     },
     [login.rejected]: (state, action) => {

@@ -7,11 +7,12 @@ import mentorReducer from './mentorSlice'
 import learnerReducer from './learnerSlice'
 import certificateReducer from './certificateSlice'
 import modalReducer from './modalSlice'
+import chatReducer from './chatSlice'
 
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  whitelist: ['user', 'tutorial', 'mentor', 'learner', 'certificate']
+  whitelist: ['user', 'tutorial', 'mentor', 'learner', 'certificate', 'chat']
 }
 
 const appReducer = combineReducers({
@@ -20,12 +21,14 @@ const appReducer = combineReducers({
   mentor: mentorReducer,
   learner: learnerReducer,
   certificate: certificateReducer,
-  modal: modalReducer
+  modal: modalReducer,
+  chat: chatReducer
 })
 
 const rootReducer = (state, action) => {
   if (action.type === 'users/logout/fulfilled') {
       storageSession.removeItem('persist:root')
+      sessionStorage.clear()
       state = undefined; // eslint-disable-line no-param-reassign
   }
   return appReducer(state, action);

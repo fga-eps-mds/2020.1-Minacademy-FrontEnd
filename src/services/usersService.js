@@ -28,7 +28,8 @@ const login = createAsyncThunk('users/login', async (values, { dispatch, rejectW
     dispatch(setAvailability(response.data.user.isAvailable)) // eslint-disable-line no-undef
     dispatch(setMentorRequest(response.data.user.mentor_request))
     dispatch(setValidationAttempts(response.data.user.attempts))
-    return response.data.user
+    sessionStorage.setItem('accessToken', response.data.accessToken)
+    return response.data
   } catch (err) {
     if (!err.response) {
       toast.error("Estamos com problemas no servidor, tente novamente mais tarde!")
@@ -53,6 +54,7 @@ const registerRequest = createAsyncThunk('users/register', async (values, { reje
   try {
     const response = await api.post(USER_ENDPOINT, values);
     toast.success('Cadastro realizado com sucesso!');
+    sessionStorage.setItem('accessToken', response.data.accessToken)
     return response.data.user;
   } catch (err) {
     toast.error('Estamos com problema no servidor')
