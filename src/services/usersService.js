@@ -88,7 +88,9 @@ const forgotPassword = async (values) => {
     toast.success('Email enviado com sucesso')
     return response.data;
   } catch (err) {
-    if (err.response.data.message === 'There is no such email in our platform'){
+    if (!err.response) {
+      toast.error("Estamos com problemas no servidor, tente novamente mais tarde!")
+    } else if (err.response.data.message === 'There is no such email in our platform'){
       toast.error("Este endereço de email não está cadastrado em nossa plataforma!")
     } else {
       toast.error('Erro ao ao enviar Email')
