@@ -30,7 +30,11 @@ const login = createAsyncThunk('users/login', async (values, { dispatch, rejectW
     dispatch(setValidationAttempts(response.data.user.attempts))
     return response.data.user
   } catch (err) {
-    toast.error('Email ou senha incorretos')
+    if (!err.response) {
+      toast.error("Estamos com problemas no servidor, tente novamente mais tarde!")
+    }else if(err.response.data.error === 'Invalid Email or Password') {
+      toast.error('Email ou senha incorretos')
+    } 
     return rejectWithValue(null)
   }
 });
@@ -84,7 +88,13 @@ const forgotPassword = async (values) => {
     toast.success('Email enviado com sucesso')
     return response.data;
   } catch (err) {
-    toast.error('Erro ao ao enviar Email')
+    if (!err.response) {
+      toast.error("Estamos com problemas no servidor, tente novamente mais tarde!")
+    } else if (err.response.data.message === 'There is no such email in our platform'){
+      toast.error("Este endereço de email não está cadastrado em nossa plataforma!")
+    } else {
+      toast.error('Erro ao ao enviar Email')
+    }
     return err
   }
 };
@@ -95,7 +105,13 @@ const changeUserPassword = async (values) => {
     toast.success('Senha alterada com sucesso')
     return response.data
   } catch (err) {
-    toast.error('Erro ao alterar senha')
+    if(err.response.data.error === 'Passwords do not coincide') {
+      toast.error('Senhas não coincidem')
+    } else if (err.response.data.error === "You already changed your password") {
+      toast.error('Você já alterou a sua senha por este link. Se precisar de outro, vá à página de recuperação!')
+    } else {
+      toast.error('Erro ao alterar senha')
+    }
     return err
   }
 };
