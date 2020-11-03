@@ -107,6 +107,8 @@ const changeUserPassword = async (values) => {
   } catch (err) {
     if(err.response.data.error === 'Passwords do not coincide') {
       toast.error('Senhas não coincidem')
+    } else if (err.response.data.error === "You already changed your password") {
+      toast.error('Você já alterou a sua senha por este link. Se precisar de outro, vá à página de recuperação!')
     } else {
       toast.error('Erro ao alterar senha')
     }

@@ -14,7 +14,6 @@ function Change() {
   const history = useHistory();
   const onSubmit = (values) => {
     changeUserPassword({ password: values.password, confirmPassword: values.confirmPassword, resetLink });
-    console.log(values.password, values.confirmPassword)
     if(values.password === values.confirmPassword) history.push('/login');
   }
 
