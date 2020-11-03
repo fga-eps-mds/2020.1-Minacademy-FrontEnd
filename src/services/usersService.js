@@ -105,7 +105,11 @@ const changeUserPassword = async (values) => {
     toast.success('Senha alterada com sucesso')
     return response.data
   } catch (err) {
-    toast.error('Erro ao alterar senha')
+    if(err.response.data.error === 'Passwords do not coincide') {
+      toast.error('Senhas não coincidem')
+    } else {
+      toast.error('Erro ao alterar senha')
+    }
     return err
   }
 };
