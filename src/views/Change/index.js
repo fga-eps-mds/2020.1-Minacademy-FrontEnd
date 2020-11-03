@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { changeUserPassword } from '../../services/usersService';
 import Button from '../../components/Button';
@@ -9,12 +9,13 @@ import './style.scss';
 
 
 function Change() {
-  const { handleSubmit, register, errors, watch } = useForm();
-  const history = useHistory();
+  const { handleSubmit, register, errors } = useForm();
   const { resetLink } = useParams();
+  const history = useHistory();
   const onSubmit = (values) => {
-    changeUserPassword({ password: values.password, resetLink });
-    history.push('/login')
+    changeUserPassword({ password: values.password, confirmPassword: values.confirmPassword, resetLink });
+    console.log(values.password, values.confirmPassword)
+    if(values.password === values.confirmPassword) history.push('/login');
   }
 
   return (
@@ -31,8 +32,6 @@ function Change() {
               errors={errors}
               register={register({
                 required: 'Campo obrigatório',
-                validate: (value) =>
-                  value === watch('confirmPassword') || 'Senhas não coincidem',
                 minLength: {
                   value: 6,
                   message: "tamanho mínimo é 6"
@@ -48,8 +47,6 @@ function Change() {
               errors={errors}
               register={register({
                 required: 'Campo obrigatório',
-                validate: (value) =>
-                  value === watch('password') || 'Senhas não coincidem',
                 minLength: {
                   value: 6,
                   message: "tamanho mínimo é 6"
