@@ -55,7 +55,7 @@ const registerRequest = createAsyncThunk('users/register', async (values, { reje
     const response = await api.post(USER_ENDPOINT, values);
     toast.success('Cadastro realizado com sucesso!');
     sessionStorage.setItem('accessToken', response.data.accessToken)
-    return response.data.user;
+    return response.data;
   } catch (err) {
     toast.error('Estamos com problema no servidor')
     return rejectWithValue(null)

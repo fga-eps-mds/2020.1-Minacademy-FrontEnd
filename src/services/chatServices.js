@@ -1,31 +1,22 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { websocket } from './websocket'
 import api from './api';
 
-const listUsers = async () => {
-  try {
-    const response = await api.get(USER_ENDPOINT);
-    return response.data;
-  } catch (error) {
-    return error;
-  }
-};
+websocket.on('assigned', (data) => {
+  console.log("NOVO CHAT: ", data)
+})
 
-const login = createAsyncThunk('users/login', async (values, { dispatch, rejectWithValue }) => {
+const sendMessage = createAsyncThunk('chat/sendMessage', async (values, { dispatch, rejectWithValue }) => {
   try {
-    const response = await api.post(LOGIN_ENDPOINT, values);
-    toast.success(`Seja bem-vindo ${response.data.user.name}!`)
-    dispatch(setAvailability(response.data.user.isAvailable)) // eslint-disable-line no-undef
-    dispatch(setMentorRequest(response.data.user.mentor_request))
-    dispatch(setValidationAttempts(response.data.user.attempts))
-    return response.data.user
+    const response = await api.post('CHAT_ENDPOINT', values);
+    return response.data
   } catch (err) {
-    toast.error('Email ou senha incorretos')
+    // toast.error('Email ou senha incorretos')
     return rejectWithValue(null)
   }
 });
 
 export {
-  listUsers,
-  login
+  sendMessage
 }
