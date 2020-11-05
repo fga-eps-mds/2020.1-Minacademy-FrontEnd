@@ -1,5 +1,4 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { generateCertificate } from '../services/certificatesServices';
 import { promoteToMentor } from '../services/learnersService';
 import { login , logout , registerRequest, editUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
