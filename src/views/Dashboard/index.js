@@ -60,7 +60,7 @@ function Dashboard({
     getQuestions({ moduleNumber: currentModule });
   }, []);
 
-  if (currentUser.userType === "Learner" && currentUser.courseCertificates.length){
+  if (currentUser.userType === "Learner" && learnerCertificate){
     toggleModalVisible();
   }
 

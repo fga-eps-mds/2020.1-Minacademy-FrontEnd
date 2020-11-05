@@ -1,4 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { generateCertificate } from '../services/certificatesServices';
 import { promoteToMentor } from '../services/learnersService';
 import { login , logout , registerRequest, editUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
@@ -56,6 +57,9 @@ const userSlice = createSlice({
     },
     [promoteToMentor.fulfilled]: (state, action) => {
       state.currentUser = action.payload
+    },
+    [generateCertificate.fulfilled]: (state, action) => {
+      state.currentUser.courseCertificates.push(action.payload._id)
     }
 
   }
