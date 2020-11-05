@@ -1,10 +1,11 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { sendMessage, getChats } from '../services/chatServices';
 
 const initialState = {
-  socket: null,
   loading: false,
   sendingMessage: false,
-  messages: []
+  currentChat: null,
+  chats: [],
 };
 
 const chatSlice = createSlice({
@@ -13,28 +14,54 @@ const chatSlice = createSlice({
   reducers: {
     /* eslint-disable no-unused-vars */
     /* eslint-disable no-param-reassign */
-    setMessages(state, action) {
-      console.log("set message: ", action)
-      state.messages = state.messages.concat(action.payload)
+    setNewMessage(state, action) {
+      state.currentChat.messages = state.currentChat.messages.concat(action.payload)
     },
-    openSocket(state, action) {
-      state.socket = action.payload
+    setCurrentChat(state, action) {
+      state.currentChat = action.payload
     }
   },
   extraReducers: {
+    [sendMessage.pending]: (state, action) => {
+      state.sendingMessage = true
+    },
+    [sendMessage.fulfilled]: (state, action) => {
+      state.currentChat.messages = state.currentChat.messages.concat(action.payload)
+      state.sendingMessage = false
+    },
+    [sendMessage.rejected]: (state, action) => {
+      state.sendingMessage = false
+    },
+
+    [getChats.pending]: (state, action) => {
+      state.loading = true
+    },
+    [getChats.fulfilled]: (state, action) => {
+      state.chats = action.payload
+      state.currentChat = action.payload[0]
+      state.loading = false
+    },
+    [getChats.rejected]: (state, action) => {
+      state.loading = false
+    },
   }
 });
 
-const selectChat = state => state.chat;
-export const selectMessages = createSelector(
-  [selectChat],
-  chat => chat.messages
+const selectChatState = state => state.chat;
+// export const selectChats = createSelector(
+//   [selectChatState],
+//   chat => chat.chats
+// )
+
+export const selectCurrentChat = createSelector(
+  [selectChatState],
+  chat => chat.currentChat
 )
 
 export const isLoading = createSelector(
-  [selectChat],
+  [selectChatState],
   chat => chat.loading
 )
 
-export const { setMessages, openSocket } = chatSlice.actions;
+export const { setNewMessage, setCurrentChat } = chatSlice.actions;
 export default chatSlice.reducer;
