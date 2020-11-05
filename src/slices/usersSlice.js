@@ -1,4 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { promoteToMentor } from '../services/learnersService';
 import { login , logout , registerRequest, editUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
 const initialState = {
@@ -53,6 +54,9 @@ const userSlice = createSlice({
     [editUser.rejected]: (state,action) => {
       state.loading = false
     },
+    [promoteToMentor.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    }
 
   }
 });

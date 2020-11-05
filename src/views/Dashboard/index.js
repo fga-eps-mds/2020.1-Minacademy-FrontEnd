@@ -14,9 +14,11 @@ import {
 } from '../../services/tutorialServices';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
-import { getMentor } from '../../services/learnersService';
+import { getMentor, promoteToMentor } from '../../services/learnersService';
 import Card from '../../components/Card';
+import Modal from '../../components/Modal';
 import './style.scss';
+import { toggleModalVisible } from '../../slices/modalSlice';
 
 /* eslint-disable no-shadow */
 function Dashboard({
@@ -30,6 +32,8 @@ function Dashboard({
   module,
   mentor,
   getMentor,
+  toggleModalVisible,
+  promoteToMentor
 }) {
   const progress = useMemo(() => {
     const questions = moduleQuestions.map(question => question._id);
@@ -49,12 +53,16 @@ function Dashboard({
   useEffect(() => {
     getMentor();
     getModules();
-
+    
     getProgress({ moduleNumber: currentModule }).then((data) => {
       if (data.payload.totalProgress === 100) setLearnerCertificate(true);
     });
     getQuestions({ moduleNumber: currentModule });
   }, []);
+
+  if (currentUser.userType === "Learner" && currentUser.courseCertificates.length){
+    toggleModalVisible();
+  }
 
   /* eslint-disable no-nested-ternary */
   return (
@@ -145,6 +153,22 @@ function Dashboard({
             />
           </div>
         )}
+        <Modal
+            title='Parabéns'
+            confirmMessage='Ok'
+            onConfirm={() => {
+              toggleModalVisible()
+              promoteToMentor()
+            }}
+            closeMessage='Fechar'
+            onClose={() => {
+              toggleModalVisible()
+              promoteToMentor()
+            }}
+        >
+          <p>Agora que você terminou o tutorial, foi promovida a mentora!</p>
+          <p>Se você quiser, pode ficar disponível a um aprendiz na página de mentoria.</p>
+        </Modal>
       </div>
     </>
   );
@@ -186,6 +210,8 @@ const mapDispatchToProps = (dispatch) => ({
   getProgress: (module) => dispatch(getProgress(module)),
   getQuestions: (module) => dispatch(getQuestions(module)),
   getMentor: () => dispatch(getMentor()),
+  toggleModalVisible: () => dispatch(toggleModalVisible()),
+  promoteToMentor: () => dispatch(promoteToMentor()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, { pure: true })(Dashboard);

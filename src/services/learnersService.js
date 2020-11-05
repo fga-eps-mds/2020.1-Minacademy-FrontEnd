@@ -51,11 +51,20 @@ const cancelMentorRequest = createAsyncThunk('learner/cancelMentorRequest', asyn
   }
 })
 
-
+const promoteToMentor = createAsyncThunk('learner/promote', async (values, { rejectWithValue }) => {
+  try {
+    const response = await api.patch(`${LEARNER_ENDPOINT}/promote`)
+    toast.success("Aprendiz promovida a mentora com sucesso!")
+    return response.data.user
+  } catch (error) {
+    return rejectWithValue(error.response.data.user)
+  }
+})
 
 export {
   assignMentor,
   getMentor,
   cancelMentorRequest,
-  unassignMentor
+  unassignMentor,
+  promoteToMentor,
 }
