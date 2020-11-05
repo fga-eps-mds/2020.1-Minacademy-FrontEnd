@@ -1,0 +1,68 @@
+.sc {
+
+  &-launcher {
+    background-color: var(--secondary-color);
+  }
+
+  &-header {
+    font-weight: 700;
+    background-color: var(--secondary-color);
+
+    &--close-button {
+      &:hover {
+        background-color: var(--error-color);
+      }
+    }
+  }
+
+  &-chat-window {
+
+    &.opened {
+      font-family: Overpass;
+    }
+  }
+  
+  &-message-list {
+    background-color: #f9f9f9;
+  }
+
+  &-message--text {
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    border-radius: 10px;
+    width: auto;
+  }
+
+  &-message {
+
+    &--content {
+
+      &.sent {
+
+        .sc-message--text {
+          background-color: var(--secondary-color);
+
+          span {
+            color: white;
+          }
+        }
+      }
+
+      &.received {
+
+        .sc-message--text {
+          background-color: var(--border-color);
+
+          span {
+            color: var(--title-color);
+          }
+        }
+      }
+    }
+
+    &--avatar {
+      display: none;
+    }
+  }
+}

@@ -1,18 +1,19 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import Home from '../views/Home';
-import Login from '../views/Login';
-import Register from '../views/Register';
+// import Login from '../views/Login';
+// import Register from '../views/Register';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Chat from '../components/Chat';
 import PrivateRoute from './components/privateRoute';
 import PublicRoute from './components/publicRoute';
 import { Loading } from '../views/Loading';
 
 const Tutorial = lazy(() => import('../views/Tutorial'));
 const Exam = lazy(() => import('../views/Exam'));
-// const Login = lazy(() => import('../views/Login'));
-// const Register = lazy(() => import('../views/Register'));
+const Login = lazy(() => import('../views/Login'));
+const Register = lazy(() => import('../views/Register'));
 const ForgotPassword = lazy(() => import('../views/ForgotPassword'));
 const Change = lazy(() => import('../views/Change'));
 const Profile = lazy(() => import('../views/Profile'));
@@ -26,10 +27,10 @@ const Routes = () => {
   const location = useLocation();
   if (location.pathname.includes('/certificado/')) {
     return (
-      <Suspense fallback={<div/>}>
-      <Route exact path="/certificado/:_id">
-        <Certificate />
-      </Route>
+      <Suspense fallback={<div />}>
+        <Route exact path="/certificado/:_id">
+          <Certificate />
+        </Route>
       </Suspense>
     );
   }
@@ -77,6 +78,7 @@ const Routes = () => {
           </PrivateRoute>
         </Switch>
       </Suspense>
+      <Chat />
       <Footer />
     </>
   );
