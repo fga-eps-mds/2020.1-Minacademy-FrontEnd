@@ -194,6 +194,8 @@ Dashboard.propTypes = {
   }).isRequired,
   getMentor: PropTypes.func.isRequired,
   mentor: PropTypes.oneOfType([PropTypes.object]),
+  toggleModalVisible: PropTypes.func.isRequired,
+  promoteToMentor: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
