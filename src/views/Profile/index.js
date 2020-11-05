@@ -26,7 +26,7 @@ function Profile({ currentUser, editUser, isLoading }) {
     <div className="profile">
       <div className="profile__header">
         <h1>Perfil</h1>
-      <h5>{(currentUser.userType == "Learner")? "Aprendiz" : "Mentor"}</h5>
+      <h5>{(currentUser.userType === "Learner")? "Aprendiz" : "Mentor"}</h5>
         <p>Adicione ou edite suas informações</p>
       </div>
       <div className="profile__content">

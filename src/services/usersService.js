@@ -88,19 +88,16 @@ const changeToLearner = async () => {
   }
 };
 
-const editUser = createAsyncThunk(
-  'users/edit',
-  async (values, { rejectWithValue }) => {
-    try {
-      const response = await api.patch(USER_ENDPOINT, values);
-      toast.success('Informações atualizadas!');
-      return response.data;
-    } catch (err) {
-      toast.error('Não foi possivel editar o perfil');
-      return rejectWithValue(err);
-    }
+const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue }) => {
+  try {
+    const response = await api.patch(USER_ENDPOINT, values);
+    toast.success('Seus dados foram atualizados com sucesso =D');
+    return response.data
+  } catch (err) {
+    toast.error('Não foi possivel atualizar seus dados =(');
+    return rejectWithValue(err)
   }
-);
+});
 
 const forgotPassword = async (values) => {
   try {
