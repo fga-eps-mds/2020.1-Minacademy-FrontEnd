@@ -6,7 +6,7 @@ import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
 import { selectLearners } from '../../slices/mentorSlice';
 import { sendMessage, getChats } from '../../services/chatServices';
-import Button from '../Button';
+import avatar from '../../assets/images/avatar.svg'
 import './style.scss';
 
 function Chat({ chat, getChats, sendMessage, mentor, learners, currentUser }) {
@@ -33,7 +33,7 @@ function Chat({ chat, getChats, sendMessage, mentor, learners, currentUser }) {
           agentProfile={{
             teamName: mentor?.name,
             imageUrl:
-              'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+              avatar,
           }}
           onMessageWasSent={handleSendMessage}
           messageList={messages || []}
