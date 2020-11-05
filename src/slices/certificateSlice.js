@@ -16,10 +16,10 @@ const certificateSlice = createSlice({
   extraReducers: {
     [generateCertificate.pending]: (state, action) => {
       state.certificate = action.payload;
-     
       state.loading = true;
     },
     [generateCertificate.fulfilled]: (state, action) => {
+      state.certificate = action.payload;
       state.loading = false;
     },
     [generateCertificate.rejected]: (state, action) => {

@@ -58,9 +58,10 @@ const userSlice = createSlice({
     [promoteToMentor.fulfilled]: (state, action) => {
       state.currentUser = action.payload
     },
-    [generateCertificate.fulfilled]: (state, action) => {
-      state.currentUser.courseCertificates.push(action.payload._id)
-    }
+    // [generateCertificate.fulfilled]: (state, action) => {
+    //   state.currentUser.courseCertificates.push(action.payload._id);
+    //   state.loading = false;
+    // }
 
   }
 });
