@@ -33,7 +33,7 @@ const chatSlice = createSlice({
       const chat = state.chats.find((chat) =>
         chat.users.includes(action.payload._id)
       );
-      chat.agentName = `${action.payload.name} ${action.payload.lastname} `;
+      chat.agentName = `${action.payload.name} ${action.payload.lastname}`;
       state.currentChat = chat;
     },
   },
@@ -81,5 +81,5 @@ export const isLoading = createSelector(
   (chat) => chat.loading
 );
 
-export const { setNewMessage, setCurrentChat } = chatSlice.actions;
+export const { setNewMessage, setCurrentChat, setNewChat } = chatSlice.actions;
 export default chatSlice.reducer;
