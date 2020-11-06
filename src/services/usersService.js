@@ -8,6 +8,7 @@ import {
   FORGOT_PASSWORD_ENDPOINT,
   CHANGE_PASS_ENDPOINT,
   CHANGE_ENDPOINT,
+  CHANGE_EMAIL_ENDPOINT 
 } from './endpoints/users';
 import { setAvailability, setValidationAttempts } from '../slices/mentorSlice'; // eslint-disable-line import/no-cycle
 import { setMentorRequest } from '../slices/learnerSlice';
@@ -143,6 +144,24 @@ const changeUserPassword = async (values) => {
   }
 };
 
+const changeUserEmail = async (values) => {
+  try {
+    console.log(values);
+    const response = await api.put(CHANGE_EMAIL_ENDPOINT, values);
+    toast.success('Senha alterada com sucesso')
+    return response.data
+  } catch (err) {
+  /*   if(err.response.data.error === 'Passwords do not coincide') {
+      toast.error('Senhas não coincidem')
+    } else if (err.response.data.error === "You already changed your password") {
+      toast.error('Você já alterou a sua senha por este link. Se precisar de outro, vá à página de recuperação!')
+    } else {
+      toast.error('Erro ao alterar senha')
+    } */
+    return err
+  }
+};
+
 export {
   listUsers,
   login,
@@ -152,4 +171,5 @@ export {
   forgotPassword,
   changeUserPassword,
   changeToLearner,
+  changeUserEmail
 };

@@ -6,6 +6,7 @@ const FORGOT_PASSWORD_ENDPOINT = '/forgotPassword'
 const CHANGE_PASS_ENDPOINT = '/resetPassword/'
 const EMAIL_ENDPOINT = '/isEmailUsed'
 const CHANGE_ENDPOINT = '/mentor';
+const CHANGE_EMAIL_ENDPOINT = '/changeEmail';
 
 export {
   USER_ENDPOINT,
@@ -15,5 +16,6 @@ export {
   FORGOT_PASSWORD_ENDPOINT,
   CHANGE_PASS_ENDPOINT,
   EMAIL_ENDPOINT,
-  CHANGE_ENDPOINT
+  CHANGE_ENDPOINT,
+  CHANGE_EMAIL_ENDPOINT 
 }
