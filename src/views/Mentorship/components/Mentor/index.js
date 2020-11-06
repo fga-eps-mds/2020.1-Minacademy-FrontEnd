@@ -17,10 +17,11 @@ import {
   removeLearner,
 } from '../../../../slices/mentorSlice';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
+import { setCurrentChat } from '../../../../slices/chatSlice'
 import Button from '../../../../components/Button';
 import Loader from '../../../../components/Loader';
 import Modal from '../../../../components/Modal';
-import { toggleModalVisible } from '../../../../slices/modalSlice';
+import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
 import './style.scss';
 
 /* eslint-disable no-shadow */
@@ -36,6 +37,8 @@ function Mentor({
   fetchingLearners,
   currentUser,
   toggleModalVisible,
+  toggleChatOpen,
+  setCurrentChat
 }) {
   const [learnerToRemoval, setLearnerToRemoval] = useState();
 
@@ -54,7 +57,7 @@ function Mentor({
       {currentUser.isValidated ? (
         <>
           <div className="mentor__header">
-            <span className="mentor__header-title">Meus aprendizes</span>
+            <span className="mentor__header-title">Clique em um aprendiz para conversar</span>
             <Button
               shadow
               small
@@ -64,16 +67,22 @@ function Mentor({
             >
               {isAvailable ? 'Ficar indisponível' : 'Aceitar novos aprendizes'}
             </Button>
+
           </div>
           <div className="mentor__content">
             {learnersList.length ? (
               <>
                 {fetchingLearners && <Loader big />}
                 {learnersList.map((learner) => (
+                  <>
                   <Card
                     key={learner._id}
                     title={`${learner.name} ${learner.lastname}`}
                     mainContent={learner.email}
+                    selectCard={() => {
+                      setCurrentChat(learner)
+                      toggleChatOpen(true)
+                    }}
                     deleteActionMessage="Desvincular"
                     deleteAction={() => {
                       setLearnerToRemoval(learner);
@@ -81,6 +90,7 @@ function Mentor({
                     }}
                     secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`}
                   />
+                  </>
                 ))}
                 <Modal
                   title={`Desvincular ${learnerToRemoval?.name}`}
@@ -99,7 +109,7 @@ function Mentor({
             ) : (
               <>
                 {fetchingLearners && <Loader big />}
-                {!fetchingLearners && <h5>Você não possui nenhum aprendiz</h5>}
+                {!fetchingLearners && <h3>Você não possui nenhum aprendiz</h3>}
               </>
             )}
           </div>
@@ -153,6 +163,8 @@ const mapDispatchToProps = (dispatch) => ({
   unassignLearner: (learnerID) => dispatch(unassignLearner(learnerID)),
   changeAvailability: () => dispatch(changeAvailability()),
   toggleModalVisible: () => dispatch(toggleModalVisible()),
+  setCurrentChat: (learnerID) => dispatch(setCurrentChat(learnerID)),
+  toggleChatOpen: (bool) => dispatch(toggleChatOpen(bool))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mentor);

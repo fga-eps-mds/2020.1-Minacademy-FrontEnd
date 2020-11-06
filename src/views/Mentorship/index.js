@@ -5,8 +5,6 @@ import Mentor from './components/Mentor';
 import Learner from './components/Learner';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import './style.scss';
-import Button from '../../components/Button';
-import { openWebSocket, closeWebSocket } from '../../services/websocket';
 
 function Mentorship({ currentUser }) {
 
@@ -14,9 +12,9 @@ function Mentorship({ currentUser }) {
     <div className="mentorship">
       <div className="mentorship__header">
         <h1>Mentoria</h1>
-        <Button shadow onClick={() => openWebSocket('a')}>ERRADO</Button>
-        <Button shadow onClick={() => openWebSocket(sessionStorage.getItem('accessToken'))}>CERTO</Button>
-        <Button shadow onClick={() => closeWebSocket('a')}>FECHAR</Button>
+        {currentUser.userType === 'Mentor' &&
+          <p>Meus aprendizes</p>
+        }
       </div>
       <div className="mentorship__content">
         {currentUser.userType === 'Mentor' && <Mentor/>}

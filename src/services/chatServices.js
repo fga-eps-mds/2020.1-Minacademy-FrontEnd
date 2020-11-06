@@ -8,9 +8,14 @@ import { setNewMessage } from '../slices/chatSlice';
 
 websocket.on('NEW_MESSAGE_EVENT', (data) => {
   const { newMessage, from } = data;
-  console.log('NOVO CHAT: ', data);
+  console.log('NOVA MENSAGEM CHAT: ', data);
   toast.success(`Você tem uma nova mensagem de ${from}`, { position: "top-left" })
   store.dispatch({ type: 'chat/setNewMessage', payload: newMessage })
+});
+
+websocket.on('NEW_CHAT_EVENT', (chat) => {
+  console.log('NOVO CHAT: ', chat);
+  store.dispatch({ type: 'chat/setNewChat', payload: chat })
 });
 
 const sendMessage = createAsyncThunk(
