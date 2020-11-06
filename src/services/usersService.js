@@ -146,18 +146,15 @@ const changeUserPassword = async (values) => {
 
 const changeUserEmail = async (values) => {
   try {
-    console.log(values);
     const response = await api.put(CHANGE_EMAIL_ENDPOINT, values);
-    toast.success('Senha alterada com sucesso')
+    toast.success('Email alterado com sucesso')
     return response.data
   } catch (err) {
-  /*   if(err.response.data.error === 'Passwords do not coincide') {
-      toast.error('Senhas não coincidem')
-    } else if (err.response.data.error === "You already changed your password") {
-      toast.error('Você já alterou a sua senha por este link. Se precisar de outro, vá à página de recuperação!')
+     if(err.response.data.error === 'You already changed your email') {
+      toast.error('Não foi solicitado a mudança de email através desse link ou ele ja expirou')
     } else {
-      toast.error('Erro ao alterar senha')
-    } */
+      toast.error('Erro ao alterar o email')
+    } 
     return err
   }
 };

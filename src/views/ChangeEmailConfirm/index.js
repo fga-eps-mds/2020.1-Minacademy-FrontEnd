@@ -1,19 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './style.scss';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom'; // useHistory
 import { changeUserEmail } from '../../services/usersService';
 
 /* eslint-disable no-shadow */
 function ChangeEmailConfirm() {
   const { changeEmailLink } = useParams();
-  const history = useHistory();
+  // const history = useHistory();
 
   const onLoad = () => {
-    console.log("ENTROU NO ONLOAD");
     changeUserEmail({ changeEmailLink});
-    //if(values.password === values.confirmPassword) history.push('/login');
+    // if(values.password === values.confirmPassword) history.push('/login');
   }
   /* eslint-disable no-nested-ternary */
   return (
