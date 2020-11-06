@@ -39,6 +39,29 @@
         margin-top: 1rem;
       }
     }
+
+    .form-action {
+      position: relative;
+      display:  flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 1rem;
+      text-align: center;
+
+      @media(max-width: 600px) {
+        width: 100%;
+      }
+
+      .loader {
+        position: absolute;
+        bottom: calc(-100% + 2rem);
+      }
+
+      button {
+        width: 10rem;
+        margin-bottom: 1.5rem;
+      }
+    }
   }
 
   &__resources {
