@@ -26,8 +26,8 @@ function Tutorial({ completedActivities, getProgress, totalProgress }) { // esli
           <h1>Tutorial</h1>
           <p>Total concluído: {totalProgress || 0}%</p>
         </div>
-        <div className="tutorial__header--progress">
-          {completedActivities} atividades completas
+        <div>
+          <span className="tutorial__header--progress">{completedActivities} atividades completas</span>
         </div>
       </div>
       <div className="tutorial__body">

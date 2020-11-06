@@ -125,7 +125,7 @@ function Dashboard({
             <Card
               title="Mentoria"
               mainContent="Veja os seus aprendizes, ou procure por novos"
-              linkText="acesse a mentoria."
+              linkText="acessar mentoria"
               linkPath="/mentoria"
             />
             <Card

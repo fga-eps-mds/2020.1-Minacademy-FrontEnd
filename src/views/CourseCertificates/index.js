@@ -24,7 +24,7 @@ function CourseCertificates({
         <div className="courseCertificates__header">
           <h1>Certificados</h1>
         </div>
-        <h3>Você não possui certificados.</h3>
+        <h2>Você não possui certificados.</h2>
       </div>
     );
   }

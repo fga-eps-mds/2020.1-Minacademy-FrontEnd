@@ -62,9 +62,7 @@ function Login({ login }) {
             </Button>
           </form>
           <div className="login__resources">
-            <p>
               <Link to="/forgotPassword">Recuperar senha</Link>
-            </p>
             <p>
               Não possui conta? <Link to="/cadastro">Cadastre-se</Link>
             </p>

@@ -32,14 +32,18 @@
       text-align: center;
 
       &--title {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         color: var(--title-color);
-        font-weight: 600;
+        font-weight: 700;
       }
 
       span {
         font-size: 1.1rem;
         font-weight: 500;
+
+        p {
+         margin-bottom: 1rem;
+        }
       }
     }
 

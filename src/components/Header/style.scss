@@ -48,6 +48,7 @@
       width: 100%;
       padding: 0 1rem;
       font-size: 1.15rem;
+      font-weight: 500;
       color: var(--title-color);
       @media (max-width: 600px) {
         color: var(--title-color);
@@ -96,6 +97,12 @@
       justify-content: flex-end;
       color: var(--title-color);
 
+      &--resources {
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+      }
+
       button + button {
         margin-left: 2rem;
         @media (max-width: 600px) {
@@ -109,9 +116,15 @@
       }
 
       &-name {
+        display: flex;
         margin-left: 1.5rem;
         font-size: 1.15rem;
         cursor: pointer;
+        align-self: center;
+
+        .arrow {
+          margin-left: 0.5rem;
+        }
       }
 
       &-icon{
@@ -119,6 +132,7 @@
         path {
           fill: var(--title-color);
         }
+        align-self: center;
       }
 
       .nav-dropdown {
@@ -145,7 +159,8 @@
           padding: 0.7rem 1rem;
 
           &-item {
-            color: var(--title-color);
+            font-weight: 500;
+            // color: var(--text-color);
             padding: 0.55rem 0;
             border-bottom: 1px solid rgb(235, 235, 235);
             &:last-child {
