@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './style.scss';
 import { Link, useParams } from 'react-router-dom'; // useHistory
-import { changeUserEmail, logout, login } from '../../services/usersService';
+import { changeUserEmail, logout} from '../../services/usersService';
 
 /* eslint-disable no-shadow */
 function ChangeEmailConfirm() {

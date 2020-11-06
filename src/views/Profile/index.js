@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom'; 
 import { selectCurrentUser, isLoading } from '../../slices/usersSlice';
 import { editUser } from '../../services/usersService';
 import Button from '../../components/Button';
@@ -9,7 +10,6 @@ import Input from '../../components/FormField/components/Input';
 import Loader from '../../components/Loader';
 import '../../index.css';
 import './style.scss';
-import {useHistory} from 'react-router-dom'; // useHistory
 
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -21,7 +21,7 @@ function Profile({ currentUser, editUser, isLoading }) {
     const payload = { ...formState.dirtyFields };
     Object.keys(payload).forEach((field) => (payload[field] = data[field])); // eslint-disable-line no-return-assign
     await editUser(payload);
-    //if(currentUser.showMessageConfirm) history.push('/dashboard');
+    if(currentUser.showMessageConfirm) history.push('/aviso-email');
     reset()
   };
 
@@ -93,10 +93,6 @@ function Profile({ currentUser, editUser, isLoading }) {
           </Button>
           {isLoading && <Loader> Atualizando informações </Loader>}
         </div>
-          {currentUser.showMessageConfirm && (
-            <div>Um email foi enviado para seu endereço de email atual. Verifique sua caixa de emails e siga as instruções para confirmar a alteração do email.</div>
-          )
-          }
       </div>
     </div>
   );
