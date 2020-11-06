@@ -15,6 +15,7 @@ import {
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
 import { getMentor, promoteToMentor } from '../../services/learnersService';
+import { getLearners } from '../../services/mentorsService';
 import Card from '../../components/Card';
 import Modal from '../../components/Modal';
 import './style.scss';
@@ -32,6 +33,7 @@ function Dashboard({
   module,
   mentor,
   getMentor,
+  getLearners,
   toggleModalVisible,
   promoteToMentor
 }) {
@@ -52,6 +54,7 @@ function Dashboard({
   const [learnerCertificate, setLearnerCertificate] = useState(false);
   useEffect(() => {
     getMentor();
+    getLearners();
     getModules();
     
     getProgress({ moduleNumber: currentModule }).then((data) => {
@@ -193,6 +196,7 @@ Dashboard.propTypes = {
     title: PropTypes.string,
   }).isRequired,
   getMentor: PropTypes.func.isRequired,
+  getLearners: PropTypes.func.isRequired,
   mentor: PropTypes.oneOfType([PropTypes.object]),
   toggleModalVisible: PropTypes.func.isRequired,
   promoteToMentor: PropTypes.func.isRequired,
@@ -212,6 +216,7 @@ const mapDispatchToProps = (dispatch) => ({
   getProgress: (module) => dispatch(getProgress(module)),
   getQuestions: (module) => dispatch(getQuestions(module)),
   getMentor: () => dispatch(getMentor()),
+  getLearners: () => dispatch(getLearners()),
   toggleModalVisible: () => dispatch(toggleModalVisible()),
   promoteToMentor: () => dispatch(promoteToMentor()),
 });

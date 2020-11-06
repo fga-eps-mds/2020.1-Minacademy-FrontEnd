@@ -7,7 +7,7 @@ import { persistStore,
   PURGE,
   REGISTER
 } from 'redux-persist'
-import rootReducer from './slices/rootReducer'
+import rootReducer from './slices/rootReducer' // eslint-disable-line import/no-cycle
 
 const store = configureStore({
   reducer: rootReducer,

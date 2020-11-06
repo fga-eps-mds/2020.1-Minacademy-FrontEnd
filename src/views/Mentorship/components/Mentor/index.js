@@ -146,6 +146,8 @@ Mentor.propTypes = {
   changeAvailability: PropTypes.func.isRequired,
   removeLearner: PropTypes.func.isRequired,
   toggleModalVisible: PropTypes.func.isRequired,
+  toggleChatOpen: PropTypes.func.isRequired,
+  setCurrentChat: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

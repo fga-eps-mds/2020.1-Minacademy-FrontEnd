@@ -1,7 +1,9 @@
 import io from 'socket.io-client';
 
+/* eslint-disable no-console */
+
 const websocket = io.connect(process.env.REACT_APP_SERVER_URL, {
-  query: `token=${sessionStorage.getItem('accessToken')}`
+  query: `token=${sessionStorage.getItem('accessToken')}`// eslint-disable-line no-undef
 })
 
 websocket.on('error', (e) => {
@@ -21,7 +23,7 @@ websocket.on('TESTE', data => console.log("teste: ", data))
 const openWebSocket = (token) => {
   if (websocket.disconnected) {
     websocket.disconnect();
-    websocket.io.opts.query = 'token=' + token;
+    websocket.io.opts.query = `token=${token}`;
     websocket.connect()
   }
 };

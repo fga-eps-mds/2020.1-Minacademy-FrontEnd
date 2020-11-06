@@ -16,14 +16,18 @@ import './style.scss';
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 function Register({ registerRequest, isLoading }) {
-  const { handleSubmit, register, watch, setValue, errors } = useForm({
+  const { handleSubmit, register, watch, setValue, errors, setError } = useForm({
     defaultValues: {
       userType: null,
     },
   });
 
   const onSubmit = (credentials) => {
-    registerRequest(credentials).then(res =>  openWebSocket(res.payload?.accessToken));
+    registerRequest(credentials).then(res =>  {
+      if (res.payload?.error === 'email') setError('email', {message: 'Email já cadastrado'})
+      if (res.payload?.accessToken ) openWebSocket(res.payload.accessToken)
+    });
+    
   };
 
   return (

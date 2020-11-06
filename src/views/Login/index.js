@@ -85,6 +85,7 @@ function Login({ login, isLoading }) {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

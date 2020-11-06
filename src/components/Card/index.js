@@ -14,9 +14,9 @@ function Card({
   deleteActionMessage,
   deleteCard,
   selectCard,
-  defaultChecked,
   ...otherProps
 }) {
+  /* eslint-disable jsx-a11y/label-has-associated-control */
   /* eslint-disable jsx-a11y/control-has-associated-label */
   return (
       <label className={`card-label ${selectCard ? 'selectable' : ''}`} >
@@ -62,6 +62,7 @@ Card.defaultProps = {
   deleteAction: false,
   deleteActionMessage: '',
   deleteCard: false,
+  selectCard: () => {}
 };
 
 Card.propTypes = {
@@ -73,6 +74,7 @@ Card.propTypes = {
   deleteAction: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   deleteActionMessage: PropTypes.string,
   deleteCard: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  selectCard: PropTypes.func,
 };
 
 export default Card;

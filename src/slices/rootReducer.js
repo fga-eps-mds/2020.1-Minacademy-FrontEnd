@@ -7,7 +7,7 @@ import mentorReducer from './mentorSlice'
 import learnerReducer from './learnerSlice'
 import certificateReducer from './certificateSlice'
 import modalReducer from './modalSlice'
-import chatReducer from './chatSlice'
+import chatReducer from './chatSlice' // eslint-disable-line import/no-cycle
 
 const persistConfig = {
   key: 'root',
@@ -24,10 +24,10 @@ const appReducer = combineReducers({
   modal: modalReducer,
   chat: chatReducer
 })
-
+/* eslint-disable no-undef */
 const rootReducer = (state, action) => {
   if (action.type === 'users/logout/fulfilled') {
-      storageSession.removeItem('persist:root')
+      storageSession.removeItem('persist:root') 
       sessionStorage.clear()
       state = undefined; // eslint-disable-line no-param-reassign
   }

@@ -1,5 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { sendMessage, getChats } from '../services/chatServices';
+import { sendMessage, getChats } from '../services/chatServices'; // eslint-disable-line import/no-cycle
 
 const initialState = {
   loading: false,
@@ -28,6 +28,7 @@ const chatSlice = createSlice({
     setNewChat(state, action) {
       state.chats = state.chats.concat(action.payload);
     },
+    /* eslint-disable no-shadow */
     setCurrentChat(state, action) {
       const chat = state.chats.find((chat) =>
         chat.users.includes(action.payload._id)
