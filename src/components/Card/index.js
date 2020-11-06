@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '../Button';
+import { ReactComponent as Chat } from '../../assets/images/chat-icon.svg';
 import './style.scss';
+
 
 function Card({
   title,
@@ -12,27 +14,24 @@ function Card({
   linkPath,
   deleteAction,
   deleteActionMessage,
-  deleteCard,
+  icon,
   selectCard,
+  defaultChecked = false,
   ...otherProps
 }) {
   /* eslint-disable jsx-a11y/label-has-associated-control */
   /* eslint-disable jsx-a11y/control-has-associated-label */
   return (
       <label className={`card-label ${selectCard ? 'selectable' : ''}`} >
-        <input type="radio" name="card" className="card-input-element" defaultChecked />
+        <input type="radio" name="card" className="card-input-element" defaultChecked={defaultChecked} />
         <div
           className="custom-card"
           {...otherProps}
           onClick={selectCard}
         >
-          <div className="custom-card__delete">
-            {deleteCard && (
-              <button
-                type="button"
-                className="delete-button"
-                onClick={deleteCard}
-              />
+          <div className="custom-card__icon">
+            {icon && (
+              <Chat className="icon" />
             )}
           </div>
           <p className="custom-card__title">{title}</p>
@@ -61,8 +60,9 @@ Card.defaultProps = {
   linkPath: '',
   deleteAction: false,
   deleteActionMessage: '',
-  deleteCard: false,
-  selectCard: () => {}
+  icon: false,
+  selectCard: () => {},
+  defaultChecked: false
 };
 
 Card.propTypes = {
@@ -73,8 +73,9 @@ Card.propTypes = {
   linkPath: PropTypes.string,
   deleteAction: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   deleteActionMessage: PropTypes.string,
-  deleteCard: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   selectCard: PropTypes.func,
+  defaultChecked: PropTypes.bool,
 };
 
 export default Card;
