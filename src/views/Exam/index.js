@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 import { selectTotalAnswers, selectQuestionsList } from '../../slices/tutorialSlice';
 import { getProgress } from '../../services/tutorialServices';
 import { validateMentor } from '../../services/mentorsService';
@@ -18,9 +18,12 @@ import './style.scss';
 /* eslint-disable no-shadow */
 function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible }) {
   const match = useRouteMatch()
+  const history = useHistory()
+
   useEffect(() => {
     getProgress({ exam: 'true' });
   }, [attempts, getProgress]);
+
 
   return (
     <div className="exam">
@@ -69,6 +72,7 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
             onConfirm={() => {
               validateMentor()
               toggleModalVisible()
+              history.push('/avaliacao')
             }}
         >
           <p>

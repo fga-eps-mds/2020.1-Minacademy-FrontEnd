@@ -30,7 +30,10 @@ describe('chatSlice', () => {
 
   it('Should set new message on currentChat', () => { 
     expect(chat({...initialState, currentChat: chatData}, { type: setNewMessage.type, payload: { chat: '123', content: 'test message' } } ))
-    .toEqual({ ...initialState, currentChat: {...chatData, messages: [{ chat: '123', content: 'test message' }]} })
+    .toEqual({
+      ...initialState,
+      chats: [{...chatData, messages: [{ chat: '123', content: 'test message' }]}],
+      currentChat: {...chatData, messages: [{ chat: '123', content: 'test message' }]} })
   })
 
 });

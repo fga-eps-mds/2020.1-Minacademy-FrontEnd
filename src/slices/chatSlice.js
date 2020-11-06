@@ -19,11 +19,17 @@ const chatSlice = createSlice({
         state.currentChat.messages = state.currentChat.messages.concat(
           action.payload
         );
-      } else {
-        state.chats
-          .find((chat) => chat._id === action.payload.chat)
-          .messages.push(action.payload);
-      }
+      } 
+      state.chats
+        .find((chat) => chat._id === action.payload.chat)
+        .messages.push(action.payload);
+      
+    },
+    removeChat(state, action) {
+      state.chats = state.chats.filter((chat) => {
+        return !chat.users.includes(action.payload.toString())
+      })
+      state.currentChat = state.chats[0] ? state.chats[0] : null
     },
     setNewChat(state, action) {
       state.chats = state.chats.concat(action.payload);
@@ -33,8 +39,12 @@ const chatSlice = createSlice({
       const chat = state.chats.find((chat) =>
         chat.users.includes(action.payload._id)
       );
-      chat.agentName = `${action.payload.name} ${action.payload.lastname}`;
-      state.currentChat = chat;
+      if (chat) {
+        chat.agentName = `${action.payload.name} ${action.payload.lastname}`;
+        state.currentChat = chat;
+      } else {
+        state.currentChat = null;
+      }
     },
   },
   extraReducers: {
@@ -45,6 +55,9 @@ const chatSlice = createSlice({
       state.currentChat.messages = state.currentChat.messages.concat(
         action.payload
       );
+      state.chats
+        .find((chat) => chat._id === action.payload.chat)
+        .messages.push(action.payload);
       state.sendingMessage = false;
     },
     [sendMessage.rejected]: (state, action) => {
@@ -56,7 +69,7 @@ const chatSlice = createSlice({
     },
     [getChats.fulfilled]: (state, action) => {
       state.chats = action.payload;
-      state.currentChat = action.payload[action.payload.length - 1];
+      state.currentChat = action.payload.length ? action.payload[action.payload.length - 1] : null;
       state.loading = false;
     },
     [getChats.rejected]: (state, action) => {

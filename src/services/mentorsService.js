@@ -8,7 +8,7 @@ const getLearners = createAsyncThunk('mentor/getLearners', async (values, { reje
     const response = await api.get(MENTOR_ENDPOINT)
     return response.data
   } catch (error) {
-    return rejectWithValue([])
+    return rejectWithValue(error.response.data.learners || [])
   }
 })
 
@@ -27,6 +27,8 @@ const unassignLearner = createAsyncThunk('mentor/unassignLearner', async (learne
   try {
     const response = await api.delete(MENTOR_ENDPOINT, {params: { learnerID }});
     toast.success('Aprendiz desvinculado com sucesso');
+    // console.log(learnerID)
+    // dispatch({ type: 'chat/removeChat', payload: learnerID })
     return response.data
   } catch (error) {
     toast.error('Ocorreu um erro ao desvincular aprendiz')

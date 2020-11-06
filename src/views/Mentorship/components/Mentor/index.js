@@ -78,6 +78,7 @@ function Mentor({
                   <Card
                     key={learner._id}
                     title={`${learner.name} ${learner.lastname}`}
+                    icon
                     mainContent={learner.email}
                     selectCard={() => {
                       setCurrentChat(learner)
@@ -88,6 +89,7 @@ function Mentor({
                       setLearnerToRemoval(learner);
                       toggleModalVisible();
                     }}
+                    defaultChecked
                     secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`}
                   />
                   </>
