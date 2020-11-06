@@ -28,4 +28,4 @@ function ChangeEmailConfirm() {
   );
 };
 
-export default connect()(ChangeEmailConfirm);
+export default ChangeEmailConfirm;
