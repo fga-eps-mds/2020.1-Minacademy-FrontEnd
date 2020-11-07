@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 /* eslint-disable no-console */
 
 const websocket = io.connect(process.env.REACT_APP_SERVER_URL, {
+  path: '/api/socket.io',
   query: `token=${sessionStorage.getItem('accessToken')}`// eslint-disable-line no-undef
 })
 
