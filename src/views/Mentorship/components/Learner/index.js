@@ -7,10 +7,10 @@ import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
 import Modal from '../../../../components/Modal';
 import Loader from '../../../../components/Loader';
-import { toggleModalVisible } from '../../../../slices/modalSlice';
+import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
 
 /* eslint-disable no-shadow */
-function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, unassignMentor, mentorRequest, cancelMentorRequest, toggleModalVisible }) {
+function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, unassignMentor, mentorRequest, cancelMentorRequest, toggleModalVisible, toggleChatOpen }) {
   useEffect(() => {
     getMentor()
   }, []);
@@ -28,8 +28,12 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
           {fetchingMentor && <Loader big />}
           <Card
             title='Seu Mentor'
+            icon
             mainContent={`${mentor?.name} ${mentor?.lastname}`}
             secondaryContent={mentor?.email}
+            selectCard={() => {
+              toggleChatOpen(true)
+            }}
             deleteActionMessage='Desvincular'
             deleteAction={() => {
               toggleModalVisible()
@@ -77,6 +81,7 @@ Learner.propTypes = {
   loading: PropTypes.bool.isRequired,
   mentorRequest: PropTypes.func.isRequired,
   toggleModalVisible: PropTypes.func.isRequired,
+  toggleChatOpen: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -91,7 +96,8 @@ const mapDispatchToProps = (dispatch) => ({
   assignMentor: () => dispatch(assignMentor()),
   cancelMentorRequest: () => dispatch(cancelMentorRequest()),
   unassignMentor: () => dispatch(unassignMentor()),
-  toggleModalVisible: () => dispatch(toggleModalVisible())
+  toggleModalVisible: () => dispatch(toggleModalVisible()),
+  toggleChatOpen: (bool) => dispatch(toggleChatOpen(bool))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Learner);

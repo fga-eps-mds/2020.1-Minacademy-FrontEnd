@@ -6,16 +6,19 @@ import { useForm } from 'react-hook-form';
 import Input from '../../components/FormField/components/Input';
 import Button from '../../components/Button';
 import { login } from '../../services/usersService';
+import { isLoading } from '../../slices/usersSlice';
+import { openWebSocket } from '../../services/websocket'
+import Loader from '../../components/Loader';
 import '../../index.css';
 import './style.scss';
 
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-function Login({ login }) {
+function Login({ login, isLoading }) {
   const { handleSubmit, register, errors } = useForm();
 
   const onSubmit = (credentials) => {
-    login(credentials);
+    login(credentials).then(res =>  openWebSocket(res.payload?.accessToken));
   };
 
   return (
@@ -23,7 +26,7 @@ function Login({ login }) {
       <div className="login">
         <div className="login__body">
           <h1>Entrar</h1>
-          <form className="login__body--form" onSubmit={handleSubmit(onSubmit)}>
+          <form id="login-form" className="login__body--form" onSubmit={handleSubmit(onSubmit)}>
             <Input
               type="text"
               label="e-mail"
@@ -56,14 +59,20 @@ function Login({ login }) {
               autoComplete="off"
             />
 
-            <Button type="submit" small>
+          </form>
+          <div className="form-action">
+            <Button
+              type="submit"
+              form="login-form"
+              shadow
+              disabled={isLoading}
+            >
               Login
             </Button>
-          </form>
+            {isLoading && <Loader> Aguarde... </Loader>}
+          </div>
           <div className="login__resources">
-            <p>
               <Link to="/forgotPassword">Recuperar senha</Link>
-            </p>
             <p>
               Não possui conta? <Link to="/cadastro">Cadastre-se</Link>
             </p>
@@ -76,10 +85,15 @@ function Login({ login }) {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isLoading: isLoading(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   login: (credentials) => dispatch(login(credentials)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

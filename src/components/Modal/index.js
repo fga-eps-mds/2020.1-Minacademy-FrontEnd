@@ -18,7 +18,7 @@ function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, cl
     <div id={id} className="custom-modal" onClick={handleOutsideClick} {...otherProps}>
       <div className="custom-modal__container">
         <div className="content">
-          <h3 className="content--title">{title}</h3>
+          <h2 className="content--title">{title}</h2>
           <span>{children}</span>
         </div>
         <div className="buttons">

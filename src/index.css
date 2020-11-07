@@ -1,6 +1,7 @@
 :root {
-  --title-color: #3E2753;
-  --paragraph-color: #675775;
+  /* --title-color: #3E2753; */
+  --title-color: #351058;
+  --paragraph-color: #5a4b66;
   --secondary-color: #9241C0;
   --primary-button:#8838FF;
   --hover-button: #3E2753;
@@ -9,7 +10,7 @@
   --border-color: #C6CACD;
   --outline-color: #532f77;
   --footer-color: #38353B;
-  --text-color: #675775;
+  --text-color: #5a4b66;
   --background: #E5E5E5E5;
   --placeholder-color: #A39DAA;
   --error-color: #F4685E;
@@ -38,7 +39,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   overflow: overlay;
-
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

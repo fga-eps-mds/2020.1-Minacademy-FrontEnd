@@ -32,7 +32,7 @@ function Question({
     [questionResults]
   );
 
-  const { handleSubmit, register, errors, setError, clearErrors, watch } = useForm({
+  const { handleSubmit, register, errors, clearErrors, watch } = useForm({
     defaultValues: {
       alternative: result?.alternative,
     },
@@ -50,8 +50,6 @@ function Question({
     if (response.payload.isCorrect === true) {
       getProgress();
     }
-    if (result?.isCorrect === false && showResult && !isLoading)
-      setError('alternative', {type: 'manual', message: 'Resposta errada, tente novamente!' })
   };
 
   const descriptionText = useMemo(() => question.description
@@ -81,7 +79,7 @@ function Question({
       <div className="question__alternatives">
         {result?.isCorrect && showResult ? (
           <div className="question__result">
-            <h4>CORRETO!</h4>
+            <h2>CORRETO!</h2>
             <p>{question.alternatives[result.alternative]}</p>
           </div>
         ) : (
@@ -89,11 +87,15 @@ function Question({
             <form id="question" onSubmit={handleSubmit(onSubmit)}>
               {questionAlternatives}
 
-              {errors.alternative && (
+              <div className="question__alternatives--error">
+                {result?.isCorrect === false && showResult && !isLoading ? 'Resposta errada, tente novamente!' : null}
+              </div>
+              
+              {errors.alternative && 
                 <div className="question__alternatives--error">
                   {errors.alternative.message}
                 </div>
-              )}
+              }
             </form>
           </>
         )}

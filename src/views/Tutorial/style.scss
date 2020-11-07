@@ -20,9 +20,12 @@
     }
 
     &--progress {
-      color: var(--secondary-green);
       font-weight: 600;
+      color: var(--secondary-green);
       text-transform: uppercase;
+      padding: 0.4rem;
+      border: 2px solid var(--secondary-green);
+      border-radius: 10px;
     }
   }
 
@@ -31,9 +34,9 @@
     min-height: 50vh;
     padding: 3em;
     background: #FFFFFF;
-    box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.05), 0px 15px 40px rgba(0, 0, 0, 0.02);
+    box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.1), 0px 15px 40px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
-    margin-bottom: 3rem;
+    margin: 1rem 0;
 
     @media(max-width: 600px) {
       margin-top: 2rem;

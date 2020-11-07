@@ -60,6 +60,7 @@ const mentorSlice = createSlice({
       state.fetchingLearners = false
     },
     [getLearners.rejected]: (state, action) => {
+      state.learners = action.payload
       state.fetchingLearners = false
     },
 

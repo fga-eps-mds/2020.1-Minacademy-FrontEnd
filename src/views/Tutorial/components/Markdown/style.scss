@@ -26,6 +26,54 @@
 
       &--body {
         word-wrap: break-word;
+
+        code {
+          white-space: pre-wrap;
+          color: #333;
+        }
+
+        ul {
+          list-style: disc;
+        }
+
+        ol, ul {
+          padding: 1rem;
+        }
+        li {
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+
+        a {
+          color: var(--secondary-color);
+          text-decoration: underline;
+        }
+
+        h1, h2, h3, h4 {
+          line-height: normal;
+          margin: 0.5rem 0;
+        }
+
+        table {
+          border: 1px solid var(--title-color);
+
+          thead {
+            background-color: #f9f9f9;
+          }
+        }
+
+        td, th  {
+          color: #333;
+
+
+          strong {
+            font-weight: 600;
+          }
+        }
+
+        img {
+          margin-bottom: 1rem;
+        }
       }
 
       &--navigation {

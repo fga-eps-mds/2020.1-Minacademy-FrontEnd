@@ -4,13 +4,13 @@ import { useHistory, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { logout } from '../../services/usersService';
+import { closeWebSocket } from '../../services/websocket';
 import Button from '../Button';
 import { ReactComponent as Logo } from '../../assets/images/minacademyLogo.svg';
 import { ReactComponent as Bell } from '../../assets/images/notification.svg';
 import { ReactComponent as Arrow } from '../../assets/images/arrow.svg';
 import { ReactComponent as Hamburguer } from '../../assets/images/hamburguer.svg';
 import './style.scss';
-
 
 function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
   const history = useHistory();
@@ -38,11 +38,11 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             <NavLink className="header__navigation-option" to="/dashboard">
               Dashboard
             </NavLink>
-            {currentUser.userType === 'Mentor' && currentUser?.isValidated
-              ? null
-              : <NavLink className="header__navigation-option" to="/avaliacao">
+            {currentUser.userType === 'Mentor' && !currentUser?.isValidated
+              ? <NavLink className="header__navigation-option" to="/avaliacao">
                  Avaliação
                 </NavLink>
+              : null
             }
             <NavLink className="header__navigation-option" to="/tutorial">
               Tutorial
@@ -70,13 +70,15 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
         {currentUser ? (
           <>
             <div>
+            <div className="header__navigation-action--resources">
               <Bell className="header__navigation-action-icon" width={20}  height={23} />
-              <span
-                className="header__navigation-action-name"
-                onClick={() => setHidden(!hidden)}
-              >
-              {currentUser.name}  <Arrow className="header__navigation-action-icon" width={14}  height={15}/>
-              </span>
+                <span
+                  className="header__navigation-action-name"
+                  onClick={() => setHidden(!hidden)}
+                >
+                {currentUser.name}  <Arrow className="header__navigation-action-icon arrow" width={14}  height={14}/>
+                </span>
+            </div>
               {hidden ? null : (
                 <div className="nav-dropdown">
                   <div className="nav-dropdown__items">
@@ -98,6 +100,7 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
                       onClick={() => {
                         setHidden(!hidden)
                         logout()
+                        closeWebSocket()
                       }}
                       className="nav-dropdown__items-item"
                       to="/"

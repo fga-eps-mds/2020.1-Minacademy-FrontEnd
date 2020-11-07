@@ -57,7 +57,10 @@
   }
 
   &__result {
-    color: var(--title-color);
+    h2 {
+      color: var(--secondary-green);
+      font-weight: 600;
+    }
   }
 
   &__buttons {

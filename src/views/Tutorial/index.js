@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
@@ -26,8 +26,8 @@ function Tutorial({ completedActivities, getProgress, totalProgress }) { // esli
           <h1>Tutorial</h1>
           <p>Total concluído: {totalProgress || 0}%</p>
         </div>
-        <div className="tutorial__header--progress">
-          {completedActivities} atividades completas
+        <div>
+          <span className="tutorial__header--progress">{completedActivities} atividades completas</span>
         </div>
       </div>
       <div className="tutorial__body">

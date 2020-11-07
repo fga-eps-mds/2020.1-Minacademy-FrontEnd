@@ -12,6 +12,9 @@ function Mentorship({ currentUser }) {
     <div className="mentorship">
       <div className="mentorship__header">
         <h1>Mentoria</h1>
+        {currentUser.userType === 'Mentor' &&
+          <p>Meus aprendizes</p>
+        }
       </div>
       <div className="mentorship__content">
         {currentUser.userType === 'Mentor' && <Mentor/>}

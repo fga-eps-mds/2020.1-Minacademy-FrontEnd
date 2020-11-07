@@ -1,6 +1,6 @@
 .footer {
     background-color: var(--footer-color);
-    padding: 2rem 2rem 0;
+    padding: 2rem;
     font-family: Overpass;
 
     &__body {
@@ -17,12 +17,13 @@
         a {
             color: white;
             &:hover {
-                color: var(--secondary-color)
+                color: var(--secondary-color);
+                text-decoration: underline;
             }
         }
 
         &-item {
-            padding-bottom: 1rem;
+            // padding-bottom: 1rem;
 
             @media(max-width: 600px) {
             }
@@ -30,6 +31,8 @@
             &-title {
                 color: white;
                 border-bottom: 1px solid white;
+                margin-bottom: 0.7rem;
+                cursor: default;
             }
 
         }
