@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom'; 
+import { connect } from 'react-redux'; 
+import { toast } from 'react-toastify';
 import { selectCurrentUser, isLoading } from '../../slices/usersSlice';
 import { editUser } from '../../services/usersService';
 import Button from '../../components/Button';
@@ -14,17 +14,20 @@ import './style.scss';
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 function Profile({ currentUser, editUser, isLoading }) {
-  const { handleSubmit, register, errors, formState, reset } = useForm();
-  const history = useHistory();
+  const { handleSubmit, register, errors, reset } = useForm();
 
-  const onSubmit = async (data) => {
-    const payload = { ...formState.dirtyFields };
-    Object.keys(payload).forEach((field) => (payload[field] = data[field])); // eslint-disable-line no-return-assign
-    await editUser(payload);
-    if(currentUser.showMessageConfirm) history.push('/aviso-email');
-    reset()
+  const onSubmit = (data) => {
+    if (data.email === currentUser.email && data.name === currentUser.name && data.lastname === currentUser.lastname) {
+      toast.error('Você não alterou nenhum campo!')
+    } else {
+      editUser(data);
+      reset();
+    }
   };
 
+  let emailLabel = 'e-mail';
+  if (currentUser.changeEmail) emailLabel = 'e-mail: Aguardando confimação de alteração'
+  
   return (
     <div className="profile">
       <div className="profile__header">
@@ -71,7 +74,7 @@ function Profile({ currentUser, editUser, isLoading }) {
 
             <Input
               type="text"
-              label="e-mail"
+              label={emailLabel}
               name="email"
               placeholder="email@exemplo.com"
               defaultValue={currentUser.email}
@@ -88,7 +91,7 @@ function Profile({ currentUser, editUser, isLoading }) {
           </form>
         </div>
         <div className="form-action">
-          <Button type="submit" form="profile-form" disabled={!formState.isDirty || isLoading}>
+          <Button type="submit" form="profile-form" disabled={isLoading}>
             ATUALIZAR
           </Button>
           {isLoading && <Loader> Atualizando informações </Loader>}

@@ -92,8 +92,12 @@ const changeToLearner = async () => {
 const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue }) => {
   try {
     const response = await api.patch(USER_ENDPOINT, values);
-    toast.success('Seus dados foram atualizados com sucesso =D');
-    return response.data
+    if (response.data.emailChange) {
+      toast.success('Enviamos um email para que você possa confirmar a troca de seu endereço de email, verifique-o.')
+    } else {
+      toast.success('Seus dados foram atualizados com sucesso =D');
+    }
+    return response.data.user
   } catch (err) {
     toast.error('Não foi possivel atualizar seus dados =(');
     return rejectWithValue(err)
@@ -148,6 +152,7 @@ const changeUserEmail = async (values) => {
   try {
     const response = await api.put(CHANGE_EMAIL_ENDPOINT, values);
     toast.success('Email alterado com sucesso')
+    toast.success('Seu novo endereço de email: ' + response.data.email) // eslint-disable-line prefer-template
     return response.data
   } catch (err) {
      if(err.response.data.error === 'You already changed your email') {

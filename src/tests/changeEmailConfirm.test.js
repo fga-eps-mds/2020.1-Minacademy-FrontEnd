@@ -10,6 +10,12 @@ jest.mock("react-router-dom", () => ({
   })
 }));
 
-it('Expect to render ChangeEmailCOnfirm view', () => {
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
+
+it('Expect to render ChangeEmailConfirm view', () => {
   expect(shallow(<ChangeEmailConfirm store = {store} />).length).toEqual(1)
 })
