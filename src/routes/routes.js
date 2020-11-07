@@ -22,6 +22,7 @@ const Welcome = lazy(() => import('../views/Welcome'));
 const Mentorship = lazy(() => import('../views/Mentorship'));
 const Certificate = lazy(() => import('../views/Certificate'));
 const CourseCertificate = lazy(() => import('../views/CourseCertificates'));
+const ChangeEmailConfirm = lazy(()=> import('../views/ChangeEmailConfirm'));
 
 const Routes = () => {
   const location = useLocation();
@@ -76,6 +77,9 @@ const Routes = () => {
           <PrivateRoute exact path="/certificados/">
             <CourseCertificate />
           </PrivateRoute>
+          <PublicRoute exact path="/confirma-mudanca-email/:changeEmailLink">
+            <ChangeEmailConfirm />
+          </PublicRoute>
         </Switch>
       </Suspense>
       <Chat />

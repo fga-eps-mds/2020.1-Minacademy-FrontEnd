@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
+import { toast } from 'react-toastify';
 import { selectCurrentUser, isLoading } from '../../slices/usersSlice';
 import { editUser } from '../../services/usersService';
 import Button from '../../components/Button';
@@ -13,19 +14,25 @@ import './style.scss';
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 function Profile({ currentUser, editUser, isLoading }) {
-  const { handleSubmit, register, errors, formState, reset } = useForm();
+  const { handleSubmit, register, errors, reset } = useForm();
 
-  const onSubmit = async (data) => {
-    const payload = { ...formState.dirtyFields };
-    Object.keys(payload).forEach((field) => (payload[field] = data[field])); // eslint-disable-line no-return-assign
-    await editUser(payload);
-    reset()
+  const onSubmit = (data) => {
+    if (data.email === currentUser.email && data.name === currentUser.name && data.lastname === currentUser.lastname) {
+      toast.error('Você não alterou nenhum campo!')
+    } else {
+      editUser(data);
+      reset();
+    }
   };
 
+  let emailLabel = 'e-mail';
+  if (currentUser.changeEmail) emailLabel = 'e-mail: Aguardando confimação de alteração'
+  
   return (
     <div className="profile">
       <div className="profile__header">
         <h1>Perfil</h1>
+      <h5>{(currentUser.userType === "Learner")? "Aprendiz" : "Mentor"}</h5>
         <p>Adicione ou edite suas informações</p>
       </div>
       <div className="profile__content">
@@ -67,7 +74,7 @@ function Profile({ currentUser, editUser, isLoading }) {
 
             <Input
               type="text"
-              label="e-mail"
+              label={emailLabel}
               name="email"
               placeholder="email@exemplo.com"
               defaultValue={currentUser.email}
@@ -81,37 +88,10 @@ function Profile({ currentUser, editUser, isLoading }) {
               errors={errors}
               autoComplete="off"
             />
-
-            <Input
-              type="text"
-              label="sobre você"
-              name="about"
-              placeholder="Escreva uma mensagem sobre vocẽ"
-              defaultValue={currentUser.about}
-              register={register({
-                maxLength: {
-                  value: 300,
-                  message: 'máximo de caracteres: 300',
-                },
-              })}
-              errors={errors}
-              autoComplete="off"
-            />
-
-            <Input
-              type="url"
-              label="Link da sua foto"
-              name="avatar"
-              placeholder="email@exemplo.com"
-              defaultValue={currentUser.profileImg}
-              register={register}
-              errors={errors}
-              autoComplete="off"
-            />
           </form>
         </div>
         <div className="form-action">
-          <Button type="submit" form="profile-form" disabled={!formState.isDirty || isLoading}>
+          <Button type="submit" form="profile-form" disabled={isLoading}>
             ATUALIZAR
           </Button>
           {isLoading && <Loader> Atualizando informações </Loader>}

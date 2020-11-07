@@ -8,6 +8,7 @@ import {
   FORGOT_PASSWORD_ENDPOINT,
   CHANGE_PASS_ENDPOINT,
   CHANGE_ENDPOINT,
+  CHANGE_EMAIL_ENDPOINT
 } from './endpoints/users';
 import { setAvailability, setValidationAttempts } from '../slices/mentorSlice'; // eslint-disable-line import/no-cycle
 import { setMentorRequest } from '../slices/learnerSlice';
@@ -88,19 +89,20 @@ const changeToLearner = async () => {
   }
 };
 
-const editUser = createAsyncThunk(
-  'users/edit',
-  async (values, { rejectWithValue }) => {
-    try {
-      const response = await api.patch(USER_ENDPOINT, values);
-      toast.success('Informações atualizadas!');
-      return response.data;
-    } catch (err) {
-      toast.error('Não foi possivel editar o perfil');
-      return rejectWithValue(err);
+const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue }) => {
+  try {
+    const response = await api.patch(USER_ENDPOINT, values);
+    if (response.data.emailChange) {
+      toast.success('Enviamos um email para que você possa confirmar a troca de seu endereço de email, verifique-o.')
+    } else {
+      toast.success('Seus dados foram atualizados com sucesso =D');
     }
+    return response.data.user
+  } catch (err) {
+    toast.error('Não foi possivel atualizar seus dados =(');
+    return rejectWithValue(err)
   }
-);
+});
 
 const forgotPassword = async (values) => {
   try {
@@ -146,6 +148,22 @@ const changeUserPassword = async (values) => {
   }
 };
 
+const changeUserEmail = async (values) => {
+  try {
+    const response = await api.put(CHANGE_EMAIL_ENDPOINT, values);
+    toast.success('Email alterado com sucesso')
+    toast.success('Seu novo endereço de email: ' + response.data.email) // eslint-disable-line prefer-template
+    return response.data
+  } catch (err) {
+     if(err.response.data.error === 'You already changed your email') {
+      toast.error('Não foi solicitado a mudança de email através desse link ou ele ja expirou')
+    } else {
+      toast.error('Erro ao alterar o email')
+    } 
+    return err
+  }
+};
+
 export {
   listUsers,
   login,
@@ -155,4 +173,5 @@ export {
   forgotPassword,
   changeUserPassword,
   changeToLearner,
+  changeUserEmail
 };
