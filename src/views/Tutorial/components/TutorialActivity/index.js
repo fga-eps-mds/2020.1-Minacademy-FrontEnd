@@ -4,15 +4,15 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { generateCertificate } from '../../../../services/certificatesServices';
 import { selectTotalProgress } from '../../../../slices/tutorialSlice';
-import { selectCertificate } from '../../../../slices/certificateSlice';
+import { selectCertificates } from '../../../../slices/certificateSlice';
 import Modal from '../../../../components/Modal';
 import { toggleModalVisible } from '../../../../slices/modalSlice';
 import Question from '../../../../components/Question';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function TutorialActivity({ history, totalProgress, toggleModalVisible, generateCertificate, certificate }) {
-  
+function TutorialActivity({ history, totalProgress, toggleModalVisible, generateCertificate, certificates }) {
+
 
   useEffect(() => {
     if (totalProgress === 100) {
@@ -32,7 +32,7 @@ function TutorialActivity({ history, totalProgress, toggleModalVisible, generate
         onClose={() => {
           toggleModalVisible();
         }}
-        onConfirm={() => history.push(`/certificado/${certificate.certificate._id}`)}
+        onConfirm={() => history.push(`/certificado/${certificates._id}`)}
       >
         <p>Parabéns, você concluiu o tutorial.</p>
         <p>
@@ -54,7 +54,7 @@ TutorialActivity.propTypes = {
 
 const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
-  certificate: selectCertificate(state),
+  certificates: selectCertificates(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

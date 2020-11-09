@@ -1,38 +1,39 @@
 import React from 'react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import { ReactComponent as Share } from '../../../../assets/images/share.svg';
 import { ReactComponent as Download } from '../../../../assets/images/download.svg';
+import CertificateTemplate from '../../../Certificate/Components/CertificateTemplate'
+import Button from '../../../../components/Button'
 import './style.scss';
+import Loader from '../../../../components/Loader';
 
-function CertificateList({ certificateType, conclusionData, workload, id }) {
-  const history = useHistory();
+function CertificateList({ certificate }) {
+
   return (
-    id ? (
     <div className="certificateList">
       <div className="certificateList__body">
-        <p>{certificateType}</p>
-        <span>Conquistado em: {conclusionData}</span>
-        <span>Carga horária: {workload}h</span>
+        {certificate.courseType === 'Learner' && <h3>Certificado de Conclusao do Tutorial Minacademy</h3>}
+        {certificate.courseType === 'Mentor' && <h3>Certificado de Mentoria</h3>}
+        <p>Conquistado em: <span>{certificate.createdAt}</span></p>
       </div>
       <div className="certificateList__buttons">
-        <Share />
-        <Download onClick={() => history.push(`certificado/${id}`)}/>
+        <span className="certificateList__buttons-share"><Share /></span>
+        <PDFDownloadLink document={<CertificateTemplate certificateData={certificate} />} fileName="certificado_minacademy.pdf">
+          {({ loading }) =>
+            (loading
+            ? <Loader />
+            : <span className="certificateList__buttons-download" onClick={() => {
+              window.open(`/certificado/${certificate._id}`, "_blank").focus()
+            }}><Download /></span> )
+          }
+        </PDFDownloadLink>
       </div>
-    </div>) :
-    (
-      <div>
-        <h1> Você ainda não possui nenhum certificado.</h1>
-      </div>
-    )
-  );
-}
+    </div>);
+};
 
 CertificateList.propTypes = {
-  certificateType: PropTypes.string.isRequired,
-  conclusionData: PropTypes.string.isRequired,
-  workload: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired
+  certificate: PropTypes.oneOfType([(PropTypes.object)]).isRequired,
 }
 
 export default CertificateList;
