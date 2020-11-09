@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { PDFViewer, PDFDownloadLink, BlobProvider } from '@react-pdf/renderer';
 import { useParams } from 'react-router-dom';
-import LearnerCertificate from './Components/LearnerCertificate';
-import MentorCertificate from './Components/MentorCertificate';
 import { getCertificateById } from '../../services/certificatesServices';
 import './style.scss';
 import CertificateTemplate from './Components/CertificateTemplate';
-import logo from '../../assets/images/logo512.png'
 import formatDate from '../../util/formatDate';
 
 function Certificate() {
@@ -23,9 +19,9 @@ function Certificate() {
   /* eslint-disable no-else-return */
 
   return (
-    <div className="pdfteste">
+    <div className="certificate">
     {certificate
-      ? <div className="teste">
+      ? <div className="pdf">
           <CertificateTemplate certificateData={certificate} image />
         </div>
       : null
