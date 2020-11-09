@@ -3,7 +3,7 @@ import { Page, Text, Image, View, Document } from '@react-pdf/renderer';
 import LOGO from '../../../../assets/images/minademyLogo.png'
 import styles from './styles'
 
-const MyDocument = ({ certificateData, image }) => {
+const CertificateTemplate = ({ certificateData, image }) => {
   return (
     <Document>
       <Page size="A4" orientation="landscape" style={styles.page}>
@@ -71,4 +71,4 @@ const MyDocument = ({ certificateData, image }) => {
   );
 };
 
-export default MyDocument;
+export default CertificateTemplate;
