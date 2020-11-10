@@ -11,7 +11,7 @@ import Question from '../../../../components/Question';
 import './style.scss';
 
 /* eslint-disable no-shadow */
-function TutorialActivity({ history, totalProgress, toggleModalVisible, generateCertificate, certificates }) {
+function TutorialActivity({ history, totalProgress, toggleModalVisible, generateCertificate, certificate }) {
 
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function TutorialActivity({ history, totalProgress, toggleModalVisible, generate
         onClose={() => {
           toggleModalVisible();
         }}
-        onConfirm={() => history.push(`/certificado/${certificates._id}`)}
+        onConfirm={() => history.push(`/certificado/${certificate}`)}
       >
         <p>Parabéns, você concluiu o tutorial.</p>
         <p>
@@ -54,7 +54,7 @@ TutorialActivity.propTypes = {
 
 const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
-  certificates: selectCertificates(state),
+  certificate: selectCertificates(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
