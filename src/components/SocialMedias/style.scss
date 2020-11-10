@@ -1,0 +1,62 @@
+.share-btn{
+  position: relative;
+  z-index: 1;
+}
+
+svg {
+  color: red !important;
+}
+.share-btn svg {
+  width: 60px;
+  line-height: 60px;
+  font-size: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.share-btn a svg {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  line-height: 30px;
+  font-size: 18px;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.6s;
+}
+#click:checked ~ .share-btn a svg {
+  height: 40px;
+  width: 40px;
+  line-height: 50px;
+  font-size: 23px;
+  z-index: 1;
+  opacity: 1;
+  pointer-events: auto;
+}
+#click:checked ~ .share-btn a:nth-child(2) svg {
+  bottom: 0px;
+  right: 80px;
+  background: #1da1f2;
+  border-color: #0e9af1;
+}
+#click:checked ~ .share-btn a:nth-child(3) svg {
+  bottom: 65px;
+  right: 65px;
+  background: #4267B2;
+  border-color: #4267B2;
+}
+.share-btn a:nth-child(3) svg {
+  transition-delay: 0.2s;
+}
+#click:checked ~ .share-btn a:nth-child(4) svg {
+  bottom: 80px;
+  right: 0px;
+  background: #0E76A8;
+  border-color: #0E76A8;
+}
+.share-btn a:nth-child(4) svg {
+  transition-delay: 0.4s; 
+}
+#click{
+  display: none;
+}

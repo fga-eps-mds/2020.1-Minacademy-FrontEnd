@@ -30,9 +30,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    
     @media (max-width: 600px) {
      justify-content: flex-end;
     }
+
+    
 
     &-share {
       background-color: var(--secondary-color);
@@ -49,6 +53,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
       @media (max-width: 600px) {
         margin: 1.5rem 0;
         width: 40px;

@@ -59,7 +59,7 @@ const CertificateTemplate = ({ certificateData, image }) => {
                   }
                 </Text>
                 <Text style={styles.certificate.footer.column.content.emphasis}>
-                  {certificateData?.assignedPartner.name} {certificateData?.assignedPartner.lastname}
+                  {certificateData?.assignedPartner?.name} {certificateData?.assignedPartner?.lastname}
                 </Text>
               </View>
             </View>
