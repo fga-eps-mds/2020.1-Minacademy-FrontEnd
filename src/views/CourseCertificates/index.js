@@ -17,7 +17,7 @@ function CourseCertificates({ certificates, getAllCertificates, isLoading }) {
     getAllCertificates().then(res =>
       setTimeout(() => {
         setReady(true)
-      }, 1000));
+      }, 100));
   }, []);
 
   return (
