@@ -26,6 +26,7 @@ const certificateSlice = createSlice({
     [generateCertificate.rejected]: (state, action) => {
       state.loading = false;
     },
+
     [getAllCertificates.pending]: (state, action) => {
       state.loading = true;
     },
