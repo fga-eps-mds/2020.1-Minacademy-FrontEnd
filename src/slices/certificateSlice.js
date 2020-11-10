@@ -19,12 +19,11 @@ const certificateSlice = createSlice({
       state.loading = true;
     },
     [generateCertificate.fulfilled]: (state, action) => {
-      action.payload.forEach((cert) => cert.createdAt = formatDate(cert?.createdAt));
+      action.payload.createdAt = formatDate(action.payload.createdAt);
       state.certificates = action.payload;
       state.loading = false;
     },
     [generateCertificate.rejected]: (state, action) => {
-      state.certificates = action.payload;
       state.loading = false;
     },
     [getAllCertificates.pending]: (state, action) => {
