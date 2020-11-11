@@ -11,6 +11,8 @@ function SocialMedias({ certificate }) {
   /* eslint-disable jsx-a11y/label-has-associated-control */
   /* eslint-disable no-undef  */
   const certificateLink = `${window.location.origin}/certificado/${certificate._id}`;
+  const certificateMessage = certificate.certificateType === 'Learner'? `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`:
+  `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`
   return (
     <>
       <input type="checkbox" id={certificate._id} className="click" /> 
@@ -35,14 +37,14 @@ function SocialMedias({ certificate }) {
           <Linkedin />
         </a>
         <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=${certificateLink}&quote=#Minacademy`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${certificateMessage}&quote=#Minacdemy`}
           target="_blank"
           rel="noreferrer"
         >
           <Facebook />
         </a>
         <a
-          href={`https://web.whatsapp.com/send?text=${certificateLink}`}
+          href={`https://web.whatsapp.com/send?text=${certificateMessage}`}
           data-action="share/whatsapp/share"
           target="_blank"
           rel="noreferrer"
@@ -50,7 +52,7 @@ function SocialMedias({ certificate }) {
           <Whatsapp />
         </a>
         <a
-          href={`https://twitter.com/intent/tweet?text=${certificateLink}`}
+          href={`https://twitter.com/intent/tweet?text=${certificateMessage}`}
           target="_blank"
           rel="noreferrer"
         >
