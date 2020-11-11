@@ -23,7 +23,7 @@ function CertificateList({ certificate }) {
         </p>
       </div>
       <div className="certificateList__buttons">
-       <SocialMedias certificate={certificate}/>
+      <SocialMedias certificate={certificate}/>
         <PDFDownloadLink
           document={<CertificateTemplate certificateData={certificate} />}
           fileName="certificado_minacademy.pdf"
