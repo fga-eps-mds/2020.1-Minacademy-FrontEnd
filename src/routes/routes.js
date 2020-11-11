@@ -24,7 +24,6 @@ const Certificate = lazy(() => import('../views/Certificate'));
 const CourseCertificate = lazy(() => import('../views/CourseCertificates'));
 const ChangeEmailConfirm = lazy(()=> import('../views/ChangeEmailConfirm'));
 const RegisterConfirm = lazy(()=> import('../views/RegisterConfirm'));
-const RegisterNotice = lazy(()=> import('../views/RegisterNotice'));
 
 const Routes = () => {
   const location = useLocation();
@@ -84,9 +83,6 @@ const Routes = () => {
           </PublicRoute>
           <PublicRoute exact path="/confirma-cadastro/:registerLink">
             <RegisterConfirm />
-          </PublicRoute>
-          <PublicRoute exact path="/aviso-cadastro">
-            <RegisterNotice />
           </PublicRoute>
         </Switch>
       </Suspense>
