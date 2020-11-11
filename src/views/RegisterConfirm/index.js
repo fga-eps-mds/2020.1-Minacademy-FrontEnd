@@ -7,11 +7,9 @@ import { changeUserEmail, logout} from '../../services/usersService';
 function RegisterConfirm(email) {
   return (
     <div>
-      <h1>Confirmação de cadastro</h1>
-      <p>Um email foi enviado para o e-mail {email} para validar seu cadastro.</p>
-      <p>Acesse sua caixa de e-mails e siga as instruções contidas no e-mail.</p>
+      <h1>Seu E-mail foi validado</h1>
+      <p>Agora voce pode acessar sua conta na página de login.</p>
     </div>
-    
   )
 };
 
