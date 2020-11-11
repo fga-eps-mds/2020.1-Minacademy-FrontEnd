@@ -19,17 +19,11 @@ const chatSlice = createSlice({
         state.currentChat.messages = state.currentChat.messages.concat(
           action.payload
         );
-      } 
+      }
       state.chats
         .find((chat) => chat._id === action.payload.chat)
         .messages.push(action.payload);
-      
-    },
-    removeChat(state, action) {
-      state.chats = state.chats.filter((chat) => {
-        return !chat.users.includes(action.payload.toString())
-      })
-      state.currentChat = state.chats[0] ? state.chats[0] : null
+
     },
     setNewChat(state, action) {
       state.chats = state.chats.concat(action.payload);
@@ -79,10 +73,6 @@ const chatSlice = createSlice({
 });
 
 const selectChatState = (state) => state.chat;
-// export const selectChats = createSelector(
-//   [selectChatState],
-//   chat => chat.chats
-// )
 
 export const selectCurrentChat = createSelector(
   [selectChatState],

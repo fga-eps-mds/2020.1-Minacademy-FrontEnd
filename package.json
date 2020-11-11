@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-pdf/renderer": "^1.6.12",
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.20.0",
     "install": "^0.13.0",
