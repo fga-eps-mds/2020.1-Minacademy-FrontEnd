@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     footer: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'space-around',
       alignItems: 'center',
       alignContent: 'center',
       width: 100+'%',
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#efefef',
 
       column: {
-        textTransform: 'capitalize',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
         }
       }
     },
-  }
+  },
 });
 
 export default styles;

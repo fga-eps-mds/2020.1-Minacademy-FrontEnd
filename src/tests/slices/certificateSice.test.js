@@ -6,9 +6,9 @@ import formatDate from '../../util/formatDate';
 describe('chatSlice', () => {
   const reducerInitialState =  store.getState().certificate;
 
-  let date = '2020-11-09T21:40:23.028Z';
+  const date = '2020-11-09T21:40:23.028Z';
 
-  let certificateData = {
+  const certificateData = {
     _id: 123,
     user: 999,
     courseType: 'Learner',
@@ -34,7 +34,7 @@ describe('chatSlice', () => {
   });
 
   it('Should dispatch generateCertificate fulfilled action', () => {
-    const action = {type: generateCertificate.fulfilled.type, payload: certificateData }
+    const action = {type: generateCertificate.fulfilled.type, payload: Object.assign({}, certificateData) }
     const state = certificate(initialState, action)
     expect(state).toEqual({
       ...initialState,

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Page, Text, Image, View, Document } from '@react-pdf/renderer';
-import LOGO from '../../../../assets/images/minademyLogo.png'
-import styles from './styles'
+import LOGO from '../../../../assets/images/minademyLogo.png';
+import styles from './styles';
 
 const CertificateTemplate = ({ certificateData, image }) => {
   return (
@@ -10,28 +10,32 @@ const CertificateTemplate = ({ certificateData, image }) => {
       <Page size="A4" orientation="landscape" style={styles.page}>
         <View style={styles.section}>
           <View style={styles.certificate}>
-            <View style={styles.certificate.header} >
-              {image ? <img src={LOGO} alt="logo" style={styles.certificate.header.logo}/> : <Image style={styles.certificate.header.logo} src={LOGO} />}
+            <View style={styles.certificate.header}>
+              {image ? (
+                <img
+                  src={LOGO}
+                  alt="logo"
+                  style={styles.certificate.header.logo}
+                />
+              ) : (
+                <Image style={styles.certificate.header.logo} src={LOGO} />
+              )}
               <Text style={styles.certificate.header.title.emphasis}>
-              {certificateData?.courseType === 'Learner'
-                ? 'Certificado de Conclusão de Tutorial Minacademy'
-                : 'Certificado de Mentoria'
-              }
+                {certificateData?.courseType === 'Learner'
+                  ? 'Certificado de Conclusão de Tutorial'
+                  : 'Certificado de Mentoria'}
               </Text>
             </View>
 
             <View style={styles.certificate.body}>
-              <Text style={styles.certificate.content}>
-                Certificamos que
-              </Text>
+              <Text style={styles.certificate.content}>Certificamos que</Text>
               <Text style={styles.certificate.content.emphasis}>
                 {certificateData?.user.name} {certificateData?.user.lastname}
               </Text>
               <Text style={styles.certificate.content}>
-              {certificateData?.courseType === 'Learner'
+                {certificateData?.courseType === 'Learner'
                   ? 'finalizou com sucesso o tutorial da Minacademy.'
-                  : 'prestou mentoria voluntária em nossa plataforma.'
-                }
+                  : 'prestou mentoria voluntária em nossa plataforma.'}
               </Text>
             </View>
 
@@ -52,19 +56,22 @@ const CertificateTemplate = ({ certificateData, image }) => {
                   Django
                 </Text>
               </View>
-              <View style={styles.certificate.footer.column}>
-                <Text style={styles.certificate.footer.column.content}>
-                  {certificateData?.courseType === 'Learner'
-                    ? 'Mentor'
-                    : 'Aprendiz'
-                  }
-                </Text>
-                <Text style={styles.certificate.footer.column.content.emphasis}>
-                  {certificateData?.assignedPartner?.name} {certificateData?.assignedPartner?.lastname}
-                </Text>
-              </View>
-            </View>
 
+              {certificateData?.assignedPartner ? (
+                <View style={styles.certificate.footer.column}>
+                  <Text style={styles.certificate.footer.column.content}>
+                    {certificateData?.courseType === 'Learner'
+                      ? 'Mentor'
+                      : 'Aprendiz'}
+                  </Text>
+                  <Text style={{...styles.certificate.footer.column.content.emphasis, textTransform: 'capitalize'}}>
+                    {certificateData?.assignedPartner?.name}{' '}
+                    {certificateData?.assignedPartner?.lastname}
+                  </Text>
+                </View>
+              ) : null}
+
+            </View>
           </View>
         </View>
       </Page>
