@@ -10,9 +10,11 @@ import './style.scss';
 function SocialMedias({ certificate }) {
   /* eslint-disable jsx-a11y/label-has-associated-control */
   /* eslint-disable no-undef  */
+
   const certificateLink = `${window.location.origin}/certificado/${certificate._id}`;
-  const certificateMessage = certificate.certificateType === 'Learner'? `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`:
+  const certificateMessage = certificate.courseType === 'Learner'? `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`:
   `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`
+  const date =  new Date().toLocaleString( 'pt-BR', certificate.createdAt )
   return (
     <>
       <input type="checkbox" id={certificate._id} className="click" /> 
@@ -22,12 +24,12 @@ function SocialMedias({ certificate }) {
         </span>
         <a
           href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${
-            certificate.certificateType === 'Learner'
+            certificate.courseType === 'Learner'
               ? 'Conclusão do tutorial Django Girls'
               : 'Monitoria voluntária do tutorial Django Girls'
           }&organizationName=Minacademy&issueYear
-=${new Date(certificate.createdAt).getFullYear()}&issueMonth=${
-            new Date(certificate.createdAt).getMonth() + 1
+=${new Date(date).getFullYear()}&issueMonth=${
+            new Date(date).getMonth() + 1
           }&certId=${
             certificate._id
           }&certUrl=${`${window.location.origin}/certificado/${certificate._id}`}`} 
