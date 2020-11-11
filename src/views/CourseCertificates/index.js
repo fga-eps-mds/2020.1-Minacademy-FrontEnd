@@ -14,7 +14,7 @@ function CourseCertificates({ certificates, getAllCertificates, isLoading }) {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    getAllCertificates().then(res =>
+    getAllCertificates().then(() =>
       setTimeout(() => {
         setReady(true)
       }, 100));
@@ -34,7 +34,7 @@ function CourseCertificates({ certificates, getAllCertificates, isLoading }) {
       </div>
       {isLoading || !ready && (
         <div className="courseCertificates__fetching">
-          <Loader big ></Loader>
+          <Loader big />
           <p>Buscando certificados, por favor aguarde...</p>
         </div>
         )}

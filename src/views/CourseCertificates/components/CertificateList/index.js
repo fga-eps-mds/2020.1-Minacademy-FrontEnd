@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { ReactComponent as Download } from '../../../../assets/images/download.svg';
 import CertificateTemplate from '../../../Certificate/Components/CertificateTemplate';
 import SocialMedias from '../../../../components/SocialMedias';
-import Button from '../../../../components/Button';
 import './style.scss';
 import Loader from '../../../../components/Loader';
 
@@ -35,7 +34,7 @@ function CertificateList({ certificate }) {
               <span
                 className="certificateList__buttons-download"
                 onClick={() => {
-                  window
+                  window // eslint-disable-line no-undef
                     .open(`/certificado/${certificate._id}`, '_blank')
                     .focus();
                 }}

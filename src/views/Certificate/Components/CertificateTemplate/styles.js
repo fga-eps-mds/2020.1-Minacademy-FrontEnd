@@ -1,5 +1,5 @@
 import { StyleSheet } from '@react-pdf/renderer';
-
+/* eslint-disable prefer-template */
 
 const styles = StyleSheet.create({
   page: {

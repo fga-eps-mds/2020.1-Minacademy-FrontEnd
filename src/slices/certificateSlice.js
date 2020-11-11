@@ -31,7 +31,7 @@ const certificateSlice = createSlice({
       state.loading = true;
     },
     [getAllCertificates.fulfilled]: (state, action) => {
-      action.payload.forEach((cert) => cert.createdAt = formatDate(cert?.createdAt));
+      action.payload.forEach((cert) => cert.createdAt = formatDate(cert?.createdAt)); // eslint-disable-line no-return-assign
       state.certificates = action.payload;
       state.loading = false;
     },

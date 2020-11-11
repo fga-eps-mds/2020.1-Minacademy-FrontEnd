@@ -12,21 +12,21 @@ function Certificate() {
   useEffect(() => {
     (async () => {
       const response = await getCertificateById(_id);
-      response.createdAt = formatDate(response.createdAt)
-      setCertificate(response)
-    })()
+      response.createdAt = formatDate(response.createdAt);
+      setCertificate(response);
+    })();
+   
   }, [getCertificateById]);
   /* eslint-disable no-else-return */
 
   return (
     <div className="certificate">
-    {certificate
-      ? <div className="pdf">
+      {certificate ? (
+        <div className="pdf">
           <CertificateTemplate certificateData={certificate} image />
         </div>
-      : null
-    }
+      ) : null}
     </div>
-  )
+  );
 }
 export default Certificate;

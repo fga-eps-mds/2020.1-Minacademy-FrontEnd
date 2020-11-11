@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Page, Text, Image, View, Document } from '@react-pdf/renderer';
 import LOGO from '../../../../assets/images/minademyLogo.png'
 import styles from './styles'
@@ -10,7 +11,7 @@ const CertificateTemplate = ({ certificateData, image }) => {
         <View style={styles.section}>
           <View style={styles.certificate}>
             <View style={styles.certificate.header} >
-              {image ? <img src={LOGO} style={styles.certificate.header.logo}/> : <Image style={styles.certificate.header.logo} src={LOGO} />}
+              {image ? <img src={LOGO} alt="logo" style={styles.certificate.header.logo}/> : <Image style={styles.certificate.header.logo} src={LOGO} />}
               <Text style={styles.certificate.header.title.emphasis}>
               {certificateData?.courseType === 'Learner'
                 ? 'Certificado de Conclusão de Tutorial Minacademy'
@@ -69,6 +70,11 @@ const CertificateTemplate = ({ certificateData, image }) => {
       </Page>
     </Document>
   );
+};
+/* eslint-disable react/require-default-props */
+CertificateTemplate.propTypes = {
+  certificateData: PropTypes.oneOfType([PropTypes.object]),
+  image: PropTypes.bool,
 };
 
 export default CertificateTemplate;

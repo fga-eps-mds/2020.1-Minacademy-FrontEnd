@@ -1,4 +1,7 @@
 
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
+
 const formatDate = (date) => {
   date = new Intl.DateTimeFormat('pt-BR', {
     year: 'numeric',

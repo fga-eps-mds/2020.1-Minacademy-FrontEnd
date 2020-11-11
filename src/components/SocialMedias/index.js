@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ReactComponent as Share } from '../../assets/images/share.svg';
 import { ReactComponent as Linkedin } from '../../assets/images/media/linkedin.svg';
 import { ReactComponent as Facebook } from '../../assets/images/media/facebook.svg';
@@ -7,11 +8,13 @@ import { ReactComponent as Whatsapp } from '../../assets/images/media/whatsapp.s
 import './style.scss';
 
 function SocialMedias({ certificate }) {
+  /* eslint-disable jsx-a11y/label-has-associated-control */
+  /* eslint-disable no-undef  */
   const certificateLink = `${window.location.origin}/certificado/${certificate._id}`;
   return (
     <>
-      <input type="checkbox" id={certificate._id} className="click" />
-      <label for={certificate._id} class="share-btn">
+      <input type="checkbox" id={certificate._id} className="click" /> 
+      <label htmlFor={certificate._id} className="share-btn"> 
         <span className="certificateList__buttons-share">
           <Share />
         </span>
@@ -25,14 +28,16 @@ function SocialMedias({ certificate }) {
             new Date(certificate.createdAt).getMonth() + 1
           }&certId=${
             certificate._id
-          }&certUrl=${`${window.location.origin}/certificado/${certificate._id}`}`}
+          }&certUrl=${`${window.location.origin}/certificado/${certificate._id}`}`} 
           target="_blank"
+          rel="noreferrer"
         >
           <Linkedin />
         </a>
         <a
           href={`https://www.facebook.com/sharer/sharer.php?u=${certificateLink}&quote=#Minacademy`}
           target="_blank"
+          rel="noreferrer"
         >
           <Facebook />
         </a>
@@ -40,12 +45,14 @@ function SocialMedias({ certificate }) {
           href={`https://web.whatsapp.com/send?text=${certificateLink}`}
           data-action="share/whatsapp/share"
           target="_blank"
+          rel="noreferrer"
         >
           <Whatsapp />
         </a>
         <a
           href={`https://twitter.com/intent/tweet?text=${certificateLink}`}
           target="_blank"
+          rel="noreferrer"
         >
           <Twitter />
         </a>
@@ -53,5 +60,9 @@ function SocialMedias({ certificate }) {
     </>
   );
 }
+
+SocialMedias.propTypes = {
+  certificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default SocialMedias;
