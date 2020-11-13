@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { registerRequest } from '../../services/usersService';
 import { isLoading } from '../../slices/usersSlice';
-import { openWebSocket } from '../../services/websocket';
 import Input from '../../components/FormField/components/Input';
 import Select from '../../components/FormField/components/Select';
 import Radio from '../../components/FormField/components/Radio';
@@ -21,15 +21,14 @@ function Register({ registerRequest, isLoading }) {
       userType: null,
     },
   });
-
+  const history = useHistory();
   const onSubmit = (credentials) => {
     registerRequest(credentials).then(res =>  {
       if (res.payload?.error === 'email') setError('email', {message: 'Email já cadastrado'})
-      if (res.payload?.accessToken ) openWebSocket(res.payload.accessToken)
     });
-    
+    history.push('/login');
   };
-
+  
   return (
     <div className="register">
       <div className="register__content">

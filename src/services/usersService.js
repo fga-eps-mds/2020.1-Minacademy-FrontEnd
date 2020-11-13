@@ -40,6 +40,8 @@ const login = createAsyncThunk(
         );
       } else if (err.response.data.error === 'Invalid Email or Password') {
         toast.error('Email ou senha incorretos');
+      } else if (err.response.data.error === 'User not confirm registered') {
+        toast.error('Você precisa confirmar seu cadastro. Por favor, verifique seu email');
       }
       return rejectWithValue(null);
     }
@@ -64,8 +66,7 @@ const registerRequest = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await api.post(USER_ENDPOINT, values);
-      toast.success('Cadastro realizado com sucesso!');
-      sessionStorage.setItem('accessToken', response.data.accessToken);
+      toast.success('Lhe foi enviado um email para que você confirme seu cadastro. Verifique-o!');
       return response.data;
     } catch (error) {
       if (error.response.data.error.includes('duplicate key error')) {
@@ -164,6 +165,21 @@ const changeUserEmail = async (values) => {
   }
 };
 
+const registerUser = async (values) => {
+  try {
+    const response = await api.put(USER_ENDPOINT, values);
+    toast.success('Você foi cadastrado com sucesso');
+    return response.data;
+  } catch (err) {
+    if (err.response.data.error === 'User already confirm register') {
+      toast.error('Você já está cadastrado na plataforma, ou o seu link expirou');
+    } else {
+      toast.error('Erro ao registrar');
+    }
+    return err;
+  }
+}
+
 export {
   listUsers,
   login,
@@ -173,5 +189,6 @@ export {
   forgotPassword,
   changeUserPassword,
   changeToLearner,
-  changeUserEmail
+  changeUserEmail,
+  registerUser,
 };
