@@ -51,7 +51,7 @@ describe('userSlice', () => {
   it('Should dispatch register fulfilled action', () => {
     const action = { type: registerRequest.fulfilled.type, payload: { user: userData } }
     const state = user(initialState, action)
-    expect(state).toEqual({ ...initialState, currentUser: userData, loading: false })
+    expect(state).toEqual({ ...initialState, currentUser: null, loading: false })
   })
 
   it('Should dispatch register rejected action', () => {
