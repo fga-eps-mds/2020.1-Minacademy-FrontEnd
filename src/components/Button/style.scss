@@ -1,6 +1,6 @@
 .custom-button {
   min-width: 130px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 1rem;
   background-color: var(--primary-button);
   color: white;
   text-transform: capitalize;
@@ -48,7 +48,7 @@
   }
 
   &.small {
-    padding: 0.2rem 0.7rem;
+    padding: 0.2rem 0.85rem;
     font-size: 0.95rem;
     font-weight: bold;
 

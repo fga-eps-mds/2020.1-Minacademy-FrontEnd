@@ -1,13 +1,5 @@
-.mentor-activity {
-  display: flex;
-}
-
 .exam-activity {
-  .next-button {
-    button {
-      position: relative;
-      margin-left: 15vw;
-      bottom: 3vw;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
 }

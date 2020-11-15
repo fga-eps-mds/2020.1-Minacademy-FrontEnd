@@ -6,7 +6,8 @@ const initialState = {
   learners: [],
   isAvailable: false,
   fetchingLearners: false,
-  validationAttempts: 3
+  validationAttempts: 3,
+  validationResult: null,
 };
 
 const mentorSlice = createSlice({
@@ -77,10 +78,11 @@ const mentorSlice = createSlice({
     },
     [validateMentor.fulfilled]: (state, action) => {
       state.validationAttempts = action.payload.attempts
+      state.validationResult = action.payload.result
       state.loading = false
     },
     [validateMentor.rejected]: (state, action) => {
-      state.validationAttempts = action.payload.attempts
+      state.validationAttempts = action.payload.user.attempts
       state.loading = false
     }
   }
@@ -112,6 +114,11 @@ export const selectAvailability = createSelector(
 export const selectValidationAttempts = createSelector(
   [selectMentor],
   mentor => mentor.validationAttempts
+)
+
+export const selectValidationResult = createSelector(
+  [selectMentor],
+  mentor => mentor.validationResult
 )
 
 export const { removeLearner, setAvailability, setValidationAttempts } = mentorSlice.actions;

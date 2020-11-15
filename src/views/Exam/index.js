@@ -35,7 +35,7 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
           </p>
         </div>
         <div className="exam__header--progress">
-            {attempts > 0 && !currentUser.isValidated ?
+            {attempts > 0 && !currentUser.isValidated &&
               <>
               <span>{totalAnswers}/{questionsList.length} questões respondidas</span>
               <Button
@@ -48,7 +48,11 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
                 Finalizar avaliação
               </Button>
               </>
-              :
+            }
+            {attempts === 0 && !currentUser.isValidated &&
+              <span className="emphasis failure">Não Concluída</span>
+            }
+            {currentUser.isValidated &&
               <>
               <span className="emphasis">Concluída</span>
               <p>Você foi validado como mentor</p>
