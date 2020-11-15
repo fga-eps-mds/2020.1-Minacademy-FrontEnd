@@ -1,7 +1,4 @@
 .markdown {
-  // overflow-y: scroll;
-  max-width: 80%;
-  padding-left: 2rem;
   text-align: justify;
 
   @media(max-width: 600px) {
@@ -17,7 +14,7 @@
       &--header {
         margin: 0 auto;
         width: 60%;
-        padding-bottom: 3rem;
+        margin-bottom: 3rem;
 
         @media(max-width: 600px) {
           width: 100%;

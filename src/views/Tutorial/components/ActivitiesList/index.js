@@ -28,8 +28,8 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
           {url.includes('avaliacao') && <h3>Questões</h3>}
           {url.includes('tutorial') && (
             <>
-            <h3>Forum</h3>
-            <p> Modulo <b>{currentModule}</b> </p>
+            <h3>Atividades</h3>
+            <p> Módulo <b>{currentModule}</b> </p>
             </>
             )}
         </div>

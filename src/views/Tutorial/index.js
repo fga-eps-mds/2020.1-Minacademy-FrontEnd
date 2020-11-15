@@ -1,7 +1,8 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { selectCurrentUser } from '../../slices/usersSlice';
 import {
   selectCompletedActivities,
   selectTotalProgress,
@@ -12,7 +13,13 @@ import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity';
 import './style.scss';
 
-function Tutorial({ completedActivities, getProgress, totalProgress }) { // eslint-disable-line no-shadow
+function Tutorial({
+  completedActivities,
+  getProgress,
+  totalProgress,
+  currentUser,
+}) {
+  // eslint-disable-line no-shadow
   const { path } = useRouteMatch();
 
   useEffect(() => {
@@ -24,19 +31,28 @@ function Tutorial({ completedActivities, getProgress, totalProgress }) { // esli
       <div className="tutorial__header">
         <div>
           <h1>Tutorial</h1>
-          <p>Total concluído: {totalProgress || 0}%</p>
+          {currentUser.userType === 'Learner' ? (
+            <p>Total concluído: {totalProgress || 0}%</p>
+          ) : (
+            <p>Tutorial destinado aos aprendizes</p>
+          )}
         </div>
-        <div>
-          <span className="tutorial__header--progress">{completedActivities} atividades completas</span>
-        </div>
+        {currentUser.userType === 'Learner' && (
+          <div className="tutorial__header--progress">
+            <span>{completedActivities} atividades completas</span>
+          </div>
+        )}
       </div>
       <div className="tutorial__body">
-        <ActivitiesList />
+        {currentUser.userType === 'Learner' && <ActivitiesList />}
         <Switch>
           <Route exact path={path}>
             <Markdown />
           </Route>
-          <Route path={`${path}/atividades/:activityNumber`} component={() => <TutorialActivity />} />
+          <Route
+            path={`${path}/atividades/:activityNumber`}
+            component={() => <TutorialActivity />}
+          />
         </Switch>
       </div>
     </div>
@@ -52,6 +68,7 @@ Tutorial.propTypes = {
 const mapStateToProps = (state) => ({
   completedActivities: selectCompletedActivities(state),
   totalProgress: selectTotalProgress(state),
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
