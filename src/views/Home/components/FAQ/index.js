@@ -3,7 +3,7 @@ import React from 'react';
 function FAQ() {
   return (
   <div id="FAQ" className="FAQ">
-        <h1>F.A.Q.:</h1>
+        <h1>Perguntas Frequentes:</h1>
         <div id="questions" className="questions">
           <div id="question1" className="question1">
             <h2>Quem pode se tornar aprendiz?</h2>
