@@ -20,6 +20,7 @@ function Register({ registerRequest, isLoading }) {
   const { handleSubmit, register, watch, setValue, errors, setError } = useForm({
     defaultValues: {
       userType: null,
+      gender: 'Female',
     },
   });
   const history = useHistory();
