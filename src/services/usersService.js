@@ -27,7 +27,11 @@ const login = createAsyncThunk(
   async (values, { dispatch, rejectWithValue }) => {
     try {
       const response = await api.post(LOGIN_ENDPOINT, values);
-      toast.success(`Seja bem-vindo ${response.data.user.name}!`);
+      if(response.data.user.gender === "Female"){
+          toast.success(`Seja bem-vinda ${response.data.user.name}!`);
+        } else {
+          toast.success(`Seja bem-vindo ${response.data.user.name}!`);
+        }
       dispatch(setAvailability(response.data.user.isAvailable)); // eslint-disable-line no-undef
       dispatch(setMentorRequest(response.data.user.mentor_request));
       dispatch(setValidationAttempts(response.data.user.attempts));
