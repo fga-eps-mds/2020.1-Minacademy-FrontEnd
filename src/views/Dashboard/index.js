@@ -119,7 +119,7 @@ function Dashboard({
               }
               linkText={
                 mentor || currentUser.mentor_request
-                  ? 'Monitoria'
+                  ? 'Mentoria'
                   : 'Solicitar mentor'
               }
               linkPath="/mentoria"
