@@ -14,6 +14,7 @@ function MaleMentor(){
           <li>- Você precisará de uma nota maior ou igual a 70% para ser aprovado;</li>
           <li>- Caso não consiga de primeira, não se preocupe. Você terá um total de 3 tentativas.</li>
         </ul>
+        <p>Após sua aprovação você terá acesso a lista de alunos que solicitaram mentoria e você poderá se colocar a disposição para ajudá-las, além de escolher alunas para mentorear</p>
         <div className='links'>
             <br/>
             <br/>

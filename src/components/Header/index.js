@@ -59,16 +59,6 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             </Link>
             <ScrollLink 
               className="header__navigation-option" 
-              to="infoBar2"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-            >
-              Como funciona
-            </ScrollLink>
-            <ScrollLink 
-              className="header__navigation-option" 
               to="infoBar"
               spy={true}
               smooth={true}
@@ -76,6 +66,16 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
               duration={500}  
             >
               A Iniciativa Minacademy
+            </ScrollLink>
+            <ScrollLink 
+              className="header__navigation-option" 
+              to="infoBar2"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Como funciona
             </ScrollLink>
             <ScrollLink 
               className="header__navigation-option"
