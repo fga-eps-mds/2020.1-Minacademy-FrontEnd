@@ -28,7 +28,6 @@ import MotionDiv from '../../../../UI/animation/MotionDiv';
 /* eslint-disable no-shadow */
 function Mentor({
   getLearners,
-  assignLearner,
   unassignLearner,
   isAvailable,
   changeAvailability,
@@ -58,40 +57,32 @@ function Mentor({
       {currentUser.isValidated ? (
         <>
           <div className="mentor__header">
-            <span className="mentor__header-title">Clique em uma aprendiz para conversar</span>
-            <Button
-              shadow
-              small
-              error={isAvailable}
-              success={!isAvailable}
-              onClick={() => changeAvailability()}
-            >
-              {isAvailable ? 'Ficar indisponível' : 'Aceitar novas aprendizes'}
-            </Button>
-
+            <span className="mentor__header-title">Clique em um aprendiz para conversar</span>
           </div>
           <MotionDiv className="mentor__content">
             {learnersList.length ? (
               <>
                 {fetchingLearners && <Loader big />}
                 {learnersList.map((learner) => (
-                  <Card
-                    key={learner._id}
-                    title={`${learner.name} ${learner.lastname}`}
-                    icon
-                    mainContent={learner.email}
-                    selectCard={() => {
-                      setCurrentChat(learner)
-                      toggleChatOpen(true)
-                    }}
-                    deleteActionMessage="Desvincular"
-                    deleteAction={() => {
-                      setLearnerToRemoval(learner);
-                      toggleModalVisible();
-                    }}
-                    defaultChecked
-                    secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`}
-                  />
+                  <>
+                    <Card
+                      key={learner._id}
+                      title={`${learner.name} ${learner.lastname}`}
+                      icon
+                      mainContent={learner.email}
+                      selectCard={() => {
+                        setCurrentChat(learner)
+                        toggleChatOpen(true)
+                      }}
+                      deleteActionMessage="Desvincular"
+                      deleteAction={() => {
+                        setLearnerToRemoval(learner);
+                        toggleModalVisible();
+                      }}
+                      defaultChecked
+                      secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`}
+                    />
+                  </>
                 ))}
               </>
             ) : (
@@ -117,8 +108,14 @@ function Mentor({
           </Modal>
 
           <div className="mentor__action">
-            <Button shadow onClick={assignLearner}>
-              Solicitar aprendiz
+            <Button
+              shadow
+              small
+              error={isAvailable}
+              success={!isAvailable}
+              onClick={() => changeAvailability()}
+            >
+              {isAvailable ? 'Ficar indisponível' : 'Aceitar novos aprendizes'}
             </Button>
             {loading && <Loader> Procurando aprendiz </Loader>}
           </div>
@@ -128,8 +125,8 @@ function Mentor({
         {currentUser.gender === 'Female' ? 'Você ainda não foi validada como monitora. ' : 'Você ainda não foi validado como monitor. '}
         Faça a sua <Link to='/avaliacao'>avaliação</Link> e
         tenha acesso a todas as funcionalidades de mentoria.
-        </span>
-      )}
+          </span>
+        )}
     </div>
   );
 }
