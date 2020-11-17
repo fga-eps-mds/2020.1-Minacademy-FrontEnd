@@ -31,6 +31,7 @@ function Mentor({
   unassignLearner,
   isAvailable,
   changeAvailability,
+  assignLearner,
   removeLearner,
   learnersList,
   loading,
@@ -113,7 +114,10 @@ function Mentor({
               small
               error={isAvailable}
               success={!isAvailable}
-              onClick={() => changeAvailability()}
+              onClick={() => {
+                if (isAvailable) changeAvailability();
+                else assignLearner();
+              }}
             >
               {isAvailable ? 'Ficar indisponível' : 'Aceitar novos aprendizes'}
             </Button>
