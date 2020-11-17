@@ -8,6 +8,7 @@ import Button from '../../../../components/Button';
 import Modal from '../../../../components/Modal';
 import Loader from '../../../../components/Loader';
 import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
+import MotionDiv from '../../../../UI/animation/MotionDiv';
 
 /* eslint-disable no-shadow */
 function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, unassignMentor, mentorRequest, cancelMentorRequest, toggleModalVisible, toggleChatOpen }) {
@@ -22,7 +23,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
 
   return (
     <div className="learner">
-      <div className="learner__content">
+      <MotionDiv className="learner__content">
         {mentor ? (
         <>
           {fetchingMentor && <Loader big />}
@@ -39,17 +40,6 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
               toggleModalVisible()
             }}
           />
-          <Modal
-            title={`Desvincular ${mentor.name}`}
-            confirmMessage='desvincular'
-            closeMessage='cancelar'
-            onClose={() => toggleModalVisible()}
-            onConfirm={() => unassign()}
-          >
-            <p>Que pena que essa relação não deu certo.</p>
-            <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
-            <p>Você tem certeza que deseja fazer isso?</p>
-          </Modal>
         </>
         ) : (
           <>
@@ -66,7 +56,18 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
             {loading && <Loader>Procurando mentor</Loader>}
           </>
         )}
-      </div>
+      </MotionDiv>
+      <Modal
+        title={`Desvincular ${mentor.name}`}
+        confirmMessage='desvincular'
+        closeMessage='cancelar'
+        onClose={() => toggleModalVisible()}
+        onConfirm={() => unassign()}
+      >
+        <p>Que pena que essa relação não deu certo.</p>
+        <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
+        <p>Você tem certeza que deseja fazer isso?</p>
+      </Modal>
     </div>
   );
 }

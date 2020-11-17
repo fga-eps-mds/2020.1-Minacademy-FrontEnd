@@ -23,6 +23,7 @@ import Loader from '../../../../components/Loader';
 import Modal from '../../../../components/Modal';
 import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
 import './style.scss';
+import MotionDiv from '../../../../UI/animation/MotionDiv';
 
 /* eslint-disable no-shadow */
 function Mentor({
@@ -69,12 +70,11 @@ function Mentor({
             </Button>
 
           </div>
-          <div className="mentor__content">
+          <MotionDiv className="mentor__content">
             {learnersList.length ? (
               <>
                 {fetchingLearners && <Loader big />}
                 {learnersList.map((learner) => (
-                  <>
                   <Card
                     key={learner._id}
                     title={`${learner.name} ${learner.lastname}`}
@@ -92,21 +92,7 @@ function Mentor({
                     defaultChecked
                     secondaryContent={`Módulos concluídos: ${learner.completedModules.length}`}
                   />
-                  </>
                 ))}
-                <Modal
-                  title={`Desvincular ${learnerToRemoval?.name}`}
-                  confirmMessage="desvincular"
-                  closeMessage="cancelar"
-                  onClose={() => {
-                    setLearnerToRemoval(null);
-                    toggleModalVisible();
-                  }}
-                  onConfirm={() => unassign(learnerToRemoval)}
-                >
-                  <p>Que pena que essa relação não deu certo.</p>
-                  <p>Você tem certeza que deseja fazer isso?</p>
-                </Modal>
               </>
             ) : (
               <>
@@ -114,7 +100,21 @@ function Mentor({
                 {!fetchingLearners && <h3>Você não possui nenhum aprendiz</h3>}
               </>
             )}
-          </div>
+          </MotionDiv>
+
+          <Modal
+            title={`Desvincular ${learnerToRemoval?.name}`}
+            confirmMessage="desvincular"
+            closeMessage="cancelar"
+            onClose={() => {
+              setLearnerToRemoval(null);
+              toggleModalVisible();
+            }}
+            onConfirm={() => unassign(learnerToRemoval)}
+          >
+            <p>Que pena que essa relação não deu certo.</p>
+            <p>Você tem certeza que deseja fazer isso?</p>
+          </Modal>
 
           <div className="mentor__action">
             <Button shadow onClick={assignLearner}>
