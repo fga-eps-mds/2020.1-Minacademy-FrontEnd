@@ -150,9 +150,10 @@
 .FAQ {
   max-height: 40vw;
   max-width: 50vw;
-  margin-bottom: 10vw;
-
+  margin-bottom: 20vw;
+  
   h1 {
+    display: flex;
     box-sizing: border-box;
     font-size: 3vw;
     font-family: Overpass;
@@ -176,13 +177,15 @@
     font-family: Overpass;
     padding-left: 4.5vw;
     text-align: justify;
+    margin-bottom: 2vw;
   }
 
-  .question1 {
+  .question_left {
     position: absolute;
+    
   }
 
-  .question2 {
+  .question_hight {
     position: relative;
     left: 50vw;
     word-wrap: break-word;

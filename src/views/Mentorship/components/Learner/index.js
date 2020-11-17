@@ -44,8 +44,8 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
         ) : (
           <>
             {fetchingMentor && <Loader big />}
-            {!fetchingMentor && <h5>Você não tem um mentor</h5>}
-            {mentorRequest && <p>Será designado á você um mentor(a) assim que houver um disponível</p>}
+            {!fetchingMentor && <h4>Você não está vinculada a nenhum mentor no momento.</h4>}
+            {mentorRequest && <p>Você será vinculada a um de nossos mentores assim que houver algum disponível.</p>}
             {mentorRequest ?
               <Button onClick={() => cancelMentorRequest()} shadow error>Cancelar solicitação</Button>
               :

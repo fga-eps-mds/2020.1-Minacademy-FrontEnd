@@ -75,8 +75,8 @@ function Dashboard({
           <h1>Olá, {currentUser.name}</h1>
           {currentUser.userType === 'Learner' && (
             <p>
-              Aqui você pode acompanhar seu progresso, contatar um mentor ou
-              mentora e acessar seus certificados.
+              Aqui você pode acompanhar seu progresso, solicitar suporte a mentoria 
+              e acessar seus certificados.
             </p>
           )}
         </div>
