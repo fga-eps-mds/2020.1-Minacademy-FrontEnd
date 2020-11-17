@@ -48,5 +48,17 @@
       flex-direction: column;
       padding: 1rem;
     }
+
+    .custom-animation {
+      display: flex;
+      flex-basis: 100%;
+      padding-bottom: 0.5rem;
+      padding-right: 0.5rem;
+      overflow-x: hidden;
+
+      > *:first-child {
+        flex-basis: 100%;
+      }
+    }
   }
 }

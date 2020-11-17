@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, useRouteMatch, useLocation } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import {
   selectCompletedActivities,
@@ -13,6 +13,10 @@ import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity';
 import './style.scss';
 
+import MotionDiv from '../../UI/animation/MotionDiv';
+import RouteTransition from '../../UI/animation/RouteTransition.jsx'
+import { AnimatePresence } from 'framer-motion'
+
 function Tutorial({
   completedActivities,
   getProgress,
@@ -20,13 +24,15 @@ function Tutorial({
   currentUser,
 }) {
   // eslint-disable-line no-shadow
-  const { path } = useRouteMatch();
+  const match = useRouteMatch();
+  const location = useLocation();
 
   useEffect(() => {
     getProgress();
   }, [getProgress]);
 
   return (
+
     <div className="tutorial">
       <div className="tutorial__header">
         <div>
@@ -43,18 +49,21 @@ function Tutorial({
           </div>
         )}
       </div>
-      <div className="tutorial__body">
+      <MotionDiv className="tutorial__body">
         {currentUser.userType === 'Learner' && <ActivitiesList />}
-        <Switch>
-          <Route exact path={path}>
-            <Markdown />
-          </Route>
-          <Route
-            path={`${path}/atividades/:activityNumber`}
-            component={() => <TutorialActivity />}
-          />
-        </Switch>
-      </div>
+        <div className="custom-animation">
+          <AnimatePresence exitBeforeEnter inital={false}>
+            <Switch location={location} key={location.pathname} >
+              <RouteTransition exact path={match.url}>
+                <Markdown />
+              </RouteTransition>
+              <RouteTransition
+                path={`${match.url}/atividades/:activityNumber`}
+              ><TutorialActivity /></RouteTransition>
+            </Switch>
+          </AnimatePresence>
+        </div>
+      </MotionDiv>
     </div>
   );
 }
