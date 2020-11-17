@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '../Button';
 import { selectModalHidden } from '../../slices/modalSlice'
 import './style.scss'
+import MotionDiv from '../../UI/animation/MotionDiv';
 
 function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, closeMessage, confirmMessage, children, hidden, ...otherProps }) {
 
@@ -16,7 +17,31 @@ function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, cl
     ? null
     :
     <div id={id} className="custom-modal" onClick={handleOutsideClick} {...otherProps}>
-      <div className="custom-modal__container">
+      <MotionDiv className="custom-modal__container"
+        transition={{
+            type: 'tween',
+            ease: 'easeIn',
+            // transition: 'linear',
+            duration: 0.4,
+          }}
+          variants={{
+            initial: {
+              opacity: 0,
+              // x: '100vh',
+              // scale: 1,
+            },
+            in: {
+              opacity: 1,
+              // x: 0,
+              // scale: 1,
+            },
+            out: {
+              opacity: 0,
+              x: '-35vh',
+              scale: 0.3,
+            },
+          }}
+      >
         <div className="content">
           <h2 className="content--title">{title}</h2>
           <span>{children}</span>
@@ -25,7 +50,7 @@ function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, cl
           <Button onClick={onClose} inverted shadow>{closeMessage}</Button>
           {confirmMessage ? <Button onClick={onConfirm} inverted shadow>{confirmMessage}</Button> : null}
         </div>
-      </div>
+      </MotionDiv>
     </div>
   );
 };
