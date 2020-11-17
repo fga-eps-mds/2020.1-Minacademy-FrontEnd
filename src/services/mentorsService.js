@@ -18,7 +18,7 @@ const assignLearner = createAsyncThunk('mentor/assignLearner', async (values, { 
     toast.success(`${response.data.learner.name} é sua nova aprendiz!`);
     return response.data;
   } catch (error) {
-    toast.dark('Nenhuma aprendiz disponivel no momento', { toastId: "customId", autoClose: false })
+    toast.dark('Nenhuma aprendiz disponível no momento. Você receberá uma assim que houver disponíveis!')
     return rejectWithValue(error.response.data.isAvailable)
   }
 });
@@ -39,6 +39,8 @@ const unassignLearner = createAsyncThunk('mentor/unassignLearner', async (learne
 const changeAvailability = createAsyncThunk('mentor/changeAvailability', async (values, { rejectWithValue }) => {
   try {
     const response = await api.patch(`${MENTOR_ENDPOINT}/availability`)
+    if (response.data) toast.success('Você optou por ficar disponível');
+    else toast.success('Você optou por ficar indisponível')
     return response.data
   } catch (error) {
     return rejectWithValue(null)
