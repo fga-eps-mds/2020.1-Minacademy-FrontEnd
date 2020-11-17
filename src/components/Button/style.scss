@@ -33,6 +33,10 @@
     &:hover {
       color: white;
     }
+
+    &:active {
+      transform: none;
+    }
   }
 
   &.inverted {
