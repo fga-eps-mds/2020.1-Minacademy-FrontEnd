@@ -25,20 +25,6 @@
     transform: scale(0.95);
   }
 
-  &:disabled {
-    background-color: var(--placeholder-color);
-    border-color: var(--border-color);
-    cursor: auto;
-
-    &:hover {
-      color: white;
-    }
-
-    &:active {
-      transform: none;
-    }
-  }
-
   &.inverted {
     background-color: white;
     color: var(--hover-button);
@@ -90,6 +76,18 @@
       background-color: white;
       border-color: var(--error-color);
       color: var(--error-color);
+    }
+  }
+
+  &:disabled {
+    color: white;
+    background-color: var(--placeholder-color);
+    border-color: var(--border-color);
+    cursor: auto;
+    pointer-events: none;
+    
+    &:active {
+      transform: none;
     }
   }
 

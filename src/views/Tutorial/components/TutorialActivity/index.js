@@ -72,22 +72,11 @@ function TutorialActivity({
           }}
         >
           <Question showResult>
-            {true ? (
+            {/* {previousQuestion ? ( */}
               <Button
                 shadow
                 inverted
-                onClick={() => {
-                  const path = match.path.replace(/:\w+/gi, nextQuestion);
-                  history.push(path);
-                }}
-              >
-                Proximo
-              </Button>
-            ) : null}
-            {true ? (
-              <Button
-                shadow
-                inverted
+                disabled={!previousQuestion}
                 onClick={() => {
                   const path = match.path.replace(/:\w+/gi, previousQuestion);
                   history.push(path);
@@ -95,7 +84,19 @@ function TutorialActivity({
               >
                 Anterior
               </Button>
-            ) : null}
+
+              <Button
+                shadow
+                inverted
+                disabled={!nextQuestion}
+                onClick={() => {
+                  const path = match.path.replace(/:\w+/gi, nextQuestion);
+                  history.push(path);
+                }}
+              >
+                Proximo
+              </Button>
+            {/* ) : null} */}
           </Question>
         </MotionDiv>
       </div>
