@@ -25,7 +25,8 @@ function Question({
   history,
   showResult = true,
   showGoBack = true,
-  isLoading
+  isLoading,
+  children
 }) {
   const result = useMemo(
     () => questionResults.find((result) => result.question === question._id),
@@ -90,8 +91,8 @@ function Question({
               <div className="question__alternatives--error">
                 {result?.isCorrect === false && showResult && !isLoading ? 'Resposta errada, tente novamente!' : null}
               </div>
-              
-              {errors.alternative && 
+
+              {errors.alternative &&
                 <div className="question__alternatives--error">
                   {errors.alternative.message}
                 </div>
@@ -101,19 +102,22 @@ function Question({
         )}
       </div>
       <div className="question__buttons">
-        {showGoBack && <Button
+        <div className="question__buttons--navigation">
+          {children}
+        </div>
+        {(!result?.isCorrect || !showResult) && (
+          <Button shadow form="question" type="submit" disabled={previousAlternative || isLoading}>
+            Responder
+          </Button>
+        )}
+        {/* {showGoBack && <Button
           onClick={() => {
             history.push('/tutorial');
           }}
           shadow
         >
           Voltar
-        </Button>}
-        {(!result?.isCorrect || !showResult) && (
-          <Button shadow form="question" type="submit" disabled={previousAlternative || isLoading}>
-            Responder
-          </Button>
-        )}
+        </Button>} */}
         {isLoading && <div className="loading"><Loader> Verificando... </Loader></div>}
       </div>
     </div>

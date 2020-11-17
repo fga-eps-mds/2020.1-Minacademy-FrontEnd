@@ -65,10 +65,20 @@
   &__buttons {
     position: relative;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 
     @media(max-width: 600px) {
       flex-direction: column;
+    }
+
+    &--navigation {
+      display: flex;
+
+      .custom-button {
+        margin-right: 1rem;
+      }
+      // background-color: red;
     }
 
     .custom-button {

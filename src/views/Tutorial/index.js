@@ -15,7 +15,7 @@ import './style.scss';
 
 import MotionDiv from '../../UI/animation/MotionDiv';
 import RouteTransition from '../../UI/animation/RouteTransition.jsx'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 
 function Tutorial({
   completedActivities,
@@ -49,7 +49,7 @@ function Tutorial({
           </div>
         )}
       </div>
-      <MotionDiv className="tutorial__body">
+      <MotionDiv layout className="tutorial__body">
         {currentUser.userType === 'Learner' && <ActivitiesList />}
         <div className="custom-animation">
           <AnimatePresence exitBeforeEnter inital={false}>
@@ -64,6 +64,7 @@ function Tutorial({
           </AnimatePresence>
         </div>
       </MotionDiv>
+
     </div>
   );
 }

@@ -29,9 +29,11 @@ const MotionDiv = ({
   className,
   variants = defaultVariants,
   transition = defaultTransition,
+  layout = false
 }) => {
   return (
     <motion.div
+      layout={layout}
       className={className}
       variants={variants}
       transition={transition}
