@@ -89,19 +89,19 @@ function Dashboard({
               mainContent={`${progress?.moduleProgress || 0}% Completo`}
               secondaryContent={
                 progress?.remainingQuestions
-                  ? `${progress?.remainingQuestions} atividades restantes`
-                  : 'Módulo concluido'
+                  ? `${progress?.remainingQuestions} atividades restantes.`
+                  : 'Módulo concluido.'
               }
-              linkText="atividades restantes"
+              linkText="atividades restantes."
               linkPath="/tutorial"
             />
             <Card
               title="certificados"
-              mainContent="Certificado de conclusão do tutorial básico"
+              mainContent="Certificado de conclusão do tutorial básico."
               linkText={
                 learnerCertificate
-                  ? 'Visualizar certificado'
-                  : 'Conclua o tutorial para acessar o certificado'
+                  ? 'Visualizar certificado.'
+                  : 'Conclua o tutorial para acessar o certificado.'
               }
               linkPath={learnerCertificate ? `/certificados` : '/tutorial'}
             />
@@ -109,18 +109,18 @@ function Dashboard({
               title="mentoria"
               mainContent={
                 mentor
-                  ? `Seu Mentor: ${mentor?.name} ${mentor?.lastname}`
-                  : 'Ainda não lhe foi designado nenhum mentor'
+                  ? `Seu Mentor: ${mentor?.name} ${mentor?.lastname}.`
+                  : 'Ainda não lhe foi designado nenhum mentor.'
               }
               secondaryContent={
                 currentUser.mentor_request &&
                 !mentor &&
-                'Você receberá um mentor assim que houver um disponível'
+                'Você receberá um mentor assim que houver um disponível.'
               }
               linkText={
                 mentor || currentUser.mentor_request
-                  ? 'Mentoria'
-                  : 'Solicitar mentor'
+                  ? 'Mentoria.'
+                  : 'Solicitar mentor.'
               }
               linkPath="/mentoria"
             />
@@ -129,15 +129,15 @@ function Dashboard({
           <MotionDiv className="dashboard__body">
             <Card
               title="Mentoria"
-              mainContent="Veja os seus aprendizes, ou procure por novos"
-              linkText="acessar mentoria"
+              mainContent="Veja os seus aprendizes ou procure por novos."
+              linkText="acessar mentoria."
               linkPath="/mentoria"
             />
             <Card
               title="certificados"
               mainContent="Certificado de mentorias"
-              secondaryContent="Você reberá um certificado assim que um de seus aprendizes concluirem o tutorial"
-              linkText="Visualizar certificados"
+              secondaryContent="Você receberá um certificado assim que um de seus aprendizes concluírem o tutorial."
+              linkText="visualizar certificados."
               linkPath="/certificados"
             />
           </MotionDiv>
@@ -145,15 +145,15 @@ function Dashboard({
           <MotionDiv className="dashboard__body">
             <Card
               title="Mentoria"
-              mainContent="Você ainda não está validado como mentor na plataforma. Faça a avaliação para ter acesso a todas as funcionalidades de monitoria"
-              linkText="Faça aqui sua avaliação!"
+              mainContent="Você ainda não está validado como mentor na plataforma. Faça a avaliação para ter acesso a todas as funcionalidades de mentoria."
+              linkText="faça aqui sua avaliação!"
               linkPath="/mentoria"
             />
             <Card
               title="Tutorial"
               mainContent="Aqui você pode conhecer o tutorial que poderá lecionar se for validado."
-              secondaryContent="Se for validado, você poderá dar suporte para os aprendizes da platorma, por isso é importante conhecer bem o tutorial."
-              linkText="Tutorial"
+              secondaryContent="Se for validado, você poderá dar suporte para os aprendizes da plataforma, por isso é importante conhecer bem o tutorial."
+              linkText="tutorial."
               linkPath="/tutorial"
             />
           </MotionDiv>
