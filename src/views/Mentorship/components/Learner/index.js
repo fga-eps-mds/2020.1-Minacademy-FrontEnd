@@ -58,7 +58,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
         )}
       </MotionDiv>
       <Modal
-        title={`Desvincular ${mentor.name}`}
+        title={`Desvincular ${mentor?.name}`}
         confirmMessage='desvincular'
         closeMessage='cancelar'
         onClose={() => toggleModalVisible()}
