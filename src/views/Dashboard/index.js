@@ -88,9 +88,11 @@ function Dashboard({
               title={`Módulo ${currentModule}: ${module?.title}`}
               mainContent={`${progress?.moduleProgress || 0}% Completo`}
               secondaryContent={
-                progress?.remainingQuestions
-                  ? `${progress?.remainingQuestions} atividades restantes.`
-                  : 'Módulo concluido.'
+                progress?.remainingQuestions == 1
+                  ? `${progress?.remainingQuestions} atividade restante.`
+                  : progress?.remainingQuestions
+                    ? `${progress?.remainingQuestions} atividades restantes.`
+                    : 'Módulo concluido.'
               }
               linkText="atividades restantes."
               linkPath="/tutorial"
@@ -101,7 +103,7 @@ function Dashboard({
               linkText={
                 learnerCertificate
                   ? 'Visualizar certificado.'
-                  : 'Conclua o tutorial para acessar o certificado.'
+                  : 'Conclua as atividades do tutorial para acessar o certificado.'
               }
               linkPath={learnerCertificate ? `/certificados` : '/tutorial'}
             />
