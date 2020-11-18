@@ -12,7 +12,7 @@ function CertificateList({ certificate }) {
     <div className="certificateList">
       <div className="certificateList__body">
         {certificate.courseType === 'Learner' && (
-          <h3>Certificado de Conclusão do Tutorial Minacademy</h3>
+          <h3>Certificado de Conclusão do Tutorial</h3>
         )}
         {certificate.courseType === 'Mentor' && (
           <h3>Certificado de Mentoria</h3>
