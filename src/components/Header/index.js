@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+//import { Link as ScrollLin, animateScroll as scroll } from "react-scroll";
+import { HashLink as ScrollLink } from 'react-router-hash-link'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { logout } from '../../services/usersService';
 import { closeWebSocket } from '../../services/websocket';
@@ -59,7 +60,7 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             </Link>
             <ScrollLink 
               className="header__navigation-option" 
-              to="infoBar"
+              to="/#infoBar"
               spy={true}
               smooth={true}
               offset={-70}
@@ -69,7 +70,7 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             </ScrollLink>
             <ScrollLink 
               className="header__navigation-option" 
-              to="infoBar2"
+              to="/#infoBar2"
               spy={true}
               smooth={true}
               offset={-70}
@@ -79,11 +80,12 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             </ScrollLink>
             <ScrollLink 
               className="header__navigation-option"
-              to="FAQ"
+              to="/#FAQ"
               spy={true}
               smooth={true}
               offset={-70}
               duration={500}
+              //scroll={el => el.scrollIntoView({ behavior: 'smooth', duration: 5000 })}
             >
               Perguntas Frequentes
             </ScrollLink>
