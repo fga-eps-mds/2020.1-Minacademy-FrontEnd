@@ -20,7 +20,7 @@ function Register({ registerRequest, isLoading }) {
   const { handleSubmit, register, watch, setValue, errors, setError } = useForm({
     defaultValues: {
       userType: null,
-      gender: 'Female',
+      //gender: 'Female',
     },
   });
   const history = useHistory();
@@ -121,7 +121,7 @@ function Register({ registerRequest, isLoading }) {
                 },
               })}
               errors={errors}
-            >
+            > 
               <option value="Female">Feminino</option>
               <option value="Male">Masculino</option>
             </Select>

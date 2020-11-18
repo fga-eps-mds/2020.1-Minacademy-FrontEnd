@@ -17,11 +17,11 @@ const Select = ({
     <label htmlFor={name}>{label}</label>
     <select
       name={name}
-      defaultValue= {children[0].props.value}
+      defaultValue= 'Selecione'
       ref={register}
       {...otherProps}
     >
-      {/* <option value='Selecione' disabled hidden className="teste">Selecione</option> */}
+      <option value='Selecione' selected className="teste">Selecione</option>
       {children}
     </select>
     {errors[name] ? <span className="error">{errors[name].message}</span> : null}
