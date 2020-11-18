@@ -34,15 +34,16 @@ const login = createAsyncThunk(
       sessionStorage.setItem('accessToken', response.data.accessToken);
       return response.data;
     } catch (err) {
-      if (!err.response) {
-        toast.error(
-          'Estamos com problemas no servidor, tente novamente mais tarde!'
-        );
-      } else if (err.response.data.error === 'Invalid Email or Password') {
+      if (err.response.data.error === 'Invalid Email or Password') {
         toast.error('Email ou senha incorretos');
       } else if (err.response.data.error === 'User not confirm registered') {
         toast.error('Você precisa confirmar seu cadastro. Por favor, verifique seu email');
+      } else {
+        toast.error(
+          'Estamos com problemas no servidor, tente novamente mais tarde!'
+        );
       }
+
       return rejectWithValue(null);
     }
   }
