@@ -14,13 +14,17 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import ExamRules from './components/ExamRules';
 import './style.scss';
+import MotionDiv from '../../UI/animation/MotionDiv';
+import { AnimatePresence, } from 'framer-motion'
+import RouteTransition from '../../UI/animation/RouteTransition.jsx'
 
 /* eslint-disable no-shadow */
-function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible }) {
-  const match = useRouteMatch()
-  const history = useHistory()
+function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, ...rest }) {
+  const match = useRouteMatch();
+  const history = useHistory();
 
   useEffect(() => {
+    // console.log("EXAM: ", history)
     getProgress({ exam: 'true' });
   }, [attempts, getProgress]);
 
@@ -60,34 +64,40 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
             }
         </div>
       </div>
-        <div className="exam__body">
+        <MotionDiv className="exam__body">
         {attempts > 0 && !currentUser.isValidated && <ActivitiesList exam />}
-        <Switch>
-          {attempts > 0 && !currentUser.isValidated &&
-            <Route path={`${match.path}/atividades/:activityNumber`} component={() => <ExamQuestion />}/>
-          }
-          <Route exact path={match.path} ><ExamRules /> </Route>
-        </Switch>
-        <Modal
-            title='Finalizar e enviar?'
-            confirmMessage='sim'
-            closeMessage='cancelar'
-            onClose={() => toggleModalVisible()}
-            onConfirm={() => {
-              validateMentor()
-              toggleModalVisible()
-              history.push('/avaliacao')
-            }}
-        >
-          <p>
-            Ao confirmar, suas respostas serão verificadas e,
-            caso tenha mais de 70% de acertos, você será validado!
-          </p>
-          <p>
-            Você ainda possui {attempts} {(attempts > 1) ? "tentativas." : "tentativa."}
-          </p>
-        </Modal>
-      </div>
+        <div className="custom-animation">
+          <AnimatePresence exitBeforeEnter inital={false}>
+            <Switch location={history.location} key={history.location.pathname} >
+              <RouteTransition exact path={match.path}>
+              <ExamRules />
+              </RouteTransition>
+              <RouteTransition
+                path={`${match.path}/atividades/:activityNumber`}
+              ><ExamQuestion /></RouteTransition>
+            </Switch>
+          </AnimatePresence>
+        </div>
+      </MotionDiv>
+      <Modal
+        title='Finalizar e enviar?'
+        confirmMessage='sim'
+        closeMessage='cancelar'
+        onClose={() => toggleModalVisible()}
+        onConfirm={() => {
+          validateMentor()
+          toggleModalVisible()
+          history.push('/avaliacao')
+        }}
+      >
+        <p>
+          Ao confirmar, suas respostas serão verificadas e,
+          caso tenha mais de 70% de acertos, você será validado!
+        </p>
+        <p>
+          Você ainda possui {attempts} {(attempts > 1) ? "tentativas." : "tentativa."}
+        </p>
+      </Modal>
     </div>
   );
 }

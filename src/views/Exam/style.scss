@@ -73,5 +73,20 @@
       flex-direction: column;
       padding: 1rem;
     }
+
+    .custom-animation {
+      display: flex;
+      flex-basis: 100%;
+      overflow-x: hidden;
+
+      @media(max-width: 600px) {
+        flex-direction: column;
+        overflow-x: visible;
+      }
+
+      > *:first-child {
+        flex-basis: 100%;
+      }
+    }
   }
 }

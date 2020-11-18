@@ -22,9 +22,8 @@ function Question({
   questionResults,
   answerQuestion,
   getProgress,
-  history,
+  onAnswer,
   showResult = true,
-  showGoBack = true,
   isLoading,
   children
 }) {
@@ -106,19 +105,17 @@ function Question({
           {children}
         </div>
         {(!result?.isCorrect || !showResult) && (
-          <Button shadow form="question" type="submit" disabled={previousAlternative || isLoading}>
+          <Button
+            form="question"
+            type="submit"
+            disabled={previousAlternative || isLoading}
+            onClick={() => onAnswer ? onAnswer() : console.log("NULL")}
+            shadow
+          >
             Responder
           </Button>
         )}
-        {/* {showGoBack && <Button
-          onClick={() => {
-            history.push('/tutorial');
-          }}
-          shadow
-        >
-          Voltar
-        </Button>} */}
-        {isLoading && <div className="loading"><Loader> Verificando... </Loader></div>}
+        {isLoading && showResult && <div className="loading"><Loader> Verificando... </Loader></div>}
       </div>
     </div>
   );
