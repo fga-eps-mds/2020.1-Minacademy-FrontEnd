@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
-import { selectTotalAnswers, selectQuestionsList } from '../../slices/tutorialSlice';
+import { Switch, useRouteMatch, useHistory } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import {
+  selectTotalAnswers,
+  selectQuestionsList,
+} from '../../slices/tutorialSlice';
 import { getProgress } from '../../services/tutorialServices';
 import { validateMentor } from '../../services/mentorsService';
 import { selectValidationAttempts } from '../../slices/mentorSlice';
@@ -15,11 +19,19 @@ import Modal from '../../components/Modal';
 import ExamRules from './components/ExamRules';
 import './style.scss';
 import MotionDiv from '../../UI/animation/MotionDiv';
-import { AnimatePresence, } from 'framer-motion'
-import RouteTransition from '../../UI/animation/RouteTransition.jsx'
+import RouteTransition from '../../UI/animation/RouteTransition.jsx'; // eslint-disable-line import/extensions
 
 /* eslint-disable no-shadow */
-function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers, questionsList, toggleModalVisible, ...rest }) {
+function Exam({
+  validateMentor,
+  currentUser,
+  attempts,
+  getProgress,
+  totalAnswers,
+  questionsList,
+  toggleModalVisible,
+  ...rest  // eslint-disable-line no-unused-vars
+}) {
   const match = useRouteMatch();
   const history = useHistory();
 
@@ -27,7 +39,6 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
     // console.log("EXAM: ", history)
     getProgress({ exam: 'true' });
   }, [attempts, getProgress]);
-
 
   return (
     <div className="exam">
@@ -39,11 +50,15 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
           </p>
         </div>
         <div className="exam__header--progress">
-            {attempts > 0 && !currentUser.isValidated &&
-              <>
-              <span>{totalAnswers}/{questionsList.length} questões respondidas</span>
+          {attempts > 0 && !currentUser.isValidated && (
+            <>
+              <span>
+                {totalAnswers}/{questionsList.length} questões respondidas
+              </span>
               <Button
-                disabled={totalAnswers < questionsList.length || currentUser.isValidated}
+                disabled={
+                  totalAnswers < questionsList.length || currentUser.isValidated
+                }
                 onClick={() => {
                   toggleModalVisible();
                 }}
@@ -51,51 +66,54 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
               >
                 Finalizar avaliação
               </Button>
-              </>
-            }
-            {attempts === 0 && !currentUser.isValidated &&
-              <span className="emphasis failure">Não Concluída</span>
-            }
-            {currentUser.isValidated &&
-              <>
+            </>
+          )}
+          {attempts === 0 && !currentUser.isValidated && (
+            <span className="emphasis failure">Não Concluída</span>
+          )}
+          {currentUser.isValidated && (
+            <>
               <span className="emphasis">Concluída</span>
               <p>Você foi validado como mentor</p>
-              </>
-            }
+            </>
+          )}
         </div>
       </div>
-        <MotionDiv className="exam__body">
+      <MotionDiv className="exam__body">
         {attempts > 0 && !currentUser.isValidated && <ActivitiesList exam />}
         <div className="custom-animation">
           <AnimatePresence exitBeforeEnter inital={false}>
-            <Switch location={history.location} key={history.location.pathname} >
+            <Switch location={history.location} key={history.location.pathname}>
               <RouteTransition exact path={match.path}>
-              <ExamRules />
+                <ExamRules />
               </RouteTransition>
               <RouteTransition
                 path={`${match.path}/atividades/:activityNumber`}
-              ><ExamQuestion /></RouteTransition>
+              >
+                <ExamQuestion />
+              </RouteTransition>
             </Switch>
           </AnimatePresence>
         </div>
       </MotionDiv>
       <Modal
-        title='Finalizar e enviar?'
-        confirmMessage='sim'
-        closeMessage='cancelar'
+        title="Finalizar e enviar?"
+        confirmMessage="sim"
+        closeMessage="cancelar"
         onClose={() => toggleModalVisible()}
         onConfirm={() => {
-          validateMentor()
-          toggleModalVisible()
-          history.push('/avaliacao')
+          validateMentor();
+          toggleModalVisible();
+          history.push('/avaliacao');
         }}
       >
         <p>
-          Ao confirmar, suas respostas serão verificadas e,
-          caso tenha mais de 70% de acertos, você será validado!
+          Ao confirmar, suas respostas serão verificadas e, caso tenha mais de
+          70% de acertos, você será validado!
         </p>
         <p>
-          Você ainda possui {attempts} {(attempts > 1) ? "tentativas." : "tentativa."}
+          Você ainda possui {attempts}{' '}
+          {attempts > 1 ? 'tentativas.' : 'tentativa.'}
         </p>
       </Modal>
     </div>
@@ -103,8 +121,8 @@ function Exam({ validateMentor, currentUser, attempts, getProgress, totalAnswers
 }
 
 Exam.defaultProps = {
-  questionsList: []
-}
+  questionsList: [],
+};
 
 Exam.propTypes = {
   currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object])
@@ -127,7 +145,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   toggleModalVisible: () => dispatch(toggleModalVisible()),
   getProgress: (query) => dispatch(getProgress(query)),
-  validateMentor: () => dispatch(validateMentor())
+  validateMentor: () => dispatch(validateMentor()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Exam);

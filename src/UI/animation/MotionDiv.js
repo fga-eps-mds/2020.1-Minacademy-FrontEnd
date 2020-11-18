@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
 const defaultTransition = {
@@ -44,6 +45,14 @@ const MotionDiv = ({
       {children}
     </motion.div>
   );
+};
+
+MotionDiv.propTypes = {
+  children: PropTypes.element.isRequired,
+  className: PropTypes.string.isRequired,
+  variants: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  transition: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  layout: PropTypes. PropTypes.bool.isRequired,
 };
 
 export default memo(MotionDiv);

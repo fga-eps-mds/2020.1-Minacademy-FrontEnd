@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
 import { selectValidationAttempts, selectValidationResult } from '../../../../slices/mentorSlice';
 import Button from '../../../../components/Button';
@@ -47,7 +47,8 @@ function ExamRules({ currentUser, attempts, result }) {
 ExamRules.propTypes = {
   currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object])
       .isRequired,
-  attempts: PropTypes.number.isRequired
+  attempts: PropTypes.number.isRequired,
+  result: PropTypes.number, // eslint-disable-line react/require-default-props
 }
 
 const mapStateToProps = (state) => ({

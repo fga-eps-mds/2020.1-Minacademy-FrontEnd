@@ -2,23 +2,23 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import {
   selectCompletedActivities,
   selectTotalProgress,
 } from '../../slices/tutorialSlice';
-import {toggleModalVisible} from '../../slices/modalSlice';
+import { toggleModalVisible } from '../../slices/modalSlice';
 import { getProgress } from '../../services/tutorialServices';
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity';
 import Modal from '../../components/Modal';
 import './style.scss';
-
 import MotionDiv from '../../UI/animation/MotionDiv';
-import RouteTransition from '../../UI/animation/RouteTransition.jsx'
-import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
+import RouteTransition from '../../UI/animation/RouteTransition.jsx' // eslint-disable-line import/extensions
 
+ /* eslint-disable no-shadow */
 function Tutorial({
   completedActivities,
   getProgress,
@@ -26,7 +26,7 @@ function Tutorial({
   currentUser,
   toggleModalVisible
 }) {
-  // eslint-disable-line no-shadow
+ 
   const match = useRouteMatch();
   const location = useLocation();
   const history = useHistory();
@@ -90,6 +90,8 @@ Tutorial.propTypes = {
   completedActivities: PropTypes.number.isRequired,
   totalProgress: PropTypes.number.isRequired,
   getProgress: PropTypes.func.isRequired,
+  toggleModalVisible: PropTypes.bool.isRequired,
+  currentUser: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 const mapStateToProps = (state) => ({

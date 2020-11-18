@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import RouteTransition from '../../UI/animation/RouteTransition';
 import MotionDiv from '../../UI/animation/MotionDiv';
 
 const smoothRedirect = {
@@ -36,7 +35,7 @@ const PublicRoute = ({
 }) => {
   return (
     <Route exact={exact} path={path} {...otherProps}>
-      {currentUser ? (
+      {currentUser ? (            // eslint-disable-line no-nested-ternary
         otherProps.location.pathname === '/login' ? (
           <MotionDiv
             variants={smoothRedirect.variants}
@@ -69,10 +68,12 @@ PublicRoute.propTypes = {
   children: PropTypes.elementType.isRequired,
   exact: PropTypes.bool,
   path: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
+  dispatch: PropTypes.func.isRequired,
 });
 
 export default connect(mapStateToProps)(PublicRoute);

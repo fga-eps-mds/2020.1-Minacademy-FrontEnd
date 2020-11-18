@@ -7,7 +7,6 @@ import {
   selectTotalProgress,
   selectQuestionsList,
 } from '../../../../slices/tutorialSlice';
-import Modal from '../../../../components/Modal';
 import { toggleModalVisible } from '../../../../slices/modalSlice';
 import Question from '../../../../components/Question';
 import MotionDiv from '../../../../UI/animation/MotionDiv';
@@ -32,8 +31,8 @@ function TutorialActivity({
       })
     }
   }, [totalProgress]);
-
-  const { nextQuestion, previousQuestion } = useMemo(() => {
+  /* eslint-disable radix */
+  const { nextQuestion } = useMemo(() => {
     const { activityNumber } = match.params;
     const next = questionsList.find(
       (question) => question.number === parseInt(activityNumber) + 1
@@ -119,7 +118,9 @@ TutorialActivity.propTypes = {
   toggleModalVisible: PropTypes.func.isRequired,
   totalProgress: PropTypes.number.isRequired,
   history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
   generateCertificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  questionsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };
 
 const mapStateToProps = (state) => ({

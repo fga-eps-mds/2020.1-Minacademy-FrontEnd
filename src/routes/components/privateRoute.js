@@ -24,6 +24,7 @@ PrivateRoute.propTypes = {
   children: PropTypes.elementType.isRequired,
   exact: PropTypes.bool,
   path: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

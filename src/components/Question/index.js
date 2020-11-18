@@ -130,7 +130,7 @@ function Question({
             form="question"
             type="submit"
             disabled={previousAlternative || isLoading}
-            onClick={() => onAnswer ? onAnswer() : console.log("NULL")}
+            onClick={() => onAnswer ? onAnswer() : null}
             shadow
           >
             Responder
@@ -147,7 +147,6 @@ function Question({
 
 Question.defaultProps = {
   questionResults: [],
-  showGoBack: true,
   showResult: true
 };
 
@@ -160,10 +159,10 @@ Question.propTypes = {
   questionResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
   answerQuestion: PropTypes.func.isRequired,
   getProgress: PropTypes.func.isRequired,
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  showGoBack: PropTypes.bool,
   showResult: PropTypes.bool,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  onAnswer: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({

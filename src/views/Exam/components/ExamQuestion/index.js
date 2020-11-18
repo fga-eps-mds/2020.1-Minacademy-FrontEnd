@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectQuestionsList } from '../../../../slices/tutorialSlice';
@@ -11,7 +12,7 @@ function ExamQuestion({ questionsList, match, history }) {
   const nextQuestion = useMemo(() => {
     const { activityNumber } = match.params;
     const next = questionsList.find(
-      (question) => question.number === parseInt(activityNumber) + 1
+      (question) => question.number === parseInt(activityNumber) + 1 // eslint-disable-line radix
     );
     return next?.number || activityNumber;
   }, [history.location.pathname]);
@@ -55,6 +56,11 @@ function ExamQuestion({ questionsList, match, history }) {
   );
 }
 
+ExamQuestion.propTypes = {
+  questionsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired
+};
 const mapStateToProps = (state) => ({
   questionsList: selectQuestionsList(state),
 });

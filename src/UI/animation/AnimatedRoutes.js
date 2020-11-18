@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion'
 import { Switch, useLocation } from 'react-router-dom'
 
@@ -16,5 +17,11 @@ const AnimatedRoutes = ({
     </AnimatePresence>
   )
 }
+
+AnimatedRoutes.propTypes = {
+  children: PropTypes.element.isRequired,
+  exitBeforeEnter: PropTypes.bool.isRequired,
+  initial: PropTypes.bool.isRequired,
+};
 
 export default AnimatedRoutes
