@@ -11,6 +11,7 @@ import { openWebSocket } from '../../services/websocket'
 import Loader from '../../components/Loader';
 import '../../index.css';
 import './style.scss';
+import MotionDiv from '../../UI/animation/MotionDiv';
 
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -24,7 +25,27 @@ function Login({ login, isLoading }) {
   return (
     <>
       <div className="login">
-        <div className="login__body">
+        <MotionDiv className="login__body"
+           transition={{
+            type: 'tween',
+            ease: 'easeIn',
+            duration: 0.3,
+          }}
+          variants={{
+            initial: {
+              opacity: 0,
+              scale: 0.6,
+            },
+            in: {
+              opacity: 1,
+              scale: 1,
+            },
+            out: {
+              opacity: 0,
+              scale: 0.6,
+            },
+          }}
+        >
           <h1>Entrar</h1>
           <form id="login-form" className="login__body--form" onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -77,7 +98,7 @@ function Login({ login, isLoading }) {
               Não possui conta? <Link to="/cadastro">Cadastre-se</Link>
             </p>
           </div>
-        </div>
+        </MotionDiv>
       </div>
     </>
   );
