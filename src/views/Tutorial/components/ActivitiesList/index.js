@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch, Link } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
 import { getQuestions } from '../../../../services/tutorialServices';
 import './style.scss';
@@ -29,7 +29,7 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
           {url.includes('tutorial') && (
             <>
             <h3>Atividades</h3>
-            <p> Módulo <b>{currentModule}</b> </p>
+            <Link to="/tutorial"> Módulo {currentModule} </Link>
             </>
             )}
         </div>
