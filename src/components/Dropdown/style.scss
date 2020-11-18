@@ -43,6 +43,15 @@
       color: var(--secondary-color);
       font-weight: bold;
     }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      
+      &.up {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   .dd-list {

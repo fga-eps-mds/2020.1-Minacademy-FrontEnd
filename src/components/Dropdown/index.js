@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types'
+import { ReactComponent as Arrow } from '../../assets/images/arrow.svg';
 import './style.scss'
 
 function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelection }) {
@@ -44,7 +45,7 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
 
           <span className="dd-header__title--bold">{selection[0] ? selection[0].title : ''}</span>
 
-          <span>{open ? 'Close' : 'Open'}</span>
+          <span className={`arrow ${open ? 'up' : 'down'}`}><Arrow /></span>
       </div>
       {open && (
         <ul className="dd-list">
