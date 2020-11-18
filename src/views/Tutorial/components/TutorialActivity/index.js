@@ -25,7 +25,11 @@ function TutorialActivity({
 }) {
   useEffect(() => {
     if (totalProgress === 100) {
-      generateCertificate().then(() => toggleModalVisible());
+      generateCertificate().then((response) => {
+        if (!response?.error) {
+          toggleModalVisible()
+        }
+      })
     }
   }, [totalProgress]);
 
@@ -44,7 +48,6 @@ function TutorialActivity({
   }, [questionsList]);
 
   return (
-    <>
       <div className="tutorial-activity">
         <MotionDiv
           transition={{
@@ -73,7 +76,7 @@ function TutorialActivity({
         >
           <Question showResult>
             {/* {previousQuestion ? ( */}
-              <Button
+              {/* <Button
                 shadow
                 inverted
                 disabled={!previousQuestion}
@@ -83,8 +86,9 @@ function TutorialActivity({
                 }}
               >
                 Anterior
-              </Button>
+              </Button> */}
 
+              {nextQuestion ? 
               <Button
                 shadow
                 inverted
@@ -96,26 +100,18 @@ function TutorialActivity({
               >
                 Proximo
               </Button>
-            {/* ) : null} */}
+              : <Button
+                shadow
+                onClick={() => {
+                  history.push('/tutorial');
+                }}
+              >
+                Continuar tutorial
+              </Button>
+              }
           </Question>
         </MotionDiv>
       </div>
-      <Modal
-        title="Curso concluído"
-        confirmMessage="visualizar"
-        closeMessage="cancelar"
-        onClose={() => {
-          toggleModalVisible();
-        }}
-        onConfirm={() => history.push(`/certificados`)}
-      >
-        <p>Parabéns, você concluiu o tutorial.</p>
-        <p>
-          Você poderá acessar o certificado a qualquer momento pela Dashboard.
-        </p>
-        <p>Clique em visualizar para ver seu certificado</p>
-      </Modal>
-    </>
   );
 }
 

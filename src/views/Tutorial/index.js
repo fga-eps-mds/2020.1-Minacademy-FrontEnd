@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, useRouteMatch, useLocation } from 'react-router-dom';
+import { Switch, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import {
   selectCompletedActivities,
   selectTotalProgress,
 } from '../../slices/tutorialSlice';
+import {toggleModalVisible} from '../../slices/modalSlice';
 import { getProgress } from '../../services/tutorialServices';
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity';
+import Modal from '../../components/Modal';
 import './style.scss';
 
 import MotionDiv from '../../UI/animation/MotionDiv';
@@ -22,11 +24,12 @@ function Tutorial({
   getProgress,
   totalProgress,
   currentUser,
+  toggleModalVisible
 }) {
   // eslint-disable-line no-shadow
   const match = useRouteMatch();
   const location = useLocation();
-
+  const history = useHistory();
   useEffect(() => {
     getProgress();
   }, [getProgress]);
@@ -64,7 +67,21 @@ function Tutorial({
           </AnimatePresence>
         </div>
       </MotionDiv>
-
+      <Modal
+        title="Curso concluído"
+        confirmMessage="visualizar"
+        closeMessage="cancelar"
+        onClose={() => {
+          toggleModalVisible();
+        }}
+        onConfirm={() => history.push(`/certificados`)}
+      >
+        <p>Parabéns, você concluiu o tutorial.</p>
+        <p>
+          Você poderá acessar o certificado a qualquer momento pela Dashboard.
+        </p>
+        <p>Clique em visualizar para ver seu certificado</p>
+      </Modal>
     </div>
   );
 }
@@ -83,6 +100,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getProgress: () => dispatch(getProgress()),
+  toggleModalVisible: () => dispatch(toggleModalVisible()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
