@@ -14,6 +14,7 @@ import {
 } from '../../services/tutorialServices';
 import Button from '../Button';
 import Loader from '../Loader'
+import MotionDiv from '../../UI/animation/MotionDiv';
 import './style.scss';
 
 /* eslint-disable no-shadow */
@@ -78,10 +79,30 @@ function Question({
       <div className="question__description">{descriptionText}</div>
       <div className="question__alternatives">
         {result?.isCorrect && showResult ? (
-          <div className="question__result">
+          <MotionDiv className="question__result"
+            transition={{
+              type: 'tween',
+              ease: 'easeIn',
+              duration: 0.5,
+            }}
+            variants={{
+              initial: {
+                opacity: 0,
+                // scale: 0.6,
+              },
+              in: {
+                opacity: 1,
+                // scale: 1,
+              },
+              out: {
+                opacity: 0,
+                // scale: 0.6,
+              },
+            }}
+          >
             <h2>CORRETO!</h2>
             <p>{question.alternatives[result.alternative]}</p>
-          </div>
+          </MotionDiv>
         ) : (
           <>
             <form id="question" onSubmit={handleSubmit(onSubmit)}>
@@ -101,9 +122,9 @@ function Question({
         )}
       </div>
       <div className="question__buttons">
-        <div className="question__buttons--navigation">
+        {/* <div className="question__buttons--navigation">
           {children}
-        </div>
+        </div> */}
         {(!result?.isCorrect || !showResult) && (
           <Button
             form="question"
@@ -115,6 +136,9 @@ function Question({
             Responder
           </Button>
         )}
+        {result?.isCorrect && showResult && 
+          children
+        }
         {isLoading && showResult && <div className="loading"><Loader> Verificando... </Loader></div>}
       </div>
     </div>
