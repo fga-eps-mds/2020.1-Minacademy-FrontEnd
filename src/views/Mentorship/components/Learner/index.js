@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loading, fetchingMentor, selectMentor, selectMentorRequest }  from '../../../../slices/learnerSlice';
-import { assignMentor, cancelMentorRequest, unassignMentor, getMentor  } from '../../../../services/learnersService';
+import { loading, fetchingMentor, selectMentor, selectMentorRequest } from '../../../../slices/learnerSlice';
+import { assignMentor, cancelMentorRequest, unassignMentor, getMentor } from '../../../../services/learnersService';
 import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
 import Modal from '../../../../components/Modal';
 import Loader from '../../../../components/Loader';
 import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
 import MotionDiv from '../../../../UI/animation/MotionDiv';
+import './style.scss'
 
 /* eslint-disable no-shadow */
 function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, unassignMentor, mentorRequest, cancelMentorRequest, toggleModalVisible, toggleChatOpen }) {
@@ -23,51 +24,57 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
 
   return (
     <div className="learner">
-      <MotionDiv className="learner__content">
-        {mentor ? (
+      {mentor && <div className="mentor__header">
+        <span className="mentor__header-title">Clique em seu mentor para conversar</span>
+      </div>}
+      {mentor ? (
         <>
-          {fetchingMentor && <Loader big />}
-          <Card
-            title= {mentor.gender === 'Female' ? 'Sua Mentora' : 'Seu Mentor'}
-            icon
-            mainContent={`${mentor?.name} ${mentor?.lastname}`}
-            secondaryContent={mentor?.email}
-            selectCard={() => {
-              toggleChatOpen(true)
-            }}
-            deleteActionMessage='Desvincular'
-            deleteAction={() => {
-              toggleModalVisible()
-            }}
-          />
-        </>
-        ) : (
-          <>
+          <MotionDiv className="learner__content">
             {fetchingMentor && <Loader big />}
-            {!fetchingMentor && <h4>Você não está vinculada a nenhum mentor no momento.</h4>}
-            {mentorRequest && <p>Você será vinculada a um de nossos mentores assim que houver algum disponível.</p>}
-            {mentorRequest ?
-              <Button onClick={() => cancelMentorRequest()} shadow error>Cancelar solicitação</Button>
-              :
-              <Button onClick={() => assignMentor()} shadow disabled={mentorRequest}>
-                Solicitar mentoria
-              </Button>
-            }
-            {loading && <Loader>Procurando mentor</Loader>}
+            <Card
+              title={mentor.gender === 'Female' ? 'Sua Mentora' : 'Seu Mentor'}
+              icon
+              mainContent={`${mentor?.name} ${mentor?.lastname}`}
+              secondaryContent={mentor?.email}
+              selectCard={() => {
+                toggleChatOpen(true)
+              }}
+              deleteActionMessage='Desvincular'
+              deleteAction={() => {
+                toggleModalVisible()
+              }}
+            />
+            </MotionDiv>
+            <Modal
+              title={`Desvincular ${mentor.name}`}
+              confirmMessage='desvincular'
+              closeMessage='cancelar'
+              onClose={() => toggleModalVisible()}
+              onConfirm={() => unassign()}
+            >
+              <p>Que pena que essa relação não deu certo.</p>
+              <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
+              <p>Você tem certeza que deseja fazer isso?</p>
+            </Modal>
+          
+        </>
+      ) : (
+          <>
+            <MotionDiv className='noMentorContent'>
+              {fetchingMentor && <Loader big />}
+              {!fetchingMentor && <p>Você não está vinculada a nenhum(a) mentor(a) no momento.</p>}
+              {mentorRequest && <p>Será designado a você um(a) mentor(a) assim que disponível.</p>}
+              {mentorRequest ?
+                <Button onClick={() => cancelMentorRequest()} shadow error>Cancelar solicitação</Button>
+                :
+                <Button onClick={() => assignMentor()} shadow disabled={mentorRequest}>
+                  Solicitar mentor
+                </Button>
+              }
+              {loading && <Loader>Procurando mentor</Loader>}
+            </MotionDiv>
           </>
         )}
-      </MotionDiv>
-      <Modal
-        title={`Desvincular ${mentor?.name}`}
-        confirmMessage='desvincular'
-        closeMessage='cancelar'
-        onClose={() => toggleModalVisible()}
-        onConfirm={() => unassign()}
-      >
-        <p>Que pena que essa relação não deu certo.</p>
-        <p>Ao se desvincular de um monitor não podemos garantir que haverá outro monitor disponível.</p>
-        <p>Você tem certeza que deseja fazer isso?</p>
-      </Modal>
     </div>
   );
 }
