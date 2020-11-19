@@ -26,7 +26,7 @@ function Tutorial({
   currentUser,
   toggleModalVisible
 }) {
- 
+
   const match = useRouteMatch();
   const location = useLocation();
   const history = useHistory();
@@ -52,7 +52,7 @@ function Tutorial({
           </div>
         )}
       </div>
-      <MotionDiv layout className="tutorial__body">
+      <MotionDiv className="tutorial__body">
         {currentUser.userType === 'Learner' && <ActivitiesList />}
         <div className="custom-animation">
           <AnimatePresence exitBeforeEnter inital={false}>

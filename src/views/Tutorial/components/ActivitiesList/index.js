@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink, useRouteMatch, Link } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
 import { getQuestions } from '../../../../services/tutorialServices';
 import './style.scss';
@@ -29,12 +29,13 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
           {url.includes('tutorial') && (
             <>
             <h3>Atividades</h3>
-            <Link to="/tutorial"> Módulo {currentModule} </Link>
+            <p> Módulo {currentModule} </p>
             </>
             )}
         </div>
       </div>
       <div className="activities-list__list">
+        <NavLink className="activities-list__list-item answer" exact to="/tutorial">conteúdo</NavLink>
         {questionsList.map(activity => (
           <NavLink
             key={activity._id}
