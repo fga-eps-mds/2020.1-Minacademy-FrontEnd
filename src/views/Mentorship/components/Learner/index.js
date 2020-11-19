@@ -28,7 +28,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
         <>
           {fetchingMentor && <Loader big />}
           <Card
-            title='Seu Mentor'
+            title= {mentor.gender === 'Female' ? 'Sua Mentora' : 'Seu Mentor'}
             icon
             mainContent={`${mentor?.name} ${mentor?.lastname}`}
             secondaryContent={mentor?.email}
@@ -50,7 +50,7 @@ function Learner({ loading, fetchingMentor, mentor, getMentor, assignMentor, una
               <Button onClick={() => cancelMentorRequest()} shadow error>Cancelar solicitação</Button>
               :
               <Button onClick={() => assignMentor()} shadow disabled={mentorRequest}>
-                Solicitar mentor
+                Solicitar mentoria
               </Button>
             }
             {loading && <Loader>Procurando mentor</Loader>}
