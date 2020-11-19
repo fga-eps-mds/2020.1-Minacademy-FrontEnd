@@ -17,6 +17,10 @@
     margin-bottom: 2.5rem;
     color: var(--text-color);
 
+    @media(max-width: 600px) {
+      margin-bottom: 1.5rem;
+    }
+
     h3 {
       margin-bottom: 0.5rem;
     }
@@ -93,6 +97,29 @@
 
           @media (max-width: 600px) {
             border-width: 1px;
+          }
+        }
+      }
+
+      .icon {
+        width: 12px;
+        margin-right: 0.5rem;
+
+        &.book {
+          path {
+            fill: var(--placeholder-color);
+          }
+        }
+
+        &.check {
+          path {
+            fill: var(--secondary-green);
+          } 
+        }
+
+        &.exclamation {
+          path {
+            fill: var(--error-color);
           }
         }
       }

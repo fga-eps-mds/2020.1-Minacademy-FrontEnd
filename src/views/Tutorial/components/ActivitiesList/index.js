@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import { selectQuestionsList, selectCurrentModule, selectQuestionsResults } from '../../../../slices/tutorialSlice';
 import { getQuestions } from '../../../../services/tutorialServices';
+import { ReactComponent as Book } from '../../../../assets/images/book.svg';
+import { ReactComponent as Check } from '../../../../assets/images/checkbox.svg';
+import { ReactComponent as Exclamation } from '../../../../assets/images/exclamation.svg';
 import './style.scss';
 
 /* eslint-disable no-shadow */
@@ -51,6 +54,9 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
               return param[param.length - 1] === activity.number.toString()
             }}
           >
+            {result(activity) === undefined && <Book className="icon book" />} 
+            {result(activity) === false && <Exclamation className="icon exclamation" />} 
+            {result(activity) === true && <Check className="icon check" />} 
             Atividade {activity.number}
           </NavLink>
         ))}
