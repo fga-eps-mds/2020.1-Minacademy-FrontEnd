@@ -23,14 +23,14 @@ function FemaleMentor() {
           <li>- Caso não consiga em sua primeira tentativa, não se preocupe. Pois você possui um total de 3 tentativas.</li>
         </ul>
         <p>Após sua aprovação em nossa plataforma, você poderá escolher ficar disponivél para mentoria das aprendizes,
-          deste modo, assim que uma aprendiz solicitar um mentor, você poderá ser vinculado automaticamente a ela,
+          deste modo, assim que uma aprendiz solicitar um mentor, você poderá ser vinculada automaticamente a ela,
           contando com um chat para que vocês possam se comunicar, com o intuito de ajuda-la a concluir todo o tutorial,
           da melhor maneira possível. E se em algum momento você se sentir desconfortável com sua aprendiz,
           você poderá solicitar para que remova-a da sua lista de aprendizes a qualquer momento, e para evitar aborrecimentos,
-          vocês não serão mais vinculados novamente.
+          vocês não serão mais vinculadas novamente.
         </p>
         <p>Se uma de suas aprendizes conseguir concluir todas as atividades do tutorial Minacademy, ela será promovida a mentora
-          e vocês serão, infelizmente, removidos um da lista de mentoria do outro. No entanto, você receberá um certificado
+          e vocês serão, infelizmente, desvinculadas. No entanto, você receberá um certificado
           comprovando o seu serviço voluntário de ajuda à aprendizes em nossa plataforma.
         </p>
         <p>Agora que você entendeu como a nossa plataforma funciona, você poderá fazer a nossa avaliação, ou então deixar para fazer
@@ -41,6 +41,10 @@ function FemaleMentor() {
           <br />
           <Link to='/avaliacao' className='test-link'>Fazer a Avaliação</Link>
           <Link to='/dashboard' className='dashboard-link'>Quero ser avaliada depois</Link>
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
     </>

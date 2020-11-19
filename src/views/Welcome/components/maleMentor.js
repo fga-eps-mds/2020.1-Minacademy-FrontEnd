@@ -37,6 +37,10 @@ function MaleMentor(){
             <br/>
             <Link to='/avaliacao' className='test-link'>Fazer a Avaliação</Link>
             <Link to='/dashboard' className='dashboard-link'>Quero ser avaliado depois</Link>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
       </div>
     </>

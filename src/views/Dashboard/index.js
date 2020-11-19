@@ -92,7 +92,7 @@ function Dashboard({
                   ? `${progress?.remainingQuestions} atividade restante.`
                   : progress?.remainingQuestions
                     ? `${progress?.remainingQuestions} atividades restantes.`
-                    : 'Módulo concluido.'
+                    : 'Módulo concluído.'
               }
               linkText="atividades restantes."
               linkPath="/tutorial"
@@ -103,7 +103,7 @@ function Dashboard({
               linkText={
                 learnerCertificate
                   ? 'Visualizar certificado.'
-                  : 'Conclua as atividades do tutorial para acessar o certificado.'
+                  : 'Conclua as atividades do tutorial para ter acesso ao certificado.'
               }
               linkPath={learnerCertificate ? `/certificados` : '/tutorial'}
             />
@@ -111,7 +111,7 @@ function Dashboard({
               title="mentoria"
               mainContent={
                 mentor
-                  ? `Seu Mentor: ${mentor?.name} ${mentor?.lastname}.`
+                  ? mentor.gender === "Female" ? (`Sua Mentora: ${mentor?.name} ${mentor?.lastname}.`) : (`Seu Mentor: ${mentor?.name} ${mentor?.lastname}.`)
                   : 'Ainda não lhe foi designado nenhum mentor.'
               }
               secondaryContent={
@@ -131,18 +131,34 @@ function Dashboard({
           <MotionDiv className="dashboard__body">
             <Card
               title="Mentoria"
-              mainContent="Veja os seus aprendizes ou procure por novos."
+              mainContent="Veja as suas aprendizes ou procure por novas."
               linkText="acessar mentoria."
               linkPath="/mentoria"
             />
             <Card
               title="certificados"
               mainContent="Certificado de mentorias"
-              secondaryContent="Você receberá um certificado assim que um de seus aprendizes concluírem o tutorial."
+              secondaryContent="Você receberá um certificado assim que uma de suas aprendizes concluírem o tutorial."
               linkText="visualizar certificados."
               linkPath="/certificados"
             />
           </MotionDiv>
+        ) : currentUser.gender === "Female" ? (
+          <div className="dashboard__body">
+            <Card
+              title="Mentoria"
+              mainContent="Você ainda não está validada como mentora na plataforma. Faça a avaliação para ter acesso a todas as funcionalidades de mentoria."
+              linkText="faça aqui sua avaliação!"
+              linkPath="/mentoria"
+            />
+            <Card
+              title="Tutorial"
+              mainContent="Aqui você pode conhecer o tutorial que poderá lecionar se for validada."
+              secondaryContent="Se for validada, você poderá dar suporte para as aprendizes da plataforma, por isso é importante conhecer bem o tutorial."
+              linkText="tutorial."
+              linkPath="/tutorial"
+            />
+          </div>
         ) : (
           <MotionDiv className="dashboard__body">
             <Card
@@ -154,7 +170,7 @@ function Dashboard({
             <Card
               title="Tutorial"
               mainContent="Aqui você pode conhecer o tutorial que poderá lecionar se for validado."
-              secondaryContent="Se for validado, você poderá dar suporte para os aprendizes da plataforma, por isso é importante conhecer bem o tutorial."
+              secondaryContent="Se for validado, você poderá dar suporte para as aprendizes da plataforma, por isso é importante conhecer bem o tutorial."
               linkText="tutorial."
               linkPath="/tutorial"
             />
@@ -174,7 +190,7 @@ function Dashboard({
             }}
         >
           <p>Agora que você terminou o tutorial, foi promovida a mentora!</p>
-          <p>Se você quiser, pode ficar disponível a um aprendiz na página de mentoria.</p>
+          <p>Se você quiser, pode ficar disponível a uma aprendiz na página de mentoria.</p>
         </Modal>
       </div>
   );
