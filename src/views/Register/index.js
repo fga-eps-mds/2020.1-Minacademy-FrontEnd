@@ -26,7 +26,7 @@ function Register({ registerRequest, isLoading }) {
   const history = useHistory();
   const onSubmit = (credentials) => {
     registerRequest(credentials).then(res =>  {
-      if (res.payload?.error === 'email') setError('email', {message: 'Email já cadastrado'})
+      if (res.payload?.error === 'email') setError('email', {message: 'E-mail já cadastrado'})
     });
     history.push('/login');
   };

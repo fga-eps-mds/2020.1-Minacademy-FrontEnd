@@ -34,8 +34,8 @@ function FAQ() {
           <h2>Como um mentor obtém certificados?</h2>
           <p>
             Assim que uma das aprendizes do(a) mentor(a) concluir todo o tutorial
-            na platafoma, o(a) mentor(a) da mesma, receberá um certificado de serviço
-            de ajuda voluntária na plataforma. 
+            e receber o certificado de conclusão do tutorial, o(a) mentor(a), da mesma forma, receberá um certificado de serviço
+            de ajuda voluntária. 
           </p>
         </div>
         <div id="question5" className="question_left">
@@ -43,7 +43,7 @@ function FAQ() {
           <p>
             Acessando sua conta, haverá uma guia chamada "Mentoria", onde é possível solicitar mentoria.
             Após ser vinculada a um dos nossos monitores, vocês poderão se comunicar clicando no ícone do
-            chat que ficará sempre visível no canto inferior direito da platafoma. 
+            chat que ficará sempre visível no canto inferior direito da plataforma. 
           </p>
         </div>
         <div id="question6" className="question_hight">
@@ -51,23 +51,23 @@ function FAQ() {
           <p>
             Acessando sua conta, haverá uma guia chamada "Mentoria", onde é possível solicitar novos aprendizes.
             Após ser vinculada a uma de nossas aprendizes, vocês poderão se comunicar clicando no ícone do
-            chat que ficará sempre visível no canto inferior direito da platafoma. 
+            chat que ficará sempre visível no canto inferior direito da plataforma. 
           </p>
         </div>
       </div>
         <div id="question7" className="question_left">
           <h2>Como remover um mentor?</h2>
           <p>
-            Acessando a mesma guia "Mentoria", aparecerá o card do seu mentor, na parte de baixo deste card
-            há a opção de desvincular-se do mentor. Quando clicar neste botão, aparacerá uma mensagem, para ter
+            Acessando a mesma guia "Mentoria", será exibido o card do seu mentor. Na parte de baixo deste card
+            há a opção de desvincular-se do mentor. Quando clicar neste botão, aparecerá uma mensagem, para ter
             certeza de que você realmente quer remover o seu mentor, então basta confirmar sua escolha.
           </p>
         </div>
         <div id="question8" className="question_hight">
           <h2>Como remover um aprendiz?</h2>
           <p>
-            Acessando a mesma guia "Mentoria", aparecerá a lista dos cards de seus aprendizes, na parte de baixo destes
-            cards há a opção de desvincular-se do aprendiz. Quando clicar neste botão, aparacerá uma mensagem, para ter
+            Acessando a mesma guia "Mentoria", será exibido a lista dos cards de seus aprendizes. Na parte de baixo destes
+            cards, há a opção de desvincular-se do aprendiz. Quando clicar neste botão, aparecerá uma mensagem, para ter
             certeza de que você realmente quer remover o seu aprendiz, então basta confirmar sua escolha.
           </p>
         </div>

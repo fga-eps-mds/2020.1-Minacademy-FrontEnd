@@ -22,9 +22,9 @@ function FemaleMentor() {
           <li>- Você precisará atingir uma nota maior ou igual a 70% para ser aprovada.</li>
           <li>- Caso não consiga em sua primeira tentativa, não se preocupe. Pois você possui um total de 3 tentativas.</li>
         </ul>
-        <p>Após sua aprovação em nossa plataforma, você poderá escolher ficar disponivél para mentoria das aprendizes,
+        <p>Após sua aprovação em nossa plataforma, você poderá escolher ficar disponível para mentoria das aprendizes,
           deste modo, assim que uma aprendiz solicitar um mentor, você poderá ser vinculada automaticamente a ela,
-          contando com um chat para que vocês possam se comunicar, com o intuito de ajuda-la a concluir todo o tutorial,
+          contando com um chat para que vocês possam se comunicar, com o intuito de ajudá-la a concluir todo o tutorial,
           da melhor maneira possível. E se em algum momento você se sentir desconfortável com sua aprendiz,
           você poderá solicitar para que remova-a da sua lista de aprendizes a qualquer momento, e para evitar aborrecimentos,
           vocês não serão mais vinculadas novamente.

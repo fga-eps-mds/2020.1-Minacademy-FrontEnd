@@ -105,7 +105,7 @@ const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue
     }
     return response.data.user
   } catch (err) {
-    toast.error('Não foi possivel atualizar seus dados =(');
+    toast.error('Não foi possível atualizar seus dados =(');
     return rejectWithValue(err)
   }
 });
@@ -162,7 +162,7 @@ const changeUserEmail = async (values) => {
     return response.data
   } catch (err) {
      if(err.response.data.error === 'You already changed your email') {
-      toast.error('Não foi solicitado a mudança de email através desse link ou ele ja expirou')
+      toast.error('Não foi solicitado a mudança de email através desse link ou ele já expirou')
     } else {
       toast.error('Erro ao alterar o email')
     }
