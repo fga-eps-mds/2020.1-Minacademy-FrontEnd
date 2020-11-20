@@ -6,7 +6,7 @@ import './style.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { registerUser } from '../../services/usersService';
 import { isLoading } from '../../slices/usersSlice';
-import { openWebSocket } from '../../services/websocket';
+// import { openWebSocket } from '../../services/websocket';
 import Loader from '../../components/Loader';
 
 /* eslint-disable no-shadow */
@@ -19,9 +19,9 @@ function RegisterConfirm({ registerUser, isLoading }) {
 
   useEffect(() => {
     registerUser({ registerLink })
-    .then(unwrapResult)
-    .then(() => setReady(true))
-    .catch(() => setError(true))
+    .then(unwrapResult) // eslint-disable-next-line no-unused-vars
+    .then(res => setReady(true)) // eslint-disable-next-line no-unused-vars
+    .catch(error => setError(true)) 
   }, [])
 
   useEffect(() => { // eslint-disable-line consistent-return

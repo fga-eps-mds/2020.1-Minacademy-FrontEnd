@@ -16,7 +16,7 @@ function Card({
   deleteActionMessage,
   icon,
   selectCard = false,
-  disabled,
+  disabled, /* eslint react/prop-types: 0 */
   defaultChecked = false,
   ...otherProps
 }) {

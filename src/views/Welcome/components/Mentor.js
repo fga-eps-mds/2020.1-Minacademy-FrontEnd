@@ -1,14 +1,14 @@
 import React from 'react'
 import '../style.scss'
 import { Link } from 'react-router-dom';
-
-function Mentor({ gender }){
+/* eslint-disable react/prop-types */
+function Mentor({ gender }){ 
   return (
     <>
       <div>
         <br/>
         <p>{`Você já foi ${gender === 'Male' ? 'cadastrado' : 'cadastrada'} com sucesso na plataforma Minacademy, e agora poderá explorar tudo que temos para oferecer!`}</p>
-        <p>{`Infelizmente, você ainda não é ${gender == 'Male'? 'um mentor validado' : 'uma mentora validada'}, então não poderá ajudar as aprendizes a concluir o
+        <p>{`Infelizmente, você ainda não é ${gender === 'Male'? 'um mentor validado' : 'uma mentora validada'}, então não poderá ajudar as aprendizes a concluir o
           tutorial introdutório de Django`}</p>
         <p>{`Para ser ${gender === 'Male'? 'validado' : 'validada'}, precisamos que você passe por uma avaliação
           para comprovar seus conhecimentos acerca do conteúdo do curso.`}</p>
