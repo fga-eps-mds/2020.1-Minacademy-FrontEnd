@@ -1,40 +1,47 @@
-.changeEmailConfirm {
+.register-confirm {
+   min-height: 100vh;
+   max-width: 80%;
+   margin: 0 auto;
+   padding: 5rem 1rem;
 
-  max-width: 100%;
-  min-height: 50vw;
+   &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.1), 0px 15px 40px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      padding: 3rem;
+      margin: 0 auto;
+      max-width: 55%;
 
-  h1 {
-    padding-top: 5vw;
-    box-sizing: border-box;
-    font-size: 3vw;
-    font-family: Overpass, sans-serif;
-    margin-left: 4.5vw;
-    color: var(--title-color);
-  }
+      p {
+         text-align: center;
+      }
+   }
 
-  p {
-    font-weight: 300;
-    font-size: 2vw;
-    font-family: Overpass, sans-serif;
-    padding-left: 4.5vw;
-    padding-right: 4.5vw;
-    text-align: left;
-  }
+   &__loading {
 
-  button {
-    position: relative;
-    margin-left: 50vw;
-    margin-right: 20vw;
-    top: 2vw;
-  }
-}
+   }
 
-.login-link  {
-    display: inline-block;
-    align-self: flex-end;
-    text-align: left;
-    text-decoration: underline;
-    color: var(--secondary-color);
-    position: relative;
+   &__success {
+      h3 {
+         color: var(--secondary-green);
+         margin-bottom: 1rem;
+      }
 
+      .emphasis {
+         font-weight: 600;
+         color: var(--secondary-color);
+      }
+   }
+
+   &__failed {
+      h3 {
+         color: var(--error-color);
+         margin-bottom: 1rem;
+      }
+   }
+   
 }
