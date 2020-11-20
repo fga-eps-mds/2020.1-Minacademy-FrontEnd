@@ -14,23 +14,23 @@ function FAQ() {
           </p>
         </div>
         <div id="question2" className="question_hight">
-          <h2>Quem pode se tornar mentor?</h2>
+          <h2>Quem pode se tornar mentor(a)?</h2>
           <p>
-            Alunas que terminaram o tutorial e as atividades se tornam
+            Aprendizes que terminaram o tutorial e as atividades se tornam
             automaticamente mentoras. Além disso, qualquer pessoa pode 
-            se cadastrar como mentor, sendo necessário apenas ser 
-            aprovado em uma avaliação para comprovar sua aptidão.
+            se cadastrar como mentor(a), sendo necessário apenas ser 
+            aprovado(a) em uma avaliação para comprovar sua aptidão.
           </p>
         </div>
         <div id="question3" className="question_left">
-          <h2>Como um aprendiz obtém o certificado?</h2>
+          <h2>Como uma aprendiz obtém o certificado?</h2>
           <p>
             Você receberá o certificado de conclusão do tutorial assim que responder corretamente todas
             as atividades dos módulos.
           </p>
         </div>
         <div id="question4" className="question_hight">
-          <h2>Como um mentor obtém certificados?</h2>
+          <h2>Como um(a) mentor(a) obtém certificados?</h2>
           <p>
             Assim que uma das aprendizes do(a) mentor(a) concluir todo o tutorial
             e receber o certificado de conclusão do tutorial, o(a) mentor(a), da mesma forma, receberá um
@@ -38,28 +38,28 @@ function FAQ() {
           </p>
         </div>
         <div id="question5" className="question_left">
-          <h2>Como solicitar um mentor?</h2>
+          <h2>Como solicitar um(a) mentor(a)?</h2>
           <p>
             Acessando sua conta, haverá uma guia chamada Mentoria, onde é possível solicitar mentoria.
-            Após ser vinculada a um dos nossos monitores, vocês poderão se comunicar clicando no ícone do
+            Após ser vinculada a um dos nossos mentores, vocês poderão se comunicar clicando no ícone do
             chat que ficará sempre visível no canto inferior direito da plataforma.
           </p>
         </div>
         <div id="question6" className="question_hight">
           <h2>Como solicitar uma aprendiz?</h2>
           <p>
-            Acessando sua conta, haverá uma guia chamada Mentoria, onde é possível solicitar novos aprendizes.
+            Acessando sua conta, haverá uma guia chamada Mentoria, onde é possível solicitar novas aprendizes.
             Após a vinculação, vocês poderão se comunicar clicando no ícone do chat que ficará sempre visível
             no canto inferior direito da plataforma. 
           </p>
         </div>
       </div>
         <div id="question7" className="question_left">
-          <h2>Como remover um mentor?</h2>
+          <h2>Como remover um(a) mentor(a)?</h2>
           <p>
-            Acessando a mesma guia Mentoria, será exibido o card do seu mentor. Na parte de baixo deste card
-            há a opção de desvincular-se do mentor. Quando clicar neste botão, aparecerá uma mensagem, para ter
-            certeza de que você realmente quer remover o seu mentor, então basta confirmar sua escolha.
+            Acessando a mesma guia Mentoria, será exibido o card do seu/sua mentor(a). Na parte de baixo deste card
+            há a opção de desvincular-se do(a) mentor(a). Quando clicar neste botão, aparecerá uma mensagem, para ter
+            certeza de que você realmente quer remover o seu/sua mentor(a), então basta confirmar sua escolha.
           </p>
         </div>
         <div id="question8" className="question_hight">
