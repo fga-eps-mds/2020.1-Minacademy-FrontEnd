@@ -7,7 +7,8 @@ import {
   selectTotalProgress,
   selectQuestionsList,
   setCurrentModule,
-  selectCurrentModule
+  selectCurrentModule,
+  selectModuleList
 } from '../../../../slices/tutorialSlice';
 import { toggleModalVisible } from '../../../../slices/modalSlice';
 import Question from '../../../../components/Question';
@@ -25,6 +26,7 @@ function TutorialActivity({
   questionsList,
   match,
   currentModule,
+  moduleList
 }) {
   useEffect(() => {
     if (totalProgress === 100) {
@@ -91,7 +93,7 @@ function TutorialActivity({
                 Anterior
               </Button> */}
 
-              {nextQuestion ? 
+              {nextQuestion ?
               <Button
                 shadow
                 inverted
@@ -107,7 +109,8 @@ function TutorialActivity({
                 shadow
                 onClick={() => {
                   history.push('/tutorial');
-                  setCurrentModule(currentModule + 1)
+                  if(moduleList.length !== currentModule)
+                    setCurrentModule(currentModule + 1)
                 }}
               >
                 Continuar tutorial
@@ -128,12 +131,14 @@ TutorialActivity.propTypes = {
   questionsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   setCurrentModule: PropTypes.func.isRequired,
   currentModule: PropTypes.number.isRequired,
+  moduleList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired
 };
 
 const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
   questionsList: selectQuestionsList(state),
-  currentModule: selectCurrentModule(state)
+  currentModule: selectCurrentModule(state),
+  moduleList: selectModuleList(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
