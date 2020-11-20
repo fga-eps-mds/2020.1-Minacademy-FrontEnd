@@ -161,25 +161,36 @@ const changeUserEmail = async (values) => {
       toast.error('Não foi solicitado a mudança de email através desse link ou ele ja expirou')
     } else {
       toast.error('Erro ao alterar o email')
-    } 
+    }
     return err
   }
 };
 
-const registerUser = async (values) => {
-  try {
-    const response = await api.put(USER_ENDPOINT, values);
-    toast.success('Você foi cadastrado com sucesso');
-    return response.data;
-  } catch (err) {
-    if (err.response.data.error === 'User already confirm register') {
-      toast.error('Você já está cadastrado na plataforma, ou o seu link expirou');
-    } else {
-      toast.error('Erro ao registrar');
+const registerUser = createAsyncThunk(
+  'users/confirmRegister',
+  async (values, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await api.put(USER_ENDPOINT, values);
+      if(response.data.user.gender === "Female"){
+        toast.success(`Seja bem-vinda ${response.data.user.name}! Você foi cadastrada com sucesso`);
+      } else {
+        toast.success(`Seja bem-vindo ${response.data.user.name}! Você foi cadastrado com sucesso`);
+      }
+      dispatch(setAvailability(response.data.user.isAvailable)); // eslint-disable-line no-undef
+      dispatch(setMentorRequest(response.data.user.mentor_request));
+      dispatch(setValidationAttempts(response.data.user.attempts));
+      sessionStorage.setItem('accessToken', response.data.accessToken);
+      return response.data;
+    } catch (err) {
+      if (err.response.data.error === 'User already confirm register') {
+        toast.error('Seu cadastro já foi feito na plataforma, ou o seu link expirou');
+      } else {
+        toast.error('Estamos com problemas no servidor, tente novamente mais tarde');
+      }
+      return rejectWithValue(null);
     }
-    return err;
   }
-}
+);
 
 export {
   listUsers,

@@ -84,9 +84,9 @@ const Routes = () => {
           <PublicRoute exact path="/confirma-mudanca-email/:changeEmailLink">
             <ChangeEmailConfirm />
           </PublicRoute>
-          <PublicRoute exact path="/confirma-cadastro/:registerLink">
+          <RouteTransition exact path="/confirma-cadastro/:registerLink">
             <RegisterConfirm />
-          </PublicRoute>
+          </RouteTransition>
         </AnimatedRoutes>
       </div>
       </Suspense>

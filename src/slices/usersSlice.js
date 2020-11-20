@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { promoteToMentor } from '../services/learnersService';
-import { login , logout , registerRequest, editUser } from '../services/usersService' // eslint-disable-line import/no-cycle
+import { login , logout , registerRequest, editUser, registerUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
 const initialState = {
   loading: false,
@@ -57,6 +57,17 @@ const userSlice = createSlice({
     [promoteToMentor.fulfilled]: (state, action) => {
       state.currentUser = action.payload
     },
+
+    [registerUser.pending]: (state, action) => {
+      state.loading = true
+    },
+    [registerUser.fulfilled]: (state, action) => {
+      state.currentUser = action.payload.user
+      state.loading = false
+    },
+    [registerUser.rejected]: (state, action) => {
+      state.loading = false
+    }
   }
 });
 

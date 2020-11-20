@@ -19,11 +19,11 @@ function RegisterConfirm({ registerUser, isLoading }) {
   useEffect(() => {
     registerUser({ registerLink })
     .then(unwrapResult)
-    .then(res => setReady(true))
-    .catch(error => setError(true))
+    .then(() => setReady(true))
+    .catch(() => setError(true))
   }, [])
 
-  useEffect(() => {
+  useEffect(() => { // eslint-disable-line consistent-return
     if (ready) {
     const interval = setInterval(() => {
       setcountdown(countdown => countdown - 1);
