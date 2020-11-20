@@ -25,17 +25,16 @@ function FAQ() {
         <div id="question3" className="question_left">
           <h2>Como um aprendiz obtém o certificado?</h2>
           <p>
-            Concluindo todo o tutorial disponível na plataforma, 
-            respondendo corretamente todas as atividades relacionada 
-            a cada módulo, você receberá o certificado de conclusão do tutorial.
+            Você receberá o certificado de conclusão do tutorial assim que responder corretamente todas
+            as atividades dos módulos.
           </p>
         </div>
         <div id="question4" className="question_hight">
           <h2>Como um mentor obtém certificados?</h2>
           <p>
             Assim que uma das aprendizes do(a) mentor(a) concluir todo o tutorial
-            e receber o certificado de conclusão do tutorial, o(a) mentor(a), da mesma forma, receberá um certificado de serviço
-            de ajuda voluntária. 
+            e receber o certificado de conclusão do tutorial, o(a) mentor(a), da mesma forma, receberá um
+            certificado de mentoria voluntária. 
           </p>
         </div>
         <div id="question5" className="question_left">
@@ -47,11 +46,11 @@ function FAQ() {
           </p>
         </div>
         <div id="question6" className="question_hight">
-          <h2>Como solicitar um aprendiz?</h2>
+          <h2>Como solicitar uma aprendiz?</h2>
           <p>
             Acessando sua conta, haverá uma guia chamada Mentoria, onde é possível solicitar novos aprendizes.
-            Após ser vinculada a uma de nossas aprendizes, vocês poderão se comunicar clicando no ícone do
-            chat que ficará sempre visível no canto inferior direito da plataforma. 
+            Após a vinculação, vocês poderão se comunicar clicando no ícone do chat que ficará sempre visível
+            no canto inferior direito da plataforma. 
           </p>
         </div>
       </div>
@@ -64,11 +63,11 @@ function FAQ() {
           </p>
         </div>
         <div id="question8" className="question_hight">
-          <h2>Como remover um aprendiz?</h2>
+          <h2>Como remover uma aprendiz?</h2>
           <p>
-            Acessando a mesma guia Mentoria, será exibido a lista dos cards de seus aprendizes. Na parte de baixo destes
-            cards, há a opção de desvincular-se do aprendiz. Quando clicar neste botão, aparecerá uma mensagem, para ter
-            certeza de que você realmente quer remover o seu aprendiz, então basta confirmar sua escolha.
+          Acessando a guia Mentoria, será exibido a lista de suas aprendizes. Na parte de baixo desses cards,
+          há uma opção de desvincular-se da aprendiz. Quando clicar nesse botão, aparecerá uma mensagem para
+          você confirmar que quer realmente remover sua aprendiz. Por fim, basta confirmar sua escolha.
           </p>
         </div>
       <br />
