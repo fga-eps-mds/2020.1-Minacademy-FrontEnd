@@ -71,11 +71,11 @@ const registerRequest = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await api.post(USER_ENDPOINT, values);
-      toast.success('Lhe foi enviado um email para que você confirme seu cadastro. Verifique-o!');
+      toast.success('Lhe foi enviado um e-mail para que você confirme seu cadastro. Verifique-o!');
       return response.data;
     } catch (error) {
       if (error.response.data.error.includes('duplicate key error')) {
-        toast.error('Email já cadastrado');
+        toast.error('E-mail já cadastrado');
         return rejectWithValue({ error: 'email' });
       }
       toast.error('Erro no servidor');
@@ -99,7 +99,7 @@ const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue
   try {
     const response = await api.patch(USER_ENDPOINT, values);
     if (response.data.emailChange) {
-      toast.success('Enviamos um email para que você possa confirmar a troca de seu endereço de email, verifique-o.')
+      toast.success('Enviamos um e-mail para que você possa confirmar a troca de seu endereço de email, verifique-o.')
     } else {
       toast.success('Seus dados foram atualizados com sucesso =D');
     }
@@ -113,7 +113,7 @@ const editUser = createAsyncThunk('users/edit', async (values, { rejectWithValue
 const forgotPassword = async (values) => {
   try {
     const response = await api.put(FORGOT_PASSWORD_ENDPOINT, values);
-    toast.success('Email enviado com sucesso');
+    toast.success('E-mail enviado com sucesso');
     return response.data;
   } catch (err) {
     if (!err.response) {
@@ -124,10 +124,10 @@ const forgotPassword = async (values) => {
       err.response.data.message === 'There is no such email in our platform'
     ) {
       toast.error(
-        'Este endereço de email não está cadastrado em nossa plataforma!'
+        'Este endereço de e-mail não está cadastrado em nossa plataforma!'
       );
     } else {
-      toast.error('Erro ao ao enviar Email');
+      toast.error('Erro ao ao enviar E-mail');
     }
     return err;
   }
@@ -157,15 +157,20 @@ const changeUserPassword = async (values) => {
 const changeUserEmail = async (values) => {
   try {
     const response = await api.put(CHANGE_EMAIL_ENDPOINT, values);
-    toast.success('Email alterado com sucesso')
-    toast.success('Seu novo endereço de email: ' + response.data.email) // eslint-disable-line prefer-template
+    toast.success('E-mail alterado com sucesso')
+    toast.success('Seu novo endereço de e-mail: ' + response.data.email) // eslint-disable-line prefer-template
     return response.data
   } catch (err) {
      if(err.response.data.error === 'You already changed your email') {
-      toast.error('Não foi solicitado a mudança de email através desse link ou ele já expirou')
+      toast.error('Não foi solicitado a mudança de e-mail através desse link ou ele já expirou')
     } else {
+<<<<<<< HEAD
       toast.error('Erro ao alterar o email')
     }
+=======
+      toast.error('Erro ao alterar o e-mail')
+    } 
+>>>>>>> Customização dos toasts baseado no gênero
     return err
   }
 };

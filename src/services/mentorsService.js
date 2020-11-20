@@ -18,7 +18,7 @@ const assignLearner = createAsyncThunk('mentor/assignLearner', async (values, { 
     toast.success(`${response.data.learner.name} é sua nova aprendiz!`);
     return response.data;
   } catch (error) {
-    toast.dark('Nenhum aprendiz disponivel no momento', { toastId: "customId", autoClose: false })
+    toast.dark('Nenhuma aprendiz disponivel no momento', { toastId: "customId", autoClose: false })
     return rejectWithValue(error.response.data.isAvailable)
   }
 });
@@ -26,7 +26,7 @@ const assignLearner = createAsyncThunk('mentor/assignLearner', async (values, { 
 const unassignLearner = createAsyncThunk('mentor/unassignLearner', async (learnerID, { rejectWithValue }) => {
   try {
     const response = await api.delete(MENTOR_ENDPOINT, {params: { learnerID }});
-    toast.success('Aprendiz desvinculado com sucesso');
+    toast.success('Aprendiz desvinculada com sucesso');
     // console.log(learnerID)
     // dispatch({ type: 'chat/removeChat', payload: learnerID })
     return response.data
@@ -49,7 +49,7 @@ const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, 
   try {
     const response = await api.patch(`${MENTOR_ENDPOINT}/validation`)
     if (response.data.user.isValidated) {
-      toast.success('É isso aí! Agora você pode aceitar aprendizes na página de monitoria!')
+      toast.success('É isso aí! Agora você pode aceitar aprendizes na página de mentoria!')
       dispatch({ type: 'user/setCurrentUser', payload: response.data.user })
     } else {
       toast.error(`Você não atingiu o resultado mínimo para ser validado.
