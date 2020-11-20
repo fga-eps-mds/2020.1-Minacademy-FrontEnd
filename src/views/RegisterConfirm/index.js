@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
+import './style.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { registerUser } from '../../services/usersService';
 import { isLoading } from '../../slices/usersSlice';
+import { openWebSocket } from '../../services/websocket';
 import Loader from '../../components/Loader';
-import './style.scss';
 
 /* eslint-disable no-shadow */
 function RegisterConfirm({ registerUser, isLoading }) {
