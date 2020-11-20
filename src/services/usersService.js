@@ -164,13 +164,8 @@ const changeUserEmail = async (values) => {
      if(err.response.data.error === 'You already changed your email') {
       toast.error('Não foi solicitado a mudança de e-mail através desse link ou ele já expirou')
     } else {
-<<<<<<< HEAD
-      toast.error('Erro ao alterar o email')
-    }
-=======
       toast.error('Erro ao alterar o e-mail')
     } 
->>>>>>> Customização dos toasts baseado no gênero
     return err
   }
 };

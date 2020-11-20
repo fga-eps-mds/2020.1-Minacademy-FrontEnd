@@ -148,13 +148,13 @@
 }
 
 .FAQ {
-  max-height: 100vw;
   max-width: 95vw;
   margin-bottom: 10vw;
   margin-left: 2vw;
   background-color: var(--secondary-color);
   border-radius: 20px;  
   h1 {
+    color: var(--title-color);
     display: flex;
     box-sizing: border-box;
     font-size: 4vw;
@@ -163,11 +163,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
   }
 
   h2 {
-    color: whitesmoke;
+    color: var(--secondary-color);
     box-sizing: border-box;
     font-size: 2vw;
     font-family: Overpass;
@@ -176,7 +175,7 @@
   }
 
   p {
-    color: whitesmoke;
+    color: var(--title-color);
     width: 40vw;
     font-weight: 300;
     font-size: 1.6vw;
