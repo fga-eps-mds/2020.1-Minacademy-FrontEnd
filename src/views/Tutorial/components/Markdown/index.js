@@ -6,15 +6,17 @@ import {
   selectCurrentModule,
   selectMarkdown,
   setCurrentModule,
-  selectModuleList
+  selectModuleList,
+  isUpdatingMarkdown
 } from '../../../../slices/tutorialSlice'
 import { updateMarkdown, getModules } from '../../../../services/tutorialServices'
 import Dropdown from '../../../../components/Dropdown';
 import Button from '../../../../components/Button'
+import Loader from '../../../../components/Loader'
 
 import './style.scss'
 /* eslint-disable no-shadow */
-function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, getModules, modulesList }) {
+function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, getModules, modulesList, isUpdatingMarkdown }) {
   useEffect(() => {
     getModules()
   }, [])
@@ -47,11 +49,16 @@ function Markdown({ markdown, setCurrentModule, currentModule, updateMarkdown, g
         <Dropdown items={modulesList} initialSelection={currentModule} toggleItem={changeModule}/>
       </div>
       <div className="markdown__content--body">
+      {!isUpdatingMarkdown
+      ? <>
         <ReactMarkdown source={markdown} renderers={{link: LinkRenderer}} />
-      </div>
-      <div className="markdown__content--navigation">
-        <Button onClick={previous} shadow>anterior</Button>
-        <Button onClick={next} shadow>próximo</Button>
+        <div className="markdown__content--navigation">
+          <Button onClick={previous} shadow>anterior</Button>
+          <Button onClick={next} shadow>próximo</Button>
+        </div>
+        </>
+      : <Loader big />
+      }
       </div>
     </div>
   );
@@ -64,12 +71,14 @@ Markdown.propTypes = {
   getModules: PropTypes.func.isRequired,
   setCurrentModule: PropTypes.func.isRequired,
   modulesList: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])).isRequired,
+  isUpdatingMarkdown: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   currentModule: selectCurrentModule(state),
   markdown: selectMarkdown(state),
-  modulesList: selectModuleList(state)
+  modulesList: selectModuleList(state),
+  isUpdatingMarkdown: isUpdatingMarkdown(state)
 });
 
 const mapDispatchToProps = dispatch => ({

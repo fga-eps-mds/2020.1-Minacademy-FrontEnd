@@ -53,13 +53,14 @@ function Question({
     }
   };
 
-  const descriptionText = useMemo(() => question.description
+  const descriptionText = useMemo(() => question?.description
     .split('\n')
     .map((word, i) => <p key={i}>{word}</p> // eslint-disable-line react/no-array-index-key
   ), [question])
 
-  const questionAlternatives = useMemo(() =>
-    Object.keys(question.alternatives).map((item) =>
+  const questionAlternatives = useMemo(() => {
+    if (question)
+    return Object.keys(question.alternatives).map((item) =>
       <div className="question__alternatives--item" key={item}>
         <label htmlFor="alternative">
           <input
@@ -71,9 +72,17 @@ function Question({
           />
           <span>{question.alternatives[item]}</span>
         </label>
-      </div>
-  ), [question])
+      </div>)
+      return <div>Erro ao buscar questão</div>
+      }, [question])
 
+  if (!question) {
+    return (
+      <div className="question">
+        <p>Ocorreu um erro</p>
+      </div>
+    )
+  }
   return (
     <div className="question">
       <div className="question__description">{descriptionText}</div>
@@ -122,9 +131,6 @@ function Question({
         )}
       </div>
       <div className="question__buttons">
-        {/* <div className="question__buttons--navigation">
-          {children}
-        </div> */}
         {(!result?.isCorrect || !showResult) && (
           <Button
             form="question"

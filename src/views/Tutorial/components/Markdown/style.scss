@@ -1,5 +1,12 @@
 .markdown {
   text-align: justify;
+  border-right: 0.2rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+
+  @media(max-width: 600px) {
+    overflow-x: hidden;
+    padding-bottom: 0.5rem;
+  }
 
   @media(max-width: 600px) {
     // max-width: 100%;

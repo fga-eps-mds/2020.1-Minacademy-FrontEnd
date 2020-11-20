@@ -6,6 +6,8 @@ import { generateCertificate } from '../../../../services/certificatesServices';
 import {
   selectTotalProgress,
   selectQuestionsList,
+  setCurrentModule,
+  selectCurrentModule
 } from '../../../../slices/tutorialSlice';
 import { toggleModalVisible } from '../../../../slices/modalSlice';
 import Question from '../../../../components/Question';
@@ -19,8 +21,10 @@ function TutorialActivity({
   totalProgress,
   toggleModalVisible,
   generateCertificate,
+  setCurrentModule,
   questionsList,
   match,
+  currentModule,
 }) {
   useEffect(() => {
     if (totalProgress === 100) {
@@ -103,6 +107,7 @@ function TutorialActivity({
                 shadow
                 onClick={() => {
                   history.push('/tutorial');
+                  setCurrentModule(currentModule + 1)
                 }}
               >
                 Continuar tutorial
@@ -120,17 +125,21 @@ TutorialActivity.propTypes = {
   history: PropTypes.oneOfType([PropTypes.object]).isRequired,
   match: PropTypes.oneOfType([PropTypes.object]).isRequired,
   generateCertificate: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  questionsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  questionsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  setCurrentModule: PropTypes.func.isRequired,
+  currentModule: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   totalProgress: selectTotalProgress(state),
   questionsList: selectQuestionsList(state),
+  currentModule: selectCurrentModule(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModalVisible: () => dispatch(toggleModalVisible()),
   generateCertificate: () => dispatch(generateCertificate()),
+  setCurrentModule: (activityNumber) => dispatch(setCurrentModule(activityNumber))
 });
 
 export default withRouter(

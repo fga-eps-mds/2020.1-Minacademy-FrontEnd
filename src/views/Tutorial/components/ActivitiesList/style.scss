@@ -136,5 +136,14 @@
         color: var(--secondary-color);
       }
     }
+
+    .loader {
+      justify-content: left;
+      
+      span {
+        text-transform: capitalize;
+        color: var(--placeholder-color);
+      }
+    }
   }
 }
