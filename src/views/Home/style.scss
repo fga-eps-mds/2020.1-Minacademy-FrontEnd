@@ -152,7 +152,6 @@
   max-width: 95vw;
   margin-bottom: 10vw;
   margin-left: 2vw;
-  height: 1600px;
   background-color: var(--secondary-color);
   border-radius: 20px;  
   h1 {
@@ -161,7 +160,9 @@
     font-size: 4vw;
     font-family: Overpass;
     margin-top: 1vw;
-    margin-left: 28vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     color: white;
   }
 
