@@ -24,12 +24,14 @@ function CourseCertificates({ certificates, getAllCertificates, isLoading }) {
     <div className="courseCertificates">
       <div className="courseCertificates__header">
         <h1>Certificados</h1>
-        {!isLoading && (certificates?.length === 0 || certificates === null)
-          ? <h2>Você não possui certificados.</h2>
-          : <>
+        {!isLoading && (certificates?.length === 0 || certificates === null) &&
+           <h2>Você não possui certificados.</h2>
+        }
+        {!isLoading && certificates?.length >= 1 &&
+          <>
             <h2>Você conquistou {certificates?.length} {certificates?.length > 1 ? 'certificados' : 'certificado'}.</h2>
             <h2>É possível baixar ou visualizá-los diretamente no navegador.</h2>
-            </>
+          </>
         }
       </div>
       {(isLoading || !ready) && (

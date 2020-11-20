@@ -35,7 +35,7 @@ const CertificateTemplate = ({ certificateData, image }) => {
               <Text style={styles.certificate.content}>
                 {certificateData?.courseType === 'Learner'
                   ? 'finalizou com sucesso o tutorial da Minacademy.'
-                  : 'prestou mentoria voluntária em nossa plataforma.'}
+                  : 'prestou mentoria voluntária na plataforma Minacademy.'}
               </Text>
             </View>
 

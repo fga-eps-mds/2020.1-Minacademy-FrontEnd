@@ -15,7 +15,8 @@ function Card({
   deleteAction,
   deleteActionMessage,
   icon,
-  selectCard,
+  selectCard = false,
+  disabled, /* eslint react/prop-types: 0 */
   defaultChecked = false,
   ...otherProps
 }) {
@@ -23,7 +24,7 @@ function Card({
   /* eslint-disable jsx-a11y/control-has-associated-label */
   return (
       <label className={`card-label ${selectCard ? 'selectable' : ''}`} >
-        <input type="radio" name="card" className="card-input-element" defaultChecked={defaultChecked} />
+        <input type="radio" name="card" disabled={!selectCard} className="card-input-element" defaultChecked={defaultChecked} />
         <div
           className="custom-card"
           {...otherProps}
@@ -61,7 +62,7 @@ Card.defaultProps = {
   deleteAction: false,
   deleteActionMessage: '',
   icon: false,
-  selectCard: () => {},
+  selectCard: false,
   defaultChecked: false
 };
 
@@ -74,7 +75,7 @@ Card.propTypes = {
   deleteAction: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   deleteActionMessage: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  selectCard: PropTypes.func,
+  selectCard: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   defaultChecked: PropTypes.bool,
 };
 

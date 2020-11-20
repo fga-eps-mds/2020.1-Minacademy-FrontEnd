@@ -58,7 +58,7 @@ function Mentor({
       {currentUser.isValidated ? (
         <>
           <div className="mentor__header">
-            <span className="mentor__header-title">Clique em um aprendiz para conversar</span>
+            <span className="mentor__header-title">Clique em uma aprendiz para conversar</span>
             <Button
               shadow
               small
@@ -66,7 +66,7 @@ function Mentor({
               success={!isAvailable}
               onClick={() => changeAvailability()}
             >
-              {isAvailable ? 'Ficar indisponível' : 'Aceitar novos aprendizes'}
+              {isAvailable ? 'Ficar indisponível' : 'Aceitar novas aprendizes'}
             </Button>
 
           </div>
@@ -97,7 +97,7 @@ function Mentor({
             ) : (
               <>
                 {fetchingLearners && <Loader big />}
-                {!fetchingLearners && <h3>Você não possui nenhum aprendiz</h3>}
+                {!fetchingLearners && <h3>Você não possui nenhuma aprendiz</h3>}
               </>
             )}
           </MotionDiv>
@@ -125,7 +125,7 @@ function Mentor({
         </>
       ) : (
         <span className="mentor__header-title">
-        Você ainda não foi validado como monitor.
+        {currentUser.gender === 'Female' ? 'Você ainda não foi validada como monitora. ' : 'Você ainda não foi validado como monitor. '}
         Faça a sua <Link to='/avaliacao'>avaliação</Link> e
         tenha acesso a todas as funcionalidades de mentoria.
         </span>

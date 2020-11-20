@@ -7,7 +7,11 @@ const assignMentor = createAsyncThunk('learner/mentorRequest', async (values, { 
   try {
     const response = await api.patch(MENTOR_REQUEST_ENDPOINT);
     /* eslint-disable no-unused-expressions */
-    toast.success(`${response.data.mentor.name} é seu novo mentor`)
+    if(response.data.mentor.gender === "Female"){
+      toast.success(`${response.data.mentor.name} é sua nova mentora`)
+    } else {
+      toast.success(`${response.data.mentor.name} é seu novo mentor`)
+    }
     return response.data;
   } catch (error) {
     if(error.response.data.error === 'There are no available mentors'){
@@ -24,10 +28,10 @@ const assignMentor = createAsyncThunk('learner/mentorRequest', async (values, { 
 const unassignMentor = createAsyncThunk('learner/unassignMentor', async (values, { rejectWithValue }) => {
   try {
     const response = await api.delete(LEARNER_ENDPOINT);
-    toast.success('Mentor desvinculado com sucesso');
+    toast.success('Mentoria desvinculada com sucesso');
     return response.data
   } catch (error) {
-    toast.console.error('Ocorreu um erro ao desvincular seu mentor, tente novamente mais tarde');
+    toast.console.error('Ocorreu um erro no desvinculamento de mentoria, tente novamente mais tarde');
     return rejectWithValue(error.response.data.mentor)
   }
 })

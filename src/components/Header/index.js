@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import { HashLink as ScrollLink } from 'react-router-hash-link'
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { logout } from '../../services/usersService';
 import { closeWebSocket } from '../../services/websocket';
@@ -56,12 +57,30 @@ function Header({ currentUser, logout }) { // eslint-disable-line no-shadow
             <Link className="header__navigation-option" to="/login" >
               Tutorial
             </Link>
-            <a className="header__navigation-option" href="/#infoBar2">
-              Como funciona
-            </a>
-            <a className="header__navigation-option" href="/#infoBar">
+            <ScrollLink 
+              className="header__navigation-option" 
+              to="/#infoBar"
+              spy
+              smooth
+            >
               A Iniciativa Minacademy
-            </a>
+            </ScrollLink>
+            <ScrollLink 
+              className="header__navigation-option" 
+              to="/#infoBar2"
+              spy
+              smooth
+            >
+              Como funciona
+            </ScrollLink>
+            <ScrollLink 
+              className="header__navigation-option"
+              to="/#FAQ"
+              spy
+              smooth
+            >
+              Perguntas Frequentes
+            </ScrollLink>
           </>
         )}
       </div>

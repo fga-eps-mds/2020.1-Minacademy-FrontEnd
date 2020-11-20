@@ -21,7 +21,7 @@ function Change() {
     <>
       <div className="change">
         <div className="change__form">
-          <h1>Troque sua senha</h1>
+          <h1>Redefinição de senha</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <p className='new-password'>nova senha</p>
             <Input

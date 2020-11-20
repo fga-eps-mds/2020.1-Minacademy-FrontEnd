@@ -148,15 +148,20 @@
 }
 
 .FAQ {
-  max-height: 40vw;
-  max-width: 50vw;
-
+  max-width: 95vw;
+  margin-bottom: 10vw;
+  margin-left: 2vw;
+  
   h1 {
-    box-sizing: border-box;
-    font-size: 3vw;
-    font-family: Overpass;
-    margin-left: 4.5vw;
     color: var(--title-color);
+    display: flex;
+    box-sizing: border-box;
+    font-size: 4vw;
+    font-family: Overpass;
+    margin-top: 1vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   h2 {
@@ -169,21 +174,26 @@
   }
 
   p {
+    color: var(--title-color);
     width: 40vw;
     font-weight: 300;
-    font-size: 2vw;
+    font-size: 1.6vw;
     font-family: Overpass;
     padding-left: 4.5vw;
     text-align: justify;
+    margin-bottom: 2vw;
+  }
+  .questions {
+    margin-top: 5vw;
   }
 
-  .question1 {
+  .question_left {
     position: absolute;
+    
   }
 
-  .question2 {
+  .question_hight {
     position: relative;
     left: 50vw;
-    word-wrap: break-word;
   }
 }

@@ -24,6 +24,10 @@
       }
       .card-label {
         flex-basis: 45%;
+
+        .custom-card {
+          min-height: 12rem;
+        }
       }
     }
 }

@@ -36,8 +36,8 @@ export function Infobar2() {
         <h1>Como funciona</h1>
         <p>
           Para auxiliar o tutorial, disponibilizado pela iniciativa Django
-          Girls, é possível interagir com um mentor, que irá te auxiliar no
-            tutorial.{' '}
+          Girls, é possível interagir com um dos nossos mentores, que irá te auxiliar no
+          tutorial.{'  '}
         </p>
       </div>
       <Button onClick={() => history.push('/login')} small>

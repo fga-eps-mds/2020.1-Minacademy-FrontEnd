@@ -25,7 +25,7 @@ function Register({ registerRequest, isLoading }) {
   const history = useHistory();
   const onSubmit = (credentials) => {
     registerRequest(credentials).then(res =>  {
-      if (res.payload?.error === 'email') setError('email', {message: 'Email já cadastrado'})
+      if (res.payload?.error === 'email') setError('email', {message: 'E-mail já cadastrado'})
     });
     history.push('/login');
   };
@@ -120,7 +120,7 @@ function Register({ registerRequest, isLoading }) {
                 },
               })}
               errors={errors}
-            >
+            > 
               <option value="Female">Feminino</option>
               <option value="Male">Masculino</option>
             </Select>
