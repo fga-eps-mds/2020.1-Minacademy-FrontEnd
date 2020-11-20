@@ -1,77 +1,38 @@
 .welcome {
-
-  max-width: 100%;
-  min-height: 50vw;
-
-  h1 {
-    padding-top: 5vw;
-    box-sizing: border-box;
-    font-size: 3vw;
-    font-family: Overpass;
-    margin-left: 4.5vw;
-    color: var(--title-color);
-  }
-
-  h2 {
-    max-width: 90vw;
-    font-weight: 300;
-    font-size: 1.7vw;
-    font-family: Overpass;
-    padding-left: 4.5vw;
-    padding-right: 4.5vw;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 5rem 1rem;
+  
+  &__content {
     text-align: justify;
-  }
+    background-color: white;
+    box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.1), 0px 15px 40px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 3rem;
 
-  p {
-    font-weight: 300;
-    font-size: 2vw;
-    font-family: Overpass;
-    padding-left: 4.5vw;
-    padding-right: 4.5vw;
-    text-align: left;
-  }
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      color: var(--text-color);
+    }
 
-  ul {
-    max-width: 90vw;
-    font-weight: 300;
-    font-size: 2vw;
-    font-family: Overpass;
-    padding-left: 4.5vw;
-    padding-right: 4.5vw;
-    text-align: justify;
-    color: var(--paragraph-color);
-  }
+    li {
+      color: var(--text-color);
+    }
 
-  button {
-    position: relative;
-    margin-left: 50vw;
-    margin-right: 20vw;
-    top: 2vw;
-  }
-}
+    .links {
+      display: flex;
+      justify-content: space-around;
+      
+      a {
+         text-decoration: underline;
+         &:hover {
+           color: var(--primary-button)
+         }
+      }
 
-.links {
-  a {
-    display: inline-block;
-    align-self: flex-end;
-    text-align: left;
-    text-decoration: underline;
-    color: var(--secondary-color);
-    position: relative;
-  }
-
-  .test-link {
-    position: absolute;
-    margin-left: 75vw;
-  }
-
-  .learner-dashboard-link {
-    position: absolute;
-    margin-left: 75vw;
-  }
-
-  .dashboard-link {
-    position: absolute;
-    margin-left: 50vw;
+    }
   }
 }

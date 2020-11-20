@@ -6,7 +6,6 @@ function Female(){
   return (
     <>
         <div id='welcome-learner' className='welcome-learner'>
-            <h1>Seja Bem-Vinda</h1>
             <br/>
             <p>Você já foi cadastrada com sucesso na plataforma Minacademy, e agora poderá explorar tudo que temos para oferecer!</p>
             <p>Vamos começar pelo principal, para você que está cadastrada como aprendiz, você poderá acessar o nosso tutorial,
