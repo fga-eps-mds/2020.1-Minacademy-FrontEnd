@@ -28,9 +28,9 @@ const login = createAsyncThunk(
     try {
       const response = await api.post(LOGIN_ENDPOINT, values);
       if(response.data.user.gender === "Female"){
-          toast.success(`Seja bem-vinda ${response.data.user.name}!`);
+          toast.success(`Seja bem-vinda, ${response.data.user.name}!`);
         } else {
-          toast.success(`Seja bem-vindo ${response.data.user.name}!`);
+          toast.success(`Seja bem-vindo, ${response.data.user.name}!`);
         }
       dispatch(setAvailability(response.data.user.isAvailable)); // eslint-disable-line no-undef
       dispatch(setMentorRequest(response.data.user.mentor_request));
@@ -71,7 +71,7 @@ const registerRequest = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await api.post(USER_ENDPOINT, values);
-      toast.success('Lhe foi enviado um e-mail para que você confirme seu cadastro. Verifique-o!');
+      toast.success('Enviamos um e-mail de confirmação para seu e-mail cadastrado. Verifique sua caixa de e-mail e confirme seu cadastro.');
       return response.data;
     } catch (error) {
       if (error.response.data.error.includes('duplicate key error')) {
