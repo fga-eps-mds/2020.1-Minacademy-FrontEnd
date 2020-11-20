@@ -1,7 +1,6 @@
 .question {
   // width: 80%;
-  font-family: Overpass;
-  padding-left: 2rem;
+  // padding-left: 2rem;
   text-align: justify;
 
   @media(max-width: 600px) {
@@ -66,10 +65,20 @@
   &__buttons {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: flex-end;
 
     @media(max-width: 600px) {
       flex-direction: column;
+    }
+
+    &--navigation {
+      display: flex;
+
+      .custom-button {
+        margin-right: 1rem;
+      }
+      // background-color: red;
     }
 
     .custom-button {

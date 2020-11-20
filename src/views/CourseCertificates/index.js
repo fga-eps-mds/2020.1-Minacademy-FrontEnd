@@ -32,7 +32,7 @@ function CourseCertificates({ certificates, getAllCertificates, isLoading }) {
             </>
         }
       </div>
-      {isLoading || !ready && (
+      {(isLoading || !ready) && (
         <div className="courseCertificates__fetching">
           <Loader big />
           <p>Buscando certificados, por favor aguarde...</p>

@@ -9,13 +9,15 @@ import {
 
 const initialState = {
   loading: false,
+  updatingMarkdown: false,
   currentModule: 1,
   markdown: '',
   questionsList: [],
   questionsResults: [],
   modules: [],
   completedModules: [],
-  totalProgress: 0
+  totalProgress: 0,
+  fetchingQuestions: false
 };
 
 const tutorial = createSlice({
@@ -29,8 +31,15 @@ const tutorial = createSlice({
     }
   },
   extraReducers: {
+    [getQuestions.pending]: (state, action) => {
+      state.fetchingQuestions = true
+    },
     [getQuestions.fulfilled]: (state, action) => {
       state.questionsList = action.payload
+      state.fetchingQuestions = false
+    },
+    [getQuestions.rejected]: (state, action) => {
+      state.fetchingQuestions = true
     },
 
     [answerQuestion.pending]: (state) => {
@@ -50,9 +59,17 @@ const tutorial = createSlice({
       state.loading = false
     },
 
+    [updateMarkdown.pending]: (state, action) => {
+      state.updatingMarkdown = true
+    },
     [updateMarkdown.fulfilled]: (state, action) => {
       state.markdown = action.payload
+      state.updatingMarkdown = false
     },
+    [updateMarkdown.rejected]: (state, action) => {
+      state.updatingMarkdown = false
+    },
+
     [getModules.fulfilled]: (state, action) => {
       state.modules = action.payload
     },
@@ -138,6 +155,16 @@ export const selectModuleList = createSelector(
 export const isLoading = createSelector(
   [selectTutorial],
   tutorial => tutorial.loading
+)
+
+export const isFetchingQuestions = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.fetchingQuestions
+)
+
+export const isUpdatingMarkdown = createSelector(
+  [selectTutorial],
+  tutorial => tutorial.updatingMarkdown
 )
 
 export default tutorial.reducer;

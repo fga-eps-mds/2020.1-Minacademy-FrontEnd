@@ -12,6 +12,7 @@ import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 import '../../index.css';
 import './style.scss';
+import MotionDiv from '../../UI/animation/MotionDiv';
 
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -28,10 +29,30 @@ function Register({ registerRequest, isLoading }) {
     });
     history.push('/login');
   };
-  
+
   return (
     <div className="register">
-      <div className="register__content">
+      <MotionDiv className="register__content"
+        transition={{
+            type: 'tween',
+            ease: 'easeIn',
+            duration: 0.3,
+          }}
+          variants={{
+            initial: {
+              opacity: 0,
+              scale: 0.6,
+            },
+            in: {
+              opacity: 1,
+              scale: 1,
+            },
+            out: {
+              opacity: 0,
+              scale: 0.6,
+            },
+          }}
+      >
         <div className="register__content--header">
           <h1>Cadastro</h1>
         </div>
@@ -214,7 +235,7 @@ function Register({ registerRequest, isLoading }) {
           </Button>
           {isLoading && <Loader> Processando informações </Loader>}
         </div>
-      </div>
+      </MotionDiv>
     </div>
   );
 }

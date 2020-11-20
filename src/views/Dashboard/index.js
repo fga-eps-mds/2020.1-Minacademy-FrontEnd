@@ -14,12 +14,13 @@ import {
 } from '../../services/tutorialServices';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
+import { toggleModalVisible } from '../../slices/modalSlice';
 import { getMentor, promoteToMentor } from '../../services/learnersService';
 import { getLearners } from '../../services/mentorsService';
 import Card from '../../components/Card';
 import Modal from '../../components/Modal';
+import MotionDiv from '../../UI/animation/MotionDiv';
 import './style.scss';
-import { toggleModalVisible } from '../../slices/modalSlice';
 
 /* eslint-disable no-shadow */
 function Dashboard({
@@ -56,7 +57,7 @@ function Dashboard({
     getMentor();
     getLearners();
     getModules();
-    
+
     getProgress({ moduleNumber: currentModule }).then((data) => {
       if (data.payload.totalProgress === 100) setLearnerCertificate(true);
     });
@@ -69,7 +70,6 @@ function Dashboard({
 
   /* eslint-disable no-nested-ternary */
   return (
-    <>
       <div className="dashboard">
         <div className="dashboard__header">
           <h1>Olá, {currentUser.name}</h1>
@@ -81,7 +81,9 @@ function Dashboard({
           )}
         </div>
         {currentUser.userType === 'Learner' ? (
-          <div className="dashboard__body">
+          <MotionDiv
+            className="dashboard__body"
+          >
             <Card
               title={`Módulo ${currentModule}: ${module?.title}`}
               mainContent={`${progress?.moduleProgress || 0}% Completo`}
@@ -122,9 +124,9 @@ function Dashboard({
               }
               linkPath="/mentoria"
             />
-          </div>
+          </MotionDiv>
         ) : currentUser.isValidated ? (
-          <div className="dashboard__body">
+          <MotionDiv className="dashboard__body">
             <Card
               title="Mentoria"
               mainContent="Veja os seus aprendizes, ou procure por novos"
@@ -138,9 +140,9 @@ function Dashboard({
               linkText="Visualizar certificados"
               linkPath="/certificados"
             />
-          </div>
+          </MotionDiv>
         ) : (
-          <div className="dashboard__body">
+          <MotionDiv className="dashboard__body">
             <Card
               title="Mentoria"
               mainContent="Você ainda não está validado como mentor na plataforma. Faça a avaliação para ter acesso a todas as funcionalidades de monitoria"
@@ -154,7 +156,7 @@ function Dashboard({
               linkText="Tutorial"
               linkPath="/tutorial"
             />
-          </div>
+          </MotionDiv>
         )}
         <Modal
             title='Parabéns'
@@ -173,7 +175,6 @@ function Dashboard({
           <p>Se você quiser, pode ficar disponível a um aprendiz na página de mentoria.</p>
         </Modal>
       </div>
-    </>
   );
 }
 

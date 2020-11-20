@@ -3,7 +3,6 @@
   max-width: 80%;
   margin: 0 auto;
   padding: 5rem 1rem;
-  font-family: Overpass;
 
   @media(max-width: 600px) {
     max-width: 90%;
@@ -20,12 +19,18 @@
     }
 
     &--progress {
-      font-weight: 600;
-      color: var(--secondary-green);
-      text-transform: uppercase;
-      padding: 0.4rem;
-      border: 2px solid var(--secondary-green);
-      border-radius: 10px;
+      @media(max-width: 600px) {
+        margin: 1.25rem auto 0;
+      }
+
+      span {
+        font-weight: 700;
+        color: var(--secondary-green);
+        text-transform: uppercase;
+        padding: 0.4rem;
+        border: 2px solid var(--secondary-green);
+        border-radius: 10px;
+      }
     }
   }
 
@@ -42,6 +47,21 @@
       margin-top: 2rem;
       flex-direction: column;
       padding: 1rem;
+    }
+
+    .custom-animation {
+      display: flex;
+      flex-basis: 100%;
+      overflow-x: hidden;
+
+      @media(max-width: 600px) {
+        flex-direction: column;
+        overflow-x: visible;
+      }
+
+      > *:first-child {
+        flex-basis: 100%;
+      }
     }
   }
 }

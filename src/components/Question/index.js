@@ -14,6 +14,7 @@ import {
 } from '../../services/tutorialServices';
 import Button from '../Button';
 import Loader from '../Loader'
+import MotionDiv from '../../UI/animation/MotionDiv';
 import './style.scss';
 
 /* eslint-disable no-shadow */
@@ -22,10 +23,10 @@ function Question({
   questionResults,
   answerQuestion,
   getProgress,
-  history,
+  onAnswer,
   showResult = true,
-  showGoBack = true,
-  isLoading
+  isLoading,
+  children
 }) {
   const result = useMemo(
     () => questionResults.find((result) => result.question === question._id),
@@ -52,13 +53,14 @@ function Question({
     }
   };
 
-  const descriptionText = useMemo(() => question.description
+  const descriptionText = useMemo(() => question?.description
     .split('\n')
     .map((word, i) => <p key={i}>{word}</p> // eslint-disable-line react/no-array-index-key
   ), [question])
 
-  const questionAlternatives = useMemo(() =>
-    Object.keys(question.alternatives).map((item) =>
+  const questionAlternatives = useMemo(() => {
+    if (question)
+    return Object.keys(question.alternatives).map((item) =>
       <div className="question__alternatives--item" key={item}>
         <label htmlFor="alternative">
           <input
@@ -70,18 +72,46 @@ function Question({
           />
           <span>{question.alternatives[item]}</span>
         </label>
-      </div>
-  ), [question])
+      </div>)
+      return <div>Erro ao buscar questão</div>
+      }, [question])
 
+  if (!question) {
+    return (
+      <div className="question">
+        <p>Ocorreu um erro</p>
+      </div>
+    )
+  }
   return (
     <div className="question">
       <div className="question__description">{descriptionText}</div>
       <div className="question__alternatives">
         {result?.isCorrect && showResult ? (
-          <div className="question__result">
+          <MotionDiv className="question__result"
+            transition={{
+              type: 'tween',
+              ease: 'easeIn',
+              duration: 0.5,
+            }}
+            variants={{
+              initial: {
+                opacity: 0,
+                // scale: 0.6,
+              },
+              in: {
+                opacity: 1,
+                // scale: 1,
+              },
+              out: {
+                opacity: 0,
+                // scale: 0.6,
+              },
+            }}
+          >
             <h2>CORRETO!</h2>
             <p>{question.alternatives[result.alternative]}</p>
-          </div>
+          </MotionDiv>
         ) : (
           <>
             <form id="question" onSubmit={handleSubmit(onSubmit)}>
@@ -90,8 +120,8 @@ function Question({
               <div className="question__alternatives--error">
                 {result?.isCorrect === false && showResult && !isLoading ? 'Resposta errada, tente novamente!' : null}
               </div>
-              
-              {errors.alternative && 
+
+              {errors.alternative &&
                 <div className="question__alternatives--error">
                   {errors.alternative.message}
                 </div>
@@ -101,20 +131,21 @@ function Question({
         )}
       </div>
       <div className="question__buttons">
-        {showGoBack && <Button
-          onClick={() => {
-            history.push('/tutorial');
-          }}
-          shadow
-        >
-          Voltar
-        </Button>}
         {(!result?.isCorrect || !showResult) && (
-          <Button shadow form="question" type="submit" disabled={previousAlternative || isLoading}>
+          <Button
+            form="question"
+            type="submit"
+            disabled={previousAlternative || isLoading}
+            onClick={() => onAnswer ? onAnswer() : null}
+            shadow
+          >
             Responder
           </Button>
         )}
-        {isLoading && <div className="loading"><Loader> Verificando... </Loader></div>}
+        {result?.isCorrect && showResult && 
+          children
+        }
+        {isLoading && showResult && <div className="loading"><Loader> Verificando... </Loader></div>}
       </div>
     </div>
   );
@@ -122,7 +153,6 @@ function Question({
 
 Question.defaultProps = {
   questionResults: [],
-  showGoBack: true,
   showResult: true
 };
 
@@ -135,10 +165,10 @@ Question.propTypes = {
   questionResults: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
   answerQuestion: PropTypes.func.isRequired,
   getProgress: PropTypes.func.isRequired,
-  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  showGoBack: PropTypes.bool,
   showResult: PropTypes.bool,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  onAnswer: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({

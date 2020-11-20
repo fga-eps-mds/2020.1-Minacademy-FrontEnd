@@ -56,7 +56,6 @@ const validateMentor = createAsyncThunk('mentor/validateMentor', async (values, 
       Seus acertos: ${response.data.result}.
       ${response.data.attempts ? 'Tente novamente!': ''}`, {autoClose: false})
     }
-    response.data.dispatch = dispatch
     return response.data
   } catch(error) {
     return rejectWithValue(error.response.data)

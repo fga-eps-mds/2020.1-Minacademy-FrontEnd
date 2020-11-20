@@ -7,17 +7,14 @@ import { ToastContainer } from 'react-toastify';
 import { store, persistor } from './store';
 import Routes from './routes/routes';
 import './services/chatServices';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './app.scss';
-// import './assets/loader.scss';
 import './assets/alert.scss';
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate loading={null} persistor={persistor}>
-      {/* <WebSocketProvider> */}
         <ToastContainer
           closeButton={false}
           pauseOnFocusLoss
@@ -26,7 +23,6 @@ ReactDOM.render(
           autoClose={3500}
         />
         <Routes />
-      {/* </WebSocketProvider> */}
       </PersistGate>
     </BrowserRouter>
   </Provider>,

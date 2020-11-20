@@ -1,25 +1,68 @@
-import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import Question from '../../../../components/Question'
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { selectQuestionsList } from '../../../../slices/tutorialSlice';
+import Question from '../../../../components/Question';
+import MotionDiv from '../../../../UI/animation/MotionDiv';
 import './style.scss';
-import Button from '../../../../components/Button'
 
 /* eslint-disable no-shadow */
-function ExamQuestion() {
-  const history = useHistory()
-  const params = useParams()
-  let next = (parseInt(params.activityNumber, 10) + 1)
-  if (next === 11){
-    next = 1
-  }
+function ExamQuestion({ questionsList, match, history }) {
+  const nextQuestion = useMemo(() => {
+    const { activityNumber } = match.params;
+    const next = questionsList.find(
+      (question) => question.number === parseInt(activityNumber) + 1 // eslint-disable-line radix
+    );
+    return next?.number || activityNumber;
+  }, [history.location.pathname]);
+
   return (
     <div className="exam-activity">
-        <Question showResult={false} showGoBack={false}/>
-        <div className='next-button'>
-          <Button shadow onClick={() => history.push(`/avaliacao/atividades/${next}`)}>Próximo</Button>
-        </div>
+      <MotionDiv
+        transition={{
+          type: 'tween',
+          ease: 'easeOut',
+          transition: 'linear',
+          // duration: 0.3,
+        }}
+        variants={{
+          initial: {
+            opacity: 0,
+            x: '100vh',
+            // scale: 1,
+          },
+          in: {
+            opacity: 1,
+            x: 0,
+            // scale: 1,
+          },
+          out: {
+            opacity: 0,
+            x: '-35vh',
+            scale: 0.3,
+          },
+        }}
+      >
+        <Question
+          showResult={false}
+          onAnswer={() => {
+            const path = match.path.replace(/:\w+/gi, nextQuestion);
+            history.push(path);
+          }}
+        />
+      </MotionDiv>
     </div>
   );
 }
 
-export default ExamQuestion;
+ExamQuestion.propTypes = {
+  questionsList: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  history: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired
+};
+const mapStateToProps = (state) => ({
+  questionsList: selectQuestionsList(state),
+});
+
+export default withRouter(connect(mapStateToProps)(ExamQuestion));

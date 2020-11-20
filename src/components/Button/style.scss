@@ -1,6 +1,6 @@
 .custom-button {
   min-width: 130px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 1rem;
   background-color: var(--primary-button);
   color: white;
   text-transform: capitalize;
@@ -25,16 +25,6 @@
     transform: scale(0.95);
   }
 
-  &:disabled {
-    background-color: var(--placeholder-color);
-    border-color: var(--border-color);
-    cursor: auto;
-
-    &:hover {
-      color: white;
-    }
-  }
-
   &.inverted {
     background-color: white;
     color: var(--hover-button);
@@ -48,7 +38,7 @@
   }
 
   &.small {
-    padding: 0.2rem 0.7rem;
+    padding: 0.2rem 0.85rem;
     font-size: 0.95rem;
     font-weight: bold;
 
@@ -86,6 +76,18 @@
       background-color: white;
       border-color: var(--error-color);
       color: var(--error-color);
+    }
+  }
+
+  &:disabled {
+    color: white;
+    background-color: var(--placeholder-color);
+    border-color: var(--border-color);
+    cursor: auto;
+    pointer-events: none;
+    
+    &:active {
+      transform: none;
     }
   }
 

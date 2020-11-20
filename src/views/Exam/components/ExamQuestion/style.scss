@@ -1,13 +1,12 @@
-.mentor-activity {
-  display: flex;
-}
-
 .exam-activity {
-  .next-button {
-    button {
-      position: relative;
-      margin-left: 15vw;
-      bottom: 3vw;
-    }
+  // display: flex;
+  // flex-direction: column;
+  // flex-basis: 100%;
+  border-right: 0.2rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+
+  @media(max-width: 600px) {
+    overflow-x: hidden;
+    padding-bottom: 0.5rem;
   }
 }

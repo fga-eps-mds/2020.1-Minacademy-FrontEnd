@@ -2,6 +2,7 @@
   min-width: 200px;
   width: 20%;
   border-right: 1px solid var(--border-color);
+  margin-right: 2rem;
 
   @media(max-width: 600px) {
     width: 100%;
@@ -12,30 +13,52 @@
 
   &__header {
     position: relative;
-    // padding-bottom: 1px;
+    padding-bottom: 1px;
     margin-bottom: 2.5rem;
     color: var(--text-color);
 
-    &:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1px;
-      width: 30%;
-      margin-left: 0;
-      margin-right: 0;
-      border-bottom: 1px solid var(--border-color);
+    @media(max-width: 600px) {
+      margin-bottom: 1.5rem;
+    }
 
-      @media (max-width: 600px) {
-        width: 25%;
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--primary-button);
+      text-transform: capitalize;
+
+      &:after {
+        content: "";
+        position: absolute;
         left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        width: 30%;
         margin-left: 0;
         margin-right: 0;
+        border-bottom: 1px solid var(--secondary-color);
+  
+        @media (max-width: 600px) {
+          width: 25%;
+          left: 0;  
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+
+      &:hover, &:active {
+        // color: var(--secondary-color);
+
+        &:after {
+          border-bottom: 2px solid var(--secondary-color);
+        }
       }
     }
   }
+  
 
   &__list {
     display: flex;
@@ -78,6 +101,29 @@
         }
       }
 
+      .icon {
+        width: 12px;
+        margin-right: 0.5rem;
+
+        &.book {
+          path {
+            fill: var(--placeholder-color);
+          }
+        }
+
+        &.check {
+          path {
+            fill: var(--secondary-green);
+          } 
+        }
+
+        &.exclamation {
+          path {
+            fill: var(--error-color);
+          }
+        }
+      }
+
       &.correct {
         color: var(--secondary-green);
       }
@@ -88,6 +134,15 @@
 
       &.answer{
         color: var(--secondary-color);
+      }
+    }
+
+    .loader {
+      justify-content: left;
+      
+      span {
+        text-transform: capitalize;
+        color: var(--placeholder-color);
       }
     }
   }

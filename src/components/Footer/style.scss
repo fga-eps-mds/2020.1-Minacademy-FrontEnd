@@ -1,7 +1,8 @@
 .footer {
+    position: relative;
     background-color: var(--footer-color);
     padding: 2rem;
-    font-family: Overpass;
+    // z-index: 1;
 
     &__body {
         display: flex;

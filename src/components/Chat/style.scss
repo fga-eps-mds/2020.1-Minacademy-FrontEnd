@@ -4,6 +4,7 @@
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: all 0.3s;
+    z-index: 9999;
   }
 
   &-header {
@@ -18,14 +19,14 @@
   }
 
   &-chat-window {
-
+    z-index: 2000;
     &.opened {
       font-family: Overpass;
     }
   }
 
   &-message-list {
-    background-color: #f9f9f9;
+    background-color: white;
   }
 
   &-user-input {

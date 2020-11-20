@@ -1,7 +1,12 @@
 .exam-rules {
-  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
   text-align: justify;
-  font-family: Overpass;
+
+  @media(max-width: 600px) {
+    margin-left: 0;
+  }
 
   &__header {
     position: relative;
@@ -30,19 +35,28 @@
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    // line-height: 2;
 
     .emphasis {
+      color: var(--secondary-green);
       font-weight: 600;
-    }
-  }
 
-  a {
-    display: inline-block;
-    align-self: flex-end;
-    text-align: left;
-    text-decoration: underline;
-    color: var(--secondary-color);
-    position: relative;
+      &.failure {
+        color: var(--error-color);
+        font-size: 1.1rem;
+      }
+    }
+
+    p {
+      margin-bottom: 0.7rem;
+    }
+
+    .custom-button {
+      margin-top: 1rem;
+    }
   }
 }

@@ -1,15 +1,17 @@
 import React, { lazy, Suspense } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
+import RouteTransition from '../UI/animation/RouteTransition';
+import AnimatedRoutes from '../UI/animation/AnimatedRoutes';
 import Home from '../views/Home';
-// import Login from '../views/Login';
-// import Register from '../views/Register';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Chat from '../components/Chat';
 import PrivateRoute from './components/privateRoute';
 import PublicRoute from './components/publicRoute';
-import { Loading } from '../views/Loading';
+import Loading from '../views/Loading';
 
+// const RouteTransition = lazy(() => import('../UI/animation/RouteTransition'));
+// const AnimatedRoutes = lazy(() => import('../UI/animation/AnimatedRoutes'));
 const Tutorial = lazy(() => import('../views/Tutorial'));
 const Exam = lazy(() => import('../views/Exam'));
 const Login = lazy(() => import('../views/Login'));
@@ -22,8 +24,8 @@ const Welcome = lazy(() => import('../views/Welcome'));
 const Mentorship = lazy(() => import('../views/Mentorship'));
 const Certificate = lazy(() => import('../views/Certificate'));
 const CourseCertificate = lazy(() => import('../views/CourseCertificates'));
-const ChangeEmailConfirm = lazy(()=> import('../views/ChangeEmailConfirm'));
-const RegisterConfirm = lazy(()=> import('../views/RegisterConfirm'));
+const ChangeEmailConfirm = lazy(() => import('../views/ChangeEmailConfirm'));
+const RegisterConfirm = lazy(() => import('../views/RegisterConfirm'));
 
 const Routes = () => {
   const location = useLocation();
@@ -38,13 +40,14 @@ const Routes = () => {
   }
 
   return (
-    <>
+    <main style={{ position: 'relative', overflowY: 'hidden' }}>
       <Header />
       <Suspense fallback={<Loading />}>
-        <Switch>
-          <Route exact path="/">
+      <div style={{ minHeight: "100vh" }}>
+        <AnimatedRoutes exitBeforeEnter initial>
+          <RouteTransition exact path="/">
             <Home />
-          </Route>
+          </RouteTransition>
           <PublicRoute exact path="/login">
             <Login />
           </PublicRoute>
@@ -81,14 +84,15 @@ const Routes = () => {
           <PublicRoute exact path="/confirma-mudanca-email/:changeEmailLink">
             <ChangeEmailConfirm />
           </PublicRoute>
-          <PublicRoute exact path="/confirma-cadastro/:registerLink">
+          <RouteTransition exact path="/confirma-cadastro/:registerLink">
             <RegisterConfirm />
-          </PublicRoute>
-        </Switch>
+          </RouteTransition>
+        </AnimatedRoutes>
+      </div>
       </Suspense>
       <Chat />
       <Footer />
-    </>
+    </main>
   );
 };
 
