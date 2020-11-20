@@ -88,7 +88,7 @@ function Dashboard({
               title={`Módulo ${currentModule}: ${module?.title}`}
               mainContent={`${progress?.moduleProgress || 0}% Completo`}
               secondaryContent={
-                progress?.remainingQuestions == 1
+                progress?.remainingQuestions === 1
                   ? `${progress?.remainingQuestions} atividade restante.`
                   : progress?.remainingQuestions
                     ? `${progress?.remainingQuestions} atividades restantes.`

@@ -3,7 +3,7 @@ import React from 'react';
 function FAQ() {
   return (
   <div id="FAQ" className="FAQ">
-      <br></br>
+      <br />
       <h1>Perguntas Frequentes</h1>
       <div id="questions" className="questions">
         <div id="question1" className="question_left">
@@ -41,15 +41,15 @@ function FAQ() {
         <div id="question5" className="question_left">
           <h2>Como solicitar um mentor?</h2>
           <p>
-            Acessando sua conta, haverá uma guia chamada "Mentoria", onde é possível solicitar mentoria.
+            Acessando sua conta, haverá uma guia chamada Mentoria, onde é possível solicitar mentoria.
             Após ser vinculada a um dos nossos monitores, vocês poderão se comunicar clicando no ícone do
-            chat que ficará sempre visível no canto inferior direito da plataforma. 
+            chat que ficará sempre visível no canto inferior direito da plataforma.
           </p>
         </div>
         <div id="question6" className="question_hight">
           <h2>Como solicitar um aprendiz?</h2>
           <p>
-            Acessando sua conta, haverá uma guia chamada "Mentoria", onde é possível solicitar novos aprendizes.
+            Acessando sua conta, haverá uma guia chamada Mentoria, onde é possível solicitar novos aprendizes.
             Após ser vinculada a uma de nossas aprendizes, vocês poderão se comunicar clicando no ícone do
             chat que ficará sempre visível no canto inferior direito da plataforma. 
           </p>
@@ -58,7 +58,7 @@ function FAQ() {
         <div id="question7" className="question_left">
           <h2>Como remover um mentor?</h2>
           <p>
-            Acessando a mesma guia "Mentoria", será exibido o card do seu mentor. Na parte de baixo deste card
+            Acessando a mesma guia Mentoria, será exibido o card do seu mentor. Na parte de baixo deste card
             há a opção de desvincular-se do mentor. Quando clicar neste botão, aparecerá uma mensagem, para ter
             certeza de que você realmente quer remover o seu mentor, então basta confirmar sua escolha.
           </p>
@@ -66,12 +66,12 @@ function FAQ() {
         <div id="question8" className="question_hight">
           <h2>Como remover um aprendiz?</h2>
           <p>
-            Acessando a mesma guia "Mentoria", será exibido a lista dos cards de seus aprendizes. Na parte de baixo destes
+            Acessando a mesma guia Mentoria, será exibido a lista dos cards de seus aprendizes. Na parte de baixo destes
             cards, há a opção de desvincular-se do aprendiz. Quando clicar neste botão, aparecerá uma mensagem, para ter
             certeza de que você realmente quer remover o seu aprendiz, então basta confirmar sua escolha.
           </p>
         </div>
-      <br></br>
+      <br />
     </div>
   );
 }
