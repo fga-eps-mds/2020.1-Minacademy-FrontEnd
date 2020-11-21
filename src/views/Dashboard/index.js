@@ -190,7 +190,11 @@ function Dashboard({
             }}
         >
           <p>Agora que você terminou o tutorial, foi promovida a mentora!</p>
-          <p>Se você quiser, pode ficar disponível a uma aprendiz na página de mentoria.</p>
+          <p>Você também foi desassociada do seu/sua mentor(a), e não poderá mais solicitar mentores,
+            pois você já é uma mentora.
+          </p>
+          <p>No entanto, como mentora você pode solicitar aprendizes, e ajuda-los assim como foi ajudada,
+            se você quiser, pode ficar disponível a um aprendiz na página de mentoria.</p>
         </Modal>
       </div>
   );
