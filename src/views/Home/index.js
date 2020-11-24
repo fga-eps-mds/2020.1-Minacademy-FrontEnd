@@ -1,17 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import HookComponent from './components/HookComponent';
-import ReduxComponent from './components/ReduxComponent';
-import './style.css';
+import './style.scss';
+import vector from '../../assets/images/vector.svg';
+import FAQ from './components/FAQ';
+import { Infobar, Infobar2 } from './components/Infobar';
 
-const Home = ({ hooks }) => hooks ? <HookComponent/> : <ReduxComponent/>;
-
-Home.propTypes = {
-  hooks: PropTypes.bool
-};
-
-Home.defaultProps = {
-  hooks: false
+function Home() {
+  return (
+    <>
+      <div className="vector">
+        <img src={vector} alt="imagemFundo" />
+        <h1>Nós encorajamos mulheres a se apaixonarem por programação.</h1>
+      </div>
+      <Infobar />
+      <Infobar2 />
+      <FAQ />
+    </>
+  );
 }
 
 export default Home;

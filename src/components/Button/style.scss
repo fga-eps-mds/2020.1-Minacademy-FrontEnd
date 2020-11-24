@@ -1,0 +1,99 @@
+.custom-button {
+  min-width: 130px;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-button);
+  color: white;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-family: Overpass;
+  font-weight: bolder;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: white;
+    color: var(--hover-button);
+    border: 1px solid var(--hover-button);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.inverted {
+    background-color: white;
+    color: var(--hover-button);
+    border: 1px solid var(--hover-button);
+
+    &:hover {
+      background-color: var(--primary-button);
+      color: white;
+      border: 1px solid transparent;
+    }
+  }
+
+  &.small {
+    padding: 0.2rem 0.85rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+
+    @media (max-width: 600px) {
+      min-width: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 15px;
+    }
+  }
+
+  &.color {
+    color: var(--login-button);
+    border-color: var(--login-button);
+
+    &:hover {
+      background-color: var(--login-button);
+      color: white;
+    }
+  }
+
+  &.success {
+    background-color: var(--secondary-green);
+
+    &:hover {
+      background-color: white;
+      border-color: var(--secondary-green);
+      color: var(--secondary-green);
+    }
+  }
+
+  &.error {
+    background-color: var(--error-color);
+
+    &:hover {
+      background-color: white;
+      border-color: var(--error-color);
+      color: var(--error-color);
+    }
+  }
+
+  &:disabled {
+    color: white;
+    background-color: var(--placeholder-color);
+    border-color: var(--border-color);
+    cursor: auto;
+    pointer-events: none;
+    
+    &:active {
+      transform: none;
+    }
+  }
+
+  &.thin-shadow {
+    box-shadow: 1px 4px 4px rgba(51, 51, 51, 0.25), 1px 1px 1px rgba(51, 51, 51, 0.15);
+  }
+
+  &:focus {outline:0;}
+}

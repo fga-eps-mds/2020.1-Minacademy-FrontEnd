@@ -1,0 +1,33 @@
+.dashboard {
+    min-height: 100vh;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 5rem 1rem;
+    font-family: Overpass;
+
+    @media(max-width: 600px) {
+      padding: 2rem;
+      max-width: 100%;
+    }
+
+    &__header {
+      margin-bottom: 3rem;
+    }
+
+    &__body {
+      display: flex;
+      margin: 0 auto;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      @media(max-width: 600px) {
+        flex-direction: column;
+      }
+      .card-label {
+        flex-basis: 45%;
+
+        .custom-card {
+          min-height: 12rem;
+        }
+      }
+    }
+}

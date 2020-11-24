@@ -1,0 +1,41 @@
+.footer {
+    position: relative;
+    background-color: var(--footer-color);
+    padding: 2rem;
+    // z-index: 1;
+
+    &__body {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        color: white;
+
+        @media(max-width: 600px) {
+            justify-content: space-around;
+        }
+
+        a {
+            color: white;
+            &:hover {
+                color: var(--secondary-color);
+                text-decoration: underline;
+            }
+        }
+
+        &-item {
+            // padding-bottom: 1rem;
+
+            @media(max-width: 600px) {
+            }
+
+            &-title {
+                color: white;
+                border-bottom: 1px solid white;
+                margin-bottom: 0.7rem;
+                cursor: default;
+            }
+
+        }
+    }
+}

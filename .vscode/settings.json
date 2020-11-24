@@ -1,13 +1,17 @@
 {
-  "git.ignoreLimitWarning": true,
-  "editor.rulers": [
-      100
-  ],
   "editor.tabSize": 2,
-  "files.trimTrailingWhitespace": true,
-  "editor.autoClosingBrackets": "always",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": true,
-    "source.fixAll.eslint": true
-  }
+  "editor.formatOnSave": false,
+  "search.exclude": {
+    "**/bower_components": true,
+    "**/dist": true
+  },
+    "prettier.printWidth": 180,
+    "prettier.trailingComma": "all",
+    "prettier.singleQuote": true,
+    "prettier.eslintIntegration": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true,
+        "source.fixAll.eslint": true,
+    },
+    "eslint.validate": ["javascript"]
 }

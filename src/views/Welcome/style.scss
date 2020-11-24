@@ -1,0 +1,38 @@
+.welcome {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 5rem 1rem;
+  
+  &__content {
+    text-align: justify;
+    background-color: white;
+    box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.1), 0px 15px 40px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 3rem;
+
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      color: var(--text-color);
+    }
+
+    li {
+      color: var(--text-color);
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-around;
+      
+      a {
+         text-decoration: underline;
+         &:hover {
+           color: var(--primary-button)
+         }
+      }
+
+    }
+  }
+}

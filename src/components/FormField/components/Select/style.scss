@@ -1,0 +1,39 @@
+.select {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 1.5rem;
+
+  select {
+    background-color: white;
+    outline: none;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.6rem 0.7rem;
+    color: var(--title-color);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:focus {
+      border: 1px solid var(--secondary-color);
+    }
+  }
+
+  label {
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: var(--text-color);
+    margin-left: 0.15rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .error {
+    color: var(--error-color);
+    position: absolute;
+    align-self: center;
+    bottom: -1px;
+    font-weight: 600;
+  }
+}

@@ -1,29 +1,86 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { listUsersRedux } from '../services/usersService';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { promoteToMentor } from '../services/learnersService';
+import { login , logout , registerRequest, editUser, registerUser } from '../services/usersService' // eslint-disable-line import/no-cycle
 
 const initialState = {
-  usersList: [],
-  status: 'idle',
-  error: null
+  loading: false,
+  currentUser: null
 };
 
-const usersSlice = createSlice({
-  name: 'users',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    addUser(state, action) {
-      state.usersList.push(action.payload.user)
+    /* eslint-disable no-unused-vars */
+    /* eslint-disable no-param-reassign */
+    setCurrentUser(state, action) {
+      state.currentUser = action.payload
     }
   },
   extraReducers: {
-    [listUsersRedux.fulfilled]: (state, action) => {
-      state.usersList.push(...action.payload);
+    [login.pending]: (state, action) => {
+      state.loading = true
+    },
+    [login.fulfilled]: (state, action) => {
+      state.currentUser = action.payload.user
+      state.loading = false
+    },
+    [login.rejected]: (state, action) => {
+      state.loading = false
+    },
+
+    [logout.fulfilled]: (state, action) => {
+      state.currentUser = null
+    },
+
+    [registerRequest.pending]: (state, action) => {
+      state.loading = true
+    },
+    [registerRequest.fulfilled]: (state, action) => {
+        state.loading = false
+    },
+    [registerRequest.rejected]: (state,action) => {
+      state.loading = false
+    },
+
+    [editUser.pending]: (state,action) => {
+      state.loading = true
+    },
+    [editUser.fulfilled]: (state,action) => {
+      state.currentUser = action.payload
+      state.loading = false
+    },
+    [editUser.rejected]: (state,action) => {
+      state.loading = false
+    },
+
+    [promoteToMentor.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    },
+
+    [registerUser.pending]: (state, action) => {
+      state.loading = true
+    },
+    [registerUser.fulfilled]: (state, action) => {
+      state.currentUser = action.payload.user
+      state.loading = false
+    },
+    [registerUser.rejected]: (state, action) => {
+      state.loading = false
     }
   }
 });
 
-const selectUsers = state => state.users.usersList;
+const selectUser = state => state.user;
+export const selectCurrentUser = createSelector(
+  [selectUser],
+  user => user.currentUser
+)
 
-export const { addUser } = usersSlice.actions;
-export { selectUsers };
-export default usersSlice.reducer;
+export const isLoading = createSelector(
+  [selectUser],
+  user => user.loading
+)
+
+export const { setCurrentUser } = userSlice.actions;
+export default userSlice.reducer;

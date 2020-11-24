@@ -1,0 +1,108 @@
+.dd-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 1px 3px 4px rgba(61, 61, 61, 0.1),
+    1px 1px 1px rgba(60, 60, 60, 0.025);
+  transition: 0.2s;
+
+  &:hover {
+    border: 1px solid var(--secondary-color);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+
+    border-color: var(--border-color);
+    border-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #f1f1f1;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  .dd-header {
+    color: var(--title-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+
+    &__title--bold {
+      color: var(--secondary-color);
+      font-weight: bold;
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      
+      &.up {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .dd-list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    width: 100%;
+    min-height: 300px;
+    height: 50%;
+    top: calc(100% + 0.75rem);
+    box-shadow: 1px 4px 5px rgba(60, 60, 60, 0.25),
+      0px 1px 1px rgba(60, 60, 60, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    z-index: 5;
+    overflow-y: scroll;
+
+    li {
+      list-style-type: none;
+
+      button {
+        display: flex;
+        justify-content: space-between;
+        color: var(--paragraph-color);
+        background-color: white;
+        font-size: 16px;
+        padding: 1rem;
+        border: 0;
+        margin: -1px;
+        width: 100%;
+        text-align: left;
+
+        &.selected {
+          span {
+            color: var(--secondary-color);
+          }
+          font-weight: bold;
+        }
+
+          &:hover,
+          &:focus {
+            span {
+              color: var(--secondary-color)
+            }
+            font-weight: bold;
+            background-color: #f1f1f1;
+            cursor: pointer;
+          }
+
+      }
+    }
+  }
+}

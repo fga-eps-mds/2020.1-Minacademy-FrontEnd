@@ -1,0 +1,31 @@
+.mentorship {
+  min-height: 100vh;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 5rem 1rem;
+  font-family: Overpass;
+
+  @media(max-width: 600px) {
+    max-width: 90%;
+    flex-direction: column;
+    padding: 5rem 0;
+  }
+
+  &__header {
+    margin-bottom: 3rem;
+    p {
+      font-size: 16px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    margin-bottom: 2rem;
+
+    @media(max-width: 600px) {
+      margin-top: 2rem;
+      flex-direction: column;
+      padding: 0;
+    }
+  }
+}

@@ -1,4 +1,3 @@
 import axios from 'axios';
-import baseURL from './ambiente';
 
-export default axios.create({ baseURL });
+export default axios.create({ baseURL: process.env.REACT_APP_SERVER_URL, withCredentials: true });

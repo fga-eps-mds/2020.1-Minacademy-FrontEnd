@@ -1,0 +1,40 @@
+.custom-input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: Overpass;
+  padding-bottom: 1.5rem;
+
+  input {
+    outline: none;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.4rem 0.7rem;
+    color: var(--title-color);
+
+    &:focus {
+      border: 1px solid var(--secondary-color);
+    }
+  }
+
+  ::placeholder{
+    color: var(--placeholder-color);
+    font-weight: 300;
+  }
+
+  label {
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: var(--text-color);
+    margin-left: 0.15rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .error {
+    color: var(--error-color);
+    position: absolute;
+    align-self: center;
+    bottom: -1px;
+    font-weight: 600;
+  }
+}

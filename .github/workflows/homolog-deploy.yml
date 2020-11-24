@@ -1,0 +1,68 @@
+name: Continuous Integration and Delivery
+
+on:
+  push:
+    branches:
+      - develop
+      - 79-nginx
+
+jobs:
+
+  tests:
+    name: Run Tests and Publish to CC
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Modules
+        run: npm install
+      - name: Run Tests
+        env:
+          SKIP_PREFLIGHT_CHECK: true
+        run: npm run test
+      - name: Publish to CC
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
+        with:
+          coverageLocations: coverage/lcov.info:lcov
+
+  build:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    #needs: tests
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Push to GitHub Packages
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        name: fga-eps-mds/2020.1-minacademy-frontend/app
+        tags: homolog
+        context: ./
+        default_branch: 50-ci-cd
+        dockerfile: hom.Dockerfile
+
+  deploy:
+    name: Deploy package to DigitalOcean 
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy package to DigitalOcean
+        uses: appleboy/ssh-action@master
+        env:
+            GITHUB_USERNAME: ${{ github.actor }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          host: ${{ secrets.HOMOLOG_IP }}
+          username: ${{ secrets.HOMOLOG_USERNAME }}
+          password: ${{ secrets.HOMOLOG_PASSWORD }}
+          envs: GITHUB_USERNAME, GITHUB_TOKEN
+          script: |
+            cd minacademy-frontend
+            docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+            docker pull docker.pkg.github.com/fga-eps-mds/2020.1-minacademy-frontend/app:homolog
+            docker-compose -f docker-compose-hom.yml up -d

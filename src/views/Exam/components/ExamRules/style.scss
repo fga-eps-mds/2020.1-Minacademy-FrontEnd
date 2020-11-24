@@ -1,0 +1,62 @@
+.exam-rules {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  text-align: justify;
+
+  @media(max-width: 600px) {
+    margin-left: 0;
+  }
+
+  &__header {
+    position: relative;
+    color: var(--title-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+
+    @media(max-width: 600px) {
+      margin-top: 2rem;
+    }
+
+    &:after {
+      content : "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom  : 0;
+      height  : 1px;
+      width   : 45%;
+      margin-left: auto;
+      margin-right: auto;
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    // line-height: 2;
+
+    .emphasis {
+      color: var(--secondary-green);
+      font-weight: 600;
+
+      &.failure {
+        color: var(--error-color);
+        font-size: 1.1rem;
+      }
+    }
+
+    p {
+      margin-bottom: 0.7rem;
+    }
+
+    .custom-button {
+      margin-top: 1rem;
+    }
+  }
+}

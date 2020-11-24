@@ -1,0 +1,67 @@
+.tutorial {
+  min-height: 100vh;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 5rem 1rem;
+
+  @media(max-width: 600px) {
+    max-width: 90%;
+    padding: 5rem 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    @media(max-width: 600px) {
+      padding: 0 1rem;
+      flex-direction: column;
+    }
+
+    &--progress {
+      @media(max-width: 600px) {
+        margin: 1.25rem auto 0;
+      }
+
+      span {
+        font-weight: 700;
+        color: var(--secondary-green);
+        text-transform: uppercase;
+        padding: 0.4rem;
+        border: 2px solid var(--secondary-green);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    min-height: 50vh;
+    padding: 3em;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 10px rgba(43, 43, 43, 0.1), 0px 15px 40px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin: 1rem 0;
+
+    @media(max-width: 600px) {
+      margin-top: 2rem;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .custom-animation {
+      display: flex;
+      flex-basis: 100%;
+      overflow-x: hidden;
+
+      @media(max-width: 600px) {
+        flex-direction: column;
+        overflow-x: visible;
+      }
+
+      > *:first-child {
+        flex-basis: 100%;
+      }
+    }
+  }
+}

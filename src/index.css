@@ -1,13 +1,255 @@
+:root {
+  --title-color: #3E2753;
+  /* --title-color: #351058; */
+  --paragraph-color: #5a4b66;
+  --secondary-color: #9241C0;
+  --primary-button:#8838FF;
+  --hover-button: #3E2753;
+  --login-button: #E942FF;
+  --secondary-green: #239875;
+  --border-color: #C6CACD;
+  --outline-color: #532f77;
+  --footer-color: #38353B;
+  --text-color: #5a4b66;
+  --background: #E5E5E5E5;
+  --placeholder-color: #A39DAA;
+  --error-color: #F4685E;
+}
+
+/*******************
+ Box Sizing
+ *******************/
+html {
+  box-sizing: border-box !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/*******************
+ Core body defaults
+ @see https://hankchizljaw.com/wrote/a-modern-css-reset/
+ *******************/
 body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  overflow: overlay;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #ffffff00;
+  opacity: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 5px;
+}
+
+/****************************
+ Generic Margins and Paddings
+ ****************************/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+p,
+pre,
+blockquote,
+figure,
+figcaption,
+hr,
+dl,
+dd {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  padding: 0;
+}
+
+/*******************
+ Lists
+ *******************/
+ul {
+  list-style: none;
+}
+
+/*******************
+ Forms and buttons
+ *******************/
+input,
+textarea,
+select,
+button {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* I usually expand input and textarea to full-width */
+input[type="text"],
+textarea {
+  width: 100%;
+}
+
+/* More friendly border */
+input,
+textarea,
+button {
+  border: 1px solid gray;
+}
+
+/* Some defaults for one-liner buttons */
+button {
+  padding: 0.75em 1em;
+  line-height: inherit;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+button * {
+  pointer-events: none;
+}
+
+/***********************************
+ Easy responsive for media elements
+ ***********************************/
+img,
+iframe,
+video,
+object,
+embed {
+  display: block;
+  max-width: 100%;
+}
+
+svg {
+  max-width: 100%;
+}
+
+/*******************
+ Useful table styles
+ *******************/
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/*******************
+ The hidden attribute
+ *******************/
+[hidden] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/*******************
+ Noscript
+ *******************/
+noscript {
+  display: block;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+/*******************
+ Tabindex
+ *******************/
+[tabindex="-1"] {
+  outline: none !important;
+}
+
+/*******************
+ Remove animations and transitions
+ @see https://hankchizljaw.com/wrote/a-modern-css-reset/
+ *******************/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*******************
+ * Screen-ready only class to hide content visually
+ * Solution by Joe Watkins.
+ * @see https://zellwk.com/blog/hide-content-accessibly/
+ *******************/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Overpass', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* css dos checkbox */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 1px;
+  background-color: var(--white);
+}
+
+input[type="checkbox"]:checked{
+  background: center url(assets/images/checkbox.svg);
+  background-size: 18px;
+}
+input[type="checkbox"]:focus{
+  outline: none;
+}
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* css dos checkbox */
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--outline-color);
+  border-radius: 50%;
+  background-color: var(--white);
+  /* margin-left: 15px; */
+  margin-right: 15px;
+}
+
+input[type="radio"]:checked{
+  border: 6px solid var(--login-button);
+  background-color: var(--white);
+}
+input[type="radio"]:focus{
+  outline: none;
 }

@@ -1,0 +1,149 @@
+.activities-list {
+  min-width: 200px;
+  width: 20%;
+  border-right: 1px solid var(--border-color);
+  margin-right: 2rem;
+
+  @media(max-width: 600px) {
+    width: 100%;
+    margin: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  &__header {
+    position: relative;
+    padding-bottom: 1px;
+    margin-bottom: 2.5rem;
+    color: var(--text-color);
+
+    @media(max-width: 600px) {
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--primary-button);
+      text-transform: capitalize;
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        width: 30%;
+        margin-left: 0;
+        margin-right: 0;
+        border-bottom: 1px solid var(--secondary-color);
+  
+        @media (max-width: 600px) {
+          width: 25%;
+          left: 0;  
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+
+      &:hover, &:active {
+        // color: var(--secondary-color);
+
+        &:after {
+          border-bottom: 2px solid var(--secondary-color);
+        }
+      }
+    }
+  }
+  
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1rem;
+
+    &-item {
+      position: relative;
+      margin-bottom: 0.6rem;
+      color: var(--placeholder-color);
+      opacity: 0.85;
+
+      &:hover {
+        color: var(--text-color);
+        font-weight: 700;
+        text-decoration: none;
+        opacity: 1;
+      }
+
+      &.active {
+        font-weight: 700;
+        opacity: 1;
+        cursor: default;
+
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0px;
+          height: 1px;
+          width: 30%;
+          border-bottom: 2px solid var(--border-color);
+
+          @media (max-width: 600px) {
+            border-width: 1px;
+          }
+        }
+      }
+
+      .icon {
+        width: 12px;
+        margin-right: 0.5rem;
+
+        &.book {
+          path {
+            fill: var(--placeholder-color);
+          }
+        }
+
+        &.check {
+          path {
+            fill: var(--secondary-green);
+          } 
+        }
+
+        &.exclamation {
+          path {
+            fill: var(--error-color);
+          }
+        }
+      }
+
+      &.correct {
+        color: var(--secondary-green);
+      }
+
+      &.wrong{
+        color: var(--error-color);
+      }
+
+      &.answer{
+        color: var(--secondary-color);
+      }
+    }
+
+    .loader {
+      justify-content: left;
+      
+      span {
+        text-transform: capitalize;
+        color: var(--placeholder-color);
+      }
+    }
+  }
+}

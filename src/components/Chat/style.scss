@@ -1,0 +1,78 @@
+.sc {
+  &-launcher {
+    background-color: var(--primary-button);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 9999;
+  }
+
+  &-header {
+    font-weight: 700;
+    background-color: var(--secondary-color);
+
+    &--close-button {
+      &:hover {
+        background-color: var(--error-color);
+      }
+    }
+  }
+
+  &-chat-window {
+    z-index: 2000;
+    &.opened {
+      font-family: Overpass;
+    }
+  }
+
+  &-message-list {
+    background-color: white;
+  }
+
+  &-user-input {
+    &--file-icon-wrapper {
+      display: none;
+    }
+  }
+
+  &-message--text {
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    border-radius: 10px;
+    width: auto;
+  }
+
+  &-message {
+
+    &--content {
+
+      &.sent {
+
+        .sc-message--text {
+          background-color: var(--secondary-color);
+
+          span {
+            color: white;
+          }
+        }
+      }
+
+      &.received {
+
+        .sc-message--text {
+          background-color: var(--border-color);
+
+          span {
+            color: var(--title-color);
+            // color: white;
+          }
+        }
+      }
+    }
+
+    &--avatar {
+      display: none;
+    }
+  }
+}

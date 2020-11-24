@@ -1,0 +1,191 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25em 2rem;
+  text-align: center;
+  text-transform: capitalize;
+  box-shadow: 0px 2px 5px rgba(60, 60, 60, 0.05), 0px 1px 1px rgba(60, 60, 60, 0.03);
+  background-color: white;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    color: white;
+    background: linear-gradient(125deg, #fffffff0, #F0F0F0 100%);
+  }
+
+  &__logo {
+    display: flex;
+    // flex-basis: 15%;
+
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  &__navigation {
+    flex-basis: 55%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    @media (max-width: 600px) {
+      display: none;
+
+      &-responsive {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+    }
+
+    &-option {
+      position: relative;
+      width: 100%;
+      padding: 0 1rem;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--title-color);
+      @media (max-width: 600px) {
+        color: var(--title-color);
+        padding: 0.2rem 0;
+        text-align: left;
+        &:last-child {
+          margin-bottom: 10px;
+        }
+      }
+
+      &:hover {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      &.active {
+        color: var(--secondary-color);
+        font-weight: 600;
+
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: calc(-100%);
+          height: 1px;
+          width: 25%;
+          margin-left: auto;
+          margin-right: auto;
+          border-bottom: 3px solid var(--secondary-color);
+
+          @media (max-width: 600px) {
+            bottom: 4px;
+            left: 0;
+            margin-left: 0;
+            margin-right: 0;
+            border-width: 2px;
+          }
+        }
+      }
+    }
+
+    &-action {
+      display: flex;
+      justify-content: flex-end;
+      color: var(--title-color);
+
+      &--resources {
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+      }
+
+      button + button {
+        margin-left: 2rem;
+        @media (max-width: 600px) {
+          margin-left: 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      &-name {
+        display: flex;
+        margin-left: 1.5rem;
+        font-size: 1.15rem;
+        cursor: pointer;
+        align-self: center;
+
+        .arrow {
+          margin-left: 0.5rem;
+        }
+      }
+
+      &-icon{
+        cursor: pointer;
+        path {
+          fill: var(--title-color);
+        }
+        align-self: center;
+      }
+
+      .nav-dropdown {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0.5rem;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        background-color: white;
+        box-shadow: 1px 3px 4px rgba(61, 61, 61, 0.1), 1px 1px 1px rgba(60, 60, 60, 0.025);
+        text-align: left;
+        z-index: 1;
+        transition: all 0.2s;
+
+        &:hover {
+          border: 1px solid var(--secondary-color);
+          box-shadow: 1px 3px 4px rgba(61, 61, 61, 0.12), 1px 1px 1px rgba(60, 60, 60, 0.03);
+        }
+
+        &__items {
+          display: flex;
+          flex-direction: column;
+          padding: 0.7rem 1rem;
+
+          &-item {
+            font-weight: 500;
+            // color: var(--text-color);
+            padding: 0.55rem 0;
+            border-bottom: 1px solid rgb(235, 235, 235);
+            &:last-child {
+              border: none;
+            }
+
+            &:hover {
+              text-decoration: none;
+              color: var(--primary-button);
+            }
+          }
+        }
+      }
+
+
+      .icon {
+        display: none;
+        cursor: pointer;
+        @media (max-width: 600px) {
+          display: contents;
+          path {
+            fill: var(--title-color);
+          }
+        }
+      }
+    }
+  }
+}
