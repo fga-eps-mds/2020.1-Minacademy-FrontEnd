@@ -24,7 +24,7 @@ function Welcome({ currentUser, assignMentor }) {
       </div>
     </div>
   );
-};
+}
 
 Welcome.propTypes = {
   currentUser: PropTypes.oneOfType([

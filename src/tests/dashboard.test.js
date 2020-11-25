@@ -1,4 +1,4 @@
-import { shallow, mountW } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import Dashboard from '../views/Dashboard';
 import { store } from '../store';

@@ -1,4 +1,4 @@
-import { shallow, mountW } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import Card from '../components/Card';
 import { store } from '../store';

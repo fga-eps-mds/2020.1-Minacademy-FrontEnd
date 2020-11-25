@@ -15,6 +15,6 @@ function ChangeEmailConfirm() {
   }
   onLoad();
   return <div />
-};
+}
 
 export default ChangeEmailConfirm;

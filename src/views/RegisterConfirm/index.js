@@ -59,7 +59,7 @@ function RegisterConfirm({ registerUser, isLoading }) {
       </div>
     </div>
   )
-};
+}
 
 RegisterConfirm.propTypes = {
   registerUser: PropTypes.func.isRequired,
