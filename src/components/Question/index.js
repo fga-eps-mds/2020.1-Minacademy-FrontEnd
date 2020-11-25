@@ -59,8 +59,7 @@ function Question({
   ), [question])
 
   const questionAlternatives = useMemo(() => {
-    if (question)
-    return Object.keys(question.alternatives).map((item) =>
+    if (question) return Object.keys(question.alternatives).map((item) =>
       <div className="question__alternatives--item" key={item}>
         <label htmlFor="alternative">
           <input
