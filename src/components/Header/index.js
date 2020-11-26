@@ -4,7 +4,7 @@ import { useHistory, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { HashLink as ScrollLink } from 'react-router-hash-link'
 import { selectCurrentUser } from '../../slices/usersSlice';
-import { logout } from '../../services/usersService';
+import { logout as logoutImport } from '../../services/usersService';
 import { closeWebSocket } from '../../services/websocket';
 import Button from '../Button';
 import { ReactComponent as Logo } from '../../assets/images/minacademyLogo.svg';
@@ -168,7 +168,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
+  logout: () => dispatch(logoutImport()),
 });
 
 Header.defaultProps = {
