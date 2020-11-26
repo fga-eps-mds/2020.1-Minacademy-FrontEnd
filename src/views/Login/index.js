@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/FormField/components/Input';
 import Button from '../../components/Button';
-import { login } from '../../services/usersService';
-import { isLoading } from '../../slices/usersSlice';
+import { login as loginImport } from '../../services/usersService';
+import { isLoading as isLoadingImport } from '../../slices/usersSlice';
 import { openWebSocket } from '../../services/websocket'
 import Loader from '../../components/Loader';
 import '../../index.css';
@@ -19,14 +19,14 @@ function Login({ login, isLoading }) {
   const { handleSubmit, register, errors } = useForm();
 
   const onSubmit = (credentials) => {
-    login(credentials).then(res =>  openWebSocket(res.payload?.accessToken));
+    login(credentials).then(res => openWebSocket(res.payload?.accessToken));
   };
 
   return (
     <>
       <div className="login">
         <MotionDiv className="login__body"
-           transition={{
+          transition={{
             type: 'tween',
             ease: 'easeIn',
             duration: 0.3,
@@ -93,7 +93,7 @@ function Login({ login, isLoading }) {
             {isLoading && <Loader> Aguarde... </Loader>}
           </div>
           <div className="login__resources">
-              <Link to="/forgotPassword">Recuperar senha</Link>
+            <Link to="/forgotPassword">Recuperar senha</Link>
             <p>
               Não possui conta? <Link to="/cadastro">Cadastre-se</Link>
             </p>
@@ -110,11 +110,11 @@ Login.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: isLoading(state),
+  isLoading: isLoadingImport(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (credentials) => dispatch(login(credentials)),
+  login: (credentials) => dispatch(loginImport(credentials)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

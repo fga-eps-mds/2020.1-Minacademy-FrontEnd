@@ -8,15 +8,15 @@ import {
   selectQuestionsResults,
 } from '../../slices/tutorialSlice';
 import {
-  getModules,
-  getProgress,
-  getQuestions,
+  getModules as getModulesImport,
+  getProgress as getProgressImport,
+  getQuestions as getQuestionsImport,
 } from '../../services/tutorialServices';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
-import { toggleModalVisible } from '../../slices/modalSlice';
-import { getMentor, promoteToMentor } from '../../services/learnersService';
-import { getLearners } from '../../services/mentorsService';
+import { toggleModalVisible as toggleModalVisibleImport } from '../../slices/modalSlice';
+import { getMentor as getMentorImport, promoteToMentor as promoteToMentorImport } from '../../services/learnersService';
+import { getLearners as getLearnersImport } from '../../services/mentorsService';
 import Card from '../../components/Card';
 import Modal from '../../components/Modal';
 import MotionDiv from '../../UI/animation/MotionDiv';
@@ -235,13 +235,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getModules: () => dispatch(getModules()),
-  getProgress: (module) => dispatch(getProgress(module)),
-  getQuestions: (module) => dispatch(getQuestions(module)),
-  getMentor: () => dispatch(getMentor()),
-  getLearners: () => dispatch(getLearners()),
-  toggleModalVisible: () => dispatch(toggleModalVisible()),
-  promoteToMentor: () => dispatch(promoteToMentor()),
+  getModules: () => dispatch(getModulesImport()),
+  getProgress: (module) => dispatch(getProgressImport(module)),
+  getQuestions: (module) => dispatch(getQuestionsImport(module)),
+  getMentor: () => dispatch(getMentorImport()),
+  getLearners: () => dispatch(getLearnersImport()),
+  toggleModalVisible: () => dispatch(toggleModalVisibleImport()),
+  promoteToMentor: () => dispatch(promoteToMentorImport()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, { pure: true })(Dashboard);

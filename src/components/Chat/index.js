@@ -6,8 +6,8 @@ import { setCurrentChat, selectCurrentChat } from '../../slices/chatSlice';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import { selectMentor } from '../../slices/learnerSlice';
 import { selectLearners } from '../../slices/mentorSlice';
-import { sendMessage, getChats } from '../../services/chatServices';
-import { selectChatIsOpen, toggleChatOpen } from '../../slices/modalSlice';
+import { sendMessage as sendMessageImport, getChats as getChatsImport } from '../../services/chatServices';
+import { selectChatIsOpen, toggleChatOpen as toggleChatOpenImport } from '../../slices/modalSlice';
 import avatar from '../../assets/images/avatar.svg';
 import './style.scss';
 /* eslint-disable no-shadow */
@@ -89,10 +89,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getChats: () => dispatch(getChats()),
-  sendMessage: (message, chatID) => dispatch(sendMessage(message, chatID)),
+  getChats: () => dispatch(getChatsImport()),
+  sendMessage: (message, chatID) => dispatch(sendMessageImport(message, chatID)),
   setCurrentChat: (chatID) => dispatch(setCurrentChat(chatID)),
-  toggleChatOpen: () => dispatch(toggleChatOpen()),
+  toggleChatOpen: () => dispatch(toggleChatOpenImport()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

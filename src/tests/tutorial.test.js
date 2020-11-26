@@ -1,7 +1,6 @@
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { Provider } from "react-redux";
 import Tutorial from '../views/Tutorial';
 import TutotiralActivity from '../views/Tutorial/components/TutorialActivity';
 import ActivitiesList from '../views/Tutorial/components/ActivitiesList';
