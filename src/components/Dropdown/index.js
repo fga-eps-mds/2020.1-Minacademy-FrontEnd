@@ -39,8 +39,8 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
         tabIndex={0}
         className="dd-header"
         role="button"
-        onKeyPress={() => toggle(!open)}
-        onClick={() => toggle(!open)}
+        onKeyPress={() => toggle()}
+        onClick={() => toggle()}
       >
 
           <span className="dd-header__title--bold">{selection[0] ? selection[0].title : ''}</span>
@@ -53,7 +53,7 @@ function Dropdown({ items = [], multiSelect = false, toggleItem, initialSelectio
             <li className='dd-list-item' key={item._id}>
               <button type="button" className={`${isItemInSelection(item) ? 'selected' : '' }`} onClick={() => {
                 handleOnClick(item)
-                toggle(!open)
+                toggle()
                 return toggleItem(item)
               }}>
                 <span>{isItemInSelection(item) ? '-':''} {item.title || item.value}</span>
