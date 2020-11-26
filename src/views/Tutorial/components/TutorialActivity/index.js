@@ -103,7 +103,7 @@ function TutorialActivity({
                   history.push(path);
                 }}
               >
-                Proximo
+                Próximo
               </Button>
               : <Button
                 shadow
