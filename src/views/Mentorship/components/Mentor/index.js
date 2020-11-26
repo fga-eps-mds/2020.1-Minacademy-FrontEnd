@@ -4,24 +4,24 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Card from '../../../../components/Card';
 import {
-  getLearners,
-  assignLearner,
-  unassignLearner,
-  changeAvailability,
+  getLearners as getLearnersImport,
+  assignLearner as assignLearnerImport,
+  unassignLearner as unassignLearnerImport,
+  changeAvailability as changeAvailabilityImport,
 } from '../../../../services/mentorsService';
 import {
   selectLearners,
   selectAvailability,
-  loading,
-  fetchingLearners,
-  removeLearner,
+  loading as loadingImport,
+  fetchingLearners as fetchingLearnersImport,
+  removeLearner as removeLearnerImport,
 } from '../../../../slices/mentorSlice';
 import { selectCurrentUser } from '../../../../slices/usersSlice';
-import { setCurrentChat } from '../../../../slices/chatSlice'
+import { setCurrentChat as setCurrentChatImport } from '../../../../slices/chatSlice'
 import Button from '../../../../components/Button';
 import Loader from '../../../../components/Loader';
 import Modal from '../../../../components/Modal';
-import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
+import { toggleModalVisible as toggleModalVisibleImport, toggleChatOpen as toggleChatOpenImport } from '../../../../slices/modalSlice';
 import './style.scss';
 import MotionDiv from '../../../../UI/animation/MotionDiv';
 
@@ -156,20 +156,20 @@ Mentor.propTypes = {
 const mapStateToProps = (state) => ({
   isAvailable: selectAvailability(state),
   learnersList: selectLearners(state),
-  loading: loading(state),
-  fetchingLearners: fetchingLearners(state),
+  loading: loadingImport(state),
+  fetchingLearners: fetchingLearnersImport(state),
   currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getLearners: () => dispatch(getLearners()),
-  assignLearner: () => dispatch(assignLearner()),
-  removeLearner: (learnerID) => dispatch(removeLearner(learnerID)),
-  unassignLearner: (learnerID) => dispatch(unassignLearner(learnerID)),
-  changeAvailability: () => dispatch(changeAvailability()),
-  toggleModalVisible: () => dispatch(toggleModalVisible()),
-  setCurrentChat: (learnerID) => dispatch(setCurrentChat(learnerID)),
-  toggleChatOpen: (bool) => dispatch(toggleChatOpen(bool))
+  getLearners: () => dispatch(getLearnersImport()),
+  assignLearner: () => dispatch(assignLearnerImport()),
+  removeLearner: (learnerID) => dispatch(removeLearnerImport(learnerID)),
+  unassignLearner: (learnerID) => dispatch(unassignLearnerImport(learnerID)),
+  changeAvailability: () => dispatch(changeAvailabilityImport()),
+  toggleModalVisible: () => dispatch(toggleModalVisibleImport()),
+  setCurrentChat: (learnerID) => dispatch(setCurrentChatImport(learnerID)),
+  toggleChatOpen: (bool) => dispatch(toggleChatOpenImport(bool))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mentor);
