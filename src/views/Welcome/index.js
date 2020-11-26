@@ -5,7 +5,7 @@ import './style.scss';
 import Learner from './components/learner';
 import Mentor from './components/Mentor';
 import { selectCurrentUser } from '../../slices/usersSlice';
-import { assignMentor } from '../../services/learnersService'
+import { assignMentor as assignMentorImport } from '../../services/learnersService'
 
 /* eslint-disable no-shadow */
 function Welcome({ currentUser, assignMentor }) {
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  assignMentor: () =>dispatch(assignMentor())
+  assignMentor: () =>dispatch(assignMentorImport())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
