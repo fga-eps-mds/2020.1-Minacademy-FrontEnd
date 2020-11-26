@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
 import CertificateList from './components/CertificateList';
-import { getAllCertificates } from '../../services/certificatesServices';
+import { getAllCertificates as getAllCertificatesImport } from '../../services/certificatesServices';
 import { selectCertificates, loading } from '../../slices/certificateSlice';
 import './style.scss';
 
@@ -69,7 +69,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllCertificates: () => dispatch(getAllCertificates()),
+  getAllCertificates: () => dispatch(getAllCertificatesImport()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseCertificates);
