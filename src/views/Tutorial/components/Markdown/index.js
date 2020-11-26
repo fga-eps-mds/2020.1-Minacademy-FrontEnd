@@ -5,11 +5,11 @@ import ReactMarkdown from 'react-markdown'
 import {
   selectCurrentModule,
   selectMarkdown,
-  setCurrentModule,
+  setCurrentModule as setCurrentModuleImport,
   selectModuleList,
-  isUpdatingMarkdown
+  isUpdatingMarkdown as isUpdatingMarkdownImport
 } from '../../../../slices/tutorialSlice'
-import { updateMarkdown, getModules } from '../../../../services/tutorialServices'
+import { updateMarkdown as updateMarkdownImport, getModules as getModulesImport } from '../../../../services/tutorialServices'
 import Dropdown from '../../../../components/Dropdown';
 import Button from '../../../../components/Button'
 import Loader from '../../../../components/Loader'
@@ -78,13 +78,13 @@ const mapStateToProps = state => ({
   currentModule: selectCurrentModule(state),
   markdown: selectMarkdown(state),
   modulesList: selectModuleList(state),
-  isUpdatingMarkdown: isUpdatingMarkdown(state)
+  isUpdatingMarkdown: isUpdatingMarkdownImport(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateMarkdown: (moduleNumber) => dispatch(updateMarkdown(moduleNumber)),
-  getModules: () => dispatch(getModules()),
-  setCurrentModule: (moduleNumber) => dispatch(setCurrentModule(moduleNumber))
+  updateMarkdown: (moduleNumber) => dispatch(updateMarkdownImport(moduleNumber)),
+  getModules: () => dispatch(getModulesImport()),
+  setCurrentModule: (moduleNumber) => dispatch(setCurrentModuleImport(moduleNumber))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Markdown);
