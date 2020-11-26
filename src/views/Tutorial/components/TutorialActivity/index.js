@@ -2,15 +2,15 @@ import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { generateCertificate } from '../../../../services/certificatesServices';
+import { generateCertificate as generateCertificateImport } from '../../../../services/certificatesServices';
 import {
   selectTotalProgress,
   selectQuestionsList,
-  setCurrentModule,
+  setCurrentModule as setCurrentModuleImport,
   selectCurrentModule,
   selectModuleList
 } from '../../../../slices/tutorialSlice';
-import { toggleModalVisible } from '../../../../slices/modalSlice';
+import { toggleModalVisible as toggleModalVisibleImport } from '../../../../slices/modalSlice';
 import Question from '../../../../components/Question';
 import MotionDiv from '../../../../UI/animation/MotionDiv';
 import Button from '../../../../components/Button';
@@ -142,9 +142,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleModalVisible: () => dispatch(toggleModalVisible()),
-  generateCertificate: () => dispatch(generateCertificate()),
-  setCurrentModule: (activityNumber) => dispatch(setCurrentModule(activityNumber))
+  toggleModalVisible: () => dispatch(toggleModalVisibleImport()),
+  generateCertificate: () => dispatch(generateCertificateImport()),
+  setCurrentModule: (activityNumber) => dispatch(setCurrentModuleImport(activityNumber))
 });
 
 export default withRouter(
