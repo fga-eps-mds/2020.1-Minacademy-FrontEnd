@@ -1,5 +1,6 @@
-import TutorialIntegration from './tutorial.spec'
-import MentorshipIntegration from './mentorship.spec'
+import TutorialIntegration from './tutorial.spec';
+import MentorshipIntegration from './mentorship.spec';
+import LogoutIntegration from '../logout.spec';
 
 describe('Login', () => {
   before(() => {
@@ -64,4 +65,5 @@ describe('Login', () => {
 
   TutorialIntegration()
   MentorshipIntegration()
+  LogoutIntegration()
 })
