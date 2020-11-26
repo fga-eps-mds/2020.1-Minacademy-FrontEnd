@@ -6,11 +6,11 @@ import { withRouter } from 'react-router-dom';
 import {
   selectQuestion,
   selectQuestionsResults,
-  isLoading
+  isLoading as isLoadingImport
 } from '../../slices/tutorialSlice';
 import {
-  answerQuestion,
-  getProgress,
+  answerQuestion as answerQuestionImport,
+  getProgress as getProgressImport,
 } from '../../services/tutorialServices';
 import Button from '../Button';
 import Loader from '../Loader'
@@ -29,7 +29,7 @@ function Question({
   children
 }) {
   const result = useMemo(
-    () => questionResults.find((result) => result.question === question._id),
+    () => questionResults.find((resultData) => resultData.question === question._id),
     [questionResults]
   );
 
@@ -173,12 +173,12 @@ Question.propTypes = {
 const mapStateToProps = (state, props) => ({
   question: selectQuestion(state, props),
   questionResults: selectQuestionsResults(state),
-  isLoading: isLoading(state)
+  isLoading: isLoadingImport(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  answerQuestion: (answerData) => dispatch(answerQuestion(answerData)),
-  getProgress: (questions) => dispatch(getProgress(questions)),
+  answerQuestion: (answerData) => dispatch(answerQuestionImport(answerData)),
+  getProgress: (questions) => dispatch(getProgressImport(questions)),
 });
 
 export default withRouter(
