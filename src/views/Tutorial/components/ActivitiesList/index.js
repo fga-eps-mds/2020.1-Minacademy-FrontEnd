@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink, useRouteMatch } from 'react-router-dom';
-import { selectQuestionsList, selectCurrentModule, selectQuestionsResults, selectModule, isFetchingQuestions } from '../../../../slices/tutorialSlice';
-import { getQuestions } from '../../../../services/tutorialServices';
+import { selectQuestionsList, selectCurrentModule, selectQuestionsResults, selectModule, isFetchingQuestions as isFetchingQuestionsImport } from '../../../../slices/tutorialSlice';
+import { getQuestions as getQuestionsImport } from '../../../../services/tutorialServices';
 import { ReactComponent as Book } from '../../../../assets/images/book.svg';
 import { ReactComponent as Check } from '../../../../assets/images/checkbox.svg';
 import { ReactComponent as Exclamation } from '../../../../assets/images/exclamation.svg';
@@ -23,7 +23,7 @@ function ActivitiesList({ exam = false, questionsList, questionsResults, current
     };
   }, [currentModule]);
 
-  const result = activity => questionsResults.find(result => result.question === activity._id)?.isCorrect
+  const result = activity => questionsResults.find(resultData => resultData.question === activity._id)?.isCorrect
 
   return (
     <div className="activities-list">
@@ -90,11 +90,11 @@ const mapStateToProps = state => ({
   currentModule: selectCurrentModule(state),
   questionsResults: selectQuestionsResults(state),
   module: selectModule(state),
-  isFetchingQuestions: isFetchingQuestions(state)
+  isFetchingQuestions: isFetchingQuestionsImport(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  getQuestions: moduleNumber => dispatch(getQuestions(moduleNumber)),
+  getQuestions: moduleNumber => dispatch(getQuestionsImport(moduleNumber)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, { pure: true })(ActivitiesList);
