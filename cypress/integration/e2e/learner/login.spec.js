@@ -1,4 +1,5 @@
 import TutorialIntegration from './tutorial.spec'
+import MentorshipIntegration from './mentorship.spec'
 
 describe('Login', () => {
   before(() => {
@@ -6,6 +7,10 @@ describe('Login', () => {
         win.sessionStorage.clear()
     });
     cy.visit('/login')
+  });
+
+  beforeEach(() => {
+    // cy.intercept('GET', '/api/progress', { statusCode: 400, body: { error: 'ERROR PROGRESS!' }})
   });
 
   afterEach(() => {
@@ -52,10 +57,11 @@ describe('Login', () => {
     cy.get('button[type=submit]').click()
     cy.get('.Toastify__toast--success').as('toast')
     cy.get('@toast').contains('Seja bem-vind')
-    cy.wait(1000)
+    cy.wait(200)
     cy.get('@toast').click()
     cy.saveSessionStorage();
   })
 
   TutorialIntegration()
+  MentorshipIntegration()
 })

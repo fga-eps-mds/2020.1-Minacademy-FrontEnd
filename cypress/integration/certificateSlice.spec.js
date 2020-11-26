@@ -1,7 +1,7 @@
-import { store } from '../../../src/store';
-import certificate, { loading, selectCertificates } from '../../../src/slices/certificateSlice';
-import { generateCertificate, getAllCertificates } from '../../../src/services/certificatesServices';
-import formatDate from '../../../src/util/formatDate';
+import { store } from '../../src/store';
+import certificate, { loading, selectCertificates } from '../../src/slices/certificateSlice';
+import { generateCertificate, getAllCertificates } from '../../src/services/certificatesServices';
+import formatDate from '../../src/util/formatDate';
 
 describe('chatSlice', () => {
   const reducerInitialState =  store.getState().certificate;
