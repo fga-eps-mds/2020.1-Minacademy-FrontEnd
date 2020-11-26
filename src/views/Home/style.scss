@@ -1,8 +1,6 @@
 
 .vector {
-  & {
-    max-height: 66vw;
-  }
+  max-height: 66vw;
 
   img {
     width: 100%;
@@ -23,9 +21,8 @@
 }
 
 .infoBar {
-  & {
   max-height: 1200px;
-  }
+
   &--shape {
     width: 100%;
   }
@@ -83,10 +80,8 @@
 
 
 .infoBar2 {
-  & {
-    text-align: justify;
-    position: relative;
-  }
+  text-align: justify;
+  position: relative;
 
   &--image2 {
     position: relative;
@@ -124,9 +119,8 @@
 @media(max-width: 800px) {
 
   .infoBar {
-    & {
-      max-height: 300px;
-    }
+    max-height: 300px;
+    
     &--image {
       bottom: 80vw;
     }
