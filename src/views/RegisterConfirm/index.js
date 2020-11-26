@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import './style.scss';
 import { useHistory, useParams } from 'react-router-dom';
-import { registerUser } from '../../services/usersService';
-import { isLoading } from '../../slices/usersSlice';
+import { registerUser as registerUserImport} from '../../services/usersService';
+import { isLoading as isLoadingImport } from '../../slices/usersSlice';
 // import { openWebSocket } from '../../services/websocket';
 import Loader from '../../components/Loader';
 
@@ -21,13 +21,13 @@ function RegisterConfirm({ registerUser, isLoading }) {
     registerUser({ registerLink })
     .then(unwrapResult) // eslint-disable-next-line no-unused-vars
     .then(res => setReady(true)) // eslint-disable-next-line no-unused-vars
-    .catch(error => setError(true)) 
+    .catch(err => setError(true)) 
   }, [])
 
   useEffect(() => { // eslint-disable-line consistent-return
     if (ready) {
     const interval = setInterval(() => {
-      setcountdown(countdown => countdown - 1);
+      setcountdown(countDown => countDown - 1);
     }, 1000);
     if (countdown === 0) {
       clearInterval(interval)
@@ -67,11 +67,11 @@ RegisterConfirm.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: isLoading(state),
+  isLoading: isLoadingImport(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  registerUser: (credentials) => dispatch(registerUser(credentials)),
+  registerUser: (credentials) => dispatch(registerUserImport(credentials)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterConfirm);
