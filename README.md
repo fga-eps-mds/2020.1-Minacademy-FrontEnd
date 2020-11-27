@@ -47,11 +47,13 @@ análise das saídas ou resultados.
 
 !['Faze Cadastro na Plataforma'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127193256.gif)
 
-- Fazer cadastro na plataforma como aluno
+- Fazer cadastro na plataforma como Aprendiz
   - Escolher gênero masculino
-    - Tentar escolher tipo aluno
-  - Escolher gênero masculino
-    - Escolher tipo aluno
+    - Tentar fazer com dados errados
+    - Tentar escolher tipo aprendiz
+    - Escolher tipo Mentor
+  - Escolher gênero feminino
+    - Escolher tipo aprendiz
 - Abrir um certificado por link público
 
 ## Executando o projeto
