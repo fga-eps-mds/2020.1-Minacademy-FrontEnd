@@ -10,6 +10,47 @@
 
 Repositório do Front End do projeto [Minacademy](https://github.com/fga-eps-mds/2020.1-Grupo4).
 
+## Teste Funcional
+
+O teste funcional visa verificar a aceitabilidade dos dados, do
+processamento, da resposta do mesmo e a implementação apropriada das regras de negócio. Este tipo de teste é baseado nas técnicas de caixa-preta, ou seja, verificar o sistema
+e seu processo interno pela sua interação através da Interface Gráfica do Usuário (GUI) e da
+análise das saídas ou resultados.
+
+### Testes executados no projeto
+
+- Fazer login com usuário não cadastrado
+- Fazer login com usuário do tipo aprendiz
+  - Navegar da dashboard para o tutorial
+  - Abrir dropdown do tutorial e ir para Módulo 2
+  - Acessar atividades do módulo
+  - Responder incorretamente a questão
+  - Responder corretamente a questão
+  - Concluir as atividades
+  - Cancelar redirecionamento para aba certificados
+  - Abrir aba de Mentoria
+  - Cancelar solicitação de Mentor
+  - Solicitar Mentor
+  - Desvincular do Mentor
+  - Solicitar Mentor
+  - Abrir dropdown do cabeçalho
+  - Acessar aba de certificados
+  - Verificar certificados
+- Fazer login de usuário do tipo Mentor
+  - Abrir e responder Avaliação
+    - Fracassar na Avaliação
+    - Conseguir ser aprovado
+  - Abrir configurações de usuário
+- Fazer cadastro na plataforma como aluno
+  - Escolher gênero masculino
+    - Tentar escolher tipo aluno
+  - Escolher gênero masculino
+    - Escolher tipo aluno
+- Fazer requisito de alteração de senha, por meio do esqueci minha senha
+  - Verificar que email foi enviado com sucesso
+  - Verificar usuário não cadastrado
+- Abrir um certificado por link público
+
 ## Executando o projeto
 
 - Instale o [Docker](http://docs.docker.com/get-docker/) e o [Compose](http://docs.docker.com/compose/install/#install-compose) no seu computador
