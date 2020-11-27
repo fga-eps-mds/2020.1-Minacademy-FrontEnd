@@ -6,8 +6,6 @@
 
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=ncloc)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd)[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd)
 
-
-
 Repositório do Front End do projeto [Minacademy](https://github.com/fga-eps-mds/2020.1-Grupo4).
 
 ## Teste Funcional
@@ -18,6 +16,8 @@ e seu processo interno pela sua interação através da Interface Gráfica do Us
 análise das saídas ou resultados.
 
 ### Testes executados no projeto
+
+!['Teste de Aprendiz'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127192315.gif)
 
 - Fazer login com usuário não cadastrado
 - Fazer login com usuário do tipo aprendiz
@@ -36,19 +36,22 @@ análise das saídas ou resultados.
   - Abrir dropdown do cabeçalho
   - Acessar aba de certificados
   - Verificar certificados
+
+!['Teste de Mentor'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127192843.gif)
+
 - Fazer login de usuário do tipo Mentor
   - Abrir e responder Avaliação
     - Fracassar na Avaliação
     - Conseguir ser aprovado
   - Abrir configurações de usuário
+
+!['Faze Cadastro na Plataforma'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127193256.gif)
+
 - Fazer cadastro na plataforma como aluno
   - Escolher gênero masculino
     - Tentar escolher tipo aluno
   - Escolher gênero masculino
     - Escolher tipo aluno
-- Fazer requisito de alteração de senha, por meio do esqueci minha senha
-  - Verificar que email foi enviado com sucesso
-  - Verificar usuário não cadastrado
 - Abrir um certificado por link público
 
 ## Executando o projeto
