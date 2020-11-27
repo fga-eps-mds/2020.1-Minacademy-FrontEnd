@@ -1,4 +1,5 @@
 import RegisterMale from './registerMale.spec';
+import RegisterFemale from './registerFemale.spec';
 describe('Register', () => {
   before(() => {
     cy.window().then((win) => {
@@ -20,4 +21,5 @@ describe('Register', () => {
   })
 
   RegisterMale();
+  RegisterFemale();
 })
