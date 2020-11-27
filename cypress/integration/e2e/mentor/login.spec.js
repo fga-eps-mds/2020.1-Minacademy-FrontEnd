@@ -1,5 +1,6 @@
 import LogoutIntegration from '../logout.spec';
 import AvaliationIntegration from './avaliation.spec';
+import ProfileIntegration from './profile.spec';
 
 describe('Login', () => {
   before(() => {
@@ -37,5 +38,6 @@ describe('Login', () => {
   })
 
   AvaliationIntegration()
+  ProfileIntegration()
   LogoutIntegration()
 })
