@@ -1,4 +1,5 @@
 import LogoutIntegration from '../logout.spec';
+import AvaliationIntegration from './avaliation.spec';
 
 describe('Login', () => {
   before(() => {
@@ -34,6 +35,7 @@ describe('Login', () => {
     cy.get('@toast').click()
     cy.saveSessionStorage();
   })
-  
+
+  AvaliationIntegration()
   LogoutIntegration()
 })
