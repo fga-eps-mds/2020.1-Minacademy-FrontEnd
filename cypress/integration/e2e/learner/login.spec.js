@@ -1,6 +1,7 @@
 import TutorialIntegration from './tutorial.spec';
 import MentorshipIntegration from './mentorship.spec';
 import LogoutIntegration from '../logout.spec';
+import CertificateIntegration from './certificate.spec';
 
 describe('Login', () => {
   before(() => {
@@ -49,7 +50,7 @@ describe('Login', () => {
   })
 
   it('input authentication credentials', () => {
-    const email = "learner5@email.com"
+    const email = "user@email.com"
     const password = '123456'
     cy.get('form').within(() => {
       cy.get('input[name="email"]').clear().type(email).should('have.value', email)
@@ -65,5 +66,6 @@ describe('Login', () => {
 
   TutorialIntegration()
   MentorshipIntegration()
+  CertificateIntegration()
   LogoutIntegration()
 })
