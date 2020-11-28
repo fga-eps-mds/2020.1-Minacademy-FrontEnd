@@ -17,7 +17,7 @@ Para realizar o teste funcional foi utilizado o **Cypress**, um framework de tes
 
 ### Testes executados no projeto
 
-!['Teste de Aprendiz'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127192315.gif)
+!['Teste de Aprendiz'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Learner.gif)
 
 - Fazer login com usuário não cadastrado
 - Fazer login com usuário do tipo aprendiz
@@ -37,7 +37,7 @@ Para realizar o teste funcional foi utilizado o **Cypress**, um framework de tes
   - Acessar aba de certificados
   - Verificar certificados
 
-!['Teste de Mentor'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127192843.gif)
+!['Teste de Mentor'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Mentor.gif)
 
 - Fazer login de usuário do tipo Mentor
   - Abrir e responder Avaliação
@@ -45,7 +45,7 @@ Para realizar o teste funcional foi utilizado o **Cypress**, um framework de tes
     - Conseguir ser aprovado
   - Abrir configurações de usuário
 
-!['Faze Cadastro na Plataforma'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Screen-Capture_select-area_20201127193256.gif)
+!['Faze Cadastro na Plataforma'](https://github.com/fga-eps-mds/2020.1-Minacademy-FrontEnd/blob/102-testes-funcionais/cypress/gifs/Register.gif)
 
 - Fazer cadastro na plataforma como Aprendiz
   - Escolher gênero masculino
