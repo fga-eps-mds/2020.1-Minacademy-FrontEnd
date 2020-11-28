@@ -24,7 +24,7 @@ module.exports = {
     'react',
     'prettier',
   ],
-  ignorePatterns: ['src/tests/*'],
+  ignorePatterns: ['src/tests/*', 'cypress/'],
   rules: {
     'react/jsx-filename-extension': [
       'warn',

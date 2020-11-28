@@ -19,7 +19,7 @@ $danger--color: red;
     margin-top: 10vw;
     margin-bottom: 10vw;
     padding-bottom: 5%;
-    
+
     h1 {
         font-family: Overpass, sans-serif;
         font-size: 48px;
@@ -71,19 +71,19 @@ $danger--color: red;
         width: 235px;
         display: block;
         border-width: 0.2px;
-    
+
         box-sizing: border-box;
         padding: 5px;
         border-radius: 10px;
     }
-    
+
     .button{
         margin-left: 0;
         margin-right: 0;
         margin-top: 20px;
         width: 235px;
     }
-    
+
 }
 
 .change__resources {
@@ -96,13 +96,13 @@ $danger--color: red;
         margin-top: 3vw;
         color: var(--secondary-color);
     }
-    
+
     p a {
         color: var(--secondary-color);
         text-decoration: none;
-    
+
     }
-    
+
     p a:hover {
         color: var(--hover-button);
     }
@@ -131,9 +131,9 @@ $danger--color: red;
             margin: 0;
             text-align: center;
         }
-       
+
     }
-   
+
     .change-resources p{
         margin: 0;
     }
