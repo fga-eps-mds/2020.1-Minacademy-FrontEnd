@@ -11,14 +11,14 @@ const MentorshipIntegration = () => describe('Mentorship', () => {
     cy.get('h1').contains('Mentoria')
   })
 
-  it('cancel solicitation', () => {
+  it('cancel mentor request', () => {
     cy.get('button').contains('Cancelar').click()
     cy.get('.Toastify__toast--success').as('toast')
     cy.wait(1000)
     cy.get('@toast').contains('Solicitação').click()
   })
 
-  it('solicitate mentor', () => {
+  it('request mentor', () => {
     cy.intercept('PATCH', '/api/learners', {
       statusCode: 200,
       body: {
@@ -69,7 +69,7 @@ const MentorshipIntegration = () => describe('Mentorship', () => {
     cy.get('@toast').contains('Mentoria').click()
   })
 
-  it('solicitate mentor', () => {
+  it('request new mentor', () => {
     cy.get('button').contains('Solicitar').click()
     cy.get('.Toastify__toast--error').as('toast')
     cy.wait(1000)

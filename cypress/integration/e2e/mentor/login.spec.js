@@ -1,5 +1,7 @@
 import LogoutIntegration from '../logout.spec';
-import AvaliationIntegration from './avaliation.spec';
+import EvaluationIntegration from './evaluation.spec';
+import UnvalidatedMentorshipIntegration from './unvalidatedMentorship.spec';
+import MentorshipIntegration from "./mentorship.spec";
 import ProfileIntegration from './profile.spec';
 
 describe('Login', () => {
@@ -10,16 +12,8 @@ describe('Login', () => {
     cy.visit('/login')
   });
 
-  beforeEach(() => {
-    // cy.intercept('GET', '/api/progress', { statusCode: 400, body: { error: 'ERROR PROGRESS!' }})
-  });
-
   afterEach(() => {
     cy.wait(750)
-  })
-
-  it('cypress is working', () => {
-    expect(true).to.equal(true)
   })
 
   it('input authentication credentials', () => {
@@ -32,12 +26,14 @@ describe('Login', () => {
     cy.get('button[type=submit]').click()
     cy.get('.Toastify__toast--success').as('toast')
     cy.get('@toast').contains('Seja bem-vind')
-    cy.wait(200)
+    cy.wait(1000)
     cy.get('@toast').click()
     cy.saveSessionStorage();
   })
 
-  AvaliationIntegration()
+  UnvalidatedMentorshipIntegration()
+  EvaluationIntegration()
+  MentorshipIntegration()
   ProfileIntegration()
   LogoutIntegration()
 })
