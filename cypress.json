@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://app:3000",
   "chromeWebSecurity": false,
   "viewportHeight": 768,
   "viewportWidth": 1024
