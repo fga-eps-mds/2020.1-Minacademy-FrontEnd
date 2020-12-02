@@ -16,6 +16,9 @@ services:
 
   cypress:
     image: 'cypress/included:6.0.0'
+    ipc: host
+    shm_size: '2gb'
+    command: "--browser chrome --config video=false"
     depends_on:
       - app
     working_dir: /e2e
