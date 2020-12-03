@@ -34,17 +34,15 @@ html {
  @see https://hankchizljaw.com/wrote/a-modern-css-reset/
  *******************/
 body {
-  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   overflow: overlay;
-  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
-  background: #ffffff00;
+  background: rgba(255, 255, 255, 0);
   opacity: 0;
 }
 ::-webkit-scrollbar-thumb {
@@ -197,9 +195,7 @@ noscript {
   clip: rect(0 0 0 0);
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Overpass', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Overpass, sans-serif, 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

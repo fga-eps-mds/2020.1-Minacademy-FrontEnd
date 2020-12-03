@@ -10,7 +10,6 @@ $danger--color: red;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: Overpass, sans-serif;
     background-color: white;
     border-radius: 10px;
     width: 428px;
@@ -21,7 +20,6 @@ $danger--color: red;
     padding-bottom: 5%;
 
     h1 {
-        font-family: Overpass, sans-serif;
         font-size: 48px;
         margin: 0;
         margin-left: 92.5px;
@@ -57,9 +55,6 @@ $danger--color: red;
     }
 }
 
-
-
-
 .change__form label form {
     margin-left: 92.5px;
     margin-top: 4vw;
@@ -89,7 +84,6 @@ $danger--color: red;
 .change__resources {
     p, a{
         text-align: center;
-        font-family: Overpass, sans-serif;
     }
 
     p:first-child {

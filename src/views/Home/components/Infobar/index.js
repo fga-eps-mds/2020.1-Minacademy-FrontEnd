@@ -10,11 +10,8 @@ export function InfoBar() {
 
   return (
     <div id="infoBar" className="infoBar">
-      {/* <div className="infoBar">
-        <img className="infobar--shape" src={infoBar} alt="descricao" />
-      </div> */}
       <div className="infoBar__image">
-        <img src={infobarImage} alt="curso" />
+      <img src={infobarImage} alt="descricao" />
       </div>
       <div className="infoBar__text">
         <h1>A iniciativa Minacademy</h1>
@@ -37,8 +34,8 @@ export function InfoBar2() {
   const history = useHistory();
 
   return (
-    <div id="infoBar2" className="infoBar2">
-      <div className="infoBar2__text">
+    <div id="infoBar2" className="infoBar no-background">
+      <div className="infoBar__text">
         <h1>Como funciona</h1>
         <p>
           Para auxiliar o tutorial, disponibilizado pela iniciativa Django
@@ -49,7 +46,7 @@ export function InfoBar2() {
         Explorar
         </Button>
       </div>
-      <div className="infoBar2__image">
+      <div className="infoBar__image">
         <img src={infobarImage2} alt="funcionamento" />
       </div>
     </div>
