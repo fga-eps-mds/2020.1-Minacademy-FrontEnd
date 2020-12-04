@@ -1,5 +1,6 @@
 import RegisterMale from './registerMale.spec';
 import RegisterFemale from './registerFemale.spec';
+
 describe('Register', () => {
   before(() => {
     cy.window().then((win) => {
@@ -8,16 +9,8 @@ describe('Register', () => {
     cy.visit('/cadastro')
   });
 
-  beforeEach(() => {
-    // cy.intercept('GET', '/api/progress', { statusCode: 400, body: { error: 'ERROR PROGRESS!' }})
-  });
-
   afterEach(() => {
     cy.wait(750)
-  })
-
-  it('cypress is working', () => {
-    expect(true).to.equal(true)
   })
 
   RegisterMale();

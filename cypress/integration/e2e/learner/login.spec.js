@@ -1,7 +1,7 @@
 import TutorialIntegration from './tutorial.spec';
 import MentorshipIntegration from './mentorship.spec';
 import LogoutIntegration from '../logout.spec';
-import CertificateIntegration from './certificate.spec';
+import CertificateIntegration from './certificates.spec';
 
 describe('Login', () => {
   before(() => {
@@ -9,10 +9,6 @@ describe('Login', () => {
         win.sessionStorage.clear()
     });
     cy.visit('/login')
-  });
-
-  beforeEach(() => {
-    // cy.intercept('GET', '/api/progress', { statusCode: 400, body: { error: 'ERROR PROGRESS!' }})
   });
 
   afterEach(() => {
@@ -33,15 +29,6 @@ describe('Login', () => {
   })
 
   it('fail to login non-registered user', () => {
-    // const staticResponse = { statusCode: 400, body: { error: 'Invalid Email or Password' } }
-    // cy.intercept('POST', '/api/users/login', (req) => {
-    //   // req.reply((res) => {
-    //   //   expect(res.body.error).to.include('Invalid Email or Password')
-    //   // })
-    //   req.reply(staticResponse)
-    // })
-    // cy.intercept('POST', '/api/users/login', staticResponse)
-
     cy.get('button[type=submit]').click()
     cy.get('.Toastify__toast--error').as('toast')
     cy.get('@toast').contains('Email ou senha incorretos')
@@ -59,7 +46,7 @@ describe('Login', () => {
     cy.get('button[type=submit]').click()
     cy.get('.Toastify__toast--success').as('toast')
     cy.get('@toast').contains('Seja bem-vind')
-    cy.wait(200)
+    cy.wait(1000)
     cy.get('@toast').click()
     cy.saveSessionStorage();
   })

@@ -6,7 +6,11 @@ const CertificatesIntegration = () => describe('Certificates', () => {
   it('open navbar dropdown', () => {
     cy.get('.header__navigation-action--resources').click()
     cy.wait(750)
+  })
+
+  it('go to Certificates page', () => {
     cy.get('.nav-dropdown__items > [href="/certificados"]').click()
+    cy.wait(750)
   })
 
   it('open certificate', () => {

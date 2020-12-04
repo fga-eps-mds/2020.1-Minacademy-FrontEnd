@@ -4,11 +4,12 @@ const ProfileIntegration = () => describe('Profile', () => {
     cy.wait(750)
     cy.get('.nav-dropdown__items > [href="/perfil"]').click()
   })
+
   it('edit lastname', () => {
     const lastname = 'Now Validated',
-    email = 'user@mentor.com'
-    cy.get('input[name="lastname"]').type(lastname).should('have.value', lastname);
-    cy.get('input[name="email"]').type(email).should('have.value', email);
+    email = 'validated@mentor.com'
+    cy.get('input[name="lastname"]').clear().type(lastname).should('have.value', lastname);
+    cy.get('input[name="email"]').clear().type(email).should('have.value', email);
     cy.wait(750)
     cy.intercept('POST', 'api/editUser', {
       body: {
