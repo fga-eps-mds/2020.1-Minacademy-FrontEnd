@@ -38,7 +38,9 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
-    "coverageReporters": ["json"]
+    "coverageReporters": [
+      "json", "lcov"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
