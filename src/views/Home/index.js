@@ -1,20 +1,22 @@
 import React from 'react';
-import './style.scss';
-import vector from '../../assets/images/vector.svg';
 import FAQ from './components/FAQ';
-import { Infobar, Infobar2 } from './components/Infobar';
+import { InfoBar, InfoBar2 } from './components/Infobar';
+import './style.scss';
+
 
 function Home() {
   return (
-    <>
-      <div className="vector">
-        <img src={vector} alt="imagemFundo" />
-        <h1>Nós encorajamos mulheres a se apaixonarem por programação.</h1>
+    <div className="home">
+      <div className="home__main">
+        <div className="image">
+          <h1>Nós encorajamos mulheres a se apaixonarem por programação</h1>
+        </div>
+        <div className="image2" />
       </div>
-      <Infobar />
-      <Infobar2 />
+      <InfoBar />
+      <InfoBar2 />
       <FAQ />
-    </>
+    </div>
   );
 }
 

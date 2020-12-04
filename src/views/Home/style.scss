@@ -1,192 +1,58 @@
+.home {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 
-.vector {
-  max-height: 66vw;
-
-  img {
-    width: 100%;
-    clip-path: view-box;
-  }
-
-  h1 {
-    font-weight: 600;
-    font-family: Overpass, sans-serif;
-    font-size: 4.5vw;
-    box-sizing: border-box;
-    width: 50vw;
-    padding-left: 10vw;
-    color: white;
-    position: relative;
-    bottom: 55vw;
-  }
-}
-
-.infoBar {
-  max-height: 1200px;
-
-  &--shape {
-    width: 100%;
-  }
-
-  &--text {
-    position: relative;
-    bottom: 50vw;
-    max-width: 40vw;
-    text-align: justify;
-    margin-left: auto;
-    margin-right: 5vw;
-  }
-
-  &--image {
-    display: inline-block;
-    bottom:76vw;
-    width: 45%;
-    position: relative;
-  }
-
-  h1 {
-    box-sizing: border-box;
-    font-size: 3vw;
-    font-family: Overpass, sans-serif;
-    margin-left: 4.5vw;
-    color: var(--title-color);
-  }
-
-  h2 {
-    color: var(--secondary-color);
-    box-sizing: border-box;
-    font-size: 2vw;
-    font-family: Overpass, sans-serif;
-    padding-left: 4.5vw;
-
-  }
-
-  p {
-    box-sizing: border-box;
-    font-weight: 300;
-    font-size: 2vw;
-    font-family: Overpass, sans-serif;
-    padding-left: 4.5vw;
-
-  }
-  button {
-    box-sizing: border-box;
-    position: relative;
-    margin-left: 14vw;
-  }
-
-}
-
-
-
-
-.infoBar2 {
-  text-align: justify;
-  position: relative;
-
-  &--image2 {
-    position: relative;
-    bottom: 20vw;
-    width: 30%;
-    text-align: justify;
-    margin-left: auto;
-    margin-right: 5vw;
-  }
-  &--text {
-    font-family: Overpass, sans-serif;
-    box-sizing: border-box;
-    h1 {
-    font-size: 3vw;
-    margin-left: 4.5vw;
-    color: var(--title-color);
-  }
-  p {
-      width: 40vw;
-      font-weight: 300;
-      font-size: 2vw;
-      max-width: 650px;
-      font-family: Overpass, sans-serif;
-      padding-left: 4.5vw;
-    }
-  }
-
-  button {
-    box-sizing: border-box;
-    margin-left: 12vw;
-  }
-
-}
-
-@media(max-width: 800px) {
-
-  .infoBar {
-    max-height: 300px;
-    
-    &--image {
-      bottom: 80vw;
-    }
-  }
-  .infoBar .button.small {
-    line-height: 1px;
-    min-width: 80px;
-    width: 80px;
-    font-size: 10px;
-  }
-  .infoBar2 .button.small {
-    line-height: 1px;
-    min-width: 80px;
-    width: 80px;
-    font-size: 10px;
-  }
-
-}
-
-.FAQ {
-  max-width: 95vw;
-  margin-bottom: 10vw;
-  margin-left: 2vw;
-
-  h1 {
-    color: var(--title-color);
+  &__main {
     display: flex;
-    box-sizing: border-box;
-    font-size: 4vw;
-    font-family: Overpass, sans-serif;
-    margin-top: 1vw;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+    min-height: 90vh;
+    z-index: 2;
 
-  h2 {
-    color: var(--secondary-color);
-    box-sizing: border-box;
-    font-size: 2vw;
-    font-family: Overpass, sans-serif;
-    padding-left: 4.5vw;
+    @media(max-width: 600px) {
+      min-height: 50vh;
+    }
 
-  }
+    .image {
+      position: relative;
+      background-image: url(../../assets/images/vector.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      flex-basis: 70%;
 
-  p {
-    color: var(--title-color);
-    width: 40vw;
-    font-weight: 300;
-    font-size: 1.6vw;
-    font-family: Overpass, sans-serif;
-    padding-left: 4.5vw;
-    text-align: justify;
-    margin-bottom: 2vw;
-  }
-  .questions {
-    margin-top: 5vw;
-  }
+      @media(max-width: 600px) {
+        flex-basis: 100%;
+        background-size: cover;
+         min-height: 40vh;
+      }
 
-  .question_left {
-    position: absolute;
+      h1 {
+        position: absolute;
+        top: 17%;
+        left: 10%;
+        font-size: 2.8rem;
+        font-weight: 800;
+        line-height: 1.7;
+        color: white;
+        max-width: 15ch;
 
-  }
+        @media(max-width: 600px) {
+          font-size: 1.8rem;
+          // top: 10%;
+          // left: 11%;
+        }
+      }
+    }
 
-  .question_right {
-    position: relative;
-    left: 50vw;
+    .image2 {
+      flex-basis: 30%;
+      background-image: url(../../assets/images/persona.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      @media(max-width: 600px) {
+        display: none;
+      }
+    }
   }
 }
