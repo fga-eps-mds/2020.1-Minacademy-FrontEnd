@@ -11,8 +11,6 @@
 
 # cypress
 
-cypress/plugins
-cypress/support
 cypress/videos
 cypress/screenshots
 
