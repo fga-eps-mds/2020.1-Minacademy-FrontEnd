@@ -9,6 +9,11 @@
 /coverage
 /.nyc_output
 
+# cypress
+
+cypress/videos
+cypress/screenshots
+
 # production
 /build
 

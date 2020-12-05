@@ -21,6 +21,3 @@ import '@cypress/code-coverage/support'
 Cypress.Cookies.defaults({
   preserve: 'auth_token'
 })
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
