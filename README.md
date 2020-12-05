@@ -1,6 +1,6 @@
 # Minacademy Frontend
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/7ce4a9cafb291faa20a0/maintainability)](https://codeclimate.com/github/fga-eps-mds/2020.1-Minacademy-FrontEnd/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/7ce4a9cafb291faa20a0/test_coverage)](https://codeclimate.com/github/fga-eps-mds/2020.1-Minacademy-FrontEnd/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7ce4a9cafb291faa20a0/maintainability)](https://codeclimate.com/github/fga-eps-mds/2020.1-Minacademy-FrontEnd/maintainability) [Testes Funcionais](https://fga-eps-mds.github.io/2020.1-Minacademy-Wiki/produto/testesFuncionais/testesFuncionais/)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=alert_status)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=code_smells)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd)[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd)[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=fga-eps-mds_2020.1-Minacademy-FrontEnd&metric=security_rating)](https://sonarcloud.io/dashboard?id=fga-eps-mds_2020.1-Minacademy-FrontEnd)
 
@@ -41,7 +41,7 @@ Se você deseja instalar um pacote utilizando npm, leia as instruções a seguir
 | `make cypress-open`                 | Rodar o cypress com interface               |
 | `docker-compose exec app <comando>` | Executa um comando dentro do container      |
 
-Obs: para rodar o cypress-open é preciso ter o X11 configurado
+Obs: para rodar o cypress-open é preciso ter o X11 configurado. Em sistemas Linux, o comando `xhost local:root` pode ser suficiente.
 
 ## Documentação
 
