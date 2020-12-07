@@ -13,6 +13,7 @@ import Loader from '../../components/Loader';
 import '../../index.css';
 import './style.scss';
 import MotionDiv from '../../UI/animation/MotionDiv';
+import RegisterExperiment from '../../planout/RegisterExperiment';
 
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -29,6 +30,8 @@ function Register({ registerRequest, isLoading }) {
     });
     history.push('/login');
   };
+
+  const exp = new RegisterExperiment();
 
   return (
     <div className="register">
@@ -120,7 +123,7 @@ function Register({ registerRequest, isLoading }) {
                 },
               })}
               errors={errors}
-            > 
+            >
               <option value="Female">Feminino</option>
               <option value="Male">Masculino</option>
             </Select>
@@ -231,7 +234,7 @@ function Register({ registerRequest, isLoading }) {
             form="register-form"
             disabled={!watch('agree') || isLoading}
           >
-            Cadastrar
+            {exp.get('register_button')}
           </Button>
           {isLoading && <Loader> Processando informações </Loader>}
         </div>
