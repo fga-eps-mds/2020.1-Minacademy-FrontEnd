@@ -1,8 +1,9 @@
 .login {
+  min-height: 100vh;
+  padding: 5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem 0;
   background: linear-gradient(
     309.23deg,
     rgba(136, 56, 255, 0.95) 3.17%,
@@ -10,7 +11,7 @@
   );
 
   @media (max-width: 600px) {
-    padding: 2rem;
+    padding: 2rem 1rem;
   }
 
   &__body {
@@ -27,13 +28,12 @@
     }
 
     @media (max-width: 600px) {
-      width: 100%;
       padding: 2rem;
+      margin-top: 8vh;
     }
 
     &--form {
       margin-top: 2rem;
-
       button {
         margin: 0 auto;
         margin-top: 1rem;

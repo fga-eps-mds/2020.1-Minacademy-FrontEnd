@@ -7,10 +7,10 @@ import {
   selectTotalAnswers,
   selectQuestionsList,
 } from '../../slices/tutorialSlice';
-import { getProgress } from '../../services/tutorialServices';
-import { validateMentor } from '../../services/mentorsService';
+import { getProgress as getProgressImport } from '../../services/tutorialServices';
+import { validateMentor as validateMentorImport } from '../../services/mentorsService';
 import { selectValidationAttempts } from '../../slices/mentorSlice';
-import { toggleModalVisible } from '../../slices/modalSlice';
+import { toggleModalVisible as toggleModalVisibleImport } from '../../slices/modalSlice';
 import { selectCurrentUser } from '../../slices/usersSlice';
 import ActivitiesList from '../Tutorial/components/ActivitiesList';
 import ExamQuestion from './components/ExamQuestion';
@@ -143,9 +143,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleModalVisible: () => dispatch(toggleModalVisible()),
-  getProgress: (query) => dispatch(getProgress(query)),
-  validateMentor: () => dispatch(validateMentor()),
+  toggleModalVisible: () => dispatch(toggleModalVisibleImport()),
+  getProgress: (query) => dispatch(getProgressImport(query)),
+  validateMentor: () => dispatch(validateMentorImport()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Exam);

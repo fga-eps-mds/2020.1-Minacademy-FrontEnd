@@ -30,8 +30,8 @@ const chatSlice = createSlice({
     },
     /* eslint-disable no-shadow */
     setCurrentChat(state, action) {
-      const chat = state.chats.find((chat) =>
-        chat.users.includes(action.payload._id)
+      const chat = state.chats.find((chatData) =>
+        chatData.users.includes(action.payload._id)
       );
       if (chat) {
         chat.agentName = `${action.payload.name} ${action.payload.lastname}`;

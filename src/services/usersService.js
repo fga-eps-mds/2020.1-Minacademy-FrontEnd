@@ -71,7 +71,7 @@ const registerRequest = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const response = await api.post(USER_ENDPOINT, values);
-      toast.success('Enviamos um e-mail de confirmação para seu e-mail cadastrado. Verifique sua caixa de e-mail e confirme seu cadastro.');
+      toast.success('Enviamos um e-mail de confirmação para seu e-mail cadastrado. Verifique sua caixa de e-mail e confirme seu cadastro.', {autoClose: false});
       return response.data;
     } catch (error) {
       if (error.response.data.error.includes('duplicate key error')) {
@@ -165,7 +165,7 @@ const changeUserEmail = async (values) => {
       toast.error('Não foi solicitado a mudança de e-mail através desse link ou ele já expirou')
     } else {
       toast.error('Erro ao alterar o e-mail')
-    } 
+    }
     return err
   }
 };

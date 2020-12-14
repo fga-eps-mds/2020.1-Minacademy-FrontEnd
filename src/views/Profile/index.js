@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux'; 
 import { toast } from 'react-toastify';
-import { selectCurrentUser, isLoading } from '../../slices/usersSlice';
-import { editUser } from '../../services/usersService';
+import { selectCurrentUser, isLoading as isLoadingImport } from '../../slices/usersSlice';
+import { editUser as editUserImport } from '../../services/usersService';
 import Button from '../../components/Button';
 import Input from '../../components/FormField/components/Input';
 import Loader from '../../components/Loader';
@@ -110,11 +110,11 @@ Profile.propTypes = {
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
-  isLoading: isLoading(state),
+  isLoading: isLoadingImport(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  editUser: (data) => dispatch(editUser(data)),
+  editUser: (data) => dispatch(editUserImport(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

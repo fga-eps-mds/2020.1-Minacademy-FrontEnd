@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loading, fetchingMentor, selectMentor, selectMentorRequest } from '../../../../slices/learnerSlice';
-import { assignMentor, cancelMentorRequest, unassignMentor, getMentor } from '../../../../services/learnersService';
+import { loading as loadingImport, fetchingMentor as fetchingMentorImport, selectMentor, selectMentorRequest } from '../../../../slices/learnerSlice';
+import { assignMentor as assignMentorImport, cancelMentorRequest as cancelMentorRequestImport, unassignMentor as unassignMentorImport, getMentor as getMentorImport } from '../../../../services/learnersService';
 import Card from '../../../../components/Card';
 import Button from '../../../../components/Button';
 import Modal from '../../../../components/Modal';
 import Loader from '../../../../components/Loader';
-import { toggleModalVisible, toggleChatOpen } from '../../../../slices/modalSlice';
+import { toggleModalVisible as toggleModalVisibleImport, toggleChatOpen as toggleChatOpenImport } from '../../../../slices/modalSlice';
 import MotionDiv from '../../../../UI/animation/MotionDiv';
 import './style.scss'
 
@@ -93,19 +93,19 @@ Learner.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  loading: loading(state),
-  fetchingMentor: fetchingMentor(state),
+  loading: loadingImport(state),
+  fetchingMentor: fetchingMentorImport(state),
   mentor: selectMentor(state),
   mentorRequest: selectMentorRequest(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getMentor: () => dispatch(getMentor()),
-  assignMentor: () => dispatch(assignMentor()),
-  cancelMentorRequest: () => dispatch(cancelMentorRequest()),
-  unassignMentor: () => dispatch(unassignMentor()),
-  toggleModalVisible: () => dispatch(toggleModalVisible()),
-  toggleChatOpen: (bool) => dispatch(toggleChatOpen(bool))
+  getMentor: () => dispatch(getMentorImport()),
+  assignMentor: () => dispatch(assignMentorImport()),
+  cancelMentorRequest: () => dispatch(cancelMentorRequestImport()),
+  unassignMentor: () => dispatch(unassignMentorImport()),
+  toggleModalVisible: () => dispatch(toggleModalVisibleImport()),
+  toggleChatOpen: (bool) => dispatch(toggleChatOpenImport(bool))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Learner);

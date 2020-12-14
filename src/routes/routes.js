@@ -40,7 +40,7 @@ const Routes = () => {
   }
 
   return (
-    <main style={{ position: 'relative', overflowY: 'hidden' }}>
+    <main>
       <Header />
       <Suspense fallback={<Loading />}>
       <div style={{ minHeight: "100vh" }}>

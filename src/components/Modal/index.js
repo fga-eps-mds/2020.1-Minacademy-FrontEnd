@@ -53,7 +53,7 @@ function Modal({ id='modal', onClose = () => {}, onConfirm = () => {}, title, cl
       </MotionDiv>
     </div>
   );
-};
+}
 
 Modal.defaultProps = {
   onConfirm: false,

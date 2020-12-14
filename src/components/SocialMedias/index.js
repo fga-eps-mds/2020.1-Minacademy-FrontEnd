@@ -12,8 +12,8 @@ function SocialMedias({ certificate }) {
   /* eslint-disable no-undef  */
 
   const certificateLink = `${window.location.origin}/certificado/${certificate._id}`;
-  const certificateMessage = certificate.courseType === 'Learner'? `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`:
-  `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`
+  const certificateMessage = certificate.courseType === 'Learner' ? `Veja meu novo certificado do tutorial Django Girls na plataforma Minacademy.%0A${certificateLink}`:
+  `Veja meu novo certificado de mentoria voluntária na plataforma Minacademy.%0A${certificateLink}`
   const date =  new Date().toLocaleString( 'pt-BR', certificate.createdAt )
   return (
     <>
@@ -39,7 +39,7 @@ function SocialMedias({ certificate }) {
           <Linkedin />
         </a>
         <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=${certificateMessage}&quote=#Minacdemy`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${certificateMessage}&quote=#Minacademy`}
           target="_blank"
           rel="noreferrer"
         >

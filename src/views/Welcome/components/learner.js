@@ -2,7 +2,7 @@ import React from 'react'
 import '../style.scss'
 import { Link } from 'react-router-dom'
 
-function Female(){
+function Learner(){
   return (
     <>
         <div id='welcome-learner' className='welcome-learner'>
@@ -30,4 +30,4 @@ function Female(){
   );
 }
 
-export default Female;
+export default Learner;

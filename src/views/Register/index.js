@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { registerRequest } from '../../services/usersService';
-import { isLoading } from '../../slices/usersSlice';
+import { registerRequest as registerRequestImport } from '../../services/usersService';
+import { isLoading as isLoadingImport } from '../../slices/usersSlice';
 import Input from '../../components/FormField/components/Input';
 import Select from '../../components/FormField/components/Select';
 import Radio from '../../components/FormField/components/Radio';
@@ -246,11 +246,11 @@ Register.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: isLoading(state),
+  isLoading: isLoadingImport(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  registerRequest: (credentials) => dispatch(registerRequest(credentials)),
+  registerRequest: (credentials) => dispatch(registerRequestImport(credentials)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

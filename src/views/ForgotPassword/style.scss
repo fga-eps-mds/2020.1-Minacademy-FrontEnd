@@ -10,7 +10,6 @@ $danger--color: red;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: Overpass;
     background-color: white;
     border-radius: 10px;
     width: 428px;
@@ -18,9 +17,8 @@ $danger--color: red;
     margin: auto;
     margin-top: 10vw;
     margin-bottom: 10vw;
-    
+
     h1 {
-        font-family: Overpass;
         font-size: 48px;
         margin: 0;
         margin-left: 92.5px;
@@ -66,38 +64,37 @@ $danger--color: red;
         width: 235px;
         display: block;
         border-width: 0.2px;
-        
+
         box-sizing: border-box;
         padding: 5px;
         border-radius: 10px;
     }
-    
+
     .button{
         margin-left: 0;
         margin-right: 0;
         margin-top: 20px;
         width: 235px;
     }
-    
+
 }
 
 .recovery__resources {
     p, a{
         text-align: center;
-        font-family: Overpass;
     }
 
     p:first-child {
         margin-top: 3vw;
         color: var(--secondary-color);
     }
-    
+
     p a {
         color: var(--secondary-color);
         text-decoration: none;
-    
+
     }
-    
+
     p a:hover {
         color: var(--hover-button);
     }
@@ -126,9 +123,9 @@ $danger--color: red;
             margin: 0;
             text-align: center;
         }
-       
+
     }
-   
+
     .recovery-resources p{
         margin: 0;
     }

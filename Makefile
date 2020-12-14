@@ -18,3 +18,9 @@ npm:
 
 npm-dev:
 	docker-compose exec app npm install -D $(pacote)
+
+cypress-open:
+	docker-compose -f docker-compose.yml -f cy-run.yml -f cy-open.yml up --exit-code-from cypress
+
+cypress-run:
+	docker-compose -f docker-compose.yml -f cy-run.yml up --exit-code-from cypress

@@ -8,8 +8,8 @@ import {
   selectCompletedActivities,
   selectTotalProgress,
 } from '../../slices/tutorialSlice';
-import { toggleModalVisible } from '../../slices/modalSlice';
-import { getProgress } from '../../services/tutorialServices';
+import { toggleModalVisible as toggleModalVisibleImport } from '../../slices/modalSlice';
+import { getProgress as getProgressImport } from '../../services/tutorialServices';
 import Markdown from './components/Markdown';
 import ActivitiesList from './components/ActivitiesList';
 import TutorialActivity from './components/TutorialActivity';
@@ -101,8 +101,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getProgress: () => dispatch(getProgress()),
-  toggleModalVisible: () => dispatch(toggleModalVisible()),
+  getProgress: () => dispatch(getProgressImport()),
+  toggleModalVisible: () => dispatch(toggleModalVisibleImport()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

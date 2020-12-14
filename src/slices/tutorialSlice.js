@@ -104,12 +104,12 @@ const getCurrentModule = state => {
 /* eslint-disable no-shadow */
 export const selectCurrentModule = createSelector(
   [selectTutorial],
-  tutorial => tutorial.currentModule
+  tutorialData => tutorialData.currentModule
 );
 
 export const selectMarkdown = createSelector(
   [selectTutorial],
-  tutorial => tutorial.markdown
+  tutorialData => tutorialData.markdown
 );
 
 export const selectQuestion = createSelector(
@@ -124,12 +124,12 @@ export const selectModule = createSelector(
 
 export const selectQuestionsResults = createSelector(
   [selectTutorial],
-  tutorial => tutorial.questionsResults
+  tutorialData => tutorialData.questionsResults
 );
 
 export const selectQuestionsList = createSelector(
   [selectTutorial],
-  tutorial => tutorial.questionsList
+  tutorialData => tutorialData.questionsList
 );
 
 export const selectCompletedActivities = createSelector(
@@ -139,32 +139,32 @@ export const selectCompletedActivities = createSelector(
 
 export const selectTotalAnswers = createSelector(
   [selectTutorial],
-  tutorial => tutorial.questionsResults.length
+  tutorialData => tutorialData.questionsResults.length
 );
 
 export const selectTotalProgress = createSelector(
   [selectTutorial],
-  tutorial => tutorial.totalProgress
+  tutorialData => tutorialData.totalProgress
 );
 
 export const selectModuleList = createSelector(
   [selectTutorial],
-  tutorial => tutorial.modules
+  tutorialData => tutorialData.modules
 );
 
 export const isLoading = createSelector(
   [selectTutorial],
-  tutorial => tutorial.loading
+  tutorialData => tutorialData.loading
 )
 
 export const isFetchingQuestions = createSelector(
   [selectTutorial],
-  tutorial => tutorial.fetchingQuestions
+  tutorialData => tutorialData.fetchingQuestions
 )
 
 export const isUpdatingMarkdown = createSelector(
   [selectTutorial],
-  tutorial => tutorial.updatingMarkdown
+  tutorialData => tutorialData.updatingMarkdown
 )
 
 export default tutorial.reducer;
